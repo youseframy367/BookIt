@@ -63,11 +63,11 @@
 }
 
 .font-rubik {
-     font-family: "Rubik", sans-serif;
+    font-family: "Rubik", sans-serif;
 }
 
 .font-PlayfairDisplay {
-     font-family: "PlayfairDisplay", sans-serif;
+    font-family: "PlayfairDisplay", sans-serif;
 }
 
 .font-qwigley {
@@ -97,3 +97,17 @@ body {
 }
 
 /* end all code */
+
+/* start hero */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+
+select {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+}
+
+/* end hero */
