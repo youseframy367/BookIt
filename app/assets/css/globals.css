@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+/* start all code */
+:root {
+    --color-navbar: #D9D9D9;
+    --color-red: #E22023;
+    --color-search: #F0F0F0;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/assets/fonts/Poppins-Light.ttf") format("truetype");
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/assets/fonts/Poppins-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Poppins";
+    src: url("/assets/fonts/Poppins-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background-color: orange;
+}
+
+.container {
+    width: 95%;
+    max-width: 1450px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+
+/* end all code */
