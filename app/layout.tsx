@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./assets/css/globals.css";
 import Header from "./components/public/Header";
 import AOSWrapper from "./components/AOSWrapper";
+import Footer from "./components/public/Footer";
 
 export const metadata: Metadata = {
   title: "BOOK IT",
@@ -20,6 +21,7 @@ export default function RootLayout({
         <AOSWrapper />
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -6,16 +6,6 @@ export default function Home() {
     <>
       <Hero />
       <Products />
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
-      <h2>test</h2>
     </>
   );
 }

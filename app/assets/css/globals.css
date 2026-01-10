@@ -9,6 +9,9 @@
     --color-arraw-back: #ffffff70;
     --color-text-products: #555555;
     --color-text-star: #454545;
+    --color-text-footer: #767E86;
+    --color-input-email: #E220231A;
+    --color-footer: #172432;
 }
 
 @font-face {
@@ -39,6 +42,32 @@
     font-family: "Poppins";
     src: url("/assets/fonts/Poppins-SemiBold.ttf") format("truetype");
     font-weight: 600;
+}
+
+@font-face {
+    font-family: "PlayfairDisplay";
+    src: url("/assets/fonts/PlayfairDisplay-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: url("/assets/fonts/Rubik-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Rubik";
+    src: url("/assets/fonts/Rubik-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+.font-rubik {
+     font-family: "Rubik", sans-serif;
+}
+
+.font-PlayfairDisplay {
+     font-family: "PlayfairDisplay", sans-serif;
 }
 
 .font-qwigley {
