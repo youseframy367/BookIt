@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./assets/css/globals.css";
 import Header from "./components/public/Header";
+import AOSWrapper from "./components/AOSWrapper";
 
 export const metadata: Metadata = {
   title: "BOOK IT",
@@ -16,6 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <link rel="icon" href="/assets/icons/logo.svg" />
       <body>
+        <AOSWrapper />
         <Header />
         {children}
       </body>
