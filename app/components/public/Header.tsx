@@ -78,7 +78,7 @@ function Header() {
                                 <Link href="/" title='BOOK IT'>
                                     <Image src="/assets/icons/logo.svg" alt='logo' width={139} height={54} />
                                 </Link>
-                                <div className="w-full lg:w-[568px] bg-[var(--color-search)] rounded-full relative flex items-center">
+                                <div className="w-full lg:w-[440px] bg-[var(--color-search)] rounded-full relative flex items-center">
                                     <Image src="/assets/icons/search.svg" alt='search' width={20} height={20} className='absolute start-5' />
                                     <input type="text" className='w-full h-full rounded-full ps-14' placeholder='Search restaurants or choose your area' />
                                     <Image src="/assets/icons/map.svg" alt='map' width={24} height={24} className='hidden lg:flex absolute end-5 filter invert sepia saturate-500 hue-rotate-[200deg]' />

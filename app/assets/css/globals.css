@@ -7,6 +7,8 @@
     --color-search: #F0F0F0;
     --color-hero: #00000080;
     --color-arraw-back: #ffffff70;
+    --color-text-products: #555555;
+    --color-text-star: #454545;
 }
 
 @font-face {
@@ -33,6 +35,12 @@
     font-weight: 400;
 }
 
+@font-face {
+    font-family: "Poppins";
+    src: url("/assets/fonts/Poppins-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+}
+
 .font-qwigley {
     font-family: "Qwigley", sans-serif;
 }
@@ -44,6 +52,15 @@ body {
 .container {
     width: 95%;
     max-width: 1450px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+
+.container-content {
+    width: 95%;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 0rem;
