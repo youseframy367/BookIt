@@ -27,7 +27,7 @@ function locationRestaurant() {
 
     return (
         <>
-            <Hero nextPage="/location-restaurant" title="Pane Vino - InterContinental Cairo Semiramis" />
+            <Hero image="hero-gallery" nextPage="/details-customer" title="Pane Vino - InterContinental Cairo Semiramis" />
             <FilterTitle data={tabs} onChange={handleTabChange} />
             {activeTab === "Details" && <ContentDetails />}
             {activeTab === "Rating & Reviews" && <ContentRatingAndReviews />}

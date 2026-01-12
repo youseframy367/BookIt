@@ -1,6 +1,7 @@
 export interface nextPage {
-    nextPage: string;
+    nextPage?: string;
     title?: string;
+    image?: string;
 }
 
 interface typeData {

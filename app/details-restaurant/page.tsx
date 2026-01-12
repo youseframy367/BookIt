@@ -4,7 +4,7 @@ import Hero from "../components/public/Hero";
 function DetailsRestaurant() {
     return (
         <>
-            <Hero nextPage="/location-restaurant" title="Gallery" />
+            <Hero image="hero-gallery" nextPage="/location-restaurant" title="Gallery" />
             <Content />
         </>
     )
