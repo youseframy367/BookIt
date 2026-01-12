@@ -1,0 +1,36 @@
+function FilterTitle() {
+    const title = [
+        {
+            title: "Menu",
+            active: false
+        },
+        {
+            title: "Details",
+            active: true
+        },
+        {
+            title: "Rating & Reviews",
+            active: false
+        }
+    ]
+
+    return (
+        <section>
+            <div className="container">
+                <ul className="mt-20 flex justify-center gap-[56px]">
+                    {
+                        title.map((item, index) => {
+                            return <li key={index} title={item.title} className={`hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%] ${item.active && 'active'} cursor-pointer border border-1 border-[var(--color-text-products)] px-10 py-4 rounded-[30px] font-medium text-xl`}>
+                                <span className="text-center relative z-1 transition-all duration-800">
+                                    {item.title}
+                                </span>
+                            </li>
+                        })
+                    }
+                </ul>
+            </div>
+        </section>
+    )
+}
+
+export default FilterTitle;

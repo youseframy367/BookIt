@@ -111,3 +111,11 @@ select {
 }
 
 /* end hero */
+
+/* start title */
+.active {
+    color: white;
+    background-color: var(--color-red);
+    border: transparent;
+}
+/* end title */

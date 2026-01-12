@@ -2,14 +2,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import ButtonHero from "./ButtonHero";
+import { nextPage } from "@/app/TypeScript/TypeScript";
 
-function Hero() {
+function Hero({ nextPage, title }: nextPage) {
     return (
         <section>
             <div className="relative w-full h-[400px] md:h-[82.3vh]">
                 <div className="realtive w-full h-full bg-[var(--color-hero)]">
-                    <div data-aos="fade-up" className="flex justify-center items-center w-full h-full">
-                        <h2 className="text-[87px] font-semibold text-white">Gallery</h2>
+                    <div data-aos="fade-up" className="flex justify-center items-center w-full h-full text-center">
+                        <h2 className="text-[87px] font-semibold text-white">{title}</h2>
                     </div>
                     <div className="container">
                         <div className="absolute top-5 md:top-13 flex">
@@ -21,11 +22,11 @@ function Hero() {
                     <Image src="/assets/icons/hero-gallery.svg" alt="hero gallery" fill className="object-cover z-[-1]" />
                 </div>
                 <div className="hidden sm:block">
-                    <ButtonHero />
+                    <ButtonHero nextPage={nextPage} />
                 </div>
             </div>
             <div className="sm:hidden">
-                <ButtonHero />
+                <ButtonHero nextPage={nextPage} />
             </div>
         </section>
     )

@@ -1,9 +1,10 @@
 "use client";
+import { nextPage } from "@/app/TypeScript/TypeScript";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 
-function ButtonHero() {
+function ButtonHero({ nextPage }: nextPage) {
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     return (
@@ -46,7 +47,7 @@ function ButtonHero() {
                             <Image src="/assets/icons/arraw-select.svg" alt="calendar" width={30} height={30} className="absolute right-3 top-7" />
                         </div>
                     </div>
-                    <Link title="back" href="/" className="rounded-r-xl px-[40px] bg-[var(--color-red)] flex items-center">
+                    <Link title="back" href={nextPage} className="rounded-r-xl px-[40px] bg-[var(--color-red)] flex items-center">
                         <div className="w-[28px] h-[60px] relative">
                             <Image src="/assets/icons/arraw.svg" alt="arraw" className="object-cover rotate-[180deg]" fill />
                         </div>
