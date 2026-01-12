@@ -12,6 +12,7 @@
     --color-text-footer: #767E86;
     --color-input-email: #E220231A;
     --color-footer: #172432;
+    --color-line: #cccccc8a;
 }
 
 @font-face {
@@ -60,6 +61,16 @@
     font-family: "Rubik";
     src: url("/assets/fonts/Rubik-Medium.ttf") format("truetype");
     font-weight: 500;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("/assets/fonts/Roboto-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+.font-Roboto {
+    font-family: "Roboto", sans-serif;
 }
 
 .font-rubik {
@@ -118,4 +129,12 @@ select {
     background-color: var(--color-red);
     border: transparent;
 }
+
 /* end title */
+
+/* start ratings */
+.rating-bar::before {
+    width: var(--before-width);
+}
+
+/* end ratings */

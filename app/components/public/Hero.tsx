@@ -10,7 +10,7 @@ function Hero({ nextPage, title }: nextPage) {
             <div className="relative w-full h-[400px] md:h-[82.3vh]">
                 <div className="realtive w-full h-full bg-[var(--color-hero)]">
                     <div data-aos="fade-up" className="flex justify-center items-center w-full h-full text-center">
-                        <h2 className="text-[87px] font-semibold text-white">{title}</h2>
+                        <h2 className="text-[40px] md:text-[87px] font-semibold text-white">{title}</h2>
                     </div>
                     <div className="container">
                         <div className="absolute top-5 md:top-13 flex">
