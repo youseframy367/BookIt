@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./assets/css/globals.css";
+import "../assets/css/globals.css";
 import Header from "./components/public/Header";
 import AOSWrapper from "./components/AOSWrapper";
 import Footer from "./components/public/Footer";
