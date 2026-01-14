@@ -1,5 +1,5 @@
 "use client";
-import { nextPage } from "@/app/TypeScript/TypeScript";
+import { nextPage } from "@/app/main/TypeScript/TypeScript";
 import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";

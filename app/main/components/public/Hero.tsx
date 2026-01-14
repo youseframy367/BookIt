@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ButtonHero from "./ButtonHero";
-import { nextPage } from "@/app/TypeScript/TypeScript";
+import { nextPage } from "@/app/main/TypeScript/TypeScript";
 
 function Hero({ nextPage, title, image }: nextPage) {
     return (

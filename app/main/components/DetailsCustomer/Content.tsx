@@ -1,4 +1,4 @@
-import { ChildRegister } from "@/app/TypeScript/TypeScript";
+import { ChildRegister } from "@/app/main/TypeScript/TypeScript";
 
 function ContentDetailsCustomer({ children }: ChildRegister) {
     return (

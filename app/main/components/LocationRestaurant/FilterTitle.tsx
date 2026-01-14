@@ -1,4 +1,4 @@
-import { filterTitle } from "@/app/TypeScript/TypeScript";
+import { filterTitle } from "@/app/main/TypeScript/TypeScript";
 
 function FilterTitle({ data, onChange }: filterTitle) {
     return (
