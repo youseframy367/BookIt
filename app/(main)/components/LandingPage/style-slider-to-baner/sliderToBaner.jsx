@@ -1,7 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 
-import "./style-slider-to-baner/sliderToBaner.css";
+import "./sliderToBaner.css";
 
 export default function SlideSimple() {
   const items = [

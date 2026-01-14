@@ -2,17 +2,17 @@ import Baner from "../components/LandingPage/Paner";
 // import OurBlog from "./OurBlog"
 // import HowBOOKwork from "./HowdoesBOOKITwork"
 // import RestaurantManagers from "./RestaurantManagersExperiences"
-import SlideToBaner from "../components/LandingPage/sliderToBaner";
-// import TopRated from "./TopRated"
+import SlideToBaner from "../components/LandingPage/style-slider-to-baner/sliderToBaner";
+import TopRated from "../components/LandingPage/TopRated";
 // import MostBoked from "./MostBooked"
+
 function Home() {
     return (
         <>
             <Baner />
-            <SlideToBaner />
-            {/* 
+            <SlideToBaner />        
             <TopRated />
-            <MostBoked />
+            {/* <MostBoked />
             <OurBlog />
             <HowBOOKwork />
             <RestaurantManagers /> */}
