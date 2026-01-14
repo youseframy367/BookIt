@@ -71,7 +71,7 @@ function ButtonHero({ nextPage }: nextPage) {
                             }
                         </div>
                     </div>
-                    <Link title="back" href={nextPage || ''} className={`rounded-r-xl px-[40px] ${nextPage ? 'bg-[var(--color-red)]' : 'bg-[var(--color-not-active)]'} flex items-center`}>
+                    <Link title={`${nextPage ? 'Next' : ''}`} href={nextPage || ''} className={`rounded-r-xl px-[40px] ${nextPage ? 'bg-[var(--color-red)]' : 'bg-[var(--color-not-active)] cursor-default'} flex items-center`}>
                         <div className="w-[28px] h-[60px] relative">
                             <Image src="/assets/icons/arraw.svg" alt="arraw" className="object-cover rotate-[180deg]" fill />
                         </div>

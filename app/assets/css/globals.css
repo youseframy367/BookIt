@@ -15,6 +15,7 @@
     --color-line: #cccccc8a;
     --color-reviews: #f3f0f0b1;
     --color-not-active: #767E8680;
+    --color-otp: #667085;
 }
 
 @font-face {
@@ -69,6 +70,16 @@
     font-family: "Roboto";
     src: url("/assets/fonts/Roboto-Regular.ttf") format("truetype");
     font-weight: 400;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: url("/assets/fonts/Inter_18pt-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+}
+
+.font-Inter {
+    font-family: "Inter", sans-serif;
 }
 
 .font-Roboto {

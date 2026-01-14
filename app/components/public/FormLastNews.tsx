@@ -1,3 +1,5 @@
+import Submit from "./Submit";
+
 function FormLastNews() {
     return (
         <section className="mt-20 relative z-2">
@@ -11,7 +13,7 @@ function FormLastNews() {
                                     <span>Email</span>
                                     <div className="flex flex-wrap gap-4">
                                         <input type="email" placeholder="Enter your Email" className="font-normal text-xl font-rubik placeholder:text-[var(--color-red)] bg-[var(--color-input-email)] px-7 py-5 rounded-xl lg:w-[372px]" />
-                                        <input value="Subscript" type="submit" className="cursor-pointer text-white font-normal text-xl font-rubik bg-[var(--color-red)] px-7 py-5 rounded-xl" />
+                                        <Submit title="Subscript" width="w-[136px]" />
                                     </div>
                                 </label>
                             </form>

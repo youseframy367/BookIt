@@ -7,7 +7,7 @@ import { nextPage } from "@/app/TypeScript/TypeScript";
 function Hero({ nextPage, title, image }: nextPage) {
     return (
         <section>
-            <div className="relative w-full h-[400px] md:h-[82.3vh]">
+            <div className="relative w-full h-[400px] md:h-[75vh]">
                 <div className="realtive w-full h-full bg-[var(--color-hero)]">
                     <div data-aos="fade-up" className="flex justify-center items-center w-full h-full pb-25 text-center">
                         <div className="w-[1300px]">
