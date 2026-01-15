@@ -15,7 +15,7 @@ export default function LogAcount() {
     setActive(email !== "" && password !== "");
   }, [email, password]);
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email || !password) {
       alert("Please enter both email and password");
