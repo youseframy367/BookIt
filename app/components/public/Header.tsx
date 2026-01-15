@@ -99,7 +99,7 @@ function Header() {
                                         sign up
                                     </span>
                                 </Link>
-                                <Link href="/" className="border-2 border-[var(--color-red)] bg-[var(--color-red)] px-8 py-3 text-white hover:text-[var(--color-red)] before:bg-white before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign in">
+                                <Link href="/login" className="border-2 border-[var(--color-red)] bg-[var(--color-red)] px-8 py-3 text-white hover:text-[var(--color-red)] before:bg-white before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign in">
                                     <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
                                         sign in
                                     </span>

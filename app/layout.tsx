@@ -12,7 +12,7 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
 
-  const hideLayoutPages = ['/login'];
+  const hideLayoutPages = ['/login', '/login/logInYourAcount'];
   const showHeaderFooter = !hideLayoutPages.includes(pathname);
 
   return (
