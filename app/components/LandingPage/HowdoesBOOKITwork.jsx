@@ -18,7 +18,7 @@ export default function HowBOOKwork() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 mt-8">
               {
                 steps.map((item, index) => {
-                  return <div key={index} className="flex flex-col gap-5">                    
+                  return <div key={index} className="flex flex-col gap-5">
                     <div className="w-full h-[300px] md:w-[195px] md:h-[200px] relative">
                       <Image src={`/assets/icons/${item.img}.png`} alt="work" fill className="object-cover" />
                     </div>
