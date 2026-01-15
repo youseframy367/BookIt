@@ -13,7 +13,7 @@ function ChoiceLog() {
         setTimeout(() => {
             setIsLoading(false);
             setIsActive(false);
-            window.location.href = "/login/logInYourAcount";
+            window.location.href = "/login/logIn-your-account";
         }, 4000);
     };
 

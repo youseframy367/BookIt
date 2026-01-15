@@ -54,7 +54,6 @@ export default function LogAcount() {
         style={{ backgroundImage: "url('/assets/icons/bg-login.png')" }}
       >
         <div className="container flex flex-col justify-center items-center">
-          {/* md:w-[781px] h-[659px] */}
           <form action=""
             method=""
             onSubmit={handleLogin} className="flex flex-col items-center md:w-[781px] h-[659px] p-5 rounded-lg bg-white shadow-md">
@@ -137,7 +136,7 @@ export default function LogAcount() {
 
               <p
                 className="text-[#BF360C] text-sm font-medium cursor-pointer"
-                onClick={() => router.push("/forgot-password")}
+                onClick={() => router.push("/login/forget-bassword")}
               >
                 Forgot password
               </p>
