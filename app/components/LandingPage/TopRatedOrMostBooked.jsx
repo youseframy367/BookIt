@@ -3,7 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Like from "./like/like";
 
-function TopRated() {
+function TopRatedOrMostBooked() {
   const initialRated = [
     {
       img: "/assets/icons/top-rated-1.png",
@@ -135,4 +135,4 @@ function TopRated() {
   );
 }
 
-export default TopRated;
+export default TopRatedOrMostBooked;
