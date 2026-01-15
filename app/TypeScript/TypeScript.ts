@@ -22,3 +22,36 @@ export interface btn {
 export interface ChildRegister {
     children?: React.ReactNode;
 }
+
+export interface HeaderItem {
+    title: string;
+    subTitle: string;
+}
+
+export interface RestaurantItem {
+    img: string;
+    name: string;
+    Relative: number;
+    des: string;
+    lick: boolean;
+}
+
+export interface DataObject {
+    header: HeaderItem;
+    items: RestaurantItem[];
+}
+
+export type DataRealtied = DataObject[];
+
+export interface Props {
+  dataRealtiedAndBooked: DataRealtied;
+}
+
+// interface Items {
+//     title: string;
+//     subTitle: string;
+// }
+
+// export interface Realted {
+//     dataRealtiedAndBooked: Items[];
+// }
