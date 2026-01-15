@@ -1,6 +1,6 @@
 import Baner from "./components/LandingPage/Paner";
 import OurBlog from "./components/LandingPage/OurBlog";
-// import HowBOOKwork from "./HowdoesBOOKITwork"
+import HowBOOKwork from "./components/LandingPage/HowdoesBOOKITwork";
 // import RestaurantManagers from "./RestaurantManagersExperiences"
 import SlideToBaner from "./components/LandingPage/style-slider-to-baner/sliderToBaner";
 import TopRated from "./components/LandingPage/TopRatedOrMostBooked";
@@ -66,8 +66,8 @@ function Home() {
             <SlideToBaner />
             <TopRated dataRealtiedAndBooked={dataRealtied} />
             <OurBlog />
-            {/* <HowBOOKwork />
-            <RestaurantManagers /> */}
+            <HowBOOKwork />
+            {/* <RestaurantManagers /> */}
         </>
     )
 }

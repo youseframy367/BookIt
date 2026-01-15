@@ -47,11 +47,7 @@ export interface Props {
   dataRealtiedAndBooked: DataRealtied;
 }
 
-// interface Items {
-//     title: string;
-//     subTitle: string;
-// }
-
-// export interface Realted {
-//     dataRealtiedAndBooked: Items[];
-// }
+export interface Header {
+    title: string,
+    subTitle: string
+}
