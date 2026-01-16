@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Submit from "../../components/public/Submit";
 import "../../assets/css/globals.css";
+import Image from "next/image";
 
 export default function LogAcount() {
   const router = useRouter();
@@ -63,12 +64,14 @@ export default function LogAcount() {
                 className="border-none outline-none"
                 onClick={() => router.back()}
               >
-                <img src="/assets/icons/close.png" alt="back" />
+                <div className="w-[20px] h-[20px] relative">
+                  <Image src="/assets/icons/close.png" alt="back" fill />
+                </div>
               </button>
             </div>
 
             {/* Logo */}
-            <img
+            <Image
               src="/assets/icons/logo-navbar.png"
               width={80}
               height={70}

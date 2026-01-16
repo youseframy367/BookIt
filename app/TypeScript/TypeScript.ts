@@ -17,6 +17,7 @@ export interface filterTitle {
 export interface btn {
     title: string;
     width: string;
+    onSubmit?: () => {};
 }
 
 export interface ChildRegister {
@@ -44,7 +45,7 @@ export interface DataObject {
 export type DataRealtied = DataObject[];
 
 export interface Props {
-  dataRealtiedAndBooked: DataRealtied;
+    dataRealtiedAndBooked: DataRealtied;
 }
 
 export interface Header {

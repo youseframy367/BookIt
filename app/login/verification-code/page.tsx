@@ -1,6 +1,8 @@
 "use client";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Submit from "@/app/components/public/Submit";
 
 export default function VerificationCode() {
   const router = useRouter();
@@ -55,7 +57,8 @@ export default function VerificationCode() {
       console.log("Verification success:", result);
 
       alert("Code verified successfully!");
-      router.push("/new-password");
+      window.location.href = "/login/creat-new-password";
+      // router.push("/new-password");
     } catch (error) {
       console.error(error);
       alert("Invalid or expired code");
@@ -64,66 +67,66 @@ export default function VerificationCode() {
   };
 
   return (
-    <div
-      className="fixed inset-0 flex flex-col justify-center items-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/imgBegScren/OTB.png')" }}
-    >
-      <div className="flex flex-col items-center w-[781px] h-[637px] p-10 bg-white rounded-lg shadow-md">
-        {/* Back Button */}
-        <div className="w-full flex justify-start">
-          <button
-            className="border-none outline-none bg-transparent cursor-pointer"
-            onClick={() => router.back()}
-          >
-            <img src="/imgBegScren/back.png" alt="back" />
-          </button>
-        </div>
+    <section>
+      <div
+        className="fixed inset-0 flex flex-col justify-center bg-cover bg-center"
+        style={{ backgroundImage: "url('/assets/icons/bg-otp.png')" }}
+      >
+        <div className="container flex flex-col justify-center items-center">
+          <div className="flex flex-col items-center w-[781px] h-[637px] p-10 bg-white rounded-lg shadow-md">
+            {/* Back Button */}
+            <div className="w-full flex justify-end">
+              <button
+                className="border-none outline-none"
+                onClick={() => router.back()}
+              >
+                <div className="w-[20px] h-[20px] relative">
+                  <Image src="/assets/icons/close.png" alt="back" fill />
+                </div>
+              </button>
+            </div>
 
-        {/* Logo */}
-        <img
-          src="/imgBegScren/logo.png"
-          width={80}
-          height={70}
-          className="-mt-2"
-          alt="logo"
-        />
-
-        {/* Titles */}
-        <p className="text-[#2B2F38] text-2xl font-semibold mt-4 mb-1">
-          Verification Code
-        </p>
-        <p className="text-[#667085] text-sm leading-6">
-          You will receive a 6-digit verification code
-        </p>
-
-        {/* Code Inputs */}
-        <div className="flex justify-center gap-14 my-5">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <input
-              key={index}
-              type="text"
-              maxLength={1}
-              className="w-10 h-12 text-center text-xl font-semibold border-2 border-gray-400 rounded outline-none"
-              ref={(el: HTMLInputElement | null) => {
-                inputsRef.current[index] = el;
-              }}
-              onChange={(e) => handleChange(e, index)}
-              onKeyDown={(e) => handleKeyDown(e, index)}
+            {/* Logo */}
+            <Image
+              src="/assets/icons/logo-navbar.png"
+              width={80}
+              height={70}
+              className="-mt-2"
+              alt="logo"
             />
-          ))}
-        </div>
 
-        {/* Send Code Button */}
-        <button
-          type="button"
-          onClick={handleVerify}
-          disabled={!active}
-          className={`w-[90%] py-2 my-2 font-medium text-white rounded transition-colors ${active ? "bg-[#E22023] cursor-pointer" : "bg-black/50 cursor-not-allowed"
-            }`}
-        >
-          Send Code
-        </button>
+            {/* Titles */}
+            <p className="text-[#2B2F38] text-2xl font-semibold mt-4 mb-1">
+              Verification Code
+            </p>
+            <p className="text-[#667085] text-sm leading-6">
+              You will receive a 6-digit verification code
+            </p>
+
+            {/* Code Inputs */}
+            <div className="flex justify-center gap-14 my-5">
+              {Array.from({ length: 6 }).map((_, index) => (
+                <input
+                  key={index}
+                  type="text"
+                  maxLength={1}
+                  className="w-10 h-12 text-center text-xl font-semibold border-2 border-gray-400 rounded outline-none"
+                  ref={(el: HTMLInputElement | null) => {
+                    inputsRef.current[index] = el;
+                  }}
+                  onChange={(e) => handleChange(e, index)}
+                  onKeyDown={(e) => handleKeyDown(e, index)}
+                />
+              ))}
+            </div>
+
+            {/* Send Code Button */}
+            <div className="my-4 w-[90%]">
+              <Submit title="Send Code" width="w-full" onSubmit={handleVerify} />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
