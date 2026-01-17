@@ -26,7 +26,7 @@ function Content({ gallery }: GalleryProps) {
                             })
                         ) : (
                             (gallery as GalleryItem[]).map((item, index) => (
-                                <Link href={item.link} key={index} data-aos="fade-up" className="rounded-xl relative w-full h-[300px] md:h-[600px] overflow-hidden group">
+                                <Link href={`/menu/${index + 1}`} key={index} data-aos="fade-up" className="rounded-xl relative w-full h-[300px] md:h-[600px] overflow-hidden group">
                                     <div className="flex justify-center items-center rounded-xl absolute bg-[var(--color-hero)] w-full h-full">
                                         <h2 className="text-white font-normal text-[300px] font-qwigley">{item.title}</h2>
                                     </div>

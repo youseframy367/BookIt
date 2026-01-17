@@ -29,39 +29,33 @@ function detailsRestaruantPublic() {
     const gallery = [
         {
             title: "Pizza",
-            icon: "Pizza",
-            link: "/"
+            icon: "Pizza"            
         },
         {
             title: "Pasta",
-            icon: "Pasta",
-            link: "/"
+            icon: "Pasta"            
         },
         {
             title: "Lazania",
-            icon: "gallery-3",
-            link: "/"
+            icon: "gallery-3"            
         },
         {
             title: "Seafood",
-            icon: "hero-menu",
-            link: "/"
+            icon: "hero-menu"            
         },
         {
             title: "Beef",
-            icon: "gallery-5",
-            link: "/"
+            icon: "gallery-5"            
         },
         {
             title: "Desserts",
-            icon: "gallery-6",
-            link: "/"
+            icon: "gallery-6"            
         }
     ];
 
     return (
         <>
-            <Hero image="hero-gallery" nextPage="/location-restaurant" title="Pane Vino - InterContinental Cairo Semiramis" isShowGallery={true} />
+            <Hero image="hero-gallery" title="Pane Vino - InterContinental Cairo Semiramis" isShowGallery={true} />
             <FilterTitle data={tabs} onChange={handleTabChange} />
             {activeTab === "Menu" && <Content gallery={gallery} />}
             {activeTab === "Details" && <ContentDetails />}

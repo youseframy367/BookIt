@@ -4,7 +4,7 @@ import Link from "next/link";
 import ButtonHero from "./ButtonHero";
 import { nextPage } from "@/app/TypeScript/TypeScript";
 
-function Hero({ nextPage, title, image, isShowGallery }: nextPage) {
+function Hero({ title, image, isShowGallery }: nextPage) {
     return (
         <section>
             <div className="relative w-full h-[400px] md:h-[75vh]">
@@ -25,7 +25,7 @@ function Hero({ nextPage, title, image, isShowGallery }: nextPage) {
                 </div>
                 {
                     isShowGallery &&
-                    <Link href="/gallery" title="gallery" className="absolute bottom-18 right-5 w-[130px] h-[130px] flex justify-center items-center text-white">
+                    <Link href="/gallery/1" title="gallery" className="absolute bottom-18 right-5 w-[130px] h-[130px] flex justify-center items-center text-white">
                         <Image src="/assets/icons/all-icons-gallery.svg" alt="all gallery" fill className="object-cover opacity-[0.4]" />
                         <span className="relative text-[25px] font-medium">+20</span>
                     </Link>

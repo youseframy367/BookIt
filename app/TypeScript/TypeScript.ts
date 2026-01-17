@@ -1,5 +1,4 @@
 export interface nextPage {
-    nextPage?: string;
     title?: string;
     image?: string;
     isShowGallery?: boolean;
@@ -57,7 +56,6 @@ export interface Header {
 export interface GalleryItem {
     title: string;
     icon: string;
-    link: string;
 }
 
 export interface GalleryProps {
