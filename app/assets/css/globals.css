@@ -28,7 +28,7 @@
 @font-face {
     font-family: "Poppins";
     src: url("/assets/fonts/Poppins-Regular.ttf") format("truetype");
-    font-weight: 400;    
+    font-weight: 400;
 }
 
 @font-face {
@@ -78,6 +78,18 @@
     src: url("/assets/fonts/Inter_18pt-SemiBold.ttf") format("truetype");
     font-weight: 600;
 }
+
+body.search-active {
+    position: relative;
+}
+
+body.search-active::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+}
+
 
 .font-Inter {
     font-family: "Inter", sans-serif;
@@ -150,4 +162,21 @@ select {
 .rating-bar::before {
     width: var(--before-width);
 }
+
 /* end ratings */
+
+:is(.swiper-button-prev, .swiper-button-next) svg {
+    opacity: 0 !important;
+    display: none !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+    right: unset !important;
+    left: unset !important;
+    top: unset !important;
+}
+
+.swiper-button-prev {
+    right: 35px !important;
+}
