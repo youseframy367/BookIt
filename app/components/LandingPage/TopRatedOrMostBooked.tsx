@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Like from "./like/like";
 import { Props } from "@/app/TypeScript/TypeScript";
+import Link from "next/link";
 
 function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
 
@@ -86,12 +87,12 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
                               ? item.des
                               : `${item.des.slice(0, previewLength)}...`}
                           </p>
-                          <div className="flex items-center justify-center flex-wrap mt-4 mx-2 gap-3">
+                          <Link href={`/details-restaurant/${index + 1}`} className="flex items-center justify-center flex-wrap mt-4 mx-2 gap-3">
                             <button className="px-8 py-4 rounded-[12px] bg-red-500 text-white text-[23px] font-medium font-Poppins truncate">
                               Restaurant Detail Page
                             </button>
                             <Like />
-                          </div>
+                          </Link>
                         </div>
                       </div>
                     );

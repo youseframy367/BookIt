@@ -9,9 +9,7 @@ function Content() {
 
     useEffect(() => {
         Fancybox.bind('[data-fancybox="gallery"]', {});
-        return () => {
-            Fancybox.destroy();
-        };
+        return () => Fancybox.destroy();        
     }, []);
 
     return (

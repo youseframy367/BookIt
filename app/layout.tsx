@@ -12,13 +12,14 @@ export default function RootLayout({
 }>) {
   const pathname = usePathname();
   
-  const hideLayoutPages = ['/login', '/login/logIn-your-account', '/login/forget-bassword', '/login/verification-code', '/login/creat-new-password'];
+  const hideLayoutPages = ['/login', '/login/logIn-your-account', '/login/forget-bassword', '/login/verification-code', '/login/creat-new-password', '/Register/new-account'];
   const showHeaderFooter = !hideLayoutPages.includes(pathname);
 
   return (
     <html lang="en">
       <link rel="icon" href="/assets/icons/logo.svg" />
       <body>
+        <title>BOOK IT</title>
         <AOSWrapper />
         {showHeaderFooter && <Header />}
         {children}

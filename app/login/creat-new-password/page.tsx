@@ -120,15 +120,7 @@ export default function NewBassword() {
             <div className="my-4 w-[90%]">
               <Submit title="Confirm" width="w-full" />
             </div>
-
-            {/* <button
-              type="submit"
-              className={`w-[90%] p-2.5 border-none outline-none m-2 rounded-md text-base font-medium text-white ${activ ? "bg-[#E22023]" : "bg-black/50"
-                }`}
-              onClick={handleSubmit}
-            >
-              Confirm
-            </button> */}
+            
           </form>
         </div>
       </div>

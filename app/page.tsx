@@ -18,7 +18,7 @@ function Home() {
                     name: "Pane Vino",
                     Relative: 0.9,
                     des: "Experience Pane Vino, a charming restaurant offering a delightful journey through classic Italian flavors...",
-                    lick: false,
+                    lick: false,                    
                 },
                 {
                     img: "/assets/icons/top-rated-2.png",
