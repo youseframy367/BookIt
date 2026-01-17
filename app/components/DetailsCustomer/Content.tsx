@@ -1,9 +1,9 @@
-import { ChildRegister } from "@/app/main/TypeScript/TypeScript";
+import { ChildRegister } from "@/app/TypeScript/TypeScript";
 
-function ContentDetailsCustomer({ children }: ChildRegister) {
+function ContentDetailsCustomer({ children, padding }: ChildRegister) {
     return (
         <div className="container-content">
-            <div className="p-10 mt-25 border border-2 border-[var(--color-not-active)] rounded-2xl shadow-lg">
+            <div className={`${padding} mt-25 border border-2 border-[var(--color-not-active)] rounded-2xl shadow-lg`}>
                 {children}
             </div>
         </div>

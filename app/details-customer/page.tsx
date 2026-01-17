@@ -12,7 +12,7 @@ function DetailsCustomer() {
     return (
         <>
             <Hero image="customer-content" title="Customer Contact Information" nextPage={true} backPage="/" />
-            <ContentDetailsCustomer>
+            <ContentDetailsCustomer padding="p-10">
                 <form action="" onSubmit={handleInformation} className="flex flex-col gap-7">
                     <div className="flex flex-col gap-7">
                         <div className="flex flex-col gap-10">

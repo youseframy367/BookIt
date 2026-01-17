@@ -24,6 +24,7 @@ export interface btn {
 
 export interface ChildRegister {
     children?: React.ReactNode;
+    padding: string;
 }
 
 export interface HeaderItem {
