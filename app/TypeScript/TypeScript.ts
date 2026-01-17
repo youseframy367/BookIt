@@ -1,4 +1,6 @@
-export interface nextPage {
+export interface nextAndBackPage {
+    nextPage?: boolean;
+    backPage?: string;
     title?: string;
     image?: string;
     isShowGallery?: boolean;

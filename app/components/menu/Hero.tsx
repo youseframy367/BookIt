@@ -1,7 +1,11 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation";
 
 function Hero() {
+    const { id } = useParams();
+
     return (
         <section>
             <div className="relative w-full h-[400px] md:h-[82.3vh]">
@@ -11,7 +15,7 @@ function Hero() {
                     </div>
                     <div className="container">
                         <div className="absolute top-5 md:top-13 flex">
-                            <Link title="back" href="/" className="border border-2 border-white rounded-full py-[10px] px-[17px] bg-[var(--color-arraw-back)]">
+                            <Link title="back" href={`/details-restaurant-public/${id}`} className="border border-2 border-white rounded-full py-[10px] px-[17px] bg-[var(--color-arraw-back)]">
                                 <Image src="/assets/icons/arraw.svg" alt="arraw" width={14} height={30} />
                             </Link>
                         </div>

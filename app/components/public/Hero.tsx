@@ -2,9 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import ButtonHero from "./ButtonHero";
-import { nextPage } from "@/app/TypeScript/TypeScript";
+import { nextAndBackPage } from "@/app/TypeScript/TypeScript";
 
-function Hero({ title, image, isShowGallery }: nextPage) {
+function Hero({ title, image, isShowGallery, nextPage, backPage }: nextAndBackPage) {
     return (
         <section>
             <div className="relative w-full h-[400px] md:h-[75vh]">
@@ -16,7 +16,7 @@ function Hero({ title, image, isShowGallery }: nextPage) {
                     </div>
                     <div className="container">
                         <div className="absolute top-5 md:top-13 flex">
-                            <Link title="back" href="/" className="border border-2 border-white rounded-full py-[10px] px-[17px] bg-[var(--color-arraw-back)]">
+                            <Link title="back" href={backPage || ''} className="border border-2 border-white rounded-full py-[10px] px-[17px] bg-[var(--color-arraw-back)]">
                                 <Image src="/assets/icons/arraw.svg" alt="arraw" width={14} height={30} />
                             </Link>
                         </div>
@@ -31,11 +31,11 @@ function Hero({ title, image, isShowGallery }: nextPage) {
                     </Link>
                 }
                 <div className="hidden sm:block">
-                    <ButtonHero />
+                    <ButtonHero nextPage={nextPage} />
                 </div>
             </div>
             <div className="sm:hidden">
-                <ButtonHero />
+                <ButtonHero nextPage={nextPage} />
             </div>
         </section>
     )

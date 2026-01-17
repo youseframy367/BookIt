@@ -55,7 +55,7 @@ function detailsRestaruantPublic() {
 
     return (
         <>
-            <Hero image="hero-gallery" title="Pane Vino - InterContinental Cairo Semiramis" isShowGallery={true} />
+            <Hero image="hero-gallery" title="Pane Vino - InterContinental Cairo Semiramis" isShowGallery={true} backPage="/" />
             <FilterTitle data={tabs} onChange={handleTabChange} />
             {activeTab === "Menu" && <Content gallery={gallery} />}
             {activeTab === "Details" && <ContentDetails />}
