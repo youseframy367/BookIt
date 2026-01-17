@@ -2,6 +2,7 @@ export interface nextPage {
     nextPage?: string;
     title?: string;
     image?: string;
+    isShowGallery?: boolean;
 }
 
 interface typeData {
@@ -51,4 +52,14 @@ export interface Props {
 export interface Header {
     title: string,
     subTitle: string
+}
+
+export interface GalleryItem {
+    title: string;
+    icon: string;
+    link: string;
+}
+
+export interface GalleryProps {
+    gallery: string[] | GalleryItem[];
 }
