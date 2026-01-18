@@ -90,7 +90,7 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
                               ? item.des
                               : `${item.des.slice(0, previewLength)}...`}
                           </p>
-                          <div className="flex items-center justify-center mt-4 md:mx-2 gap-3">
+                          <div className="flex items-center justify-center my-6 md:mx-2 gap-3">
                             <Link href={`/details-restaurant-public/${index + 1}`} className="px-8 py-4 rounded-[12px] bg-red-500 text-white text-[18px] md:text-[23px] font-medium font-Poppins truncate">
                               Restaurant Detail Page
                             </Link>
