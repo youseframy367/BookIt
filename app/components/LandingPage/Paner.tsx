@@ -69,6 +69,7 @@ function Banner() {
 
                 {/* Circular Text */}
                 <div className="mt-5 relative w-[150px] h-[150px]">
+                    <Image src="/assets/icons/down.png" alt="center" width={16} height={24} className="absolute top-15 left-17" />
                     <svg
                         viewBox="0 0 200 200"
 
@@ -85,11 +86,11 @@ function Banner() {
                         <text
                             fill="#E22023"
                             fontSize="16,12px"
-                            letterSpacing="2px" // مسافة الأحرف
+                            letterSpacing="2px"
                             fontFamily="Inter"
                             fontWeight="400"
                             style={{
-                                transformOrigin: "100px 100px", // مركز الدائرة
+                                transformOrigin: "100px 100px",
                                 animation: "rotateText 20s linear infinite",
                             }}
                         >

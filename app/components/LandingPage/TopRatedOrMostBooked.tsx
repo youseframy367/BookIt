@@ -4,7 +4,6 @@ import Image from "next/image";
 import Like from "./like/like";
 import { Props } from "@/app/TypeScript/TypeScript";
 import Link from "next/link";
-import { div } from "framer-motion/client";
 
 function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
 

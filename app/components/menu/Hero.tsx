@@ -16,7 +16,7 @@ function Hero() {
                     <div className="container">
                         <div className="absolute top-5 md:top-13 flex">
                             <Link title="back" href={`/details-restaurant-public/${id}`} className="border border-2 border-white rounded-full py-[10px] px-[17px] bg-[var(--color-arraw-back)]">
-                                <Image src="/assets/icons/arraw.svg" alt="arraw" width={14} height={30} />
+                                <Image src="/assets/icons/arraw.png" alt="arraw" width={14} height={30} className="rotate-180" />
                             </Link>
                         </div>
                     </div>

@@ -53,7 +53,7 @@ export default function RestaurantManagers() {
           <button
             className="w-[60px] h-[60px] flex items-center justify-center rounded-xl bg-[#E22023] swiper-button-prev"
           >
-            <img src="/assets/icons/arraw.svg" alt="right" />
+            <img src="/assets/icons/arraw.png" alt="right" className='rotate-180' />
           </button>
 
           <button

@@ -67,7 +67,7 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
                     </div>
                     <Link title="" href="/details-customer" className={`${nextPage ? 'bg-[var(--color-not-active)] cursor-default' : 'bg-[var(--color-red)]'} rounded-r-xl px-[40px] flex items-center`}>
                         <div className="w-[28px] h-[60px] relative">
-                            <Image src="/assets/icons/arraw.svg" alt="arraw" className="object-cover rotate-[180deg]" fill />
+                            <Image src="/assets/icons/arraw.png" alt="arraw" className="object-cover" fill />
                         </div>
                     </Link>
                 </div>

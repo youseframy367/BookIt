@@ -17,16 +17,16 @@ function Hero({ title, image, isShowGallery, nextPage, backPage }: nextAndBackPa
                     <div className="container">
                         <div className="absolute top-5 md:top-13 flex">
                             <Link title="back" href={backPage || ''} className="border border-2 border-white rounded-full py-[10px] px-[17px] bg-[var(--color-arraw-back)]">
-                                <Image src="/assets/icons/arraw.svg" alt="arraw" width={14} height={30} />
+                                <Image src="/assets/icons/arraw.png" alt="arraw" width={14} height={30} className="rotate-180" />
                             </Link>
                         </div>
                     </div>
-                    <Image src={`/assets/icons/${image}.svg`} alt="hero gallery" fill className="object-cover z-[-1]" />
+                    <Image src={`/assets/icons/${image}`} alt="hero gallery" fill className="object-cover z-[-1]" />
                 </div>
                 {
                     isShowGallery &&
                     <Link href="/gallery/1" title="gallery" className="absolute bottom-18 right-5 w-[130px] h-[130px] flex justify-center items-center text-white">
-                        <Image src="/assets/icons/all-icons-gallery.svg" alt="all gallery" fill className="object-cover opacity-[0.4]" />
+                        <Image src="/assets/icons/all-icons-gallery.png" alt="all gallery" fill className="object-cover opacity-[0.4]" />
                         <span className="relative text-[25px] font-medium">+20</span>
                     </Link>
                 }

@@ -1,23 +1,40 @@
 "use client";
 import ContentDetailsCustomer from "../components/DetailsCustomer/Content";
 import Hero from "../components/public/Hero";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import OtpInput from "react-otp-input";
 import Submit from "../components/public/Submit";
+import Image from "next/image";
+import { motion } from "framer-motion";
 
 function Otp() {
+    const [showOtp, setShowOtp] = useState(false);
     const [otp, setOtp] = useState("");
+
+    useEffect(() => {
+        showOtp ? document.body.classList.add("search-active") : document.body.classList.remove("search-active");
+        return () => document.body.classList.remove("search-active");
+    }, [showOtp]);
 
     function handleotp(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        window.location.href = "/otp";
+        setShowOtp(true);
     }
+
+    const particles = [
+        "/assets/icons/star-otp.svg",
+        "/assets/icons/square.svg",
+        "/assets/icons/dot.svg",
+        "/assets/icons/line-1.svg",
+        "/assets/icons/line-2.svg",
+        "/assets/icons/star-1.svg",
+    ];
 
     return (
         <>
-            <Hero image="bg-otp" title="Verification Code" />
+            <Hero image="bg-otp-mobile.png" title="Verification Code" nextPage={true} backPage="/" />
             <ContentDetailsCustomer padding="p-5 md:p-30">
-                <form action="" onSubmit={handleotp} className="flex flex-col gap-15">
+                <form action="" onSubmit={handleotp} className="relative flex flex-col gap-15">
                     <div className="flex flex-col md:justify-center md:items-center gap-5">
                         <h2 className="font-Inter font-semibold text-3xl">Verification Code</h2>
                         <span className="text-base font-normal text-[var(--color-otp)]">You will receive a 6-digit verification code</span>
@@ -39,6 +56,75 @@ function Otp() {
                     <div className="flex justify-center">
                         <Submit title="Confirm" width="w-[712px]" />
                     </div>
+                    {
+                        showOtp &&
+                        <div className="z-2 absolute top-0 flex justify-center items-center w-full h-full">
+                            <div className="p-5 w-[500px] absolute top-0 bg-white rounded-[25px] flex flex-col items-center justify-center gap-9">
+
+                                {/* زر الإغلاق */}
+                                <div className="flex justify-end w-full">
+                                    <div
+                                        onClick={() => setShowOtp(false)}
+                                        title="close"
+                                        className="cursor-pointer p-4 rounded-full shadow-[0_4px_4px_rgba(0,0,0,0.25)] w-[20px] h-[20px] relative"
+                                    >
+                                        <Image src="/assets/icons/close.png" alt="back" fill />
+                                    </div>
+                                </div>
+
+                                <div className="p-7 relative">
+                                    {particles.map((src, i) => {
+                                        const angle = (i / particles.length) * 2 * Math.PI;
+                                        const radius = 180;
+                                        const x = Math.cos(angle) * radius;
+                                        const y = Math.sin(angle) * radius;
+
+                                        return (
+                                            <motion.div
+                                                key={i}
+                                                initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
+                                                animate={{ x, y, opacity: 1, scale: 1 }}
+                                                transition={{ duration: 0.8, ease: "easeOut", delay: i * 0.5 }}
+                                                className="p-7 absolute left-[115px] top-[110px]"
+                                                style={{ transform: "translate(-50%, -50%)" }}
+                                            >
+                                                <Image src={src} alt="particle" width={40} height={40} />
+                                            </motion.div>
+                                        );
+                                    })}
+
+                                    <div className="breathe p-7 relative before:content[''] before:absolute before:rounded-full">
+                                        <Image
+                                            src="/assets/icons/icon-success.svg"
+                                            alt="success"
+                                            width={210}
+                                            height={210}
+                                            className="relative z-10"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="text-center px-5 text-[var(--color-text-footer)] font-semibold text-[22px]">
+                                    <span>Booking confirmed! You will receive reminders before your reservation.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        // <div className="z-2 absolute top-0 flex justify-center items-center w-full h-full">
+                        //     <div className="p-5 w-[500px] absolute top-0 bg-white rounded-[25px] flex flex-col items-center justify-center gap-9">
+                        //         <div className="flex justify-end w-full">
+                        //             <div onClick={() => setShowOtp(false)} title="close" className="cursor-pointer p-4 rounded-full shadow-[0_4px_4px_rgba(0,0,0,0.25)] w-[20px] h-[20px] relative">
+                        //                 <Image src="/assets/icons/close.png" alt="back" fill />
+                        //             </div>
+                        //         </div>
+                        //         <div className="breathe p-7 relative before:content[''] before:absolute before:rounded-full">
+                        //             <Image src="/assets/icons/icon-success.svg" alt="back" width={210} height={210} />
+                        //         </div>
+                        //         <div className="text-center px-5 text-[var(--color-text-footer)] font-semibold text-[22px]">
+                        //             <span>Booking confirmed! You will receive reminders before your reservation.</span>
+                        //         </div>
+                        //     </div>
+                        // </div>
+                    }
                 </form>
             </ContentDetailsCustomer>
         </>
