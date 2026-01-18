@@ -8,11 +8,11 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
     const inputRef = useRef<HTMLInputElement | null>(null);
 
     return (
-        <div className="mt-10 sm:mt-0 sm:absolute bottom-[-35px] w-full">
+        <div className="sm:absolute bottom-[-35px] w-full">
             <div className="container-content">
-                <div className="flex justify-center bg-white rounded-2xl shadow">
+                <div className="flex flex-col md:flex-row justify-center bg-white rounded-2xl shadow">
                     <div className="w-full py-6 px-8 flex flex-col sm:flex-row justify-between gap-5">
-                        <div className="flex items-center relative font-normal text-xl font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]">
+                        <div className={`flex items-center ${nextPage && 'py-5'} relative font-normal text-xl font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]`}>
                             <Image
                                 onClick={() => inputRef.current?.showPicker()}
                                 src="/assets/icons/calendar.svg"
@@ -24,13 +24,13 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
                             {
                                 !nextPage ? <input
                                     type="date" ref={inputRef}
-                                    className="pl-15 pr-5 w-full h-full bg-transparent"
+                                    className="pl-15 pr-5 py-5 w-full h-full bg-transparent"
                                 /> : <div>
                                     <span className="pl-15 pr-5 w-full h-full text-[var(--color-red)]">Helo World</span>
                                 </div>
                             }
                         </div>
-                        <div className="flex items-center relative font-normal text-xl font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]">
+                        <div className={`flex items-center ${nextPage && 'py-5'} relative font-normal text-xl font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]`}>
                             <Image src="/assets/icons/clock.svg" alt="calendar" width={30} height={30} className="absolute left-3 top-4" />
                             {
                                 !nextPage ?
@@ -65,11 +65,13 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
                             }
                         </div>
                     </div>
-                    <Link title="" href="/details-customer" className={`${nextPage ? 'bg-[var(--color-not-active)] cursor-default' : 'bg-[var(--color-red)]'} rounded-r-xl px-[40px] flex items-center`}>
-                        <div className="w-[28px] h-[60px] relative">
-                            <Image src="/assets/icons/arraw.png" alt="arraw" className="object-cover" fill />
-                        </div>
-                    </Link>
+                    <div className="w-full md:w-[unset] flex justify-center">
+                        <Link title="Details Customer" href="/details-customer" className={`${nextPage ? 'bg-[var(--color-not-active)] cursor-default' : 'bg-[var(--color-red)]'} w-[315px] md:w-[unset] border-arraw rounded-r-xl xl:px-[40px] flex justify-center items-center`}>
+                            <div className="w-[28px] h-[60px] relative">
+                                <Image src="/assets/icons/arraw.png" alt="arraw" className="object-cover rotate-90 md:rotate-0" fill />
+                            </div>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

@@ -73,7 +73,7 @@ export default function VerificationCode() {
         style={{ backgroundImage: "url('/assets/icons/bg-otp.png')" }}
       >
         <div className="container flex flex-col justify-center items-center">
-          <div className="flex flex-col items-center w-[781px] h-[637px] p-10 bg-white rounded-lg shadow-md">
+          <div className="flex flex-col items-center w-full md:w-[781px] h-[637px] p-10 bg-white rounded-lg shadow-md">
             {/* Back Button */}
             <div className="w-full flex justify-end">
               <button

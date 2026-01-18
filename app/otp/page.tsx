@@ -59,7 +59,7 @@ function Otp() {
                     {
                         showOtp &&
                         <div className="z-2 absolute top-0 flex justify-center items-center w-full h-full">
-                            <div className="p-5 w-[500px] absolute top-0 bg-white rounded-[25px] flex flex-col items-center justify-center gap-9">
+                            <div className="p-5 w-full md:w-[500px] absolute top-[-130px] md:top-0 bg-white rounded-[25px] flex flex-col items-center justify-center gap-9">
 
                                 {/* زر الإغلاق */}
                                 <div className="flex justify-end w-full">
@@ -85,7 +85,7 @@ function Otp() {
                                                 initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
                                                 animate={{ x, y, opacity: 1, scale: 1 }}
                                                 transition={{ duration: 0.8, ease: "easeOut", delay: i * 0.5 }}
-                                                className="p-7 absolute left-[115px] top-[110px]"
+                                                className="hidden md:block p-7 absolute left-[115px] top-[110px]"
                                                 style={{ transform: "translate(-50%, -50%)" }}
                                             >
                                                 <Image src={src} alt="particle" width={40} height={40} />

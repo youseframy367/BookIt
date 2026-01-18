@@ -5,7 +5,7 @@ import Like from "./like/like";
 import { Props } from "@/app/TypeScript/TypeScript";
 import Link from "next/link";
 
-function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
+function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
 
   const [Rated] = useState(dataRealtiedAndBooked);
   const [expandedIndexes, setExpandedIndexes] = useState<number[]>([]);
@@ -27,14 +27,17 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
             return <div key={index}>
               <div className="container mt-15">
                 {/* العنوان */}
-                <div className="flex flex-col items-center text-center gap-2">
-                  <p className="font-Poppins text-4xl font-semibold text-[var(--color-red)] py-5">
-                    {item.header.title}
-                  </p>
-                  <p className="text-lg font-normal text-[rgba(44,47,36,0.7)] -mt-7 leading-8">
-                    {item.header.subTitle}
-                  </p>
-                </div>
+                {
+                  !isShowTitle &&
+                  <div className="flex flex-col items-center text-center gap-2">
+                    <p className="font-Poppins text-4xl font-semibold text-[var(--color-red)] py-5">
+                      {item.header.title}
+                    </p>
+                    <p className="text-lg font-normal text-[rgba(44,47,36,0.7)] -mt-7 leading-8">
+                      {item.header.subTitle}
+                    </p>
+                  </div>
+                }
 
                 {/* الكروت */}
                 <div className="grid md:grid-cols-3 mt-10 gap-13">
@@ -100,17 +103,20 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
                 </div>
 
                 {/* زر See All */}
-                <div className="w-full flex justify-center items-center mt-8">
-                  <button className="flex items-center gap-2 px-4 py-2 rounded-[10px] bg-[var(--color-red)] text-white text-2xl font-normal font-Poppins">
-                    See All
-                    <Image
-                      src="/assets/icons/arraw.png" alt="arrow"
-                      width={10}
-                      height={10}
-                      className="object-cover rounded-t-[15px] rounded-b-[3px]"
-                    />
-                  </button>
-                </div>
+                {
+                  !isShowTitle &&
+                  <div className="w-full flex justify-center items-center mt-8">
+                    <Link href="/most-booked" className="flex items-center gap-2 px-4 py-2 rounded-[10px] bg-[var(--color-red)] text-white text-2xl font-normal font-Poppins">
+                      See All
+                      <Image
+                        src="/assets/icons/arraw.png" alt="arrow"
+                        width={10}
+                        height={10}
+                        className="object-cover rounded-t-[15px] rounded-b-[3px]"
+                      />
+                    </Link>
+                  </div>
+                }
               </div>
             </div>
           })

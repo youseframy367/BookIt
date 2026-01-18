@@ -7,19 +7,19 @@ function Footer() {
     const Menu = [
         {
             title: "Home",
-            link: ""
+            link: "/"
         },
         {
             title: "Most Booked",
-            link: ""
+            link: "/most-booked"
         },
         {
             title: "Popular Dishes",
-            link: ""
+            link: "/popular-dishes"
         },
         {
             title: "Liked Restaurants",
-            link: ""
+            link: "/liked-restaurants"
         }
     ]
 

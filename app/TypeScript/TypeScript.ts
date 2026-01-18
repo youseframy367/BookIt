@@ -49,6 +49,7 @@ export type DataRealtied = DataObject[];
 
 export interface Props {
     dataRealtiedAndBooked: DataRealtied;
+    isShowTitle?: boolean;
 }
 
 export interface Header {
@@ -63,4 +64,18 @@ export interface GalleryItem {
 
 export interface GalleryProps {
     gallery: string[] | GalleryItem[];
+}
+
+interface itemsProducts {
+    active: boolean;
+    icon: string;
+    title: string;
+    subTitle: string;
+    amount: string;
+    rating: string;
+}
+
+export interface isProducts {
+    products: itemsProducts[];
+    marginTop?: string;
 }

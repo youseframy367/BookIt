@@ -129,7 +129,7 @@ export default function LogAcount() {
             </div>
 
             {/* Remember & Forgot Password */}
-            <div className="flex justify-between w-[90%]">
+            <div className="flex justify-between gap-5 md:gap-0 md:w-[90%]">
               <div className="flex items-center gap-4">
                 <input type="checkbox" id="activ" />
                 <label htmlFor="activ" className="text-[#48505E] text-sm font-medium cursor-pointer">

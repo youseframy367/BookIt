@@ -25,7 +25,7 @@ function Hero({ title, image, isShowGallery, nextPage, backPage }: nextAndBackPa
                 </div>
                 {
                     isShowGallery &&
-                    <Link href="/gallery/1" title="gallery" className="absolute bottom-18 right-5 w-[130px] h-[130px] flex justify-center items-center text-white">
+                    <Link href="/gallery/1" title="gallery" className="absolute bottom-5 md:bottom-18 right-5 w-[130px] h-[130px] flex justify-center items-center text-white">
                         <Image src="/assets/icons/all-icons-gallery.png" alt="all gallery" fill className="object-cover opacity-[0.4]" />
                         <span className="relative text-[25px] font-medium">+20</span>
                     </Link>

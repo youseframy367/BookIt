@@ -18,7 +18,7 @@ function ChoiceLog() {
     };
 
     return (
-        <div className="w-full h-full pb-[4%] flex flex-col items-center justify-center text-center bg-[#F8F5F9] font-[Poppins] overflow-hidden">
+        <div className="container w-full h-full pb-[4%] flex flex-col items-center justify-center text-center bg-[#F8F5F9] font-[Poppins]">
 
             {/* Logo */}
             <Image
@@ -36,7 +36,7 @@ function ChoiceLog() {
                 </p>
 
                 {/* Description */}
-                <p className="text-[22px] w-[70%] text-[rgba(85,85,85,0.38)] font-normal leading-normal">
+                <p className="text-[22px] w-full md:w-[70%] text-[rgba(85,85,85,0.38)] font-normal leading-normal">
                     Join our platform as a restaurant owner to manage all your operations
                     effortlessly, from tracking orders and updating your menu to managing
                     reservations and delivering the best experience to your customers
@@ -87,7 +87,7 @@ function ChoiceLog() {
                 onClick={() => {
                     setIsActive(true);
                     handleStart();
-                }} className={`w-[400px] cursor-pointer text-white font-normal text-xl font-rubik bg-[var(--color-red)] px-2 py-3 rounded-xl`}>Start Now</button>
+                }} className={`w-full md:w-[400px] cursor-pointer text-white font-normal text-xl font-rubik bg-[var(--color-red)] px-2 py-3 rounded-xl`}>Start Now</button>
 
             {/* Loader Overlay */}
             {isLoading && (

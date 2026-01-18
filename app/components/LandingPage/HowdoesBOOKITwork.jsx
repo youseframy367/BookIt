@@ -15,7 +15,7 @@ export default function HowBOOKwork() {
         <div className="container">
           <div className="flex flex-col gap-5">
             <Title title="How does BOOK IT work?" subTitle="Book your table in just a few simple steps and enjoy a seamless dining experience." />
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 mt-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 mt-8 gap-5 md:gap-0">
               {
                 steps.map((item, index) => {
                   return <div key={index} className="flex flex-col gap-7 w-full items-center justify-between text-center">

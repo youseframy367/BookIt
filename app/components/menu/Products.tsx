@@ -1,84 +1,10 @@
+import { isProducts } from "@/app/TypeScript/TypeScript";
 import Image from "next/image";
 
-function Products() {
-    const products = [
-        {
-            active: true,
-            icon: "fattoush-salad",
-            title: "Fattoush salad",
-            subTitle: "Description of the item",
-            amount: "24.00",
-            rating: "4.9"
-        },
-        {
-            active: false,
-            icon: "vegetable-salad",
-            title: "Vegetable Salad",
-            subTitle: "Description of the item",
-            amount: "26.00",
-            rating: "4.6"
-        },
-        {
-            active: false,
-            icon: "egg-salad",
-            title: "Egg Salad",
-            subTitle: "Description of the item",
-            amount: "23.00",
-            rating: "4.5"
-        },
-        {
-            active: true,
-            icon: "fattoush-salad",
-            title: "Fattoush salad",
-            subTitle: "Description of the item",
-            amount: "24.00",
-            rating: "4.9"
-        },
-        {
-            active: false,
-            icon: "vegetable-salad",
-            title: "Vegetable Salad",
-            subTitle: "Description of the item",
-            amount: "26.00",
-            rating: "4.6"
-        },
-        {
-            active: false,
-            icon: "egg-salad",
-            title: "Egg Salad",
-            subTitle: "Description of the item",
-            amount: "23.00",
-            rating: "4.5"
-        },
-        {
-            active: true,
-            icon: "fattoush-salad",
-            title: "Fattoush salad",
-            subTitle: "Description of the item",
-            amount: "24.00",
-            rating: "4.9"
-        },
-        {
-            active: false,
-            icon: "vegetable-salad",
-            title: "Vegetable Salad",
-            subTitle: "Description of the item",
-            amount: "26.00",
-            rating: "4.6"
-        },
-        {
-            active: false,
-            icon: "egg-salad",
-            title: "Egg Salad",
-            subTitle: "Description of the item",
-            amount: "23.00",
-            rating: "4.5"
-        }
-    ]
-
+function Products({ products, marginTop }: isProducts) {
     return (
         <section>
-            <div className="container-content mt-15">
+            <div className={`container-content mt-15 ${marginTop}`}>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10">
                     {
                         products.map((item, index) => {

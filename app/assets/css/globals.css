@@ -204,3 +204,9 @@ select {
     animation: breathe 3s ease-in-out infinite;
     background-color: rgba(226, 32, 35, 0.059);
 }
+
+@media(max-width: 990px) {
+    .border-arraw {
+        border-radius: 10px !important;
+    }
+}

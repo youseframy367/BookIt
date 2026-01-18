@@ -17,7 +17,7 @@ function DetailsCustomer() {
                     <div className="flex flex-col gap-7">
                         <div className="flex flex-col gap-10">
                             <h2 className="text-[var(--color-text-footer)] font-rubik text-xl">Customer Information</h2>
-                            <div className="flex gap-[20px]">
+                            <div className="flex flex-col md:flex-row gap-[20px]">
                                 <div className="w-full relative">
                                     <label className="absolute bg-white px-2 top-[-14px] left-9">
                                         <span className="text-[10px] md:text-xl font-medium">Pleas enter your Name</span>
@@ -32,7 +32,7 @@ function DetailsCustomer() {
                                 </div>
                             </div>
                             <div className="flex gap-[20px]">
-                                <div className="w-[50%] relative">
+                                <div className="w-full md:w-[50%] relative">
                                     <label className="absolute bg-white px-2 top-[-14px] left-9">
                                         <span className="text-[10px] md:text-xl font-medium">Pleas enter your Email</span>
                                     </label>
@@ -45,7 +45,7 @@ function DetailsCustomer() {
                     <div className="flex flex-col gap-7">
                         <div className="flex flex-col gap-10">
                             <h2 className="text-[var(--color-text-footer)] font-rubik text-xl">Reservation Preferences  ( Optional but recommended )</h2>
-                            <div className="flex gap-[20px]">
+                            <div className="flex flex-col md:flex-row gap-[20px]">
                                 <div className="w-full relative">
                                     <label className="absolute bg-white px-2 top-[-14px] left-9">
                                         <span className="text-[10px] md:text-base font-medium">Seating Preference (Indoor / Outdoor / Window)</span>
@@ -60,7 +60,7 @@ function DetailsCustomer() {
                                 </div>
                             </div>
                             <div className="flex gap-[20px]">
-                                <div className="w-[50%] relative">
+                                <div className="w-full md:w-[50%] relative">
                                     <label className="absolute bg-white px-2 top-[-14px] left-9">
                                         <span className="text-[10px] md:text-base font-medium">Special Notes (High Chair – Decoration – Food Allergies)</span>
                                     </label>

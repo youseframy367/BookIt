@@ -52,7 +52,7 @@ export default function CreateNewAccount() {
         <div className="container flex flex-col justify-center items-center">
           <form action=""
             method=""
-            onClick={handleSubmit} className="flex flex-col items-center md:w-[781px] h-[659px] p-10 bg-white rounded-lg">
+            onClick={handleSubmit} className="flex flex-col items-center w-full md:w-[781px] h-[659px] p-10 bg-white rounded-lg">
             <div className="w-full flex justify-end">
               <button
                 className="border-none outline-none"

@@ -4,8 +4,11 @@ import Link from 'next/link';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import { useState, useEffect } from 'react';
+import { usePathname } from "next/navigation";
 
 function Header() {
+    const pathname = usePathname();
+
     const [search, setSearch] = useState("");
     const [showSearch, setShowSearch] = useState(false);
 
@@ -18,23 +21,19 @@ function Header() {
     const linksNav = [
         {
             name: "Home",
-            href: "/",
-            active: true
+            href: "/"
         },
         {
             name: "Most Booked",
-            href: "/",
-            active: false
+            href: "/most-booked"
         },
         {
             name: "Popular Dishes",
-            href: "/",
-            active: false
+            href: "/popular-dishes"
         },
         {
             name: "Liked Restaurants",
-            href: "/",
-            active: false
+            href: "/liked-restaurants"
         }
     ]
 
@@ -103,13 +102,15 @@ function Header() {
                             <ul className='hidden xl:flex gap-5'>
                                 {
                                     linksNav.map((item, index) => {
-                                        return <li key={index} className={`${item.active && 'before:w-full text-[var(--color-red)]'} hover:text-[var(--color-red)] pb-1 relative transition-all before:duration-400 before:content-[''] before:absolute before:bottom-0 before:bg-[var(--color-red)] hover:before:w-full before:w-[0] before:h-[2px]`}>
-                                            <Link href={item.name} className='font-normal text-[15px]'>{item.name}</Link>
+                                        const isActive = pathname === item.href;
+
+                                        return <li key={index} className={`${isActive && 'before:w-full text-[var(--color-red)]'} hover:text-[var(--color-red)] pb-1 relative transition-all before:duration-400 before:content-[''] before:absolute before:bottom-0 before:bg-[var(--color-red)] hover:before:w-full before:w-[0] before:h-[2px]`}>
+                                            <Link href={item.href} className='font-normal text-[15px]'>{item.name}</Link>
                                         </li>
                                     })
                                 }
                             </ul>
-                            <Link href="/new-account" className="border-2 border-[var(--color-red)] bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
+                            <Link href="/Register/new-account" className="border-2 border-[var(--color-red)] bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
                                 <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
                                     sign up
                                 </span>
@@ -170,13 +171,13 @@ function Header() {
                         <ul className='flex flex-wrap gap-3'>
                             {
                                 linksNav.map((item, index) => {
-                                    return <li key={index}>
-                                        <Link href={item.name} className='font-normal text-[15px]'>{item.name}</Link>
+                                    return <li key={index} title={item.name}>
+                                        <Link href={item.href} className='font-normal text-[15px]'>{item.name}</Link>
                                     </li>
                                 })
                             }
                         </ul>
-                        <Link href="/new-account" className="border-2 border-[var(--color-red)] bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
+                        <Link href="/Register/new-account" className="border-2 border-[var(--color-red)] bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
                             <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
                                 sign up
                             </span>
