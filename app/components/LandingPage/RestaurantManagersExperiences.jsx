@@ -44,11 +44,11 @@ export default function RestaurantManagers() {
   return (
     <section
       data-aos="fade-up"
-      className="relative w-full mt-5 px-5 h-full"
+      className="relative w-full mt-20 px-5 h-full"
     >
       <Title title="Restaurant Managers’ Experiences" subTitle="Here’s some awesome feedback from restaurant managers." />
 
-      <div className="right-12 pb-85 md:pb-30 container absolute w-full h-full flex justify-end items-end">
+      <div className="right-12 pb-85 md:pb-20 container absolute w-full h-full flex justify-end items-end">
         <div className="w-[20px]">
           <button
             className="w-[60px] h-[60px] flex items-center justify-center rounded-xl bg-[#E22023] swiper-button-prev"
@@ -86,7 +86,7 @@ export default function RestaurantManagers() {
         }}
         slidesPerView={2.5}
         spaceBetween={30}
-        className="mySwiper"
+        className="mySwiper mt-20"
       >
         {
           Experiences.map((item, index) => {

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Like from "./like/like";
 import { Props } from "@/app/TypeScript/TypeScript";
 import Link from "next/link";
+import { div } from "framer-motion/client";
 
 function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
 
@@ -21,7 +22,7 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
 
   return (
     <section>
-      <div data-aos="fade-up" className="mt-10">
+      <div data-aos="fade-up" className="flex flex-col gap-10 mt-10">
         {
           dataRealtiedAndBooked.map((item, index) => {
             return <div key={index}>
@@ -37,14 +38,14 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
                 </div>
 
                 {/* الكروت */}
-                <div className="grid md:grid-cols-3 mt-10 gap-10">
+                <div className="grid md:grid-cols-3 mt-10 gap-13">
                   {item.items.map((item, index) => {
                     const isExpanded = expandedIndexes.includes(index);
 
                     return (
                       <div
                         key={index}
-                        className="w=-relative z-10 bg-[rgba(255,119,87,0.1)] rounded-[15px]"
+                        className="relative z-10 bg-[rgba(255,119,87,0.1)] rounded-[15px]"
                       >
                         <div
                           className="w-full cursor-pointer rounded-[15px]"
@@ -87,8 +88,8 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked }: Props) {
                               ? item.des
                               : `${item.des.slice(0, previewLength)}...`}
                           </p>
-                          <div className="flex items-center justify-center flex-wrap mt-4 mx-2 gap-3">
-                            <Link href={`/details-restaurant-public/${index + 1}`} className="px-8 py-4 rounded-[12px] bg-red-500 text-white text-[23px] font-medium font-Poppins truncate">
+                          <div className="flex items-center justify-center mt-4 md:mx-2 gap-3">
+                            <Link href={`/details-restaurant-public/${index + 1}`} className="px-8 py-4 rounded-[12px] bg-red-500 text-white text-[18px] md:text-[23px] font-medium font-Poppins truncate">
                               Restaurant Detail Page
                             </Link>
                             <Like />

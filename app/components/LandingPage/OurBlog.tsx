@@ -8,20 +8,20 @@ From a management perspective, these systems provide a clear overview of daily r
 
   return (
     <section>
-      <div className="container md:mx-auto md:px-5 mt-16" data-aos="fade-up">
+      <div className="container md:mx-auto md:px-5 mt-30" data-aos="fade-up">
         {/* Header */}
         <Title title="Our Blog" subTitle="Discover the latest news, tips, and stories from the world of dining." />
 
         {/* Content */}
-        <div className="flex flex-wrap md:gap-14 mt-12">
-          <div className="w-full h-[400px] md:h-auto md:w-[400px] relative">
+        <div className="grid md:grid-cols-[5fr_8.3fr] md:gap-34 mt-12">
+          <div className="h-[400px] md:h-auto w-full relative">
             <Image src="/assets/icons/our-blog.png" alt="our blog" fill className="object-cover" />
           </div>
-          <div className="md:w-7/12 mt-24 mr-2">
+          <div className="mt-24 mr-2">
             <p className="text-[#172432] text-[50px] font-[400] font-serif leading-[70px] mb-5">
               How Smart Reservations Improve the Dining Experience ?
             </p>
-            <p className="text-[18px] font-[200] leading-[50px] font-sans text-[#172432]/50">
+            <p className="text-[18px] font-[200] leading-[50px] font-sans text-[var(--color-footer)]">
               {text}
             </p>
           </div>

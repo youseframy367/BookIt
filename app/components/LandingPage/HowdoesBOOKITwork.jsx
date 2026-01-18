@@ -11,18 +11,19 @@ export default function HowBOOKwork() {
 
   return (
     <section>
-      <div className="mt-15">
+      <div className="mt-30">
         <div className="container">
           <div className="flex flex-col gap-5">
             <Title title="How does BOOK IT work?" subTitle="Book your table in just a few simple steps and enjoy a seamless dining experience." />
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 mt-8 gap-5">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 mt-8">
               {
                 steps.map((item, index) => {
-                  return <div key={index} className="flex flex-col gap-7 w-full items-center text-center">
-                    <div className="w-full h-[300px] md:w-[195px] md:h-[200px] relative">
+                  return <div key={index} className="flex flex-col gap-7 w-full items-center justify-between text-center">
+                    <img src={`/assets/icons/${item.img}.png`}  alt="work" />
+                    {/* <div className="w-full h-full relative">
                       <Image src={`/assets/icons/${item.img}.png`} alt="work" fill className="object-contain" />
-                    </div>
-                    <span className="text-2xl text-[var(--color-text-footer)]">{item.text}</span>
+                    </div> */}
+                    <span className="text-xl text-[var(--color-text-footer)]">{item.text}</span>
                   </div>
                 })
               }

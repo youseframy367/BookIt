@@ -18,7 +18,7 @@ function Home() {
                     name: "Pane Vino",
                     Relative: 0.9,
                     des: "Experience Pane Vino, a charming restaurant offering a delightful journey through classic Italian flavors...",
-                    lick: false,                    
+                    lick: false,
                 },
                 {
                     img: "/assets/icons/top-rated-2.png",
@@ -47,6 +47,13 @@ function Home() {
                     name: "La Pergola",
                     Relative: 0.95,
                     des: "La Pergola offers an unforgettable Italian dining experience in Rome...",
+                    lick: false,
+                },
+                {
+                    img: "/assets/icons/top-rated-2.png",
+                    name: "Osteria Francescana",
+                    Relative: 0.9,
+                    des: "Renowned in Modena, Osteria Francescana blends traditional and modern Italian cuisine...",
                     lick: false,
                 },
                 {

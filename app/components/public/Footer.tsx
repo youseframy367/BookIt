@@ -71,7 +71,7 @@ function Footer() {
     return (
         <>
             <FormLastNews />
-            <footer className="text-white mt-50 bg-[var(--color-footer)] relative z-1">
+            <footer className="text-white mt-70 bg-[var(--color-footer)] relative z-1">
                 <div className="container">
                     <div className="pb-10 pt-50 grid sm:grid-cols-2 xl:grid-cols-[3fr_2fr_2fr_2fr_2fr] gap-5">
                         <div className="flex flex-col gap-5">
