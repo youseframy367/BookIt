@@ -15,7 +15,7 @@ function Header() {
     const navigation = [
         { name: 'About Us', href: '#' },
         { name: 'Contact', href: '#' },
-        { name: 'FAQ', href: '#' },
+        { name: 'FAQ', href: '/faq' },
     ]
 
     const linksNav = [
@@ -65,16 +65,20 @@ function Header() {
                             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                                 <div className="hidden sm:ml-6 lg:block">
                                     <div className="flex space-x-7">
-                                        {navigation.map((item) => (
-                                            <Link
-                                                title={item.name}
-                                                key={item.name}
-                                                href={item.href}
-                                                className='hover:text-[var(--color-red)] text-lg font-normal'
-                                            >
-                                                {item.name}
-                                            </Link>
-                                        ))}
+                                        {
+                                            navigation.map((item, index) => {
+                                                const isActive = pathname === item.href;
+
+                                                return <Link
+                                                    title={item.name}
+                                                    key={item.name}
+                                                    href={item.href}
+                                                    className={`${isActive && 'text-[var(--color-red)]'} hover:text-[var(--color-red)] text-lg font-normal`}
+                                                >
+                                                    {item.name}
+                                                </Link>
+                                            })
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +114,7 @@ function Header() {
                                     })
                                 }
                             </ul>
-                            <Link href="/Register/new-account" className="border-2 border-[var(--color-red)] bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
+                            <Link href="/register/new-account" className="border-2 border-[var(--color-red)] bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
                                 <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
                                     sign up
                                 </span>
@@ -177,7 +181,7 @@ function Header() {
                                 })
                             }
                         </ul>
-                        <Link href="/Register/new-account" className="border-2 border-[var(--color-red)] bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
+                        <Link href="/register/new-account" className="border-2 border-[var(--color-red)] bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
                             <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
                                 sign up
                             </span>

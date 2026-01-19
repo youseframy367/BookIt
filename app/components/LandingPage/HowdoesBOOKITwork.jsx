@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Title from "./Title";
 
 export default function HowBOOKwork() {
@@ -18,11 +17,8 @@ export default function HowBOOKwork() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 mt-8 gap-5 md:gap-0">
               {
                 steps.map((item, index) => {
-                  return <div key={index} className="flex flex-col gap-7 w-full items-center justify-between text-center">
-                    <img src={`/assets/icons/${item.img}.png`}  alt="work" />
-                    {/* <div className="w-full h-full relative">
-                      <Image src={`/assets/icons/${item.img}.png`} alt="work" fill className="object-contain" />
-                    </div> */}
+                  return <div key={index} className="flex flex-col gap-13 w-full items-center text-center">
+                    <img src={`/assets/icons/${item.img}.png`} alt="work" className="h-[150px] object-cover" />
                     <span className="text-xl text-[var(--color-text-footer)]">{item.text}</span>
                   </div>
                 })

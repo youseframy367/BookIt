@@ -79,3 +79,18 @@ export interface isProducts {
     products: itemsProducts[];
     marginTop?: string;
 }
+
+interface Item {
+    id: number;
+    title: string;
+    content: string;
+};
+
+export interface questionsAndAnswaer {
+    items: Item[];
+}
+
+export interface isFilter {
+    search: string;
+    setSearch: React.Dispatch<React.SetStateAction<string>>
+}
