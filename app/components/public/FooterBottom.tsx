@@ -4,19 +4,19 @@ import Link from "next/link";
 function FooterBottom() {
     const links = [
         {
-            title: "Privacy Policy",            
+            title: "Privacy Policy",
+            link: "/privacy-policy"
+        },
+        {
+            title: "Terms of Use",
             link: ""
         },
         {
-            title: "Terms of Use",            
+            title: "Cookie Preferences",
             link: ""
         },
         {
-            title: "Cookie Preferences",            
-            link: ""
-        },
-        {
-            title: "Accessibility Statement",            
+            title: "Accessibility Statement",
             link: ""
         }
     ]
@@ -34,7 +34,7 @@ function FooterBottom() {
                     {
                         links.map((item, index) => (
                             <li key={index}>
-                                <Link href={item.link}>
+                                <Link href={item.link} title={item.title}>
                                     <span className="hover:text-[var(--color-red)] font-rubik font-normal text-lg">{item.title}</span>
                                 </Link>
                             </li>
