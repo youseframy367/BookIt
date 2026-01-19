@@ -9,7 +9,7 @@ function FooterBottom() {
         },
         {
             title: "Terms of Use",
-            link: ""
+            link: "/terms-of-use"
         },
         {
             title: "Cookie Preferences",
