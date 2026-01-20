@@ -20,6 +20,7 @@ export interface btn {
     title: string;
     width: string;
     onSubmit?: () => {};
+    loading?: boolean;
 }
 
 export interface ChildRegister {
@@ -93,4 +94,10 @@ export interface questionsAndAnswaer {
 export interface isFilter {
     search: string;
     setSearch: React.Dispatch<React.SetStateAction<string>>
+}
+
+export interface layoutLoginOrRegister {
+    children: React.ReactNode;
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void> | void;
+    bg: string;
 }
