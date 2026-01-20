@@ -14,7 +14,7 @@ function Header() {
 
     const navigation = [
         { name: 'About Us', href: '#' },
-        { name: 'Contact', href: '#' },
+        { name: 'Contact', href: '/contact' },
         { name: 'FAQ', href: '/faq' },
     ]
 
@@ -58,11 +58,7 @@ function Header() {
                                     <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
                                 </DisclosureButton>
                             </div>
-                            <div className="flex gap-4 items-center">
-                                <Image src="/assets/icons/map.svg" alt='map' width={24} height={24} />
-                                <span className="mt-1 text-sm font-light">Mansoura, Dakahlia, Egypt</span>
-                            </div>
-                            <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                            <div className="w-full flex items-center justify-end">
                                 <div className="hidden sm:ml-6 lg:block">
                                     <div className="flex space-x-7">
                                         {

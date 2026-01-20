@@ -4,8 +4,8 @@ import Image from "next/image";
 function Hero({ search, setSearch }: isFilter) {
     return (
         <section>
-            <div className="relative w-full py-10 md:py-0 md:h-[75vh]">
-                <div className="realtive w-full h-full bg-[var(--color-hero)]">
+            <div className="relative w-full md:h-[75vh]">
+                <div className="py-10 md:py-0 realtive w-full h-full bg-[var(--color-hero)]">
                     <div className="container h-full">
                         <div className="w-full md:w-[850px] h-full flex flex-col gap-5 justify-center">
                             <h2 className="text-white text-[50px] font-semibold">Welcome to Diner Help</h2>
