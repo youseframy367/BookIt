@@ -45,7 +45,7 @@ function Header() {
     return (
         <Disclosure
             as="nav"
-            className="bg-white relative z-1"
+            className="hidden md:block bg-white relative z-1"
         >
             <div className="flex flex-col">
                 <div className="bg-[var(--color-navbar)]">

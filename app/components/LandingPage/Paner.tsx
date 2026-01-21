@@ -26,12 +26,12 @@ function Banner() {
 
     return (
         <main className="relative">
-            <div className="h-[750px]">
+            <div className="py-10 md:py-0 md:h-[750px]">
                 <div className="absolute top-0 z-[-1] w-full h-full">
                     <Image src="/assets/icons/bg.png" alt="background paner" className="object-cover" fill />
                 </div>
                 {/* Social Media Icons */}
-                <div className="container flex flex-col items-center justify-center gap-[42px] w-full h-full">
+                <div className="container flex flex-col items-center justify-center gap-[22px] md:gap-[42px] w-full h-full">
                     <ul className="flex gap-5">
                         {socailMedia.map((item, index) => (
                             <li key={index}>
@@ -49,12 +49,12 @@ function Banner() {
                     </ul>
 
                     {/* Text Content */}
-                    <div className="flex flex-col items-center justify-center text-center gap-[32px]">
-                        <p className="md:w-[600px] font-['Playfair_Display'] text-xl xl:text-[100px] xl:leading-[76px] font-normal text-[#2C2F24]">
+                    <div className="flex flex-col items-center justify-center text-center gap-[12px] md:gap-[32px]">
+                        <p className="md:w-[600px] font-['Playfair_Display'] text-[35px] xl:text-[100px] xl:leading-[76px] font-normal text-[#2C2F24]">
                             Best food for your taste
                         </p>
 
-                        <p className="md:text-[18px] leading-[32px] font-normal text-[#2C2F24] font-[Poppins]">
+                        <p className="font-normal text-[var(--color-span-paner)] md:text-[18px] leading-[32px]">
                             Discover delectable cuisine and unforgettable <br />
                             moments in our welcoming, culinary haven.
                         </p>
@@ -70,7 +70,7 @@ function Banner() {
                     </div>
 
                     {/* Circular Text */}
-                    <div className="relative w-[150px] h-[150px]">
+                    <div className="hidden md:block relative w-[150px] h-[150px]">
                         <Image src="/assets/icons/down.png" alt="center" width={16} height={24} className="absolute top-15 left-17" />
                         <svg
                             viewBox="0 0 200 200"

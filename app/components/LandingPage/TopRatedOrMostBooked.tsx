@@ -4,6 +4,14 @@ import Image from "next/image";
 import Like from "./like/like";
 import { Props } from "@/app/TypeScript/TypeScript";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import Card from "./restaurant-cards/card";
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import { Navigation } from 'swiper/modules';
 
 function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
 
@@ -21,7 +29,7 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
 
   return (
     <section>
-      <div data-aos="fade-up" className="flex flex-col gap-10 mt-10">
+      <div data-aos="fade-up" className="flex flex-col gap-10 md:mt-10">
         {
           dataRealtiedAndBooked.map((item, index) => {
             return <div key={index}>
@@ -29,11 +37,14 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
                 {/* العنوان */}
                 {
                   !isShowTitle &&
-                  <div className="flex flex-col items-center text-center gap-2">
-                    <p className="font-Poppins text-4xl font-semibold text-[var(--color-red)] py-5">
+                  <div className="flex flex-row md:flex-col justify-between items-center md:text-center gap-10">
+                    <p className="font-Poppins text-4xl font-semibold text-[var(--color-red)]">
                       {item.header.title}
                     </p>
-                    <p className="text-lg font-normal text-[rgba(44,47,36,0.7)] -mt-7 leading-8">
+                    <Link href="/most-booked" className="text-[var(--color-see-all)] md:hidden text-2xl font-normal font-Poppins">
+                      See All
+                    </Link>
+                    <p className="hidden md:block text-lg font-normal text-[rgba(44,47,36,0.7)] -mt-7 leading-8">
                       {item.header.subTitle}
                     </p>
                   </div>
@@ -45,58 +56,10 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
                     const isExpanded = expandedIndexes.includes(index);
 
                     return (
-                      <div
-                        key={index}
+                      <div key={index}
                         className="relative z-10 bg-[rgba(255,119,87,0.1)] rounded-[15px]"
                       >
-                        <div
-                          className="w-full cursor-pointer rounded-[15px]"
-                          onClick={() => toggleExpand(index)}
-                        >
-                          <div className="w-full h-[300px] relative">
-                            <Image
-                              src={item.img}
-                              alt={item.name}
-                              fill
-                              className="object-cover rounded-t-[15px] rounded-b-[3px]"
-                            />
-                          </div>
-
-                          <p className="mt-2 mx-2 font-Poppins text-[#172432] text-[28px] font-normal">
-                            {item.name}
-                          </p>
-
-                          <div className="flex items-center ml-2 mt-1">
-                            {[1, 2, 3, 4, 5].map((star, idx) => (
-                              <svg
-                                key={idx}
-                                className={`w-4 h-4 ${item.Relative * 5 >= star
-                                  ? "text-yellow-400"
-                                  : "text-gray-300"
-                                  }`}
-                                fill="currentColor"
-                                viewBox="0 0 20 20"
-                              >
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.167c.969 0 1.371 1.24.588 1.81l-3.375 2.454a1 1 0 00-.364 1.118l1.286 3.966c.3.921-.755 1.688-1.54 1.118l-3.375-2.454a1 1 0 00-1.176 0l-3.375 2.454c-.784.57-1.838-.197-1.539-1.118l1.285-3.966a1 1 0 00-.364-1.118L2.038 9.393c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.951-.69l1.285-3.966z" />
-                              </svg>
-                            ))}
-                            <span className="ml-2 text-sm text-gray-500">
-                              {item.Relative}
-                            </span>
-                          </div>
-
-                          <p className="mt-2 mx-2 text-sm text-gray-700">
-                            {isExpanded
-                              ? item.des
-                              : `${item.des.slice(0, previewLength)}...`}
-                          </p>
-                          <div className="flex items-center justify-center my-6 md:mx-2 gap-3">
-                            <Link href={`/details-restaurant-public/${index + 1}`} className="px-8 py-4 rounded-[12px] bg-red-500 text-white text-[18px] md:text-[23px] font-medium font-Poppins truncate">
-                              Restaurant Detail Page
-                            </Link>
-                            <Like />
-                          </div>
-                        </div>
+                        <Card item={item} isExpanded={isExpanded} previewLength={previewLength} index={index} toggleExpand={() => toggleExpand(index)} />
                       </div>
                     );
                   })}
@@ -105,7 +68,7 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
                 {/* زر See All */}
                 {
                   !isShowTitle &&
-                  <div className="w-full flex justify-center items-center mt-8">
+                  <div className="hidden w-full md:flex justify-center items-center mt-8">
                     <Link href="/most-booked" className="flex items-center gap-2 px-4 py-2 rounded-[10px] bg-[var(--color-red)] text-white text-2xl font-normal font-Poppins">
                       See All
                       <Image

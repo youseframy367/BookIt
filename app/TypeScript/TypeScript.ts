@@ -38,7 +38,7 @@ export interface RestaurantItem {
     name: string;
     Relative: number;
     des: string;
-    lick: boolean;
+    like: boolean;
 }
 
 export interface DataObject {
@@ -100,4 +100,12 @@ export interface layoutLoginOrRegister {
     children: React.ReactNode;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void> | void;
     bg: string;
+}
+
+export interface dataCards {
+    toggleExpand: (index: number) => void;
+    isExpanded: boolean;
+    previewLength: number;
+    index: number;
+    item: RestaurantItem;
 }
