@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <link rel="icon" type="image/svg+xml" href="/assets/icons/logo.svg" />
         <title>BOOK IT</title>
         <AOSWrapper />
         {showLayout && <Header />}

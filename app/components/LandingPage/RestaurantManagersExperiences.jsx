@@ -44,11 +44,11 @@ export default function RestaurantManagers() {
   return (
     <section
       data-aos="fade-up"
-      className="relative w-full mt-20 px-5 h-full"
+      className="relative w-full mt-10 md:mt-20 px-5 h-full"
     >
       <Title title="Restaurant Managers’ Experiences" subTitle="Here’s some awesome feedback from restaurant managers." />
 
-      <div className="right-12 pb-85 md:pb-20 container absolute w-full h-full flex justify-end items-end">
+      <div className="right-12 pb-20 container absolute w-full h-full hidden md:flex justify-end items-end">
         <div className="w-[20px]">
           <button
             className="w-[60px] h-[60px] flex items-center justify-center rounded-xl bg-[#E22023] swiper-button-prev"
@@ -72,11 +72,7 @@ export default function RestaurantManagers() {
         }}
         breakpoints={{
           0: {
-            slidesPerView: 1,
-            spaceBetween: 20,
-          },
-          640: {
-            slidesPerView: 1.5,
+            slidesPerView: 1.1,
             spaceBetween: 20,
           },
           1024: {
@@ -86,15 +82,15 @@ export default function RestaurantManagers() {
         }}
         slidesPerView={2.5}
         spaceBetween={30}
-        className="mySwiper mt-20"
+        className="mySwiper md:mt-20"
       >
         {
           Experiences.map((item, index) => {
             return <SwiperSlide key={index}>
               <div
-                className="h-[359px] p-[40px] pt-[60px] bg-[#F5F6F7]"
+                className="p-[20px] md:p-[40px] md:pt-[60px] bg-[#F5F6F7]"
               >
-                <p className="text-[18px] text-[#767E86] leading-[23px] font-rubik">
+                <p className="text-sm md:text-lg text-[#767E86] md:leading-[23px] font-rubik">
                   {item.details}
                 </p>
 
@@ -115,16 +111,12 @@ export default function RestaurantManagers() {
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.966a1 1 0 00.95.69h4.167c.969 0 1.371 1.24.588 1.81l-3.375 2.454a1 1 0 00-.364 1.118l1.286 3.966c.3.921-.755 1.688-1.54 1.118l-3.375-2.454a1 1 0 00-1.176 0l-3.375 2.454c-.784.57-1.838-.197-1.539-1.118l1.285-3.966a1 1 0 00-.364-1.118L2.038 9.393c-.783-.57-.38-1.81.588-1.81h4.167a1 1 0 00.951-.69l1.285-3.966z" />
                     </svg>
                   ))}
-
-                  <span className="ml-2 text-sm text-gray-500 font-rubik">
-                    {(item.Relative * 5).toFixed(1)}
-                  </span>
                 </div>
 
-                <p className="mt-3 text-[24px] text-[#767E86] font-playfair">
+                <p className="mt-3 text-sm md:text-[24px] text-[#767E86] font-playfair">
                   {item.name}
                 </p>
-                <p className="text-[18px] text-[#767E86] font-rubik">
+                <p className="text-sm md:text-lg text-[#767E86] font-rubik">
                   {item.jops}
                 </p>
               </div>

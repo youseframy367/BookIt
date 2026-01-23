@@ -2,7 +2,7 @@ import Submit from "./Submit";
 
 function FormLastNews() {
     return (
-        <section className="mt-45 relative z-2">
+        <section className="mt-5 md:mt-45 relative z-2">
             <div className="absolute w-full">
                 <div className="container-content">
                     <div className="bg-white border border-[var(--color-navbar)] border-1 rounded-3xl px-5 md:px-25 py-5 md:py-15">

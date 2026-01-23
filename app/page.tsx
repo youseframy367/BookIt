@@ -51,14 +51,14 @@ function Home() {
                 },
                 {
                     img: "/assets/icons/top-rated-2.png",
-                    name: "Osteria Francescana",
+                    name: "La Pergola",
                     Relative: 0.9,
                     des: "Renowned in Modena, Osteria Francescana blends traditional and modern Italian cuisine...",
                     like: false,
                 },
                 {
                     img: "/assets/icons/top-rated-2.png",
-                    name: "Osteria Francescana",
+                    name: "La Pergola",
                     Relative: 0.9,
                     des: "Renowned in Modena, Osteria Francescana blends traditional and modern Italian cuisine...",
                     like: false,

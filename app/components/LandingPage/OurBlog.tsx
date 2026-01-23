@@ -8,22 +8,24 @@ From a management perspective, these systems provide a clear overview of daily r
 
   return (
     <section>
-      <div className="container md:mx-auto md:px-5 mt-30" data-aos="fade-up">
-        {/* Header */}
-        <Title title="Our Blog" subTitle="Discover the latest news, tips, and stories from the world of dining." />
+      <div className="container">
+        <div className="mt-10 md:mt-30" data-aos="fade-up">
+          {/* Header */}
+          <Title title="Our Blog" subTitle="Discover the latest news, tips, and stories from the world of dining." />
 
-        {/* Content */}
-        <div className="grid md:grid-cols-[5fr_8.3fr] md:gap-34 mt-12">
-          <div className="h-[400px] md:h-auto w-full relative">
-            <Image src="/assets/icons/our-blog.png" alt="our blog" fill className="object-cover" />
-          </div>
-          <div className="mt-24 mr-2">
-            <p className="text-[#172432] text-[50px] font-[400] font-serif leading-[70px] mb-5">
-              How Smart Reservations Improve the Dining Experience ?
-            </p>
-            <p className="text-[18px] font-[200] leading-[50px] font-sans text-[var(--color-footer)]">
-              {text}
-            </p>
+          {/* Content */}
+          <div className="grid md:grid-cols-[5fr_8.3fr] gap-10 md:gap-34 mt-12">
+            <div className="h-[500px] md:h-[400px] md:h-auto w-full relative">
+              <Image src="/assets/icons/our-blog.png" alt="our blog" fill className="object-cover" />
+            </div>
+            <div className="flex flex-col gap-5">
+              <p className="text-[#172432] text-xl md:text-[50px] font-[400] font-serif md:leading-[70px]">
+                How Smart Reservations Improve the Dining Experience ?
+              </p>
+              <p className="text-base md:text-lg font-[200] md:leading-[50px] font-sans text-[var(--color-footer)]">
+                {text}
+              </p>
+            </div>
           </div>
         </div>
       </div>

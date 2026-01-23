@@ -32,7 +32,7 @@ export default function SlideSimple() {
     <div className="sliderSimple-section">
       <motion.div className="sliderSimple-track" variants={sliderVariants} animate="animate">
         {[...items, ...items].map((item, index) => (
-          <div key={index} className="sliderSimple-item">
+          <div key={index} className="sliderSimple-item" style={{ width: "180px" }}>
             <img src={item.img} alt={item.title} />
             <p>{item.title}</p>
           </div>

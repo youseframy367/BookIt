@@ -104,8 +104,6 @@ export interface layoutLoginOrRegister {
 
 export interface dataCards {
     toggleExpand: (index: number) => void;
-    isExpanded: boolean;
-    previewLength: number;
     index: number;
     item: RestaurantItem;
 }

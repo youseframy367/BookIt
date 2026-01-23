@@ -209,6 +209,19 @@ select {
 
 @media(max-width: 990px) {
     .border-arraw {
-        border-radius: 10px !important;        
+        border-radius: 10px !important;
+    }
+
+    .sliderSimple-item {
+        width: 100px !important;
+    }
+
+    .sliderSimple-item img {
+        width: 71px !important;
+        height: 71px !important;
+    }
+
+    .sliderSimple-track {
+        gap: 10px !important;
     }
 }

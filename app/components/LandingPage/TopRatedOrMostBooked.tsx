@@ -1,23 +1,13 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Like from "./like/like";
 import { Props } from "@/app/TypeScript/TypeScript";
 import Link from "next/link";
-import { Swiper, SwiperSlide } from 'swiper/react';
 import Card from "./restaurant-cards/card";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-import { Navigation } from 'swiper/modules';
-
 function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
-
   const [Rated] = useState(dataRealtiedAndBooked);
   const [expandedIndexes, setExpandedIndexes] = useState<number[]>([]);
-  const previewLength = 250;
 
   const toggleExpand = (index: any) => {
     setExpandedIndexes((prev: any) =>
@@ -51,15 +41,14 @@ function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
                 }
 
                 {/* الكروت */}
-                <div className="grid md:grid-cols-3 mt-10 gap-13">
+                <div className="grid md:grid-cols-3 mt-10 gap-5 md:gap-13">
                   {item.items.map((item, index) => {
-                    const isExpanded = expandedIndexes.includes(index);
 
                     return (
                       <div key={index}
                         className="relative z-10 bg-[rgba(255,119,87,0.1)] rounded-[15px]"
                       >
-                        <Card item={item} isExpanded={isExpanded} previewLength={previewLength} index={index} toggleExpand={() => toggleExpand(index)} />
+                        <Card item={item} index={index} toggleExpand={() => toggleExpand(index)} />
                       </div>
                     );
                   })}
