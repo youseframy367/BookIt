@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* start all code */
 :root {
     --color-navbar: #D9D9D9;
     --color-red: #E22023;
@@ -19,6 +18,8 @@
     --color-active-choose: #BF360C;
     --color-span-paner: #2C2F24;
     --color-see-all: #E22023B2;
+    --color-footer-mobile: #1D1F24;
+    --color-active-footer: #E220231F;
 }
 
 @font-face {
@@ -136,9 +137,6 @@ body {
     padding-right: 0rem;
 }
 
-/* end all code */
-
-/* start hero */
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
@@ -150,23 +148,15 @@ select {
     -moz-appearance: none !important;
 }
 
-/* end hero */
-
-/* start title */
 .active {
     color: white;
     background-color: var(--color-red);
     border: transparent;
 }
 
-/* end title */
-
-/* start ratings */
 .rating-bar::before {
     width: var(--before-width);
 }
-
-/* end ratings */
 
 :is(.swiper-button-prev, .swiper-button-next) svg {
     opacity: 0 !important;
@@ -205,6 +195,19 @@ select {
 .breathe::before {
     animation: breathe 3s ease-in-out infinite;
     background-color: rgba(226, 32, 35, 0.059);
+}
+
+.active-footer-mobile {
+    background-color: var(--color-active-footer);
+    color: var(--color-red);
+}
+
+.active-footer-mobile .image-active {
+    filter: unset !important;
+}
+
+.active-footer-mobile span {
+    display: block !important;
 }
 
 @media(max-width: 990px) {

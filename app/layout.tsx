@@ -4,6 +4,7 @@ import "./assets/css/globals.css";
 import Header from "./components/public/Header";
 import AOSWrapper from "./components/AOSWrapper";
 import Footer from "./components/public/Footer";
+import FooterMobile from './components/public/FooterMobile';
 
 export default function RootLayout({
   children,
@@ -30,7 +31,7 @@ export default function RootLayout({
         <AOSWrapper />
         {showLayout && <Header />}
         {children}
-        {showLayout && <Footer />}
+        {showLayout && <><Footer /> <FooterMobile /></>}
       </body>
     </html>
   );
