@@ -19,7 +19,7 @@ function ContentDetails() {
                                     <Image src="/assets/icons/location.svg" alt="location" width={20} height={20} />
                                     <span className="text-[10px] md:text-xl font-medium">Location</span>
                                 </label>
-                                <div className="w-full border border-1 rounded-[30px] p-5">
+                                <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                     <span className="opacity-[0.5]">Nile Corniche, Qasr Ad Dobarah, Qasr El Nil, Cairo Governorate 11511, Egypt</span>
                                 </div>
                             </div>
@@ -29,7 +29,7 @@ function ContentDetails() {
                                         <Image src="/assets/icons/phone.svg" alt="phone" width={20} height={20} />
                                         <span className="text-[10px] md:text-xl font-medium">Phone 1</span>
                                     </label>
-                                    <div className="w-full border border-1 rounded-[30px] p-5">
+                                    <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">01055395693</span>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@ function ContentDetails() {
                                         <Image src="/assets/icons/phone.svg" alt="phone" width={20} height={20} />
                                         <span className="text-[10px] md:text-xl font-medium">Phone 2</span>
                                     </label>
-                                    <div className="w-full border border-1 rounded-[30px] p-5">
+                                    <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">01055395693</span>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@ function ContentDetails() {
                                         <Image src="/assets/icons/Cuisines.svg" alt="Cuisines" width={20} height={20} />
                                         <span className="text-[10px] md:text-xl font-medium">Cuisines</span>
                                     </label>
-                                    <div className="w-full border border-1 rounded-[30px] p-5">
+                                    <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">Italian, International</span>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@ function ContentDetails() {
                                         <Image src="/assets/icons/clock-2.svg" alt="Hours of operation" width={20} height={20} />
                                         <span className="text-[10px] md:text-xl font-medium">Hours of operation</span>
                                     </label>
-                                    <div className="w-full border border-1 rounded-[30px] p-5">
+                                    <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">Daily 12:30 pm–1:00 am</span>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@ function ContentDetails() {
                                         <Image src="/assets/icons/code.svg" alt="Dress code" width={20} height={20} />
                                         <span className="text-[10px] md:text-xl font-medium">Dress code</span>
                                     </label>
-                                    <div className="w-full border border-1 rounded-[30px] p-5">
+                                    <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">Business Casual</span>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@ function ContentDetails() {
                                     <Image src="/assets/icons/site.svg" alt="External Link" width={20} height={20} />
                                     <span className="text-[10px] md:text-xl font-medium">External Link</span>
                                 </label>
-                                <div className="w-full border border-1 rounded-[30px] p-5">
+                                <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                     <span className="opacity-[0.5]">https://www.example-website-for-demo-purposes.com</span>
                                 </div>
                             </div>

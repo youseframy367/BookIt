@@ -10,8 +10,8 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
     return (
         <div className="sm:absolute bottom-[-35px] w-full">
             <div className="container-content">
-                <div className="flex flex-col md:flex-row justify-center bg-white rounded-2xl shadow">
-                    <div className="w-full py-6 px-8 flex flex-col sm:flex-row justify-between gap-5">
+                <div className="grid md:grid-cols-[10.2fr_1fr] bg-white rounded-2xl shadow">
+                    <div className="w-full py-6 px-8 grid md:grid-cols-3 gap-5">
                         <div className={`flex items-center ${nextPage && 'py-5'} relative font-normal text-xl font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]`}>
                             <Image
                                 onClick={() => inputRef.current?.showPicker()}
@@ -65,8 +65,8 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
                             }
                         </div>
                     </div>
-                    <div className="w-full md:w-[unset] flex justify-center">
-                        <Link title="Details Customer" href="/details-customer" className={`${nextPage ? 'bg-[var(--color-not-active)] cursor-default' : 'bg-[var(--color-red)]'} w-[315px] md:w-[unset] border-arraw rounded-r-xl xl:px-[40px] flex justify-center items-center`}>
+                    <div className="w-full px-8 md:px-0 md:w-[unset] flex md:justify-center">
+                        <Link title="Details Customer" href="/details-customer" className={`${nextPage ? 'bg-[var(--color-not-active)] cursor-default' : 'bg-[var(--color-red)]'} w-full md:w-[unset] border-arraw rounded-r-xl xl:px-[40px] flex justify-center items-center`}>
                             <div className="w-[28px] h-[60px] relative">
                                 <Image src="/assets/icons/arraw.png" alt="arraw" className="object-cover rotate-90 md:rotate-0" fill />
                             </div>

@@ -15,7 +15,7 @@ function DetailsCustomer() {
             <ContentDetailsCustomer padding="p-10">
                 <form action="" onSubmit={handleInformation} className="flex flex-col gap-7">
                     <div className="flex flex-col gap-7">
-                        <div className="flex flex-col gap-10">
+                        <div className="flex flex-col gap-10 text-center md:text-start">
                             <h2 className="text-[var(--color-text-footer)] font-rubik text-xl">Customer Information</h2>
                             <div className="flex flex-col md:flex-row gap-[20px]">
                                 <div className="w-full relative">
@@ -43,7 +43,7 @@ function DetailsCustomer() {
                         <hr className="text-[var(--color-not-active)]" />
                     </div>
                     <div className="flex flex-col gap-7">
-                        <div className="flex flex-col gap-10">
+                        <div className="flex flex-col gap-10 text-center md:text-start">
                             <h2 className="text-[var(--color-text-footer)] font-rubik text-xl">Reservation Preferences  ( Optional but recommended )</h2>
                             <div className="flex flex-col md:flex-row gap-[20px]">
                                 <div className="w-full relative">

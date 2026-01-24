@@ -107,3 +107,14 @@ export interface dataCards {
     index: number;
     item: RestaurantItem;
 }
+
+interface itemsReivews {
+    title: string;
+    rating: number;
+    name: string;
+    job: string;
+}
+
+export interface reivews {
+    item: itemsReivews;
+}

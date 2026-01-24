@@ -1,6 +1,15 @@
-function Reivews() {
-    const totalStars = 5;
+"use client";
 
+import CardsReviews from "./CardsReviews";
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+import { Navigation } from 'swiper/modules';
+
+function Reivews() {
     const reviews = [
         {
             title: "“I have streamlined the reservation process for our team, making it easier to manage bookings, track customer preferences, and ensure every guest enjoys a seamless dining experience. The system has greatly reduced stress for our staff and enhanced overall efficiency, allowing us to focus on delivering exceptional service and memorable moments.",
@@ -41,34 +50,36 @@ function Reivews() {
     ]
 
     return (
-        <div className="mt-[96px] flex flex-col gap-[73px]">
+        <div className="mt-[96px] flex flex-col gap-5 md:gap-[73px]">
             <div data-aos="fade-up" className="text-center">
                 <h2 className="font-Roboto text-3xl font-normal opacity-[0.7]">Customer Reviews</h2>
             </div>
             <div className="grid md:grid-cols-2 gap-5">
                 {
                     reviews.map((item, index) => {
-                        return <div key={index} data-aos="fade-up" className="flex flex-col items-start gap-5 bg-[var(--color-reviews)] rounded-[12px] py-10 px-10">
-                            <span className="font-rubik text-lg font-normal text-[var(--color-text-footer)]">{item.title}</span>
-                            <div className="flex gap-1">
-                                {[...Array(totalStars)].map((_, index) => {
-                                    const starValue = index + 1;
-                                    return (
-                                        <span
-                                            key={starValue}
-                                            className={`text-3xl ${starValue <= item.rating ? "text-yellow-400" : "text-gray-500"}`}>
-                                            ★
-                                        </span>
-                                    );
-                                })}
-                            </div>
-                            <div className="flex flex-col">
-                                <span className="font-PlayfairDisplay text-2xl text-[var(--color-text-footer)]">{item.name}</span>
-                                <span className="font-rubik text-lg text-[var(--color-text-footer)]">{item.job}</span>
-                            </div>
+                        return <div key={index} data-aos="fade-up" className="hidden md:flex flex-col items-start gap-5 bg-[var(--color-reviews)] rounded-[12px] py-10 px-10">
+                            <CardsReviews item={item} />
                         </div>
                     })
                 }
+            </div>
+            <div className="md:hidden">
+                <Swiper
+                    modules={[Navigation]}
+                    slidesPerView={1.1}
+                    spaceBetween={30}
+                    className="mySwiper"
+                >
+                    {
+                        reviews.map((item, index) => {
+                            return <SwiperSlide key={index}>
+                                <div className="flex flex-col items-start gap-5 bg-[var(--color-reviews)] rounded-[12px] p-[20px] md:py-10 md:px-10">
+                                    <CardsReviews item={item} />
+                                </div>
+                            </SwiperSlide>
+                        })
+                    }
+                </Swiper>
             </div>
         </div>
     )

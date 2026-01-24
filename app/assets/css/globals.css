@@ -197,19 +197,6 @@ select {
     background-color: rgba(226, 32, 35, 0.059);
 }
 
-.active-footer-mobile {
-    background-color: var(--color-active-footer);
-    color: var(--color-red);
-}
-
-.active-footer-mobile .image-active {
-    filter: unset !important;
-}
-
-.active-footer-mobile span {
-    display: block !important;
-}
-
 @media(max-width: 990px) {
     .border-arraw {
         border-radius: 10px !important;
@@ -226,5 +213,14 @@ select {
 
     .sliderSimple-track {
         gap: 10px !important;
+    }
+
+    .container-mobile {
+        width: 95%;
+        max-width: 1450px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 0rem;
+        padding-right: 0rem;
     }
 }
