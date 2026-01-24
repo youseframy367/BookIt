@@ -199,6 +199,52 @@ select {
     background-color: rgba(226, 32, 35, 0.059);
 }
 
+.react-datepicker__header {
+    background-color: transparent !important;
+    border: transparent !important;
+}
+
+.react-datepicker__day-names {
+    width: 90% !important;
+    margin-left: 15px !important;
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.react-datepicker__day {
+    padding-top: 0.3rem !important;
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+    background-color: transparent !important;
+    color: var(--color-red) !important;
+    border: 2px solid var(--color-red) !important;
+    border-radius: 50% !important;
+}
+
+
+.booked-day:hover,
+.booked-day {
+    background-color: var(--color-red) !important;
+    color: white !important;
+    border-radius: 50% !important;
+    border: 2px solid white !important;
+    outline: 2px solid var(--color-red) !important;
+}
+
 @media(max-width: 990px) {
     .border-arraw {
         border-radius: 10px !important;

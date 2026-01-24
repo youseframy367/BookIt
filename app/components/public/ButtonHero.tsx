@@ -2,10 +2,20 @@
 import { nextAndBackPage } from "@/app/TypeScript/TypeScript";
 import Image from "next/image";
 import Link from "next/link";
-import { useRef } from "react";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function ButtonHero({ nextPage }: nextAndBackPage) {
-    const inputRef = useRef<HTMLInputElement | null>(null);
+    const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+    const [bookedDate, setBookedDate] = useState<Date | null>(new Date('2026-01-28'));
+
+    const getDayClassName = (date: Date) => {
+        if (bookedDate && date.toDateString() === bookedDate.toDateString()) {
+            return "booked-day";
+        }
+        return "";
+    };
 
     return (
         <div className="sm:absolute bottom-[-35px] w-full">
@@ -14,7 +24,6 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
                     <div className="w-full py-6 px-8 grid md:grid-cols-3 gap-5">
                         <div className={`flex items-center ${nextPage && 'py-5'} relative font-normal text-xl font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]`}>
                             <Image
-                                onClick={() => inputRef.current?.showPicker()}
                                 src="/assets/icons/calendar.svg"
                                 alt="calendar"
                                 width={30}
@@ -22,12 +31,37 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
                                 className="absolute left-3 top-4"
                             />
                             {
-                                !nextPage ? <input
-                                    type="date" ref={inputRef}
-                                    className="pl-15 pr-5 py-5 w-full h-full bg-transparent"
-                                /> : <div>
-                                    <span className="pl-15 pr-5 w-full h-full text-[var(--color-red)]">Helo World</span>
-                                </div>
+                                !nextPage ?
+                                    <DatePicker
+                                        className="ps-18 py-5"
+                                        selected={selectedDate}
+                                        onChange={setSelectedDate}
+                                        dayClassName={getDayClassName}
+                                        renderCustomHeader={({
+                                            date,
+                                            decreaseMonth,
+                                            increaseMonth,
+                                            prevMonthButtonDisabled,
+                                            nextMonthButtonDisabled
+                                        }) => (
+                                            <div className="flex justify-between items-center px-2">
+                                                <span className="ml-2 font-semibold text-base">
+                                                    {date.toLocaleString("default", { month: "long", year: "numeric" })}
+                                                </span>
+                                                <div className="flex gap-4">
+                                                    <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
+                                                        <Image src="/assets/icons/date-arraw.svg" alt="arraw" width={24} height={24} className="rotate-180" />
+                                                    </button>
+                                                    <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
+                                                        <Image src="/assets/icons/date-arraw.svg" alt="arraw" width={24} height={24} />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        )}
+                                    />
+                                    : <div>
+                                        <span className="pl-15 pr-5 w-full h-full text-[var(--color-red)]">Helo World</span>
+                                    </div>
                             }
                         </div>
                         <div className={`flex items-center ${nextPage && 'py-5'} relative font-normal text-xl font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]`}>
