@@ -5,6 +5,8 @@ import Header from "./components/public/Header";
 import AOSWrapper from "./components/AOSWrapper";
 import Footer from "./components/public/Footer";
 import FooterMobile from './components/public/FooterMobile';
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export default function RootLayout({
   children,
@@ -29,9 +31,11 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/assets/icons/logo.svg" />
         <title>BOOK IT</title>
         <AOSWrapper />
-        {showLayout && <Header />}
-        {children}
-        {showLayout && <><Footer /> <FooterMobile /></>}
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          {showLayout && <Header />}
+          {children}
+          {showLayout && <><Footer /> <FooterMobile /></>}
+        </LocalizationProvider>
       </body>
     </html>
   );

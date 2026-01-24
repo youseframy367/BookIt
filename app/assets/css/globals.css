@@ -121,6 +121,10 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
+::-webkit-scrollbar {
+    width: 0;
+}
+
 .container {
     width: 95%;
     max-width: 1450px;

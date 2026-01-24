@@ -5,10 +5,14 @@ import Link from "next/link";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { MobileTimePicker } from "@mui/x-date-pickers/MobileTimePicker";
+import dayjs, { Dayjs } from "dayjs";
 
 function ButtonHero({ nextPage }: nextAndBackPage) {
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [bookedDate, setBookedDate] = useState<Date | null>(new Date('2026-01-28'));
+
+    const [value, setValue] = useState<Dayjs | null>(dayjs());
 
     const getDayClassName = (date: Date) => {
         if (bookedDate && date.toDateString() === bookedDate.toDateString()) {
@@ -69,14 +73,26 @@ function ButtonHero({ nextPage }: nextAndBackPage) {
                             {
                                 !nextPage ?
                                     <>
-                                        <select name="" id="" className="px-15 py-5 text-[var(--color-red)] w-full h-full">
+                                        <MobileTimePicker
+                                            label="Select time"
+                                            value={value}
+                                            onChange={(newValue) => setValue(newValue)}
+                                            ampm={false}
+                                            slotProps={{
+                                                textField: {
+                                                    fullWidth: true,
+                                                },
+                                            }}
+                                        />
+                                        {/* <select name="" id="" className="px-15 py-5 text-[var(--color-red)] w-full h-full">
                                             <option value="">Please select a time</option>
                                             <option value="">2</option>
                                             <option value="">3</option>
                                             <option value="">4</option>
                                         </select>
-                                        <Image src="/assets/icons/arraw-select.svg" alt="calendar" width={30} height={30} className="absolute right-3 top-7" />
-                                    </> : <div>
+                                        <Image src="/assets/icons/arraw-select.svg" alt="calendar" width={30} height={30} className="absolute right-3 top-7" /> */}
+                                    </>
+                                    : <div>
                                         <span className="pl-15 pr-5 w-full h-full text-[var(--color-red)]">Helo World</span>
                                     </div>
                             }

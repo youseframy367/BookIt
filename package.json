@@ -9,11 +9,16 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
     "@fancyapps/ui": "^6.1.7",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@mui/material": "^7.3.7",
+    "@mui/x-date-pickers": "^8.26.0",
     "aos": "^2.3.4",
     "axios": "^1.13.2",
+    "dayjs": "^1.11.19",
     "framer-motion": "^12.26.2",
     "next": "16.1.1",
     "react": "19.2.3",
