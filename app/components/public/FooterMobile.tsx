@@ -1,8 +1,9 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import SearchMobile from "./SearchMobile";
 
 function FooterMobile() {
     const pathname = usePathname();
@@ -10,54 +11,67 @@ function FooterMobile() {
     const [search, setSearch] = useState("");
     const [showSearch, setShowSearch] = useState(false);
 
+    const [openMenu, setOpenMenu] = useState(false);
+
+    const menuRef = useRef<HTMLDivElement>(null);
+    const buttonRef = useRef<HTMLButtonElement>(null);
+
     useEffect(() => {
-        showSearch ? document.body.classList.add("search-active") : document.body.classList.remove("search-active");
+        showSearch || openMenu ? document.body.classList.add("search-active") : document.body.classList.remove("search-active");
         return () => document.body.classList.remove("search-active");
-    }, [showSearch]);
+    }, [showSearch, openMenu]);
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (
+                menuRef.current && !menuRef.current.contains(e.target as Node) && buttonRef.current && !buttonRef.current.contains(e.target as Node)) {
+                setOpenMenu(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
+
+    const lastMenu = [
+        {
+            link: "/most-booked",
+            title: "Most Booked",
+            icon: "most-booked-menu"
+        },
+        {
+            link: "/",
+            title: "Top Rated",
+            icon: "top-rated-menu"
+        },
+        {
+            link: "/faq",
+            title: "FAQ",
+            icon: "faq-menu"
+        },
+        {
+            link: "/privacy-policy",
+            title: "Privacy Policy",
+            icon: "privacy-policy-menu"
+        },
+        {
+            link: "/contact",
+            title: "Contact",
+            icon: "contact-menu"
+        },
+        {
+            link: "/terms-of-use",
+            title: "Terms of Use",
+            icon: "terms-of-use-menu"
+        }
+    ]
 
     return (
         <>
-            {
-                showSearch &&
-                <div className="md:hidden fixed top-10 z-1 w-full flex flex-col gap-10">
-                    <div className="flex justify-center w-full">
-                        <div className="w-[85%] opacity-[0.7] bg-[var(--color-search-mobile)] rounded-lg relative flex items-center">
-                            <Image src="/assets/icons/search.svg" alt='search' width={20} height={20} className='opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0 absolute start-5' />
-                            <input value={search}
-                                onChange={(e) => {
-                                    const value = e.target.value;
-                                    setSearch(value);
-                                    setShowSearch(value.trim().length > 0);
-                                }} type="text" className='text-sm p-3 text-white w-full h-full rounded-full ps-14' placeholder='Search restaurants or choose your area' />
-                            <Image src="/assets/icons/map.svg" alt='map' width={24} height={24} className='hidden lg:flex absolute end-5 filter invert sepia saturate-500 hue-rotate-[200deg]' />
-                        </div>
-                    </div>
-                    <ul className="bg-white rounded-b-[20px]">
-                        <li className='p-3'>
-                            <div className='flex items-center gap-5'>
-                                <Image src="/assets/icons/icon-resturans.svg" alt='resturans' width={40} height={40} className='object-cover' />
-                                <div className='flex flex-col gap-2'>
-                                    <h2 className='text-base font-normal'>Qasr elkbabgi</h2>
-                                    <span className='opacity-[0.5] text-[10px] font-normal'>Next to Jumia Building & BLOM Bank, 90th Street, New Cairo, Cairo Governorate, Egypt.</span>
-                                </div>
-                            </div>
-                        </li>
-                        <li className='p-3'>
-                            <div className='flex items-center gap-5'>
-                                <Image src="/assets/icons/icon-resturans.svg" alt='resturans' width={40} height={40} className='object-cover' />
-                                <div className='flex flex-col gap-2'>
-                                    <h2 className='text-base font-normal'>Qasr elkbabgi</h2>
-                                    <span className='opacity-[0.5] text-[10px] font-normal'>Next to Jumia Building & BLOM Bank, 90th Street, New Cairo, Cairo Governorate, Egypt.</span>
-                                </div>
-                            </div>
-                        </li>
-                        <hr className='text-[var(--color-not-active)]' />
-                        <div className='pb-1 text-center'>
-                            <span className='opacity-[0.5] text-[8px] font-normal'>No other search results found .</span>
-                        </div>
-                    </ul>
-                </div>
-            }
+            <SearchMobile search={search} setSearch={setSearch} setShowSearch={setShowSearch} showSearch={showSearch} />
 
             <section className="z-2 fixed md:hidden bottom-[-0.5px] w-full py-4 px-5 bg-[var(--color-footer-mobile)]">
                 <ul className="flex justify-between items-center">
@@ -88,9 +102,39 @@ function FooterMobile() {
                         </Link>
                     </li>
                     <li>
-                        <Image src="/assets/icons/menu.svg" alt="menu" width={24} height={24} className="opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0" />
+                        <button type="button" ref={buttonRef} onClick={() => setOpenMenu(prev => !prev)}>
+                            <Image src="/assets/icons/menu.svg" alt="menu" width={24} height={24} className="opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0" />
+                        </button>
                     </li>
                 </ul>
+
+                <div ref={menuRef} className={`flex flex-col gap-5 rounded-r-[20px] fixed top-0 h-[91.5vh] transition-all duration-300 ${openMenu ? 'opacity-[1] left-0' : 'opacity-[0] left-[-10%]'} w-[70%] bg-gradient-to-br from-[var(--color-text-star)]/40 to-[var(--color-text-star)]/70 backdrop-blur-2xl text-white`}>
+                    <ul className="p-[20px] pt-[100px]">
+                        {
+                            lastMenu.map((item, index) => {
+                                return <li className={`${pathname == item.link && 'border-l-3 border-[var(--color-red)] bg-gradient-to-r from-[var(--color-active-menu)] to-[var(--color-active-menu)]/10'} p-4`} key={index}>
+                                    <Link href={item.link} onClick={() => setOpenMenu(false)} className="flex gap-5">
+                                        <Image src={`/assets/icons/${item.icon}.svg`} alt={item.icon} width={20} height={20} />
+                                        <span className="font-normal text-base">{item.title}</span>
+                                    </Link>
+                                </li>
+                            })
+                        }
+                    </ul>
+                    <div className="px-[20px] flex flex-col gap-5">
+                        <hr />
+                        <Link href="/login" onClick={() => setOpenMenu(false)} className="text-center bg-[var(--color-red)] px-8 py-3 text-white hover:text-[var(--color-red)] before:bg-white before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign in">
+                            <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
+                                sign in
+                            </span>
+                        </Link>
+                        <Link href="/register/new-account" onClick={() => setOpenMenu(false)} className="text-center bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
+                            <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
+                                sign up
+                            </span>
+                        </Link>
+                    </div>
+                </div>
             </section>
         </>
     )

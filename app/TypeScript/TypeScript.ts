@@ -118,3 +118,10 @@ interface itemsReivews {
 export interface reivews {
     item: itemsReivews;
 }
+
+export interface passSearchData {
+    search: string;
+    setSearch: React.Dispatch<React.SetStateAction<string>>;
+    showSearch: boolean;
+    setShowSearch: React.Dispatch<React.SetStateAction<boolean>>
+}
