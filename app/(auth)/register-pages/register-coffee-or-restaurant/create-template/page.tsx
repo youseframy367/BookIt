@@ -7,11 +7,13 @@ import Submit from "@/app/components/public/SubmitChangeCoffeeOrRes";
 import { useTemplatesData } from "@/app/data/dataTemplates";
 import { useMenuSearch } from "@/app/hooks/useBodyClass";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function CreateTemplate() {
+    const router = useRouter();
     const templates = useTemplatesData();
     const { show, setShow } = useMenuSearch();
-
+    
     return (
         <section className="relative" dir="rtl">
             <div className="font-cairo pt-[80px] text-white">
@@ -50,7 +52,7 @@ export default function CreateTemplate() {
                                                             <div className="overflow-scroll w-[35%] h-[500px]">
                                                                 <img src={`/assets/icons/${item.imageInput}.svg`} alt="landing page" className="w-full object-cover" />
                                                             </div>
-                                                            <div className="w-[30%]" onClick={() => setShow(false)}>
+                                                            <div className="w-[30%]" onClick={() => router.push("/showDateOne/control")}>
                                                                 <Submit title="نعم ؛ انا موافق علي هذا القالب وأريد الاستمرار به" width="w-full" />
                                                             </div>
                                                             <div className="w-[30%]" onClick={() => setShow(false)}>

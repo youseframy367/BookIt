@@ -2,9 +2,9 @@
 
 // ✅ أضفنا useEffect هنا
 import { useState, useEffect } from "react";
-import Sidebar from "./partes/sidbar";
-import ControlBag from "./showDateOne/control/page";
-import PopSeting from "./showDateOne/popSeting";
+import Sidebar from "./(dashboard)/partes/sidbar";
+import ControlBag from "./(dashboard)/showDateOne/control/page";
+import PopSeting from "./(dashboard)/showDateOne/popSeting";
 
 
 export default function MainLayout({ children }) {

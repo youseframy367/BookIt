@@ -123,14 +123,7 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                                                 <form className="flex gap-[14px]">
                                                     <input type="text" className="md:w-[365px] py-[11px] px-[21px] rounded-[12px] border border-2 border-[var(--color-border-btn-payment)] bg-gradient-to-br from-[var(--color-nav-payments)] to-[var(--color-btn-tow)]" placeholder="رقم المحفظه" />
                                                     <div className="relative bg-gradient-to-br from-[var(--color-active-payment)] to-[var(--color-card-btn-tow)] border border-2 border-[var(--color-border-btn-payment)] font-bold text-xs md:text-base flex items-center gap-2 justify-center rounded-[12px] relative cursor-pointer transition-all duration-300">
-                                                        <Link
-                                                            href="/showDateOne/control"
-                                                            title="أدفع الان"
-                                                            className="cursor-pointer py-[7px] pe-9 ps-2 md:py-[11px] w-full"
-                                                        >
-                                                            <span className="relative z-1">أدفع الان</span>
-                                                        </Link>
-                                                        {/* <input type="submit" value="أدفع الان" title="أدفع الان" className="cursor-pointer py-[7px] pe-9 ps-2 md:py-[11px] w-full" /> */}
+                                                        <input type="submit" value="أدفع الان" title="أدفع الان" className="cursor-pointer py-[7px] pe-9 ps-2 md:py-[11px] w-full" />
                                                         <Image src="/assets/icons/icon-bank.svg" alt="icon bank" width={24} height={16} className="absolute top-[17px] left-1" />
                                                     </div>
                                                 </form>

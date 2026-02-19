@@ -2,7 +2,6 @@ import { BookingProvider } from "./(main)/context/BookingContext";
 import "./assets/css/globals.css";
 import AOSWrapper from "./components/AOSWrapper";
 import DirSetter from "./components/DirSetter";
-import MainLayout from "./SidebarWrapper";
 
 export default function RootLayout({
   children,
@@ -17,8 +16,7 @@ export default function RootLayout({
         <DirSetter />
         <AOSWrapper />
         <BookingProvider>
-          <MainLayout>{children}</MainLayout>
-          {/* {children} */}
+          {children}
         </BookingProvider>
       </body>
     </html>
