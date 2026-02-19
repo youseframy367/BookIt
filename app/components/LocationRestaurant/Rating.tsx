@@ -1,6 +1,9 @@
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 import Image from "next/image";
 
-function Rating() {
+export default function Rating() {
+    const { t, mounted } = useTranslationSetup();
+
     const reviews = [100, 60, 40, 30, 10]
 
     return (
@@ -23,15 +26,13 @@ function Rating() {
                         <span className="font-normal text-2xl">4.5</span>
                         <Image src="/assets/icons/rating-star.svg" alt="rating star" width={16} height={16} />
                     </div>
-                    <span className="text-nowrap text-md opacity-[0.5] font-normal">273 Reviews</span>
+                    <span className="text-nowrap text-md opacity-[0.5] font-normal">{mounted ? t("reviews") : ""}</span>
                 </div>
                 <div className="flex flex-col gap-[4px]">
                     <span className="font-normal text-2xl">88%</span>
-                    <span className="text-nowrap text-md opacity-[0.5] font-normal">Recommended</span>
+                    <span className="text-nowrap text-md opacity-[0.5] font-normal">{mounted ? t("recommended") : ""}</span>
                 </div>
             </div>
         </div>
     )
 }
-
-export default Rating;

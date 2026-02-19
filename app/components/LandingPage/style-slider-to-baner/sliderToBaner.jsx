@@ -1,22 +1,18 @@
 "use client";
 import { motion } from "framer-motion";
 
-import "./sliderToBaner.css";
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
+
+import { useDataSliders } from "../../../data/dataSliders";
 
 export default function SlideSimple() {
-  const items = [
-    { img: "/assets/icons/meal-1.jpg", title: "BBQ / Grill" },
-    { img: "/assets/icons/meal-2.jpg", title: "Pizza" },
-    { img: "/assets/icons/meal-3.png", title: "Burgers" },
-    { img: "/assets/icons/meal-4.jpg", title: "Seafood" },
-    { img: "/assets/icons/meal-5.png", title: "Desserts" },
-    { img: "/assets/icons/meal-6.png", title: "Healthy" },
-    { img: "/assets/icons/meal-7.png", title: "Drinks / Café" },
-  ];
+  const { mounted } = useTranslationSetup();
+
+  const dataSystem = useDataSliders();
 
   const sliderVariants = {
     animate: {
-      x: ["0%", "-50%"], // يتحرك من اليمين لليسار
+      x: ["0%", "-50%"],
       transition: {
         x: {
           repeat: Infinity,
@@ -29,12 +25,14 @@ export default function SlideSimple() {
   };
 
   return (
-    <div className="sliderSimple-section">
+    <div id="down" className="mt-[33px] md:mt-[40px] sliderSimple-section" dir="ltr">
       <motion.div className="sliderSimple-track" variants={sliderVariants} animate="animate">
-        {[...items, ...items].map((item, index) => (
-          <div key={index} className="sliderSimple-item" style={{ width: "180px" }}>
-            <img src={item.img} alt={item.title} />
-            <p>{item.title}</p>
+        {[...dataSystem, ...dataSystem].map((item, index) => (
+          <div key={index} className="flex flex-col gap-[20px] sliderSimple-item md:mt-5" style={{ width: "180px" }}>
+            <div className="shadow-[0_0_20px_rgba(0,0,0,0.25)] rounded-full">
+              <img src={item.img} alt={mounted ? item.title : '...'} />
+            </div>
+            <span className="!text-sm md:!text-lg font-normal">{mounted ? item.title : '...'}</span>
           </div>
         ))}
       </motion.div>

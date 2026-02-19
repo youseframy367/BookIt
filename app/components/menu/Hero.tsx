@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
-function Hero() {
+export default function Hero() {
     const { id } = useParams();
 
     return (
@@ -29,5 +29,3 @@ function Hero() {
         </section>
     )
 }
-
-export default Hero;

@@ -1,4 +1,4 @@
-function Content() {
+export default function Content() {
     const itemsPrivacyPolicy = [
         "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the",
         "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the ",
@@ -27,7 +27,7 @@ function Content() {
                     <ul className="flex flex-col gap-2">
                         {
                             itemsPrivacyPolicy.map((item, index) => {
-                                return <li key={index} className="flex flex-col text-base font-normal">
+                                return <li key={index} className="flex flex-col text-xs md:text-base font-normal">
                                     <span className="opacity-[0.5] leading-[28px]">{item}</span>
                                 </li>
                             })
@@ -38,5 +38,3 @@ function Content() {
         </section>
     )
 }
-
-export default Content;

@@ -1,25 +1,23 @@
 import Title from "./Title";
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
+import { useDataSystemBookIt } from "../../data/dataSystemBookit";
 
 export default function HowBOOKwork() {
-  const steps = [
-    { img: "it-work-1", text: "Discover the perfect restaurant for any occasion" },
-    { img: "it-work-2", text: "Easily manage your reservations" },
-    { img: "it-work-3", text: "Full visibility into available reservations; timely notifications" },
-    { img: "it-work-4", text: "Earn rewards for dining out" },
-  ];
+  const { t, mounted, i18n } = useTranslationSetup();
+  const dataSystem = useDataSystemBookIt();
 
   return (
     <section>
       <div className="mt-10 md:mt-30">
         <div className="container">
           <div className="flex flex-col gap-5">
-            <Title title="How does BOOK IT work?" subTitle="Book your table in just a few simple steps and enjoy a seamless dining experience." />
+            <Title title={mounted ? t("how-does-work") : "..."} subTitle={mounted ? t("book-it") : "..."} />
             <div className="grid grid-cols-4 mt-8 gap-5 md:gap-0">
               {
-                steps.map((item, index) => {
+                dataSystem.map((item, index) => {
                   return <div key={index} className="flex flex-col gap-5 md:gap-13 w-full items-center text-center">
                     <img src={`/assets/icons/${item.img}.png`} alt="work" className="h-[50px] md:h-[150px] object-cover" />
-                    <span className="text-xs md:text-xl text-[var(--color-text-footer)]">{item.text}</span>
+                    <span className={`leading-[20px] text-xs md:text-lg ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-[var(--color-text-footer)]`}>{mounted ? item.text : "..."}</span>
                   </div>
                 })
               }

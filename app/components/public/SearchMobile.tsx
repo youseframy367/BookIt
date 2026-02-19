@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { passSearchData } from "@/app/TypeScript/TypeScript";
 
-function SearchMobile({ showSearch, setSearch, setShowSearch, search }: passSearchData) {
+export default function SearchMobile({ showSearch, setSearch, setShowSearch, search }: passSearchData) {
     return (
         <>
             {
@@ -49,5 +49,3 @@ function SearchMobile({ showSearch, setSearch, setShowSearch, search }: passSear
         </>
     )
 }
-
-export default SearchMobile;

@@ -1,11 +1,14 @@
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 import { reivews } from "@/app/TypeScript/TypeScript";
 
-function CardsReviews({ item }: reivews) {
+export default function CardsReviews({ item }: reivews) {
+    const { i18n, mounted } = useTranslationSetup();
+
     const totalStars = 5;
 
     return (
         <>
-            <span className="font-rubik text-sm md:text-lg font-normal text-[var(--color-text-footer)]">{item.title}</span>
+            <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-sm md:text-lg font-normal text-[var(--color-text-footer)]`}>{mounted ? item.title : '...'}</span>
             <div className="flex gap-1">
                 {[...Array(totalStars)].map((_, index) => {
                     const starValue = index + 1;
@@ -19,11 +22,9 @@ function CardsReviews({ item }: reivews) {
                 })}
             </div>
             <div className="flex flex-col">
-                <span className="font-PlayfairDisplay text-sm md:text-2xl text-[var(--color-text-footer)]">{item.name}</span>
-                <span className="font-rubik text-sm md:text-lg text-[var(--color-text-footer)]">{item.job}</span>
+                <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} text-sm md:text-2xl text-[var(--color-text-footer)]`}>{mounted ? item.name : '...'}</span>
+                <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-sm md:text-lg text-[var(--color-text-footer)]`}>{mounted ? item.job : '...'}</span>
             </div>
         </>
     )
 }
-
-export default CardsReviews;

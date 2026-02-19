@@ -1,31 +1,27 @@
-import { dataCards } from "@/app/TypeScript/TypeScript";
 import AllCard from "./All-card";
 import Link from "next/link";
 import Like from "../like/like";
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
+import { dataCards } from "@/app/TypeScript/TypeScript";
 
-function Card({ item, toggleExpand, index }: dataCards) {
+export default function Card({ item, toggleExpand, index }: dataCards) {
+    const { t, i18n, mounted } = useTranslationSetup();
+
     return (
         <>
             <div
-                className="hidden md:block relative w-full rounded-[15px] pb-0"
-                onClick={() => toggleExpand(index)}
+                className="relative w-full rounded-[15px] pb-3"
             >
-                <AllCard item={item} index={index} toggleExpand={() => toggleExpand(index)} />
-                <div className="flex items-center justify-center my-6 md:mx-2 gap-3">
-                    <Link href={`/details-restaurant-public/${index + 1}`} className="px-8 py-4 rounded-[12px] bg-red-500 text-white text-[18px] md:text-[23px] font-medium font-Poppins truncate">
-                        Restaurant Detail Page
+                <Link href={`/details-restaurant-public/${index + 1}`}>
+                    <AllCard item={item} index={index} toggleExpand={() => toggleExpand(index)} />
+                </Link>
+                <div className="hidden container-content md:flex justify-between items-center my-6 gap-3">
+                    <Link href={`/details-restaurant-public/${index + 1}`} className={`${mounted ? i18n.language === 'ar' ? "px-15 font-cairo" : "px-8 font-Poppins" : ""} py-4 rounded-[12px] bg-red-500 text-white text-[18px] md:text-[23px] font-medium truncate`}>
+                        {mounted ? t("restaurant-detail") : "..."}
                     </Link>
-                    <Like />
+                    <Like like={item.like} />
                 </div>
             </div>
-            <Link href={`/details-restaurant-public/${index + 1}`}
-                className="md:hidden relative w-full rounded-[15px]"
-                onClick={() => toggleExpand(index)}
-            >
-                <AllCard item={item} index={index} toggleExpand={() => toggleExpand(index)} />
-            </Link>
         </>
     )
 }
-
-export default Card;

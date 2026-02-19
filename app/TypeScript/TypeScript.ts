@@ -21,6 +21,7 @@ export interface btn {
     width: string;
     onSubmit?: () => {};
     loading?: boolean;
+    isColor?: string;
 }
 
 export interface ChildRegister {
@@ -28,29 +29,13 @@ export interface ChildRegister {
     padding: string;
 }
 
-export interface HeaderItem {
-    title: string;
-    subTitle: string;
-}
-
 export interface RestaurantItem {
     img: string;
     name: string;
-    Relative: number;
+    rating: number;
     des: string;
     like: boolean;
-}
-
-export interface DataObject {
-    header: HeaderItem;
-    items: RestaurantItem[];
-}
-
-export type DataRealtied = DataObject[];
-
-export interface Props {
-    dataRealtiedAndBooked: DataRealtied;
-    isShowTitle?: boolean;
+    area: string;
 }
 
 export interface Header {
@@ -68,6 +53,7 @@ export interface GalleryProps {
 }
 
 interface itemsProducts {
+    id: number;
     active: boolean;
     icon: string;
     title: string;
@@ -100,6 +86,8 @@ export interface layoutLoginOrRegister {
     children: React.ReactNode;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void> | void;
     bg: string;
+    width?: string;
+    isActiveLogo?: boolean;
 }
 
 export interface dataCards {
@@ -124,4 +112,24 @@ export interface passSearchData {
     setSearch: React.Dispatch<React.SetStateAction<string>>;
     showSearch: boolean;
     setShowSearch: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export interface dataHero {
+    title: string;
+    backgroundImage: string;
+    paddingMobile: string;
+}
+
+export interface dataSidBar {
+    title: string;
+    setTitle: React.Dispatch<React.SetStateAction<string>>;
+    setActiveComponent: (component: "control" | "customers") => void;
+}
+
+export interface remove {
+    onClose: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+export interface myFilter {
+    filter?: string;
 }

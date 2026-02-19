@@ -1,48 +1,25 @@
-function Content() {
-    const itemsPrivacyPolicy = [
-        {
-            title: "Privacy Policy",
-            text: "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the"
-        },
-        {
-            title: "Privacy Policy",
-            text: "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the "
-        },
-        {
-            title: "Privacy Policy",
-            text: "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the"
-        },
-        {
-            title: "Privacy Policy",
-            text: "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the"
-        },
-        {
-            title: "Privacy Policy",
-            text: "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the"
-        },
-        {
-            title: "Privacy Policy",
-            text: "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the"
-        },
-        {
-            title: "Privacy Policy",
-            text: "This text can be replaced with an alternative text that expresses the meaning This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the meaning.This text can be replaced with an alternative text that expresses the "
-        },
-    ]
+"use client";
+
+import { usePrivacyPolicyData } from "@/app/data/dataPrivacyPolicy";
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
+
+export default function Content() {
+    const { i18n, mounted } = useTranslationSetup();
+    const itemsPrivacyPolicy = usePrivacyPolicyData();
 
     return (
         <section>
             <div className="container">
                 <div className="mt-5 flex flex-col gap-10">
-                    <h2 className="
+                    <h2 className={`
    text-[42px] font-normal
-    bg-gradient-to-r
-    from-[var(--color-red)]
+    bg-gradient-to-r    
     via-red-100
-    via-red-200
-    to-transparent
-    bg-clip-text text-transparent
-">
+    via-red-200    
+    bg-clip-text
+    text-transparent
+    ${mounted ? i18n.language === 'ar' ? "to-[var(--color-red)] from-transparent" :"from-[var(--color-red)] to-transparent" : ""}
+    `}>
                         Privacy Policy
                     </h2>
                     <ul className="flex flex-col gap-10">
@@ -60,5 +37,3 @@ function Content() {
         </section>
     )
 }
-
-export default Content;

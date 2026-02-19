@@ -1,42 +1,43 @@
 {
-  "name": "book-it",
+  "name": "cite-temblet-cofe",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "netlify-build": "next build && next export"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.1",
-    "@fancyapps/ui": "^6.1.7",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
-    "@mui/material": "^7.3.7",
-    "@mui/x-date-pickers": "^8.26.0",
+    "@mui/x-date-pickers": "^8.27.0",
     "aos": "^2.3.4",
-    "axios": "^1.13.2",
+    "axios": "^1.13.5",
     "dayjs": "^1.11.19",
-    "framer-motion": "^12.26.2",
-    "next": "16.1.1",
-    "react": "19.2.3",
-    "react-datepicker": "^9.1.0",
-    "react-dom": "19.2.3",
-    "react-loader-spinner": "^8.0.0",
-    "react-otp-input": "^3.1.1",
+    "framer-motion": "^12.29.2",
+    "i18next": "^25.8.11",
+    "i18next-browser-languagedetector": "^8.2.1",
+    "next": "16.1.6",
+    "qrcode.react": "^4.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^16.5.4",
+    "react-icons": "^5.5.0",
+    "react-intersection-observer": "^9.16.0",
     "react-toastify": "^11.0.5",
-    "swiper": "^12.0.3"
+    "recharts": "^3.7.0",
+    "swiper": "^12.1.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/node": "25.3.0",
+    "@types/react": "^18.2.7",
+    "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.1.1",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "eslint-config-next": "16.1.6",
+    "tailwindcss": "^4"
   }
 }

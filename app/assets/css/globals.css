@@ -22,12 +22,56 @@
     --color-active-footer: #E220231F;
     --color-search-mobile: rgba(0, 0, 0, 0.699);
     --color-active-menu: #e2202372;
+    --color-red-time: #e2202346;
+    --color-minutes-time: #21212114;
+    --color-text-about: #414536;
+    --color-bg-about: #474747;
+    --color-video: #2c2f2463;
+    --color-little-formation: #F9F9F7;
+    --color-commints: #F5F6F7;
+    --color-text-login: #B0B0B0;
+    --color-input: #13131386;
+    --color-label-input: #131313;
+    --color-go-password: #183866;
+    --color-nav-payments: #FFFFFF14;
+    --color-btn-tow: #FFFFFF00;
+    --color-border-btn-payment: #FFFFFF1A;
+    --color-border-pamyments: #FFFFFF1F;
+    --color-active-payment: #2BFFFF;
+    --color-active-payment-tow: #1CA3A3;
+    --color-one-payment-card: #2BFFFF1A;
+    --color-one-payment-card-hover: #1ca3a352;
+    --color-tow-payment-card: #2BFFFF05;
+    --color-three-payment-card: #2BFFFF0F;
+    --color-border-payment: #FFFFFF29;
+    --color-text-payment: #FFFFFFCC;
+    --color-card-btn-tow: #1A9999;
+    --color-title-card: #FFFFFF99;
+    --color-line-payment: #FFFFFF3D;
+    --color-border-id-payment: #ededed1e;
+    --color-border-payment-id: #FEFEFE;
+    --color-text-terms-condition: #FFFFFF80;
+    --color-text-create-template: #808080;
+    --color-one-template: #2DD4BF;
+    --color-tow-template: #1838660D;
 }
 
 @font-face {
     font-family: "Poppins";
     src: url("/assets/fonts/Poppins-Light.ttf") format("truetype");
     font-weight: 300;
+}
+
+@font-face {
+    font-family: "SpaceGrotesk";
+    src: url("/assets/fonts/SpaceGrotesk-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "Amiri";
+    src: url("/assets/fonts/Amiri-Regular.ttf") format("truetype");
+    font-weight: 400;
 }
 
 @font-face {
@@ -61,6 +105,12 @@
 }
 
 @font-face {
+    font-family: "PlayfairDisplay";
+    src: url("/assets/fonts/PlayfairDisplay-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
     font-family: "Rubik";
     src: url("/assets/fonts/Rubik-Regular.ttf") format("truetype");
     font-weight: 400;
@@ -84,6 +134,46 @@
     font-weight: 600;
 }
 
+@font-face {
+    font-family: "DMSans_24pt-Regular";
+    src: url("/assets/fonts/DMSans_24pt-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "DMSans-Bold";
+    src: url("/assets/fonts/DMSans-Bold.ttf") format("truetype");
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "cairo";
+    src: url("/assets/fonts/Cairo-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "cairo";
+    src: url("/assets/fonts/Cairo-Medium.ttf") format("truetype");
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: "cairo";
+    src: url("/assets/fonts/Cairo-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: "ArefRuqaa";
+    src: url("/assets/fonts/ArefRuqaa-Regular.ttf") format("truetype");
+    font-weight: 400;
+}
+
+.payment-page-body {
+    background: black;
+}
+
 body.search-active {
     position: relative;
 }
@@ -96,6 +186,21 @@ body.search-active::before {
     z-index: 1;
 }
 
+.font-cairo {
+    font-family: "cairo", sans-serif;
+}
+
+.font-Amiri {
+    font-family: "Amiri", sans-serif;
+}
+
+.font-SpaceGrotesk {
+    font-family: "SpaceGrotesk", sans-serif;
+}
+
+.font-ArefRuqaa {
+    font-family: "ArefRuqaa", sans-serif;
+}
 
 .font-Inter {
     font-family: "Inter", sans-serif;
@@ -117,30 +222,41 @@ body.search-active::before {
     font-family: "Qwigley", sans-serif;
 }
 
-body {
+.font-DMSans_24pt {
+    font-family: "DMSans_24pt-Regular", sans-serif;
+}
+
+html[dir="ltr"] body {
     font-family: "Poppins", sans-serif;
+}
+
+html[dir="rtl"] body {
+    font-family: "cairo", sans-serif;
 }
 
 ::-webkit-scrollbar {
     width: 0;
 }
 
-.container {
+html {
+    scroll-behavior: smooth;
+}
+
+.container,
+.container-content {
     width: 95%;
-    max-width: 1450px;
     margin-left: auto;
     margin-right: auto;
     padding-left: 0rem;
     padding-right: 0rem;
 }
 
+.container {
+    max-width: 1450px;
+}
+
 .container-content {
-    width: 95%;
     max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 0rem;
-    padding-right: 0rem;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -176,8 +292,19 @@ select {
     top: unset !important;
 }
 
-.swiper-button-prev {
+html[dir="ltr"] .swiper-button-prev {
+    left: unset !important;
     right: 35px !important;
+}
+
+html[dir="rtl"] .swiper-button-prev {
+    left: 35px !important;
+    right: unset !important;
+    transform: rotate(180deg);
+}
+
+html[dir="rtl"] .swiper-button-next {
+    transform: rotate(180deg);
 }
 
 @keyframes breathe {
@@ -239,7 +366,6 @@ select {
     border-radius: 50% !important;
 }
 
-
 .booked-day:hover,
 .booked-day {
     background-color: var(--color-red) !important;
@@ -247,6 +373,158 @@ select {
     border-radius: 50% !important;
     border: 2px solid white !important;
     outline: 2px solid var(--color-red) !important;
+}
+
+.css-18qp6qv {
+    padding: 0 34px !important;
+    display: flex !important;
+    flex-direction: row-reverse !important;
+}
+
+.css-7p02jm {
+    color: var(--color-red) !important;
+}
+
+.css-1ysp02-MuiButtonBase-root-MuiIconButton-root {
+    position: unset !important;
+}
+
+.css-1ysp02-MuiButtonBase-root-MuiIconButton-root:hover {
+    background-color: transparent !important;
+}
+
+.css-15xtvfo {
+    left: -10px;
+    right: unset !important;
+}
+
+.MuiSvgIcon-root {
+    position: absolute;
+    left: -30px;
+    width: 30px !important;
+    height: 30px !important;
+    filter: invert(25%) sepia(100%) saturate(5075%) hue-rotate(351deg) brightness(75%) contrast(100%);
+    fill: unset !important;
+}
+
+.MuiPickersOutlinedInput-notchedOutline {
+    border: 0 !important;
+}
+
+.css-1fb7els-MuiPickersSectionList-root-MuiPickersInputBase-sectionsContainer-MuiPickersOutlinedInput-sectionsContainer {
+    padding-left: 40px !important;
+    font-size: 20px !important;
+}
+
+.css-joz0rk-MuiPickersSectionList-section-MuiPickersInputBase-section {
+    font-size: 20px !important;
+}
+
+.css-1usb7ps {
+    background-color: var(--color-red-time) !important;
+    color: var(--color-red) !important;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+
+.css-1usb7ps[data-selected] {
+    background-color: var(--color-minutes-time) !important;
+    color: black !important;
+}
+
+.css-1aj8kjr-MuiTimePickerToolbar-amPmSelection {
+    margin-right: unset !important;
+}
+
+.MuiClockPointer-thumb {
+    border: 16px solid var(--color-red) !important;
+}
+
+.MuiClockPointer-root,
+.MuiClockNumber-root.Mui-selected,
+.MuiClock-pin {
+    background-color: var(--color-red) !important;
+}
+
+.css-1fb7els-MuiPickersSectionList-root-MuiPickersInputBase-sectionsContainer-MuiPickersOutlinedInput-sectionsContainer,
+.MuiClockPointer-root {
+    color: var(--color-red) !important;
+}
+
+.react-datepicker__input-container {
+    color: var(--color-red) !important;
+}
+
+@keyframes breatheBook {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.keyframes-book {
+    animation: breatheBook 3s ease-in-out infinite;
+}
+
+.movementHasn {
+    display: inline-block;
+    animation: framesHasn 3s infinite ease-in-out;
+}
+
+@keyframes framesHasn {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(30deg);
+    }
+
+    80% {
+        transform: rotate(0deg);
+    }
+}
+
+.input-email:focus-visible {
+    outline: 2px solid var(--color-red) !important;
+}
+
+.sliderSimple-section {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.sliderSimple-track {
+    display: flex;
+    width: fit-content;
+    gap: 60px;
+}
+
+.sliderSimple-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 180px;
+    justify-content: center;
+}
+
+.sliderSimple-item img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+}
+
+.sliderSimple-item p {
+    margin-top: 5px;
+    text-align: center;
+    color: "#000000"
 }
 
 @media(max-width: 990px) {
@@ -274,5 +552,38 @@ select {
         margin-right: auto;
         padding-left: 0rem;
         padding-right: 0rem;
+    }
+
+    .remove-container {
+        width: unset !important;
+        max-width: unset !important;
+        margin-left: unset !important;
+        margin-right: unset !important;
+        padding-left: unset !important;
+        padding-right: unset !important;
+    }
+
+    .MuiSvgIcon-root {
+        left: -15px;
+        width: 15px !important;
+        height: 15px !important;
+    }
+
+    .css-oljenl,
+    .react-datepicker-wrapper {
+        margin-top: 3px !important;
+    }
+
+    .css-18qp6qv {
+        padding: 0 14px !important;
+    }
+
+    .css-oljenl,
+    .css-joz0rk-MuiPickersSectionList-section-MuiPickersInputBase-section {
+        font-size: 8px !important;
+    }
+
+    .css-1fb7els-MuiPickersSectionList-root-MuiPickersInputBase-sectionsContainer-MuiPickersOutlinedInput-sectionsContainer {
+        padding-left: 20px !important;
     }
 }

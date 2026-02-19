@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+/* تخصيص شكل الاسكرول داخل الصفحة TemplateOne فقط */
+/* إخفاء الاسكرول من الصفحة كلها */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* لفايرفوكس */
+html {
+  scrollbar-width: none;
+}
+
+/* لعناصر أخرى */
+body {
+  -ms-overflow-style: none; /* Internet Explorer و Edge القديم */
+}
+@keyframes growLine {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-grow-line {
+  animation: growLine 0.4s ease forwards;
+}
+@keyframes shadow-pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(249, 192, 106, 0.0);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(249, 192, 106, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(249, 192, 106, 0.0);
+  }
+}
+
+.animate-shadow-pulse {
+  animation: shadow-pulse 2s ease-in-out infinite;
+}
+
+body {
+  -ms-overflow-style: none;  /* IE و Edge القديم */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

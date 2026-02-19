@@ -3,8 +3,11 @@
 import { useState } from "react";
 import Image from "next/image";
 import { questionsAndAnswaer } from "@/app/TypeScript/TypeScript";
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 
-function Content({ items }: questionsAndAnswaer) {
+export default function Content({ items }: questionsAndAnswaer) {
+    const { mounted } = useTranslationSetup();
+
     const [openIndex, setOpenIndex] = useState<number | null>(null);
     const [tempIndex, setTempIndex] = useState<number | null>(null);
 
@@ -29,9 +32,9 @@ function Content({ items }: questionsAndAnswaer) {
     };
 
     return (
-        <section className="mt-20">
+        <section className="mt-5 md:mt-20">
             <div className="container mx-auto">
-                <div className="flex flex-col gap-10">
+                <div className="flex flex-col gap-3 md:gap-10">
                     {items.map((item, index) => {
                         const isOpen = openIndex === index;
                         return (
@@ -41,13 +44,13 @@ function Content({ items }: questionsAndAnswaer) {
                             >
                                 <button
                                     onClick={() => toggle(index)}
-                                    className="bg-[var(--color-red)] w-full flex items-center justify-between py-3 px-7"
+                                    className="bg-[var(--color-red)] w-full flex items-center justify-between py-3 px-3 md:px-7"
                                 >
-                                    <span className="text-white text-xl font-medium font-medium">
-                                        {item.title}
+                                    <span className="text-white text-[12px] md:text-xl font-medium font-medium">
+                                        {mounted ? item.title : '...'}
                                     </span>
 
-                                    <div className="flex items-center gap-2">
+                                    <div className="hidden md:flex items-center gap-2">
                                         <Image src="/assets/icons/arraw.png" alt="arraw" width={10} height={13} className={`transition-all duration-300 ${isOpen ? "rotate-[-90deg]" : "rotate-90"}`} />
                                     </div>
                                 </button>
@@ -57,8 +60,8 @@ function Content({ items }: questionsAndAnswaer) {
                                         }`}
                                     onTransitionEnd={handleAfterLeave}
                                 >
-                                    <div className="border-b-1 px-5 py-4 text-[18px] leading-relaxed">
-                                        {item.content}
+                                    <div className="border-b-1 px-5 py-4 text-[12px] md:text-[18px] leading-relaxed">
+                                        {mounted ? item.content : '...'}
                                     </div>
                                 </div>
                             </div>
@@ -69,5 +72,3 @@ function Content({ items }: questionsAndAnswaer) {
         </section>
     );
 }
-
-export default Content;

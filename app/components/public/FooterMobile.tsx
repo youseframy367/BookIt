@@ -1,143 +1,147 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+//  useEffect, useRef,
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import SearchMobile from "./SearchMobile";
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
+import BtnsSignInAndSignUp from "./BtnsSignInAndSignUp";
+import ChangeLanguage from "./ChangeLanguage";
+import { useMenuSearch } from "@/app/hooks/useBodyClass";
 
-function FooterMobile() {
+export default function FooterMobile() {
+    const { t, mounted } = useTranslationSetup();
+
     const pathname = usePathname();
 
+    const {
+        show,
+        setShow,
+        searchRef,
+        setOpenMenu,
+        openMenu,
+        buttonRef,
+        menuRef
+    } = useMenuSearch();
+
     const [search, setSearch] = useState("");
-    const [showSearch, setShowSearch] = useState(false);
-
-    const [openMenu, setOpenMenu] = useState(false);
-
-    const menuRef = useRef<HTMLDivElement>(null);
-    const buttonRef = useRef<HTMLButtonElement>(null);
-
-    useEffect(() => {
-        showSearch || openMenu ? document.body.classList.add("search-active") : document.body.classList.remove("search-active");
-        return () => document.body.classList.remove("search-active");
-    }, [showSearch, openMenu]);
-
-    useEffect(() => {
-        const handleClickOutside = (e: MouseEvent) => {
-            if (
-                menuRef.current && !menuRef.current.contains(e.target as Node) && buttonRef.current && !buttonRef.current.contains(e.target as Node)) {
-                setOpenMenu(false);
-            }
-        };
-
-        document.addEventListener("mousedown", handleClickOutside);
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
 
     const lastMenu = [
         {
-            link: "/most-booked",
-            title: "Most Booked",
+            link: "/most-booked-or-top-reatied",
+            title: t('most-booked'),
             icon: "most-booked-menu"
         },
         {
             link: "/",
-            title: "Top Rated",
+            title: t('top-rated'),
             icon: "top-rated-menu"
         },
         {
+            link: "/popular-dishes",
+            title: t('popular-dishes'),
+            icon: "like-menu"
+        },
+        {
             link: "/faq",
-            title: "FAQ",
+            title: t('questions'),
             icon: "faq-menu"
         },
         {
             link: "/privacy-policy",
-            title: "Privacy Policy",
+            title: t('privacy-policy'),
             icon: "privacy-policy-menu"
         },
         {
             link: "/contact",
-            title: "Contact",
+            title: t('contact'),
             icon: "contact-menu"
         },
         {
             link: "/terms-of-use",
-            title: "Terms of Use",
+            title: t('terms'),
             icon: "terms-of-use-menu"
         }
     ]
 
+    const toggleSearch = () => {
+        setShow(prev => !prev);
+        setOpenMenu(false);
+    }
+
+    const toggleMenu = () => {
+        setOpenMenu(prev => !prev);
+        setShow(false);
+    }
+
+    const isActive = (path: string) => pathname === path && !show && !openMenu;
+
     return (
         <>
-            <SearchMobile search={search} setSearch={setSearch} setShowSearch={setShowSearch} showSearch={showSearch} />
+            <div ref={searchRef}>
+                <SearchMobile search={search} setSearch={setSearch} setShowSearch={setShow} showSearch={show} />
+            </div>
 
-            <section className="z-2 fixed md:hidden bottom-[-0.5px] w-full py-4 px-5 bg-[var(--color-footer-mobile)]">
+            <section className="w-full z-2 fixed md:hidden bottom-0 w-full py-4 px-5 bg-[var(--color-footer-mobile)]">
                 <ul className="flex justify-between items-center">
                     <li>
-                        <Link href="/" className={`flex gap-2 rounded-full p-3 ${pathname === "/" && !showSearch ? "bg-[var(--color-active-footer)] text-[var(--color-red)]" : ""
+                        <Link href="/" className={`overflow-hidden relative flex gap-3 rounded-full p-3 transition-all duration-300 ${isActive("/") && !show ? "w-full bg-[var(--color-active-footer)] text-[var(--color-red)]" : "w-[49px]"
                             }`}>
-                            <Image src="/assets/icons/home.svg" alt="home" width={24} height={24} className={`${pathname === "/" && !showSearch && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
-                            <span className={`${pathname === "/" && !showSearch ? 'block' : 'hidden'}`}>Home</span>
+                            <Image src="/assets/icons/home.svg" alt="home" width={24} height={24} className={`${isActive("/") && !show && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
+                            <span>Home</span>
                         </Link>
                     </li>
-                    <li onClick={() => setShowSearch(prev => !prev)} className={`flex gap-2 rounded-full p-3 ${showSearch ? "bg-[var(--color-active-footer)] text-[var(--color-red)]" : ""
+                    <li onClick={toggleSearch} className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${show ? "w-[33%] bg-[var(--color-active-footer)] text-[var(--color-red)]" : "w-[49px]"
                         }`}>
-                        <Image src={`/assets/icons/${showSearch ? 'active-search' : 'search'}.svg`} alt="search" width={24} height={24} className={`${showSearch && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
-                        <span className={`${showSearch ? 'block' : 'hidden'}`}>Search</span>
+                        <Image src={`/assets/icons/${show ? 'active-search' : 'search'}.svg`} alt="search" width={24} height={24} className={`${show && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
+                        <span className="ms-2">Search</span>
                     </li>
                     <li>
-                        <Link href="/liked-restaurants" className={`flex gap-2 rounded-full p-3 ${pathname === "/liked-restaurants" ? "bg-[var(--color-active-footer)] text-[var(--color-red)]" : ""
+                        <Link href="/liked-restaurants" className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${isActive("/liked-restaurants") ? "w-full bg-[var(--color-active-footer)] text-[var(--color-red)]" : "w-[49px]"
                             }`}>
-                            <Image src={`/assets/icons/${pathname === "/liked-restaurants" ? "heart.png" : "heart-footer-bottom.svg"}`} alt="heart" width={24} height={24} />
-                            <span className={`${pathname === "/liked-restaurants" ? 'block' : 'hidden'}`}>Heart</span>
+                            <Image src={`/assets/icons/${isActive("/liked-restaurants") ? "heart.png" : "heart-footer-bottom.svg"}`} alt="heart" width={24} height={24} />
+                            <span className="ms-2">Like</span>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/about" className={`flex gap-2 rounded-full p-3 ${pathname === "/about" ? "bg-[var(--color-active-footer)] text-[var(--color-red)]" : ""
+                        <Link href="/about" className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${isActive("/about") ? "w-full bg-[var(--color-active-footer)] text-[var(--color-red)]" : "w-[49px]"
                             }`}>
-                            <Image src="/assets/icons/info.svg" alt="info" width={24} height={24} />
-                            <span className={`${pathname === "/about" ? 'block' : 'hidden'}`}>About</span>
+                            <Image src={`/assets/icons/${isActive("/about") ? "active-about" : "info"}.svg`} alt="info" width={24} height={24} />
+                            <span className="ms-2">About</span>
                         </Link>
                     </li>
                     <li>
-                        <button type="button" ref={buttonRef} onClick={() => setOpenMenu(prev => !prev)}>
+                        <button type="button" ref={buttonRef} onClick={toggleMenu}>
                             <Image src="/assets/icons/menu.svg" alt="menu" width={24} height={24} className="opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0" />
                         </button>
                     </li>
                 </ul>
 
-                <div ref={menuRef} className={`flex flex-col gap-5 rounded-r-[20px] fixed top-0 h-[91.5vh] transition-all duration-300 ${openMenu ? 'opacity-[1] left-0' : 'opacity-[0] left-[-10%]'} w-[70%] bg-gradient-to-br from-[var(--color-text-star)]/40 to-[var(--color-text-star)]/70 backdrop-blur-2xl text-white`}>
-                    <ul className="p-[20px] pt-[100px]">
+                <div ref={menuRef} className={`p-[20px] flex flex-col gap-5 rounded-r-[20px] fixed top-0 overflow-scroll h-[91.1vh] transition-all duration-300 ${openMenu ? 'opacity-[1] left-0' : 'opacity-[0] left-[-70%]'} w-[70%] bg-gradient-to-br from-[var(--color-text-star)]/40 to-[var(--color-text-star)]/70 backdrop-blur-2xl text-white`}>
+                    <ul className="py-[20px] pt-[100px]">
                         {
                             lastMenu.map((item, index) => {
-                                return <li className={`${pathname == item.link && 'border-l-3 border-[var(--color-red)] bg-gradient-to-r from-[var(--color-active-menu)] to-[var(--color-active-menu)]/10'} p-4`} key={index}>
+                                return <li className={`${pathname == item.link && 'bg-gradient-to-r from-[var(--color-active-menu)] to-[var(--color-active-menu)]/10'} p-4`} key={index}>
                                     <Link href={item.link} onClick={() => setOpenMenu(false)} className="flex gap-5">
-                                        <Image src={`/assets/icons/${item.icon}.svg`} alt={item.icon} width={20} height={20} />
-                                        <span className="font-normal text-base">{item.title}</span>
+                                        <div className="flex justify-start w-[25px]">
+                                            <img src={`/assets/icons/${item.icon}.svg`} alt={item.icon} />
+                                        </div>
+                                        <span className="font-normal text-base">{mounted ? item.title : '...'}</span>
                                     </Link>
                                 </li>
                             })
                         }
                     </ul>
-                    <div className="px-[20px] flex flex-col gap-5">
-                        <hr />
-                        <Link href="/login" onClick={() => setOpenMenu(false)} className="text-center bg-[var(--color-red)] px-8 py-3 text-white hover:text-[var(--color-red)] before:bg-white before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign in">
-                            <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
-                                sign in
-                            </span>
-                        </Link>
-                        <Link href="/register/new-account" onClick={() => setOpenMenu(false)} className="text-center bg-white px-8 py-3 text-[var(--color-red)] hover:text-white before:bg-[var(--color-red)] before:bottom-0 before:rounded-t-[50%] relative group rounded-full cursor-pointer overflow-hidden before:content-[''] before:absolute before:left-0 before:w-full before:h-0 before:z-1 before:bottom-0 before:transition-all before:duration-800 hover:before:h-[180%]" title="sign up">
-                            <span className="text-center relative z-1 text-base font-medium transition-all duration-800">
-                                sign up
-                            </span>
-                        </Link>
+                    <div className="text-center flex flex-col gap-5">
+                        <BtnsSignInAndSignUp />
+                    </div>
+                    <div className="px-4">
+                        <ChangeLanguage />
                     </div>
                 </div>
             </section>
         </>
     )
 }
-
-export default FooterMobile;

@@ -1,94 +1,39 @@
+"use client";
 import Link from "next/link";
 import FormLastNews from "./FormLastNews";
 import FooterBottom from "./FooterBottom";
 import Image from "next/image";
+import { usePathname } from 'next/navigation';
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
+import SocailMedia from "./SocailMedia";
+import { useFootrerData } from "@/app/data/dataFooter";
 
-function Footer() {
-    const Menu = [
-        {
-            title: "Home",
-            link: "/"
-        },
-        {
-            title: "Most Booked",
-            link: "/most-booked"
-        },
-        {
-            title: "Popular Dishes",
-            link: "/popular-dishes"
-        },
-        {
-            title: "Liked Restaurants",
-            link: "/liked-restaurants"
-        }
-    ]
-
-    const Information = [
-        {
-            title: "Supports",
-            link: ""
-        },
-        {
-            title: "Terms & Conditions",
-            link: ""
-        },
-    ]
-
-    const ContactInfo = [
-        {
-            title: "+ 20 01055395693",
-            link: ""
-        },
-        {
-            title: "teamdevmaster930@gmail.com",
-            link: ""
-        },
-        {
-            title: "Egypt, Cairo",
-            link: ""
-        }
-    ]
-
-    const socailMedia = [
-        {
-            title: "meta",
-            link: "",
-        },
-        {
-            title: "whatsApp",
-            link: ""
-        },
-        {
-            title: "instagram",
-            link: ""
-        },
-        {
-            title: "twitter",
-            link: ""
-        },
-    ]
+export default function Footer() {
+    const { t, i18n, mounted } = useTranslationSetup();
+    const { Menu, Information, ContactInfo } = useFootrerData();
+    const pathname = usePathname();
 
     return (
         <>
             <FormLastNews />
-            <footer className="text-white mt-30 md:mt-70 bg-[var(--color-footer)] relative z-1">
+            <footer className={`text-white ${pathname != '/about' ? 'mt-20 md:mt-70' : 'mt-30 md:mt-0'} bg-[var(--color-footer)] relative z-1`}>
                 <div className="container">
-                    <div className="pb-10 pt-50 grid sm:grid-cols-2 xl:grid-cols-[3fr_2fr_2fr_2fr_2fr] gap-5">
-                        <div className="items-center md:items-start flex flex-col gap-5">
+                    <div className="pb-10 pt-50 grid grid-cols-2 xl:grid-cols-[3fr_2fr_2fr_2fr_2fr] gap-5">
+                        <div className="items-center flex flex-col gap-5">
                             <div className="relative w-full md:w-[261px] h-[95px]">
                                 <Image src="/assets/icons/logo-footer.svg" alt="logo" fill className="object-cover" />
                             </div>
-                            <span className="font-rubik text-sm font-normal">Copyright © Book table 2025 All rights reserved</span>
+                            <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-xs font-normal`}>{mounted ? t('copyright') : '...'}</span>
                         </div>
                         <div className="flex flex-col gap-5">
-                            <h2 className="text-2xl md:px-7 font-rubik font-normal">Menu</h2>
+                            <h2 className={`text-2xl md:px-7 ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} font-normal`}>{mounted ? t('menu') : '...'}</h2>
                             <ul className="flex flex-col gap-3 md:px-5">
                                 {
                                     Menu.map((item, index) => (
                                         <li className="flex" key={index}>
-                                            <div className="flex md:items-center gap-2 group" title={item.title}>
+                                            <div className="flex md:items-center gap-2 group" title={mounted ? item.title : '...'}>
                                                 <div className="group-hover:w-[20px] transition-all duration-300 w-0 h-[3px]"></div>
-                                                <Link className="font-rubik md:text-lg" href={item.link}>{item.title}</Link>
+                                                <Link className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-xs md:text-lg`} href={item.link}>{mounted ? item.title : '...'}</Link>
                                             </div>
                                         </li>
                                     ))
@@ -96,14 +41,14 @@ function Footer() {
                             </ul>
                         </div>
                         <div className="flex flex-col gap-5">
-                            <h2 className="text-2xl md:px-7 font-rubik font-normal">Information</h2>
+                            <h2 className={`text-2xl md:px-7 ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} font-normal`}>{mounted ? t('information') : '...'}</h2>
                             <ul className="flex flex-col gap-3 md:px-5">
                                 {
                                     Information.map((item, index) => (
                                         <li className="flex" key={index}>
-                                            <div className="flex md:items-center gap-2 group" title={item.title}>
+                                            <div className="flex md:items-center gap-2 group" title={mounted ? item.title : '...'}>
                                                 <div className="group-hover:w-[20px] transition-all duration-300 w-0 h-[3px]"></div>
-                                                <Link className="font-rubik md:text-lg" href={item.link}>{item.title}</Link>
+                                                <Link className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-xs md:text-lg`} href={item.link}>{mounted ? item.title : '...'}</Link>
                                             </div>
                                         </li>
                                     ))
@@ -111,35 +56,23 @@ function Footer() {
                             </ul>
                         </div>
                         <div className="flex flex-col gap-5">
-                            <h2 className="text-2xl md:px-7 font-rubik font-normal">Contact Info</h2>
+                            <h2 className={`text-2xl md:px-7 ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} font-normal`}>{mounted ? t('contact-info') : '...'}</h2>
                             <ul className="flex flex-col gap-3 md:px-5">
                                 {
                                     ContactInfo.map((item, index) => (
                                         <li className="flex" key={index}>
-                                            <div className="flex md:items-center gap-2 group" title={item.title}>
+                                            <div className="flex md:items-center gap-2 group" title={mounted ? item.title : '...'}>
                                                 <div className="group-hover:w-[20px] transition-all duration-300 w-0 h-[3px]"></div>
-                                                <Link className="font-rubik md:text-lg" href={item.link}>{item.title}</Link>
+                                                <a className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-xs md:text-lg`} href={item.link}>{mounted ? item.title : '...'}</a>
                                             </div>
                                         </li>
                                     ))
                                 }
                             </ul>
                         </div>
-                        <div className="flex flex-col gap-5">
-                            <h2 className="px-4 font-rubik text-2xl font-medium">Follow us on</h2>
-                            <ul className="flex gap-4">
-                                {
-                                    socailMedia.map((item, index) => {
-                                        return <li key={index}>
-                                            <Link href={item.title} title={item.title}>
-                                                <div className="relative w-[32px] h-[32px]">
-                                                    <Image src={`/assets/icons/${item.title}.svg`} alt={item.title} fill className="object-cover" />
-                                                </div>
-                                            </Link>
-                                        </li>
-                                    })
-                                }
-                            </ul>
+                        <div className="flex flex-col items-center gap-5">
+                            <h2 className={`px-4 ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-2xl font-medium`}>{mounted ? t("follow") : '...'}</h2>
+                            <SocailMedia filter="invert brightness-0" />
                         </div>
                     </div>
                     <FooterBottom />
@@ -148,5 +81,3 @@ function Footer() {
         </>
     )
 }
-
-export default Footer;

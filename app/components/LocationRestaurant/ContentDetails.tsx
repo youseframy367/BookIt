@@ -1,12 +1,15 @@
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 import Image from "next/image";
 
-function ContentDetails() {
+export default function ContentDetails() {
+    const { t, i18n, mounted } = useTranslationSetup();
+
     return (
         <section>
             <div className="mt-[35px]">
                 <div className="container">
                     <div className="flex flex-col gap-[62px]">
-                        <div className="w-full h-[400px] md:h-[600px] relative">
+                        <div className="w-full h-[250px] md:h-[600px] relative">
                             <iframe
                                 className="w-full h-full border-0"
                                 loading="lazy"
@@ -15,9 +18,9 @@ function ContentDetails() {
                         </div>
                         <div className="w-full md:w-[50%] flex flex-col gap-[30px] md:gap-[60px]">
                             <div className="w-full relative">
-                                <label className="flex gap-2 items-center absolute bg-white px-2 top-[-14px] left-9">
+                                <label className={`flex gap-2 items-center absolute bg-white px-2 top-[-14px] ${mounted ? i18n.language === 'ar' ? "right-9" : "left-9" : ""}`}>
                                     <Image src="/assets/icons/location.svg" alt="location" width={20} height={20} />
-                                    <span className="text-[10px] md:text-xl font-medium">Location</span>
+                                    <span className="text-[10px] md:text-xl font-medium">{mounted ? t("location") : ""}</span>
                                 </label>
                                 <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                     <span className="opacity-[0.5]">Nile Corniche, Qasr Ad Dobarah, Qasr El Nil, Cairo Governorate 11511, Egypt</span>
@@ -25,18 +28,18 @@ function ContentDetails() {
                             </div>
                             <div className="flex gap-[20px] md:gap-[70px]">
                                 <div className="w-full relative">
-                                    <label className="flex gap-2 items-center absolute bg-white px-2 top-[-14px] left-9">
+                                    <label className={`flex gap-2 items-center absolute bg-white px-2 top-[-14px] ${mounted ? i18n.language === 'ar' ? "right-9" : "left-9" : ""}`}>
                                         <Image src="/assets/icons/phone.svg" alt="phone" width={20} height={20} />
-                                        <span className="text-[10px] md:text-xl font-medium">Phone 1</span>
+                                        <span className="text-[10px] md:text-xl font-medium">{mounted ? t("phone-1") : ""}</span>
                                     </label>
                                     <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">01055395693</span>
                                     </div>
                                 </div>
                                 <div className="w-full relative">
-                                    <label className="flex gap-2 items-center absolute bg-white px-2 top-[-14px] left-9">
+                                    <label className={`flex gap-2 items-center absolute bg-white px-2 top-[-14px] ${mounted ? i18n.language === 'ar' ? "right-9" : "left-9" : ""}`}>
                                         <Image src="/assets/icons/phone.svg" alt="phone" width={20} height={20} />
-                                        <span className="text-[10px] md:text-xl font-medium">Phone 2</span>
+                                        <span className="text-[10px] md:text-xl font-medium">{mounted ? t("phone-2") : ""}</span>
                                     </label>
                                     <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">01055395693</span>
@@ -45,18 +48,18 @@ function ContentDetails() {
                             </div>
                             <div className="flex gap-[20px] md:gap-[70px]">
                                 <div className="w-full relative">
-                                    <label className="flex gap-2 items-center absolute bg-white px-2 top-[-14px] left-9">
+                                    <label className={`flex gap-2 items-center absolute bg-white px-2 top-[-14px] ${mounted ? i18n.language === 'ar' ? "right-9" : "left-9" : ""}`}>
                                         <Image src="/assets/icons/Cuisines.svg" alt="Cuisines" width={20} height={20} />
-                                        <span className="text-[10px] md:text-xl font-medium">Cuisines</span>
+                                        <span className="text-[10px] md:text-xl font-medium">{mounted ? t("cuisines") : ""}</span>
                                     </label>
                                     <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">Italian, International</span>
                                     </div>
                                 </div>
                                 <div className="w-full relative">
-                                    <label className="flex gap-2 items-center absolute bg-white px-2 top-[-14px] left-9">
+                                    <label className={`flex gap-2 items-center absolute bg-white px-2 top-[-14px] ${mounted ? i18n.language === 'ar' ? "right-9" : "left-9" : ""}`}>
                                         <Image src="/assets/icons/clock-2.svg" alt="Hours of operation" width={20} height={20} />
-                                        <span className="text-[10px] md:text-xl font-medium">Hours of operation</span>
+                                        <span className="text-[10px] md:text-xl font-medium">{mounted ? t("hours-of-operation") : ""}</span>
                                     </label>
                                     <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">Daily 12:30 pm–1:00 am</span>
@@ -65,16 +68,16 @@ function ContentDetails() {
                             </div>
                             <div className="flex gap-[20px] md:gap-[70px]">
                                 <div className="w-full relative">
-                                    <label className="flex gap-2 items-center absolute bg-white px-2 top-[-14px] left-9">
+                                    <label className={`flex gap-2 items-center absolute bg-white px-2 top-[-14px] ${mounted ? i18n.language === 'ar' ? "right-9" : "left-9" : ""}`}>
                                         <Image src="/assets/icons/neighborhood.svg" alt="Neighborhood" width={20} height={20} />
-                                        <span className="text-[10px] md:text-xl font-medium">Neighborhood</span>
+                                        <span className="text-[10px] md:text-xl font-medium">{mounted ? t("neighborhood") : ""}</span>
                                     </label>
                                     <input type="text" className="w-full border border-1 rounded-[30px] p-5" placeholder="Cairo, Egypt" />
                                 </div>
                                 <div className="w-full relative">
-                                    <label className="flex gap-2 items-center absolute bg-white px-2 top-[-14px] left-9">
+                                    <label className={`flex gap-2 items-center absolute bg-white px-2 top-[-14px] ${mounted ? i18n.language === 'ar' ? "right-9" : "left-9" : ""}`}>
                                         <Image src="/assets/icons/code.svg" alt="Dress code" width={20} height={20} />
-                                        <span className="text-[10px] md:text-xl font-medium">Dress code</span>
+                                        <span className="text-[10px] md:text-xl font-medium">{mounted ? t("dress-code") : ""}</span>
                                     </label>
                                     <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                         <span className="opacity-[0.5]">Business Casual</span>
@@ -82,9 +85,9 @@ function ContentDetails() {
                                 </div>
                             </div>
                             <div className="w-full relative">
-                                <label className="flex gap-2 items-center absolute bg-white px-2 top-[-14px] left-9">
+                                <label className={`flex gap-2 items-center absolute bg-white px-2 top-[-14px] ${mounted ? i18n.language === 'ar' ? "right-9" : "left-9" : ""}`}>
                                     <Image src="/assets/icons/site.svg" alt="External Link" width={20} height={20} />
-                                    <span className="text-[10px] md:text-xl font-medium">External Link</span>
+                                    <span className="text-[10px] md:text-xl font-medium">{mounted ? t("external-link") : ""}</span>
                                 </label>
                                 <div className="w-full border border-1 rounded-[30px] p-5 text-[10px] md:text-[unset]">
                                     <span className="opacity-[0.5]">https://www.example-website-for-demo-purposes.com</span>
@@ -97,5 +100,3 @@ function ContentDetails() {
         </section>
     )
 }
-
-export default ContentDetails;
