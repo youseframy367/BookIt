@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/components/Dashbord/removeMoerators.tx"  ],
+, "app/components/Dashbord/removeMoerators.tx", "app/(dashboard)/AccessAndRoles/page.jsx"  ],
   "exclude": ["node_modules"]
 }

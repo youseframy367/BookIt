@@ -54,6 +54,12 @@
     --color-text-create-template: #808080;
     --color-one-template: #2DD4BF;
     --color-tow-template: #1838660D;
+    --color-red-table: #FF3838;
+    --color-red-again: #FF424229;
+    --color-btn-update: #13131380;
+    --color-line-update: #1313130D;
+    --color-name: #656565;
+    --color-access: #65656580;
 }
 
 @font-face {

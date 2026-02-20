@@ -7,31 +7,26 @@ import TimeSupscribtion from "./time";
 //import LogOut from "../logOut";
 export default function Sidebar({ setTitle }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [openDropdown, setOpenDropdown] = useState(null); 
+  const [openDropdown, setOpenDropdown] = useState(null);
   const [activeListIndex, setActiveListIndex] = useState(null);
   const [logOut, setLogOut] = useState(false);
 
   const router = useRouter();
 
-useEffect(() => {
-    if (activeIndex === 0) {
-      router.push("/showDateOne/control");
-    }
+  useEffect(() => {
+    activeIndex === 0 && router.push("/showDateOne/control");
   }, [activeIndex, router]);
 
   const navigat = [
-    { name: "لوحه التحكم", navigate:'/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
-    { name:"طلبات الحجوزات" , navigate:'/ReservationsRequestsTwo/AllReservations', title:"طلبات الحجوزات", icon :"/img/trackkkk 1.svg", iconActiv:"/img/ffdrffd.svg"}
+    { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
+    { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/AllReservations', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
+    { name: "الأدوار والصلاحيات", navigate: '/AccessAndRoles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" }
   ]
 
   const handleClick = (item, i) => {
-
-
-
-
     if (item.name === "تسجيل الخروج") {
       setLogOut(true);
-      return; // ❌ ما نعملش أي active أو navigate
+      return;
     }
 
     setActiveIndex(i);
@@ -64,11 +59,11 @@ useEffect(() => {
     >
       {logOut && <LogOut onClose={() => setLogOut(false)} />}
 
-    <TimeSupscribtion/>
-   
+      <TimeSupscribtion />
+
 
       {/* القوائم */}
-      <div style={{ marginTop: "10px", width: "99%", marginLeft: "1%", padding:"5px" }}>
+      <div style={{ marginTop: "10px", width: "99%", marginLeft: "1%", padding: "5px" }}>
         {navigat.map((item, i) => {
           const isLogout = item.name === "تسجيل الخروج";
           const isActive = !isLogout && activeIndex === i;
@@ -107,25 +102,25 @@ useEffect(() => {
 
 
 
-{item.list && (
-    <svg
-      width="12"
-      height="12"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      style={{
-        transition: "transform 0.3s ease",
-        transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", // ✅ يلف السهم عند الفتح
-        marginRight: "auto", // يدفعه لأقصى اليسار في الـ RTL
-      }}
-    >
-      <path d="M6 9l6 6 6-6" />
-    </svg>
-  )}
+                {item.list && (
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{
+                      transition: "transform 0.3s ease",
+                      transform: isOpen ? "rotate(180deg)" : "rotate(0deg)", // ✅ يلف السهم عند الفتح
+                      marginRight: "auto", // يدفعه لأقصى اليسار في الـ RTL
+                    }}
+                  >
+                    <path d="M6 9l6 6 6-6" />
+                  </svg>
+                )}
 
 
 
