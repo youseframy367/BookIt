@@ -4,6 +4,7 @@
 import { useState, useRef } from "react";
 import RemoveRoles from "./removeRoles";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function AccessAndRoles() {
 
@@ -134,9 +135,9 @@ export default function AccessAndRoles() {
             />
           </div>
 
-          <button className="border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
+          <Link href="/access-and-roles/add-role" className="text-center border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
             اضافة
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -210,7 +211,7 @@ export default function AccessAndRoles() {
                       </span>
 
                       <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
-                        router.push(`/AccessAndRoles/${customer.id}`);
+                        router.push(`/access-and-roles/${customer.id}`);
                       }}
                       />
 

@@ -60,6 +60,8 @@
     --color-line-update: #1313130D;
     --color-name: #656565;
     --color-access: #65656580;
+    --color-name-role: #1D2026;
+    --color-placholder-input: #8C94A3;
 }
 
 @font-face {

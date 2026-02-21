@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function UpdateAccessAndRoles() {
     return (
-        <div className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[25px] ">
+        <section className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[25px] ">
             <div className="flex flex-col gap-[23px]">
                 <div className="pt-[23px] flex flex-wrap items-center justify-between gap-4">
                     <h2 className="text-[#1D1D1D] font-semibold text-base whitespace-nowrap">عرض الدور</h2>
@@ -39,6 +39,6 @@ export default function UpdateAccessAndRoles() {
                     </button>
                 </div>
             </div>
-        </div>
+        </section>
     )
 }
