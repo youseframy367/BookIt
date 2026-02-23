@@ -2,7 +2,8 @@
 
 //import { navigate } from "next/dist/client/components/segment-cache/navigation";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+// useEffect,
 import TimeSupscribtion from "./time";
 //import LogOut from "../logOut";
 export default function Sidebar({ setTitle }) {
@@ -13,14 +14,15 @@ export default function Sidebar({ setTitle }) {
 
   const router = useRouter();
 
-  useEffect(() => {
-    activeIndex === 0 && router.push("/showDateOne/control");
-  }, [activeIndex, router]);
+  // useEffect(() => {
+  //   activeIndex === 0 && router.push("/showDateOne/control");
+  // }, [activeIndex, router]);
 
   const navigat = [
     { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
     { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/AllReservations', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
-    { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" }
+    { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" },
+    { name: "الكاشير", navigate: '/cashier', title: "الكاشير", icon: "/assets/icons/cashier.svg", iconActiv: "/assets/icons/cashier-active.svg" }
   ]
 
   const handleClick = (item, i) => {
@@ -91,9 +93,7 @@ export default function Sidebar({ setTitle }) {
                 <img
                   src={isActive ? item.iconActiv : item.icon}
                   alt={item.name}
-                  width="20"
-                  height="20"
-                  style={{ marginLeft: "10px" }}
+                  className="ml-[14px] w-[20px] h-[22px]"
                 />
                 <span style={{ fontSize: "12px", fontWeight: "500", whiteSpace: "nowrap" }}>
                   {item.name}

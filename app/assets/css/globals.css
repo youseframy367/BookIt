@@ -62,6 +62,11 @@
     --color-access: #65656580;
     --color-name-role: #1D2026;
     --color-placholder-input: #8C94A3;
+    --color-rating-categories: #0000005d;
+    --color-numbers: #F6F6F6;
+    --color-title-sidebar: #3D3D3D;
+    --color-sub-title: #3D3D3DB2;
+    --color-total-line: #3D3D3D33;
 }
 
 @font-face {
@@ -183,7 +188,7 @@
 }
 
 body.search-active {
-    position: relative;
+    position: relative;        
 }
 
 body.search-active::before {
