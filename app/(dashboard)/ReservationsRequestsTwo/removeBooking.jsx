@@ -2,16 +2,14 @@
 
 import axios from "axios";
 
-export default function RemoveBooking({ id, onClose }) {
+export default function RemoveBooking({ id, onClose, typeApproved }) {
   const handleDelete = async (id) => {
     try {
-      // 🔥 إرسال طلب حذف للسيرفر
       const response = await axios.delete(`https://your-api.com/DleatBookit/${id}`);
       console.log("Deleted successfully:", response.data);
 
       alert("تم حذف اليوم بنجاح ✅");
 
-      // ✅ إغلاق المودال بعد النجاح
       onClose();
     } catch (error) {
       console.error("Failed to delete:", error);
@@ -68,7 +66,11 @@ export default function RemoveBooking({ id, onClose }) {
                 fontWeight: "400",
               }}
             >
-              هل أنت متأكد أنك تريد حذف هذا اليوم المحدد من الحجوزات؟
+              {typeApproved ?
+                "هل أنت متأكد أنك تريد حذف هذا الموعد ؟" :
+                " هل أنت متأكد أنك تريد حذف هذا اليوم المحدد من الحجوزات؟"
+
+              }
             </p>
           </div>
           <div

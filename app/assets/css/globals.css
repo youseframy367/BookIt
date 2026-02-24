@@ -600,3 +600,18 @@ html[dir="rtl"] .swiper-button-next {
         padding-left: 20px !important;
     }
 }
+
+/* إخفاء شريط التمرير في جميع المتصفحات، مع الإبقاء على التمرير */
+body {
+  /* لإخفاء شريط التمرير في IE و Edge القديم */
+  -ms-overflow-style: none;
+  overflow-x: hidden;
+
+  /* لإخفاء شريط التمرير في Firefox */
+  scrollbar-width: none;
+}
+
+/* لإخفاء شريط التمرير في Chrome و Safari و Edge الجديد */
+body::-webkit-scrollbar {
+  display: none;
+}

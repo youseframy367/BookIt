@@ -16,7 +16,7 @@ export default function Card({ item, toggleExpand, index }: dataCards) {
                     <AllCard item={item} index={index} toggleExpand={() => toggleExpand(index)} />
                 </Link>
                 <div className="hidden container-content md:flex justify-between items-center my-6 gap-3">
-                    <Link href={`/details-restaurant-public/${index + 1}`} className={`${mounted ? i18n.language === 'ar' ? "px-15 font-cairo" : "px-8 font-Poppins" : ""} py-4 rounded-[12px] bg-red-500 text-white text-[18px] md:text-[23px] font-medium truncate`}>
+                    <Link href={`/details-restaurant-public/${index + 1}`} className={`${mounted ? i18n.language === 'ar' ? " font-cairo" : " font-Poppins" : ""} w-[82%] py-4 rounded-[12px] bg-red-500 text-white text-[18px] md:text-[23px] font-medium  whitespace-nowrap flex justify-center items-center `}>
                         {mounted ? t("restaurant-detail") : "..."}
                     </Link>
                     <Like like={item.like} />
