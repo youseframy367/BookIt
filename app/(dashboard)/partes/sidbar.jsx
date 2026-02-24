@@ -3,7 +3,6 @@
 //import { navigate } from "next/dist/client/components/segment-cache/navigation";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-// useEffect,
 import TimeSupscribtion from "./time";
 //import LogOut from "../logOut";
 export default function Sidebar({ setTitle }) {
@@ -13,10 +12,6 @@ export default function Sidebar({ setTitle }) {
   const [logOut, setLogOut] = useState(false);
 
   const router = useRouter();
-
-  // useEffect(() => {
-  //   activeIndex === 0 && router.push("/showDateOne/control");
-  // }, [activeIndex, router]);
 
   const navigat = [
     { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
