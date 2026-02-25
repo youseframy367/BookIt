@@ -18,7 +18,7 @@ export default function MostBooked() {
 
     return (
         <>
-            <Hero image="customer-content.svg" title={currentType == 'most-booked' ? mounted ? t("most-booked") : '...' : mounted ? t("top-rated") : '...'} />
+            <Hero image="customer-content.svg" title={currentType == 'most-booked' ? mounted ? t("most-booked") : '...' : mounted ? t("top-rated") : '...'} isActiveButtonHero={false} />
             <TopRated dataRealtiedAndBooked={dataRealtied} isShowTitle={true} />
         </>
     )

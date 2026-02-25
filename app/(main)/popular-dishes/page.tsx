@@ -11,7 +11,7 @@ export default function PopularDishes() {
 
     return (
         <>
-            <Hero image="popular-dishes.png" title={mounted ? t("popular-dishes") : '...'} />
+            <Hero image="popular-dishes.png" title={mounted ? t("popular-dishes") : '...'} isActiveButtonHero={false} />
             <Products products={products} marginTop="mt-25" />
         </>
     )

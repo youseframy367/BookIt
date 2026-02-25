@@ -4,6 +4,7 @@ export interface nextAndBackPage {
     title?: string;
     image?: string;
     isShowGallery?: boolean;
+    isActiveButtonHero?: boolean;
 }
 
 interface typeData {

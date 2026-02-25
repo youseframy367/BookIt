@@ -7,7 +7,7 @@ import { nextAndBackPage } from "@/app/TypeScript/TypeScript";
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 import { useRouter } from "next/navigation";
 
-export default function Hero({ title, image, isShowGallery, nextPage }: nextAndBackPage) {
+export default function Hero({ title, image, isShowGallery, nextPage, isActiveButtonHero = true }: nextAndBackPage) {
     const { i18n, mounted } = useTranslationSetup();
     const router = useRouter();
 
@@ -39,9 +39,11 @@ export default function Hero({ title, image, isShowGallery, nextPage }: nextAndB
                         <span className="relative text-sm md:text-[25px] font-medium">+20</span>
                     </Link>
                 }
-                <div>
-                    <ButtonHero nextPage={nextPage} />
-                </div>
+                {
+                    isActiveButtonHero && <div>
+                        <ButtonHero nextPage={nextPage} />
+                    </div>
+                }
             </div>
         </section>
     )
