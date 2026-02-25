@@ -1,175 +1,26 @@
 "use client";
 
-
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Filter from "../filter";
 import AddBookingDays from "../AddBookingDays";
-//////////////////////////////////////////////////////////
-//// طلبات الحجوزات
-//////////////////////////////////////////////////////////
+import Pagnation from "../../../components/public/Pagnation";
+import { usePagnation } from "../../../hooks/usePagnation";
+import { useAllReservationsData } from "../../../data/dataAllReservations";
+
 export default function AllReservations() {
-
   const router = useRouter()
-
-  const numbersRef = useRef(null);
-  const [expor, setExport] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState(false);
-  const [numRow, setNumRow] = useState(13);
-  const [currentPage, setCurrentPage] = useState(1);
   const [removeClint, setRemovClint] = useState(false)
   const [numperOfId, setId] = useState()
   const [AddDay, setAddDay] = useState(false)
 
+  const DataCustomers = useAllReservationsData();
 
-  const [filterData, setFilterData] = useState({ site: "", type: "", date: "" });
-  const DataCustomers = [
-    { CustomerName: "مصطفى رامى عفيفى", numBerson: 3, Date: "20/10/2025", time: "5:00 PM", MobileNumber: "01055395693", mail: "hisham@icloud.com", id: "233034", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "أحمد خالد السعيد", numBerson: 2, Date: "22/10/2025", time: "7:30 PM", MobileNumber: "01024578965", mail: "ahmed.khaled@gmail.com", id: "233035", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "محمد طارق حسن", numBerson: 5, Date: "25/10/2025", time: "8:15 PM", MobileNumber: "01112589634", mail: "m.tarek@hotmail.com", id: "233036", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "مروان إبراهيم على", numBerson: 4, Date: "26/10/2025", time: "6:45 PM", MobileNumber: "01255647895", mail: "marwan.ibrahim@gmail.com", id: "233037", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "عمر فؤاد عبد العزيز", numBerson: 6, Date: "27/10/2025", time: "9:00 PM", MobileNumber: "01099887766", mail: "omar.fouad@yahoo.com", id: "233038", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "ياسين عبد الرحمن", numBerson: 3, Date: "28/10/2025", time: "4:30 PM", MobileNumber: "01522334455", mail: "yassin.a@gmail.com", id: "233039", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "عبدالله سامح مجدى", numBerson: 2, Date: "29/10/2025", time: "5:15 PM", MobileNumber: "01288779900", mail: "abdallah.m@gmail.com", id: "233040", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "نورهان شريف محمود", numBerson: 4, Date: "30/10/2025", time: "8:00 PM", MobileNumber: "01022557788", mail: "nourhan.sh@gmail.com", id: "233041", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "ملك عمرو فاروق", numBerson: 5, Date: "31/10/2025", time: "6:00 PM", MobileNumber: "01155667788", mail: "malek.farouk@gmail.com", id: "233042", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "هاجر مصطفى كامل", numBerson: 3, Date: "01/11/2025", time: "7:00 PM", MobileNumber: "01033445566", mail: "hager.kamel@gmail.com", id: "233043", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "يحيى عبد الله محمد", numBerson: 2, Date: "02/11/2025", time: "4:45 PM", MobileNumber: "01245678901", mail: "yehia.a@gmail.com", id: "233044", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "سارة جمال السيد", numBerson: 6, Date: "03/11/2025", time: "9:30 PM", MobileNumber: "01598765432", mail: "sarah.gamal@gmail.com", id: "233045", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "حازم أحمد علاء", numBerson: 3, Date: "04/11/2025", time: "5:45 PM", MobileNumber: "01012457896", mail: "hazem.alaa@gmail.com", id: "233046", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { CustomerName: "ليلى محمود حسن", numBerson: 4, Date: "05/11/2025", time: "7:15 PM", MobileNumber: "01233557799", mail: "layla.mh@gmail.com", id: "233047" },
-    { CustomerName: "إسراء خالد عبد الحليم", numBerson: 5, Date: "06/11/2025", time: "6:30 PM", MobileNumber: "01147896532", mail: "esraa.khaled@gmail.com", id: "233048" },
-    { CustomerName: "آدم فادى عادل", numBerson: 3, Date: "07/11/2025", time: "8:00 PM", MobileNumber: "01033366677", mail: "adam.fady@gmail.com", id: "233049" },
-    { CustomerName: "ندى سامى رجب", numBerson: 2, Date: "08/11/2025", time: "4:30 PM", MobileNumber: "01299887755", mail: "nada.samy@gmail.com", id: "233050" },
-    { CustomerName: "سيف عماد يوسف", numBerson: 4, Date: "09/11/2025", time: "6:15 PM", MobileNumber: "01533557766", mail: "saif.emad@gmail.com", id: "233051" },
-    { CustomerName: "ريهام طارق حسن", numBerson: 3, Date: "10/11/2025", time: "9:00 PM", MobileNumber: "01022446688", mail: "reham.tarek@gmail.com", id: "233052" },
-    { CustomerName: "زياد هانى مصطفى", numBerson: 5, Date: "11/11/2025", time: "8:45 PM", MobileNumber: "01177889900", mail: "ziyad.hani@gmail.com", id: "233053" },
-    { CustomerName: "مصطفى رامى عفيفى", numBerson: 3, Date: "20/10/2025", time: "5:00 PM", MobileNumber: "01055395693", mail: "hisham@icloud.com", id: "233034" },
-    { CustomerName: "أحمد خالد السعيد", numBerson: 2, Date: "22/10/2025", time: "7:30 PM", MobileNumber: "01024578965", mail: "ahmed.khaled@gmail.com", id: "233035" },
-    { CustomerName: "محمد طارق حسن", numBerson: 5, Date: "25/10/2025", time: "8:15 PM", MobileNumber: "01112589634", mail: "m.tarek@hotmail.com", id: "233036" },
-    { CustomerName: "مروان إبراهيم على", numBerson: 4, Date: "26/10/2025", time: "6:45 PM", MobileNumber: "01255647895", mail: "marwan.ibrahim@gmail.com", id: "233037" },
-    { CustomerName: "عمر فؤاد عبد العزيز", numBerson: 6, Date: "27/10/2025", time: "9:00 PM", MobileNumber: "01099887766", mail: "omar.fouad@yahoo.com", id: "233038" },
-    { CustomerName: "ياسين عبد الرحمن", numBerson: 3, Date: "28/10/2025", time: "4:30 PM", MobileNumber: "01522334455", mail: "yassin.a@gmail.com", id: "233039" },
-    { CustomerName: "عبدالله سامح مجدى", numBerson: 2, Date: "29/10/2025", time: "5:15 PM", MobileNumber: "01288779900", mail: "abdallah.m@gmail.com", id: "233040" },
-    { CustomerName: "نورهان شريف محمود", numBerson: 4, Date: "30/10/2025", time: "8:00 PM", MobileNumber: "01022557788", mail: "nourhan.sh@gmail.com", id: "233041" },
-    { CustomerName: "ملك عمرو فاروق", numBerson: 5, Date: "31/10/2025", time: "6:00 PM", MobileNumber: "01155667788", mail: "malek.farouk@gmail.com", id: "233042" },
-    { CustomerName: "هاجر مصطفى كامل", numBerson: 3, Date: "01/11/2025", time: "7:00 PM", MobileNumber: "01033445566", mail: "hager.kamel@gmail.com", id: "233043" },
-    { CustomerName: "يحيى عبد الله محمد", numBerson: 2, Date: "02/11/2025", time: "4:45 PM", MobileNumber: "01245678901", mail: "yehia.a@gmail.com", id: "233044" },
-    { CustomerName: "سارة جمال السيد", numBerson: 6, Date: "03/11/2025", time: "9:30 PM", MobileNumber: "01598765432", mail: "sarah.gamal@gmail.com", id: "233045" },
-    { CustomerName: "حازم أحمد علاء", numBerson: 3, Date: "04/11/2025", time: "5:45 PM", MobileNumber: "01012457896", mail: "hazem.alaa@gmail.com", id: "233046" },
-    { CustomerName: "ليلى محمود حسن", numBerson: 4, Date: "05/11/2025", time: "7:15 PM", MobileNumber: "01233557799", mail: "layla.mh@gmail.com", id: "233047" },
-    { CustomerName: "إسراء خالد عبد الحليم", numBerson: 5, Date: "06/11/2025", time: "6:30 PM", MobileNumber: "01147896532", mail: "esraa.khaled@gmail.com", id: "233048" },
-    { CustomerName: "آدم فادى عادل", numBerson: 3, Date: "07/11/2025", time: "8:00 PM", MobileNumber: "01033366677", mail: "adam.fady@gmail.com", id: "233049" },
-    { CustomerName: "ندى سامى رجب", numBerson: 2, Date: "08/11/2025", time: "4:30 PM", MobileNumber: "01299887755", mail: "nada.samy@gmail.com", id: "233050" },
-    { CustomerName: "سيف عماد يوسف", numBerson: 4, Date: "09/11/2025", time: "6:15 PM", MobileNumber: "01533557766", mail: "saif.emad@gmail.com", id: "233051" },
-    { CustomerName: "ريهام طارق حسن", numBerson: 3, Date: "10/11/2025", time: "9:00 PM", MobileNumber: "01022446688", mail: "reham.tarek@gmail.com", id: "233052" },
-    { CustomerName: "زياد هانى مصطفى", numBerson: 5, Date: "11/11/2025", time: "8:45 PM", MobileNumber: "01177889900", mail: "ziyad.hani@gmail.com", id: "233053" },
-    { CustomerName: "مصطفى رامى عفيفى", numBerson: 3, Date: "20/10/2025", time: "5:00 PM", MobileNumber: "01055395693", mail: "hisham@icloud.com", id: "233034" },
-    { CustomerName: "أحمد خالد السعيد", numBerson: 2, Date: "22/10/2025", time: "7:30 PM", MobileNumber: "01024578965", mail: "ahmed.khaled@gmail.com", id: "233035" },
-    { CustomerName: "محمد طارق حسن", numBerson: 5, Date: "25/10/2025", time: "8:15 PM", MobileNumber: "01112589634", mail: "m.tarek@hotmail.com", id: "233036" },
-    { CustomerName: "مروان إبراهيم على", numBerson: 4, Date: "26/10/2025", time: "6:45 PM", MobileNumber: "01255647895", mail: "marwan.ibrahim@gmail.com", id: "233037" },
-    { CustomerName: "عمر فؤاد عبد العزيز", numBerson: 6, Date: "27/10/2025", time: "9:00 PM", MobileNumber: "01099887766", mail: "omar.fouad@yahoo.com", id: "233038" },
-    { CustomerName: "ياسين عبد الرحمن", numBerson: 3, Date: "28/10/2025", time: "4:30 PM", MobileNumber: "01522334455", mail: "yassin.a@gmail.com", id: "233039" },
-    { CustomerName: "عبدالله سامح مجدى", numBerson: 2, Date: "29/10/2025", time: "5:15 PM", MobileNumber: "01288779900", mail: "abdallah.m@gmail.com", id: "233040" },
-    { CustomerName: "نورهان شريف محمود", numBerson: 4, Date: "30/10/2025", time: "8:00 PM", MobileNumber: "01022557788", mail: "nourhan.sh@gmail.com", id: "233041" },
-    { CustomerName: "ملك عمرو فاروق", numBerson: 5, Date: "31/10/2025", time: "6:00 PM", MobileNumber: "01155667788", mail: "malek.farouk@gmail.com", id: "233042" },
-    { CustomerName: "هاجر مصطفى كامل", numBerson: 3, Date: "01/11/2025", time: "7:00 PM", MobileNumber: "01033445566", mail: "hager.kamel@gmail.com", id: "233043" },
-    { CustomerName: "يحيى عبد الله محمد", numBerson: 2, Date: "02/11/2025", time: "4:45 PM", MobileNumber: "01245678901", mail: "yehia.a@gmail.com", id: "233044" },
-    { CustomerName: "سارة جمال السيد", numBerson: 6, Date: "03/11/2025", time: "9:30 PM", MobileNumber: "01598765432", mail: "sarah.gamal@gmail.com", id: "233045" },
-    { CustomerName: "حازم أحمد علاء", numBerson: 3, Date: "04/11/2025", time: "5:45 PM", MobileNumber: "01012457896", mail: "hazem.alaa@gmail.com", id: "233046" },
-    { CustomerName: "ليلى محمود حسن", numBerson: 4, Date: "05/11/2025", time: "7:15 PM", MobileNumber: "01233557799", mail: "layla.mh@gmail.com", id: "233047" },
-    { CustomerName: "إسراء خالد عبد الحليم", numBerson: 5, Date: "06/11/2025", time: "6:30 PM", MobileNumber: "01147896532", mail: "esraa.khaled@gmail.com", id: "233048" },
-    { CustomerName: "آدم فادى عادل", numBerson: 3, Date: "07/11/2025", time: "8:00 PM", MobileNumber: "01033366677", mail: "adam.fady@gmail.com", id: "233049" },
-    { CustomerName: "ندى سامى رجب", numBerson: 2, Date: "08/11/2025", time: "4:30 PM", MobileNumber: "01299887755", mail: "nada.samy@gmail.com", id: "233050" },
-    { CustomerName: "سيف عماد يوسف", numBerson: 4, Date: "09/11/2025", time: "6:15 PM", MobileNumber: "01533557766", mail: "saif.emad@gmail.com", id: "233051" },
-    { CustomerName: "ريهام طارق حسن", numBerson: 3, Date: "10/11/2025", time: "9:00 PM", MobileNumber: "01022446688", mail: "reham.tarek@gmail.com", id: "233052" },
-    { CustomerName: "زياد هانى مصطفى", numBerson: 5, Date: "11/11/2025", time: "8:45 PM", MobileNumber: "01177889900", mail: "ziyad.hani@gmail.com", id: "233053" },
+  const { setFilterData, currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
+    usePagnation(DataCustomers, searchTerm)
 
-  ]
-
-
-  function to24Hour(timeStr) {
-    if (!timeStr) return "";
-    timeStr = timeStr.trim();
-
-
-    const hhmm24Regex = /^\d{1,2}:\d{2}$/;
-    if (hhmm24Regex.test(timeStr)) {
-
-      const [h, m] = timeStr.split(":");
-      return `${String(h).padStart(2, "0")}:${m}`;
-    }
-
-
-    const match = timeStr.match(/^(\d{1,2}:\d{2})\s*([AaPp][Mm])$/);
-    if (!match) {
-
-      return timeStr;
-    }
-
-    let [, timePart, modifier] = match;
-    let [hours, minutes] = timePart.split(":").map(s => s.padStart(2, "0"));
-    modifier = modifier.toUpperCase();
-
-    let hNum = parseInt(hours, 10);
-    if (modifier === "PM" && hNum !== 12) hNum += 12;
-    if (modifier === "AM" && hNum === 12) hNum = 0;
-
-    return `${String(hNum).padStart(2, "0")}:${minutes}`;
-  }
-
-
-  const filteredCustomers = DataCustomers.filter((customer) => {
-    const lowerSearch = searchTerm.toLowerCase();
-
-
-    const searchMatch =
-      !searchTerm ||
-      Object.values(customer).some((val) =>
-        val?.toString().toLowerCase().includes(lowerSearch)
-      );
-
-    const siteMatch =
-      !filterData.site ||
-      customer.numBerson.toString() === String(filterData.site);
-
-    const timeMatch = (() => {
-      if (!filterData.type) return true;
-
-      const custTime24 = to24Hour(customer.time);
-      const filterTime = String(filterData.type).slice(0, 5);
-      return custTime24 === filterTime;
-    })();
-
-    const dateMatch = (() => {
-      if (!filterData.date) return true;
-      if (!customer.Date) return false;
-      const parts = customer.Date.split("/");
-      if (parts.length !== 3) return false;
-      const [d, m, y] = parts;
-      const formattedDate = `${y}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
-      return formattedDate === filterData.date;
-    })();
-
-    return searchMatch && siteMatch && timeMatch && dateMatch;
-  });
-
-
-  const numPages = Math.ceil(filteredCustomers.length / numRow);
-  const displayedCustomers = filteredCustomers.slice(
-    (currentPage - 1) * numRow,
-    currentPage * numRow
-  );
-
-  const scroll = (direction) => {
-    if (!numbersRef.current) return;
-    const scrollAmount = 120;
-    numbersRef.current.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
   return (
     <div className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
       {/*----------------------------------------this is componnt control remove customers----------------------*/}
@@ -185,14 +36,10 @@ export default function AllReservations() {
 
       {filter && <Filter setFilter={setFilter} onSearch={setFilterData} />}
 
-
       {/*-------------------------------------- Add Day ----------------------------------------------------------*/}
       {AddDay && (
         <AddBookingDays onClose={() => setAddDay(false)} />
       )}
-
-
-
 
       {/* ------------------------------------ head bage show all customers----------------------------------------*/}
 
@@ -260,8 +107,6 @@ export default function AllReservations() {
           <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
             <tr >
 
-
-
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
                 اسم العميل
               </th>
@@ -274,32 +119,21 @@ export default function AllReservations() {
                 يوم الحجز المرغوب
               </th>
 
-
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
                 التوقيت
               </th>
-
 
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
                 رقم الجوال
               </th>
 
-
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center"  >
                 البريد
               </th>
 
-
-
-
               <th className=" py-3 text-[12px] font-bold text-[#475467] pl-[25px]  whitespace-nowrap text-center">
                 الاجراء
               </th>
-
-
-
-
-
             </tr>
           </thead>
           <tbody className="divide-gray-50">
@@ -337,89 +171,7 @@ export default function AllReservations() {
       </div>
 
       {/*------------------------------ control of bage ------------------------------------------------------------*/}
-      <div className="flex w-full justify-between items-center p-[20px]">
-        <div className="flex items-center gap-[10px]">
-          <p className="text-[12px] font-normal text-[rgba(29,29,29,0.8)]">
-            حدد عدد صفوف السجلات لكل صفحة
-          </p>
-          <select
-            style={{
-              appearance: "none",
-              WebkitAppearance: "none",
-              MozAppearance: "none",
-              backgroundColor: "white",
-              fontSize: "16px",
-              backgroundImage: "url('arrow.svg')",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "right 10px center",
-              backgroundSize: "12px",
-            }} value={numRow}
-            onChange={(e) => setNumRow(parseInt(e.target.value))}
-            className="border border-gray-300 rounded-md px-4 py-1 text-[12px] text-[#1D1D1D] focus:outline-none focus:ring-1 focus:ring-[#183866]"
-          >
-            {[10, 20, 30, 40, 50].map((n) => (
-              <option key={n} value={n}>{n}</option>
-            ))}
-          </select>
-        </div>
-
-
-
-        {/* ------------------------------------filter Bage-----------------------------------------*/}
-
-        <div className="flex items-center justify-center gap-2 m-5">
-          {/* السهم اليسار */}
-          <button
-            onClick={() => scroll("left")}
-            className="w-[40px] h-[40px] flex items-center justify-center rounded-r-[8px] bg-white shadow-[0_0_2px_#00000040] hover:bg-[#f7f8fa] transition-all duration-200"
-          >
-            <img
-              src="/img/;lhjn;jh.svg"
-              className="w-3 h-3"
-              alt="next"
-            />
-          </button>
-
-
-          <div
-            ref={numbersRef}
-            className="flex overflow-x-auto overflow-y-hidden w-[200px] scroll-smooth no-scrollbar"
-          >
-            {[...Array(numPages)].map((_, i) => {
-              const isActive = currentPage === i + 1;
-              return (
-                <div
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`min-w-[40px] h-[40px] shadow-[0_0_2px_#00000040] flex items-center justify-center  text-[13px] font-medium cursor-pointer transition-all duration-200
-                ${isActive
-                      ? "bg-[#183866] text-white shadow-[0_0_4px_#18386680]"
-                      : "bg-white text-[#1D1D1D] hover:bg-[#f3f4f6] shadow-[0_0_2px_#59595933]"
-                    }`}
-                >
-                  {i + 1}
-                </div>
-              );
-            })}
-          </div>
-
-
-
-
-          <button
-            onClick={() => scroll("right")}
-            className="w-[40px] h-[40px] flex items-center justify-center rounded-l-[8px] bg-white shadow-[0_0_2px_#00000040] hover:bg-[#f7f8fa] transition-all duration-200"
-          >
-            <img
-              src="/img/;lhjn;jh.svg"
-              className="w-3 h-3 rotate-180"
-              alt="prev"
-            />
-          </button>
-
-        </div>
-
-      </div>
+      <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
 }

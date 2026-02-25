@@ -1,101 +1,28 @@
 "use client";
 
-
-import { useState, useRef } from "react";
+import { useState } from "react";
 import RemoveRoles from "./removeRoles";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import Pagnation from "../../components/public/Pagnation";
+import { usePagnation } from "../../hooks/usePagnation";
+import { useAccessAndRolesData } from "../../data/dataAccessAndRoles";
 
 export default function AccessAndRoles() {
-
   const router = useRouter()
-
-  const numbersRef = useRef(null);
   const [expor, setExport] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState(false);
-  const [numRow, setNumRow] = useState(13);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [removeClint, setRemovClint] = useState(false)
   const [numperOfId, setId] = useState()
-  const [filterData, setFilterData] = useState({ site: "", type: "", date: "" });
   const [removeRoles, setRemovRoles] = useState(false)
 
-  const DataCustomers = [
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233034" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233035" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233036" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "معلق", time: "10/2/2025", statusNow: "اعاده التفعيل", id: "233037" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233038" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233039" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233040" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233041" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233042" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233043" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233044" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233045" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233046" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233047" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233048" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233049" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233050" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233051" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233052" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233053" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233034" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233035" },
-    { roles: "مشرف", access: "( مشاهدة كفاه الصلاجيات الموجودة في النظام )", status: "نشط", time: "10/2/2025", statusNow: "الغاء التقعيل", id: "233036" },
+  const DataCustomers = useAccessAndRolesData();
 
-  ]
+  const { setFilterData, currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
+    usePagnation(DataCustomers, searchTerm)
 
-  const filteredCustomers = DataCustomers.filter((customer) => {
-    const lowerSearch = searchTerm.toLowerCase();
-    const searchMatch =
-      !searchTerm ||
-      Object.values(customer).some(
-        (val) => val && val.toString().toLowerCase().includes(lowerSearch)
-      );
-
-    const siteMatch =
-      !filterData.site ||
-      customer.theSite.toLowerCase().includes(filterData.site.toLowerCase());
-
-    const typeMatch =
-      !filterData.type ||
-      customer.TypeOfTrade.toLowerCase().includes(filterData.type.toLowerCase());
-
-    const dateMatch =
-      !filterData.date ||
-      customer.JoiningDate
-        .split("/")
-        .reverse()
-        .join("-")
-        .includes(filterData.date);
-
-    const subscriptionMatch =
-      !filterData.subscription ||
-      customer.SubscriptionType.includes(filterData.subscription);
-
-    return searchMatch && siteMatch && typeMatch && dateMatch && subscriptionMatch;
-  });
-
-
-  const numPages = Math.ceil(filteredCustomers.length / numRow);
-  const displayedCustomers = filteredCustomers.slice(
-    (currentPage - 1) * numRow,
-    currentPage * numRow
-  );
-
-  const scroll = (direction) => {
-    if (!numbersRef.current) return;
-    const scrollAmount = 120;
-    numbersRef.current.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
   return (
-    <div className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
+    <section className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
       {/*----------------------------------------this is componnt control remove customers----------------------*/}
 
       {removeRoles && (
@@ -148,8 +75,6 @@ export default function AccessAndRoles() {
           <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
             <tr >
 
-
-
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
                 الدور
               </th>
@@ -162,26 +87,17 @@ export default function AccessAndRoles() {
                 الحالة
               </th>
 
-
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
                 تاريخ الاضافة
               </th>
-
 
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
                 التفعيل
               </th>
 
-
-
-
               <th className=" py-3 text-[12px] font-bold text-[#475467] pl-[25px]  whitespace-nowrap text-center">
                 الاجراء
               </th>
-
-
-
-
 
             </tr>
           </thead>
@@ -237,91 +153,8 @@ export default function AccessAndRoles() {
         </table>
       </div>
 
-      {/*------------------------------ control of bage ------------------------------------------------------------*/}
-      <div className="flex w-full justify-between items-center p-[20px]">
-        <div className="flex items-center gap-[10px]">
-          <p className="text-[12px] font-normal text-[rgba(29,29,29,0.8)]">
-            حدد عدد صفوف السجلات لكل صفحة
-          </p>
-          <select
-            style={{
-              appearance: "none",
-              WebkitAppearance: "none",
-              MozAppearance: "none",
-              backgroundColor: "white",
-              fontSize: "16px",
-              backgroundImage: "url('arrow.svg')",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "right 10px center",
-              backgroundSize: "12px",
-            }} value={numRow}
-            onChange={(e) => setNumRow(parseInt(e.target.value))}
-            className="border border-gray-300 rounded-md px-4 py-1 text-[12px] text-[#1D1D1D] focus:outline-none focus:ring-1 focus:ring-[#183866]"
-          >
-            {[10, 20, 30, 40, 50].map((n) => (
-              <option key={n} value={n}>{n}</option>
-            ))}
-          </select>
-        </div>
-
-
-
-        {/* ------------------------------------filter Bage-----------------------------------------*/}
-
-        <div className="flex items-center justify-center gap-2 m-5">
-          {/* السهم اليسار */}
-          <button
-            onClick={() => scroll("left")}
-            className="w-[40px] h-[40px] flex items-center justify-center rounded-r-[8px] bg-white shadow-[0_0_2px_#00000040] hover:bg-[#f7f8fa] transition-all duration-200"
-          >
-            <img
-              src="/img/;lhjn;jh.svg"
-              className="w-3 h-3"
-              alt="next"
-            />
-          </button>
-
-
-          {/* الأرقام */}
-          <div
-            ref={numbersRef}
-            className="flex overflow-x-auto overflow-y-hidden w-[200px] scroll-smooth no-scrollbar"
-          >
-            {[...Array(numPages)].map((_, i) => {
-              const isActive = currentPage === i + 1;
-              return (
-                <div
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`min-w-[40px] h-[40px] shadow-[0_0_2px_#00000040] flex items-center justify-center  text-[13px] font-medium cursor-pointer transition-all duration-200
-                ${isActive
-                      ? "bg-[#183866] text-white shadow-[0_0_4px_#18386680]"
-                      : "bg-white text-[#1D1D1D] hover:bg-[#f3f4f6] shadow-[0_0_2px_#59595933]"
-                    }`}
-                >
-                  {i + 1}
-                </div>
-              );
-            })}
-          </div>
-
-
-
-
-          <button
-            onClick={() => scroll("right")}
-            className="w-[40px] h-[40px] flex items-center justify-center rounded-l-[8px] bg-white shadow-[0_0_2px_#00000040] hover:bg-[#f7f8fa] transition-all duration-200"
-          >
-            <img
-              src="/img/;lhjn;jh.svg"
-              className="w-3 h-3 rotate-180"
-              alt="prev"
-            />
-          </button>
-
-        </div>
-
-      </div>
-    </div >
+      {/* ------------------------------------filter Bage----------------------------------------- */}
+      <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+    </section>
   );
 }
