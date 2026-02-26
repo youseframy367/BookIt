@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import RemoveRoles from "./removeRoles";
+import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Pagnation from "../../components/public/Pagnation";
@@ -10,15 +10,13 @@ import { useAccessAndRolesData } from "../../data/dataAccessAndRoles";
 
 export default function AccessAndRoles() {
   const router = useRouter()
-  const [expor, setExport] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filter, setFilter] = useState(false);
   const [numperOfId, setId] = useState()
   const [removeRoles, setRemovRoles] = useState(false)
 
   const DataCustomers = useAccessAndRolesData();
 
-  const { setFilterData, currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
+  const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
     usePagnation(DataCustomers, searchTerm)
 
   return (
@@ -29,18 +27,6 @@ export default function AccessAndRoles() {
         <RemoveRoles
           id={numperOfId}
           onClose={() => setRemovRoles(false)}
-        />
-      )}
-
-      {/*---------------------------- --------filter customers---------------------------------------------------*/}
-
-      {filter && <Fillter setFilter={setFilter} onSearch={setFilterData} />}
-
-      {/* ------------------------------------- export file date --------------------------------------------------*/}
-      {expor && (
-        <Export
-          data={filteredCustomers}
-          onClose={() => setExport(false)}
         />
       )}
       {/* ------------------------------------ head bage show all customers----------------------------------------*/}
@@ -103,7 +89,7 @@ export default function AccessAndRoles() {
           </thead>
           <tbody className="divide-gray-50">
             {displayedCustomers.length > 0 ? (
-              displayedCustomers.map((customer, idx) => (
+              displayedCustomers.map((customer: any, idx: any) => (
                 <tr key={idx} className={`hover:bg-[#F9FAFB]/50 transition-colors ${customer.status === "معلق" && "opacity-50"
                   }`}>
                   <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.roles}</td>
@@ -118,10 +104,7 @@ export default function AccessAndRoles() {
                     <div className="flex items-center justify-center gap-[10px]">
                       <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
                         () => {
-
-                          window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(m));
                           router.push("/ModeratorsThree/detalsMoerators");
-
                         }}>
                         <img src="/img/كمغخخحه.svg" width="10" height="8px" />
                       </span>

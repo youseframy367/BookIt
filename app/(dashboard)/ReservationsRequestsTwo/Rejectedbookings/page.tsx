@@ -5,85 +5,46 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import RemoveBooking from "../removeBooking";
 import Filter from "../filter";
-import AddBookingDays from "../AddBookingDays";
+import AddBookingDays from "../../../components/Dashborad/Reservations/AddBookingDays";
+import { useDataRejectedBookingData } from "@/app/data/dataRejectedbooking";
 
-//////////////////////////////////////////////////////////
-//////// الحجوزات المرفوضه
-/////////////////////////////////////////////////////////
+type BookingEdit = {
+  numPersons: number;
+  dateFrom: string;
+  dateTo: string;
+  startTime: string;
+  endTime: string;
+  id: string;
+  approved: boolean;
+  hidenBtn: boolean;
+};
 
 export default function Rejectedbookings() {
 
   const router = useRouter()
-  const [selectedBooking, setSelectedBooking] = useState(null);
-  const numbersRef = useRef(null);
-  const [expor, setExport] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState<BookingEdit | null>(null);
+  const numbersRef = useRef<HTMLDivElement | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState(false);
   const [numRow, setNumRow] = useState(13);
   const [currentPage, setCurrentPage] = useState(1);
   const [removeBooKing, setRemovBooKing] = useState(false)
-  const [numperOfId, setId] = useState()
+  const [numperOfId, setId] = useState<string | null>(null);
+  const [approved, setApproved] = useState<boolean | null>(null);
 
-  const typeFilter = window.sessionStorage.getItem("type");
-  const [typeApproved, satTypeApproved] = useState(
-    typeFilter === "true" ? true : false
-  );
+  const [typeApproved, setTypeApproved] = useState(false);
 
-  const [approved, setApproved] = useState()
+  useEffect(() => {
+    const typeFilter = window.sessionStorage.getItem("type");
+    setTypeApproved(typeFilter === "true");
+  }, []);
+
   const [AddDay, setAddDay] = useState(false)
   const [filterData, setFilterData] = useState({ site: "", type: "", date: "" });
+  
+  const Rejectedbooking = useDataRejectedBookingData();
 
-
-
-  const Rejectedbooking = [
-    { SinceDay: "10/2/2025", today: "20/10/2025", numPerson: 2, ClosedFrom: "5:00 PM", openFrom: "5:00 PM", id: "233034", approved: false, nameClint: 'يوسف رامى', MobileNumber: "01055395693", mail: "hisham@icloud.com", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "11/2/2025", today: "21/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "1:00 PM", id: "233035", approved: true, approved: " مجمد مجمود", mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "12/2/2025", today: "22/10/2025", numPerson: 3, ClosedFrom: "10:30 PM", openFrom: "2:00 PM", id: "233036", approved: false, approved: " مجمد مجمود", mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "13/2/2025", today: "23/10/2025", numPerson: 5, ClosedFrom: "12:00 AM", openFrom: "6:00 PM", id: "233037", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "14/2/2025", today: "24/10/2025", numPerson: 2, ClosedFrom: "4:00 PM", openFrom: "10:00 AM", id: "233038", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "15/2/2025", today: "25/10/2025", numPerson: 1, ClosedFrom: "11:00 PM", openFrom: "12:00 PM", id: "233039", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "16/2/2025", today: "26/10/2025", numPerson: 3, ClosedFrom: "9:00 PM", openFrom: "5:00 PM", id: "233040", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "17/2/2025", today: "27/10/2025", numPerson: 6, ClosedFrom: "11:30 PM", openFrom: "4:00 PM", id: "233041", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "18/2/2025", today: "28/10/2025", numPerson: 2, ClosedFrom: "10:00 PM", openFrom: "3:00 PM", id: "233042", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "19/2/2025", today: "29/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233043", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "20/2/2025", today: "30/10/2025", numPerson: 2, ClosedFrom: "8:00 PM", openFrom: "2:00 PM", id: "233044", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "20/2/2025", today: "30/10/2025", numPerson: 2, ClosedFrom: "8:00 PM", openFrom: "2:00 PM", id: "233044", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "21/2/2025", today: "31/10/2025", numPerson: 7, ClosedFrom: "9:00 PM", openFrom: "1:00 PM", id: "233045", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "22/2/2025", today: "01/11/2025", numPerson: 2, ClosedFrom: "5:30 PM", openFrom: "11:00 AM", id: "233046", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "23/2/2025", today: "02/11/2025", numPerson: 8, ClosedFrom: "10:00 PM", openFrom: "12:00 PM", id: "233047", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "24/2/2025", today: "03/11/2025", numPerson: 4, ClosedFrom: "11:45 PM", openFrom: "5:00 PM", id: "233048", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "25/2/2025", today: "04/11/2025", numPerson: 1, ClosedFrom: "6:00 PM", openFrom: "8:00 AM", id: "233049", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "26/2/2025", today: "05/11/2025", numPerson: 3, ClosedFrom: "10:00 PM", openFrom: "3:00 PM", id: "233050", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "27/2/2025", today: "06/11/2025", numPerson: 5, ClosedFrom: "9:30 PM", openFrom: "2:00 PM", id: "233051", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "28/2/2025", today: "07/11/2025", numPerson: 9, ClosedFrom: "10:30 PM", openFrom: "12:00 PM", id: "233052", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "01/3/2025", today: "08/11/2025", numPerson: 2, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233053", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "10/2/2025", today: "20/10/2025", numPerson: 2, ClosedFrom: "5:00 PM", openFrom: "5:00 PM", id: "233034", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "11/2/2025", today: "21/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "1:00 PM", id: "233035", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "12/2/2025", today: "22/10/2025", numPerson: 3, ClosedFrom: "10:30 PM", openFrom: "2:00 PM", id: "233036", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "13/2/2025", today: "23/10/2025", numPerson: 5, ClosedFrom: "12:00 AM", openFrom: "6:00 PM", id: "233037", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com", numPon: "01023522063", occasion: "عيد ميلاد ", PreferenceForSitting: "لم يتم ارسال الرد ", note: "نباتى" },
-    { SinceDay: "14/2/2025", today: "24/10/2025", numPerson: 2, ClosedFrom: "4:00 PM", openFrom: "10:00 AM", id: "233038", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "15/2/2025", today: "25/10/2025", numPerson: 1, ClosedFrom: "11:00 PM", openFrom: "12:00 PM", id: "233039", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "16/2/2025", today: "26/10/2025", numPerson: 3, ClosedFrom: "9:00 PM", openFrom: "5:00 PM", id: "233040", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "17/2/2025", today: "27/10/2025", numPerson: 6, ClosedFrom: "11:30 PM", openFrom: "4:00 PM", id: "233041", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "18/2/2025", today: "28/10/2025", numPerson: 2, ClosedFrom: "10:00 PM", openFrom: "3:00 PM", id: "233042", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "19/2/2025", today: "29/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233043", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "20/2/2025", today: "30/10/2025", numPerson: 2, ClosedFrom: "8:00 PM", openFrom: "2:00 PM", id: "233044", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "21/2/2025", today: "31/10/2025", numPerson: 7, ClosedFrom: "9:00 PM", openFrom: "1:00 PM", id: "233045", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "22/2/2025", today: "01/11/2025", numPerson: 2, ClosedFrom: "5:30 PM", openFrom: "11:00 AM", id: "233046", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "23/2/2025", today: "02/11/2025", numPerson: 8, ClosedFrom: "10:00 PM", openFrom: "12:00 PM", id: "233047", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "24/2/2025", today: "03/11/2025", numPerson: 4, ClosedFrom: "11:45 PM", openFrom: "5:00 PM", id: "233048", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "25/2/2025", today: "04/11/2025", numPerson: 1, ClosedFrom: "6:00 PM", openFrom: "8:00 AM", id: "233049", approved: false, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "26/2/2025", today: "05/11/2025", numPerson: 3, ClosedFrom: "10:00 PM", openFrom: "3:00 PM", id: "233050", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "27/2/2025", today: "06/11/2025", numPerson: 5, ClosedFrom: "9:30 PM", openFrom: "2:00 PM", id: "233051", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "28/2/2025", today: "07/11/2025", numPerson: 9, ClosedFrom: "10:30 PM", openFrom: "12:00 PM", id: "233052", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-    { SinceDay: "01/3/2025", today: "08/11/2025", numPerson: 2, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233053", approved: true, nameClint: 'يوسف رامى', mail: "youssefRamy@gmail.com" },
-
-
-
-
-
-  ]
-  function saveDataInSecon(customer) {
+  function saveDataInSecon(customer: any) {
     const bookingData = {
       numPersons: customer.numPerson,
       dateFrom: customer.SinceDay,
@@ -92,7 +53,7 @@ export default function Rejectedbookings() {
       endTime: customer.openFrom,
       id: customer.id,
       approved: customer.approved,
-      hidenBtn: false, 
+      hidenBtn: false,
     };
 
     window.sessionStorage.setItem("bookingEditData", JSON.stringify(bookingData));
@@ -100,7 +61,7 @@ export default function Rejectedbookings() {
     setAddDay(true);
   }
 
-  function showData(customer) {
+  function showData(customer: any) {
     const bookingData = {
       numBerson: customer.numPerson,
       dateFrom: customer.SinceDay,
@@ -119,7 +80,7 @@ export default function Rejectedbookings() {
     window.sessionStorage.setItem("bookingEditData", JSON.stringify(bookingData));
     router.push("/ReservationsRequestsTwo/OrderDetails");
   }
-  function to24Hour(timeStr) {
+  function to24Hour(timeStr: any) {
     if (!timeStr) return "";
     const [time, modifier] = timeStr.split(" ");
     let [hours, minutes] = time.split(":");
@@ -129,7 +90,6 @@ export default function Rejectedbookings() {
   }
 
   const filteredCustomers = useMemo(() => {
-    console.log("typeApproved:", typeApproved);
     const lowerSearch = searchTerm.toLowerCase();
 
     return Rejectedbooking.filter((customer) => {
@@ -169,7 +129,7 @@ export default function Rejectedbookings() {
     currentPage * numRow
   );
 
-  const scroll = (direction) => {
+  const scroll = (direction: any) => {
     if (!numbersRef.current) return;
     const scrollAmount = 120;
     numbersRef.current.scrollBy({
@@ -177,6 +137,7 @@ export default function Rejectedbookings() {
       behavior: "smooth",
     });
   };
+
   return (
     <div className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
       {/*----------------------------------------this is componnt control remove customers----------------------*/}
@@ -234,7 +195,7 @@ export default function Rejectedbookings() {
               : "text-[#183866]"
               } text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[132px] whitespace-nowrap`}
             onClick={() => {
-              satTypeApproved(false);
+              setTypeApproved(false);
             }}
           >
             أيام الحجوزات التي تم رفعها
@@ -246,7 +207,7 @@ export default function Rejectedbookings() {
               : "text-[#183866]"
               } text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[116px] whitespace-nowrap`}
             onClick={() => {
-              satTypeApproved(true);
+              setTypeApproved(true);
             }}
           >
             التي تمت الموافقة عليها
@@ -258,9 +219,8 @@ export default function Rejectedbookings() {
               } text-[500] px-3 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[260px] whitespace-nowrap flex justify-center items-center gap-[10px]`}
             onClick={() => {
               window.sessionStorage.removeItem("bookingEditData");
-              setAddDay(true),
-                satTypeApproved()
-
+              setAddDay(true);
+              setTypeApproved(false);
             }}
           >
             تعيين ايام الحجز والأعداد التي يمكنك استيعابها
@@ -278,9 +238,6 @@ export default function Rejectedbookings() {
         <table className="min-w-full text-right">
           <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
             <tr >
-
-
-
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
                 اليوم من
               </th>
@@ -293,28 +250,16 @@ export default function Rejectedbookings() {
                 عدد الاشخاص المتاح لاستقبالهم
               </th>
 
-
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
                 مغلق من
               </th>
 
-
               <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
                 مغلق الى
               </th>
-
-
-
-
-
-
               <th className=" py-3 text-[12px] font-bold text-[#475467] pl-[5px]  whitespace-nowrap text-center">
                 الاجراء
               </th>
-
-
-
-
 
             </tr>
           </thead>
@@ -387,8 +332,6 @@ export default function Rejectedbookings() {
           </select>
         </div>
 
-
-
         {/* ------------------------------------filter Bage-----------------------------------------*/}
 
         <div className="flex items-center justify-center gap-2 m-5">
@@ -402,7 +345,6 @@ export default function Rejectedbookings() {
               alt="next"
             />
           </button>
-
 
           <div
             ref={numbersRef}

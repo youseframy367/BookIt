@@ -3,25 +3,19 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
+import { useColumnsData } from "@/app/data/dataColumns";
 
 export default function AddRole() {
-    const [selectedAddRole, setSelectedAddRole] = useState("");
-    const [selectedAccess, setSelectedAccess] = useState("");
+    const [selectedAddRole, setSelectedAddRole] = useState<string | null>("");
+    const [selectedAccess, setSelectedAccess] = useState<string | null>("");
 
-    const columns = [
-        ["إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء"],
-        ["إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء"],
-        ["إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء"],
-        ["إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء"],
-        ["إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء"],
-        ["إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء", "إضافة فواتير لكل العملاء"]
-    ];
+    const columns = useColumnsData();
 
     const [checked, setChecked] = useState(
         columns.map(col => col.map(() => false))
     );
 
-    const toggleCheckbox = (colIndex, idx) => {
+    const toggleCheckbox = (colIndex: any, idx: any) => {
         const newChecked = [...checked];
         newChecked[colIndex][idx] = !newChecked[colIndex][idx];
         setChecked(newChecked);

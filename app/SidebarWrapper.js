@@ -1,11 +1,9 @@
 "use client";
 
-// ✅ أضفنا useEffect هنا
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Sidebar from "./(dashboard)/partes/sidbar";
 import ControlBag from "./(dashboard)/showDateOne/control/page";
-import PopSeting from "./(dashboard)/showDateOne/popSeting";
-
+import PopSeting from "./components/Dashborad/popSeting";
 
 export default function MainLayout({ children }) {
 
@@ -15,11 +13,8 @@ export default function MainLayout({ children }) {
     email:"youseframy367@gmail.com",
   }
 
-
   const [title, setTitle] = useState("لوحة التحكم الخاصة بإدارة BOOK IN");
   const [showSeting,setShowSeting]=useState(false)
-
- 
 
         return (
           <div className="flex w-full min-h-screen font-['Cairo']">
@@ -54,5 +49,4 @@ export default function MainLayout({ children }) {
             </div>
           </div>
         );
-    
 }

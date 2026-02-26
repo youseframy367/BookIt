@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Filter from "../filter";
-import AddBookingDays from "../AddBookingDays";
+import AddBookingDays from "../../../components/Dashborad/Reservations/AddBookingDays";
 import Pagnation from "../../../components/public/Pagnation";
 import { usePagnation } from "../../../hooks/usePagnation";
 import { useAllReservationsData } from "../../../data/dataAllReservations";
@@ -12,8 +12,6 @@ export default function AllReservations() {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState(false);
-  const [removeClint, setRemovClint] = useState(false)
-  const [numperOfId, setId] = useState()
   const [AddDay, setAddDay] = useState(false)
 
   const DataCustomers = useAllReservationsData();
@@ -23,15 +21,6 @@ export default function AllReservations() {
 
   return (
     <div className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
-      {/*----------------------------------------this is componnt control remove customers----------------------*/}
-
-      {removeClint && (
-        <RemoveCustomer
-          id={numperOfId}
-          onClose={() => setRemovClint(false)}
-        />
-      )}
-
       {/*---------------------------- --------filter customers---------------------------------------------------*/}
 
       {filter && <Filter setFilter={setFilter} onSearch={setFilterData} />}
@@ -69,7 +58,7 @@ export default function AllReservations() {
 
           <button className="border-[1px] border-[#183866] text-[#183866] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[132px] whitespace-nowrap"
             onClick={() => {
-              window.sessionStorage.setItem("type", false)
+              window.sessionStorage.setItem("type", "false")
               router.push("/ReservationsRequestsTwo/Rejectedbookings")
             }}>
             أيام الحجوزات التي تم رفعها
@@ -78,7 +67,7 @@ export default function AllReservations() {
           <button className="border-[1px] border-[#183866] text-[#183866] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[116px] whitespace-nowrap"
 
             onClick={() => {
-              window.sessionStorage.setItem("type", true)
+              window.sessionStorage.setItem("type", "true")
               router.push("/ReservationsRequestsTwo/Rejectedbookings")
             }}
 
@@ -138,7 +127,7 @@ export default function AllReservations() {
           </thead>
           <tbody className="divide-gray-50">
             {displayedCustomers.length > 0 ? (
-              displayedCustomers.map((customer, idx) => (
+              displayedCustomers.map((customer: any, idx: any) => (
                 <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors">
                   <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.CustomerName}</td>
                   <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numBerson}</td>

@@ -1,51 +1,56 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function AddBookingDays({ onClose }) {
-  const [selectedDateFrom, setSelectedDateFrom] = useState(null);
-  const [selectedDateTo, setSelectedDateTo] = useState(null);
+interface passClose {
+  onClose: () => void;
+}
+
+export default function AddBookingDays({ onClose }: passClose) {
+  const [selectedDateFrom, setSelectedDateFrom] = useState<Date | null>(null);
+  const [selectedDateTo, setSelectedDateTo] = useState<Date | null>(null);
   const [numPersons, setNumPersons] = useState("");
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null);
+  const [startTime, setStartTime] = useState<Date | null>(null);
+  const [endTime, setEndTime] = useState<Date | null>(null);
   const [loading, setLoading] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
 
   useEffect(() => {
-  const stored = window.sessionStorage.getItem("bookingEditData");
-  if (stored) {
-    const data = JSON.parse(stored);
-    setIsEditMode(true);
+    const stored = window.sessionStorage.getItem("bookingEditData");
+    if (stored) {
+      const data = JSON.parse(stored);
+      setIsEditMode(true);
 
-    setNumPersons(data.numPersons || "");
+      setNumPersons(data.numPersons || "");
 
-    const [dFrom, mFrom, yFrom] = data.dateFrom?.split("/") || [];
-    const [dTo, mTo, yTo] = data.dateTo?.split("/") || [];
+      const [dFrom, mFrom, yFrom] = data.dateFrom?.split("/") || [];
+      const [dTo, mTo, yTo] = data.dateTo?.split("/") || [];
 
-    setSelectedDateFrom(
-      data.dateFrom ? new Date(`${yFrom}-${mFrom}-${dFrom}`) : null
-    );
-    setSelectedDateTo(
-      data.dateTo ? new Date(`${yTo}-${mTo}-${dTo}`) : null
-    );
+      setSelectedDateFrom(
+        data.dateFrom ? new Date(`${yFrom}-${mFrom}-${dFrom}`) : null
+      );
 
-    const parseTime = (timeStr) => {
-      if (!timeStr) return null;
-      const [time, modifier] = timeStr.split(" ");
-      let [hours, minutes] = time.split(":");
-      hours = modifier === "PM" && hours !== "12" ? +hours + 12 : hours;
-      hours = modifier === "AM" && hours === "12" ? 0 : +hours;
-      const date = new Date();
-      date.setHours(hours, +minutes, 0, 0);
-      return date;
-    };
+      setSelectedDateTo(
+        data.dateTo ? new Date(`${yTo}-${mTo}-${dTo}`) : null
+      );
 
-    setStartTime(parseTime(data.startTime));
-    setEndTime(parseTime(data.endTime));
-  }
-}, []);
+      const parseTime = (timeStr: any) => {
+        if (!timeStr) return null;
+        const [time, modifier] = timeStr.split(" ");
+        let [hours, minutes] = time.split(":");
+        hours = modifier === "PM" && hours !== "12" ? +hours + 12 : hours;
+        hours = modifier === "AM" && hours === "12" ? 0 : +hours;
+        const date = new Date();
+        date.setHours(hours, +minutes, 0, 0);
+        return date;
+      };
+
+      setStartTime(parseTime(data.startTime));
+      setEndTime(parseTime(data.endTime));
+    }
+  }, []);
 
   const handleSubmit = async () => {
     if (!selectedDateFrom || !selectedDateTo || !numPersons) {
@@ -129,7 +134,7 @@ export default function AddBookingDays({ onClose }) {
               <div className="flex w-[195px]">
                 <DatePicker
                   selected={selectedDateFrom}
-                  onChange={(date) => setSelectedDateFrom(date)}
+                  onChange={(date: any) => setSelectedDateFrom(date)}
                   placeholderText="من"
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
@@ -144,7 +149,7 @@ export default function AddBookingDays({ onClose }) {
               <div className="flex w-[195px]">
                 <DatePicker
                   selected={selectedDateTo}
-                  onChange={(date) => setSelectedDateTo(date)}
+                  onChange={(date: any) => setSelectedDateTo(date)}
                   placeholderText="الى"
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
@@ -166,7 +171,7 @@ export default function AddBookingDays({ onClose }) {
               <div className="flex w-[195px]">
                 <DatePicker
                   selected={startTime}
-                  onChange={(date) => setStartTime(date)}
+                  onChange={(date: any) => setStartTime(date)}
                   showTimeSelect
                   showTimeSelectOnly
                   timeIntervals={5}
@@ -186,7 +191,7 @@ export default function AddBookingDays({ onClose }) {
               <div className="flex w-[195px]">
                 <DatePicker
                   selected={endTime}
-                  onChange={(date) => setEndTime(date)}
+                  onChange={(date: any) => setEndTime(date)}
                   showTimeSelect
                   showTimeSelectOnly
                   timeIntervals={5}
@@ -208,7 +213,7 @@ export default function AddBookingDays({ onClose }) {
           <div className="flex justify-between m-3">
             <button
               className="bg-[#F5F7FA] text-[#131313] rounded-lg font-medium text-[12px] w-[90px] h-[38px]"
-              onClick={() => onClose(true)}
+              onClick={onClose}
             >
               الغاء
             </button>
@@ -220,8 +225,8 @@ export default function AddBookingDays({ onClose }) {
               {loading
                 ? "جارٍ الإرسال..."
                 : isEditMode
-                ? "تعديل اليوم"
-                : "اضف اليوم"}
+                  ? "تعديل اليوم"
+                  : "اضف اليوم"}
             </button>
           </div>
         </div>

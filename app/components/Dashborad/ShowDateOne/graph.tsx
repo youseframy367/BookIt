@@ -1,3 +1,5 @@
+import { useDaysData } from "@/app/data/dataDays";
+
 import {
   ResponsiveContainer,
   ComposedChart,
@@ -9,38 +11,17 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend
+  Legend,
+  LegendPayload
 } from "recharts";
 
-const Data = [
-  { name: "الأحد", الطلبات: 65, لم_يتجددوا: 95 },
-  { name: "الإثنين", الطلبات: 80, لم_يتجددوا: 85 },
-  { name: "الثلاثاء", الطلبات: 90, لم_يتجددوا: 75 },
-  { name: "الأربعاء", الطلبات: 70, لم_يتجددوا: 82 },
-  { name: "الخميس", الطلبات: 88, لم_يتجددوا: 90 },
-  { name: "الجمعة", الطلبات: 55, لم_يتجددوا: 78 },
-  { name: "السبت", الطلبات: 85, لم_يتجددوا: 70 },
-];
+interface CustomLegendProps {
+  payload?: LegendPayload[];
+}
 
-const parseKValue = (str) => {
-  if (typeof str === "number") return str;
-  const num = parseFloat(str);
-  if (str.toLowerCase().includes("k")) return num * 1000;
-  if (str.toLowerCase().includes("m")) return num * 1000000;
-  return num;
-};
+const { Data, Earnings } = useDaysData();
 
-const Earnings = [
-  { name: "الأحد", الأرباح: parseKValue(40000) },
-  { name: "الإثنين", الأرباح: parseKValue("50K") },
-  { name: "الثلاثاء", الأرباح: parseKValue("500K") },
-  { name: "الأربعاء", الأرباح: parseKValue("300K") },
-  { name: "الخميس", الأرباح: parseKValue("400K") },
-  { name: "الجمعة", الأرباح: parseKValue("350K") },
-  { name: "السبت", الأرباح: parseKValue("300K") },
-];
-
-const formatNumber = (num) => {
+const formatNumber = (num: number): string => {
   return new Intl.NumberFormat("ar", {
     notation: "compact",
     compactDisplay: "short",
@@ -48,51 +29,36 @@ const formatNumber = (num) => {
   }).format(num);
 };
 
-// ✅ مكون مخصص للـ Legend
-const CustomLegend = ({ payload }) => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "center",
-      gap: "30px",
-      marginTop: "15px",
-      direction: "rtl",
-    }}
-  >
-    {payload.map((entry, index) => (
-      <div
-        key={`item-${index}`}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "8px",
-          fontSize: "12px",
-          color: "#333",
-        }}
-      >
-        {/* الأيقونة على اليمين */}
+const CustomLegend = ({ payload }: CustomLegendProps) => {
+  if (!payload) return null;
+
+  return (
+    <div className="flex justify-center gap-[30px] mt-[15px]" dir="rtl">
+      {payload.map((entry, index) => (
         <div
-          style={{
-            width: 12,
-            height: 12,
-            backgroundColor: entry.color,
-            borderRadius: entry.type === "line" ? "50%" : "2px",
-          }}
-        />
-        {/* النص على اليسار */}
-        <span>{entry.value}</span>
-      </div>
-    ))}
-  </div>
-);
+          key={`item-${index}`}
+          className="flex items-center gap-[8px] text-[12px] text-[#333]"
+        >
+          <div
+            className="w-[12px] h-[12px]"
+            style={{
+              backgroundColor: entry.color,
+              borderRadius: entry.type === "line" ? "50%" : "2px",
+            }}
+          />
+          <span>{entry.value}</span>
+        </div>
+      ))}
+    </div>
+  );
+};
 
 export default function Graph() {
   return (
     <div className="flex justify-between w-[100%] m-0 p-0">
       {/*------------------------------------ Graph col ----------------------------------------- */}
       <div
-        className="w-[49%] m-[1%] h-[420px] bg-white rounded-[12px] p-[15px] rtl"
-        style={{ border: "solid 1px rgba(0,0,0,0.1)" }}
+        className="w-[49%] m-[1%] h-[420px] bg-white rounded-[12px] p-[15px] border border-2 border-[rgba(0,0,0,0.1)]" dir="rtl"
       >
         {/* Header Section */}
         <div className="w-full flex items-center px-[5px] py-[10px] justify-between">
@@ -105,15 +71,7 @@ export default function Graph() {
           </h3>
         </div>
 
-        <hr
-          style={{
-            width: "107%",
-            transform: "translateX(14px)",
-            height: "1px",
-            background: "#E9EAF0",
-            border: "none",
-          }}
-        />
+        <hr className="w-[107%] h-[1px] bg-[#E9EAF0] border-0 translate-x-[14px]" />
 
         {/* Graph */}
         <ResponsiveContainer width="110%" height={350}>
@@ -125,10 +83,10 @@ export default function Graph() {
             <XAxis dataKey="name" />
             <YAxis
               dx={-23}
-              wrapperStyle={{
-                fontWeight: "400",
-                fontSize: "12px",
-                color: "rgba(0, 0, 0, 0.7)",
+              tick={{
+                fill: "rgba(0,0,0,0.7)",
+                fontWeight: 400,
+                fontSize: 12
               }}
             />
             <Tooltip />
@@ -195,16 +153,15 @@ export default function Graph() {
               domain={[0, "dataMax + 50000"]}
               axisLine={false}
               tickLine={false}
-              tick={{ fill: "#888", fontSize: 12 }}
-              orientation="right"
-              wrapperStyle={{
-                fontWeight: "400",
-                fontSize: "12px",
-                color: "rgba(0, 0, 0, 0.7)",
+              tick={{
+                fill: "rgba(0,0,0,0.7)",
+                fontWeight: 400,
+                fontSize: 12
               }}
+              orientation="right"
             />
             <Tooltip
-              formatter={(value) => formatNumber(value)}
+              formatter={(value) => (value !== undefined && typeof value === "number" ? formatNumber(value) : "")}
               contentStyle={{
                 background: "#1D2026",
                 borderRadius: "8px",
