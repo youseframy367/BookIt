@@ -1,12 +1,5 @@
-"use client"
-
-import { useState } from "react"
-import Products from "../../components/Cashier/Products"
-import Categories from "../../components/Cashier/Categories"
-import SideBar from "../../components/Cashier/SideBar"
-
-export default function Cashire() {
-    const [products, setProducts] = useState([
+export const useProductsData = () => {
+    return [
         {
             title: "مقبلات",
             icon: "product-1.svg",
@@ -81,19 +74,5 @@ export default function Cashire() {
                 { image: "categorie.svg", name: "شيش طاووق", price: 38, rating: 4.5, quantity: 0 },
             ],
         },
-    ]);
-
-    const activeCategory = products.find(category => category.active);
-
-    return (
-        <section>
-            <div className="grid grid-cols-[8.8fr_3.3fr] gap-[30px]">
-                <div className="flex flex-col gap-5">
-                    <Products products={products} setProducts={setProducts} />
-                    <Categories activeCategory={activeCategory} setProducts={setProducts} />
-                </div>
-                <SideBar />
-            </div>
-        </section>
-    )
+    ];
 }

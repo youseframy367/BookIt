@@ -1,33 +1,37 @@
 import Image from "next/image"
+import { Category } from "@/app/TypeScript/TypeScript"
 
-export default function Categories({ activeCategory, setProducts }) {
-    const handleIncrement = (index) => {
+interface categoriesProps {
+    activeCategory: Category | undefined;
+    setProducts: React.Dispatch<React.SetStateAction<Category[]>>;
+}
+
+export default function Categories({ activeCategory, setProducts }: categoriesProps) {
+    const updateQuantity = (index: number, delta: number) => {
+        if (!activeCategory) return;
+
         const updatedProducts = [...activeCategory.items];
-        updatedProducts[index].quantity += 1;
+
+        const newQuantity = updatedProducts[index].quantity + delta;
+
+        if (newQuantity < 0) return;
+
+        updatedProducts[index].quantity = newQuantity;
+
         setProducts(prev =>
             prev.map(cat =>
-                cat.title === activeCategory.title ? { ...cat, items: updatedProducts } : cat
+                cat.title === activeCategory.title
+                    ? { ...cat, items: updatedProducts }
+                    : cat
             )
         );
-    }
-
-    const handleDecrement = (index) => {
-        const updatedProducts = [...activeCategory.items];
-        if (updatedProducts[index].quantity > 0) {
-            updatedProducts[index].quantity -= 1;
-        }
-        setProducts(prev =>
-            prev.map(cat =>
-                cat.title === activeCategory.title ? { ...cat, items: updatedProducts } : cat
-            )
-        );
-    }
+    };
 
     return (
-        <section className="bg-[#fff] rounded-[11px] py-[23px] px-[35px]">
+        <div className="bg-[#fff] rounded-[11px] py-[23px] px-[35px]">
             <div className="flex flex-col gap-[25px]">
                 <div className="flex items-center justify-between">
-                    <h2 className="font-semibold text-base">مقبلات</h2>
+                    <h2 className="font-semibold text-base">{activeCategory?.title}</h2>
                     <div className="flex items-center gap-[10px] flex-1 justify-end">
                         <div className="relative w-full max-w-[333px]">
                             <div className="absolute top-[10px] mr-[10px]">
@@ -41,9 +45,9 @@ export default function Categories({ activeCategory, setProducts }) {
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-[25px]">
+                <div className="grid grid-cols-3 gap-[25px] h-[400px] overflow-scroll">
                     {activeCategory?.items.map((item, index) => (
-                        <div key={index} data-aos="fade-up">
+                        <div key={index}>
                             <div className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group relative flex flex-col gap-[14px] border border-1 py-[11px] px-[8px] rounded-[10px]">
                                 <div className="overflow-hidden relative w-full h-[174px] rounded-[10px]">
                                     <Image
@@ -62,13 +66,13 @@ export default function Categories({ activeCategory, setProducts }) {
                                     <p className="text-[var(--color-go-password)]">{item.price} جنيه مصري</p>
                                 </div>
                                 <div className="flex items-center">
-                                    <button onClick={() => handleIncrement(index)} className="cursor-pointer pb-1 text-center bg-[var(--color-go-password)] w-[41px] rounded-r-[4px]">
+                                    <button onClick={() => updateQuantity(index, 1)} className="cursor-pointer pb-1 text-center bg-[var(--color-go-password)] w-[41px] rounded-r-[4px]">
                                         <span className="text-white text-xl">+</span>
                                     </button>
                                     <div className="py-1 bg-[var(--color-numbers)] text-center flex-1">
                                         <span>{item.quantity}</span>
                                     </div>
-                                    <button onClick={() => handleDecrement(index)} className="cursor-pointer pb-1 text-center bg-[var(--color-go-password)] w-[41px] rounded-l-[4px]">
+                                    <button onClick={() => updateQuantity(index, -1)} className={`${item.quantity == 0 ? 'opacity-[0.5]' : 'cursor-pointer'} pb-1 text-center bg-[var(--color-go-password)] w-[41px] rounded-l-[4px]`}>
                                         <span className="text-white text-xl">-</span>
                                     </button>
                                 </div>
@@ -77,6 +81,6 @@ export default function Categories({ activeCategory, setProducts }) {
                     ))}
                 </div>
             </div>
-        </section>
+        </div>
     )
 }

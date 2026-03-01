@@ -67,6 +67,8 @@
     --color-title-sidebar: #3D3D3D;
     --color-sub-title: #3D3D3DB2;
     --color-total-line: #3D3D3D33;
+    --color-btn-sidebar: #6C97E5;
+    --color-text-popup: #3D3D3D80;
 }
 
 @font-face {
@@ -537,7 +539,7 @@ html[dir="rtl"] .swiper-button-next {
 .sliderSimple-item p {
     margin-top: 5px;
     text-align: center;
-    color: "#000000"
+    color: "#000000";
 }
 
 @media(max-width: 990px) {

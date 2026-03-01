@@ -134,3 +134,18 @@ export interface remove {
 export interface myFilter {
     filter?: string;
 }
+
+interface ProductItem {
+    image: string;
+    name: string;
+    price: number;
+    rating: number;
+    quantity: number;
+}
+
+export interface Category {
+    title: string;
+    icon: string;
+    active: boolean;
+    items: ProductItem[];
+}
