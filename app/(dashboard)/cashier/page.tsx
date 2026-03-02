@@ -19,7 +19,7 @@ export default function Cashire() {
                     <Products products={products} setProducts={setProducts} />
                     <Categories activeCategory={activeCategory} setProducts={setProducts} setCart={setCart} />
                 </div>
-                <SideBar isProducts={cart} setCart={setCart} />
+                <SideBar isProducts={cart} setCart={setCart} setProducts={setProducts} />
             </div>
         </section>
     )

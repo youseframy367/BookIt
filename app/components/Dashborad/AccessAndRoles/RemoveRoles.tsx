@@ -1,24 +1,6 @@
 "use client";
 
-import axios from "axios";
-
-export default function RemoveRoles({ id, onClose }: any) {
-    const handleDelete = async (id: any) => {
-        try {
-            // 🔥 إرسال طلب حذف للسيرفر
-            const response = await axios.delete(`https://your-api.com/DleatBookit/${id}`);
-            console.log("Deleted successfully:", response.data);
-
-            alert("تم حذف اليوم بنجاح ✅");
-
-            // ✅ إغلاق المودال بعد النجاح
-            onClose();
-        } catch (error) {
-            console.error("Failed to delete:", error);
-            alert("حدث خطأ أثناء حذف اليوم ❌");
-        }
-    };
-
+export default function RemoveRoles({ handleDelete, onClose }: any) {
     return (
         <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
             <div className="w-[684px] h-[178px] rounded-[12px] bg-white p-[20px]">
@@ -32,11 +14,13 @@ export default function RemoveRoles({ id, onClose }: any) {
                             هل أنت متأكد أنك تريد حذف هذا الدور
                         </p>
                     </div>
-
                     <div className="flex gap-[16px] direction-ltr mt-[20px]">
                         <button
                             className="bg-[#183866] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center"
-                            onClick={() => handleDelete(id)}
+                            onClick={() => {
+                                handleDelete()
+                                onClose()
+                            }}
                         >
                             تأكيد
                         </button>

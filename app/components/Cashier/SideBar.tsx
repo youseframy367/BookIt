@@ -3,6 +3,9 @@
 import { useState } from "react";
 import Image from "next/image"
 import { usePaymentGetwayData } from "@/app/data/dataPaymentGetway";
+import RemoveRoles from "../Dashborad/AccessAndRoles/RemoveRoles";
+import WarningProducts from "../../components/Cashier/Warning";
+import { Category } from "@/app/TypeScript/TypeScript";
 
 interface items {
     title: string;
@@ -14,13 +17,18 @@ interface items {
 interface typeProducts {
     isProducts: items[];
     setCart: React.Dispatch<React.SetStateAction<items[]>>;
+    setProducts: React.Dispatch<React.SetStateAction<Category[]>>;
 }
 
-export default function SideBar({ isProducts, setCart }: typeProducts) {
+export default function SideBar({ isProducts, setCart, setProducts }: typeProducts) {
     const [selectedDetailsEmployees, setSelectedDetailsEmployees] = useState<string | null>("");
     const [selectedDetailsClients, setSelectedDetailsClients] = useState<string | null>("");
     const [selectedProducts, setSelectedProducts] = useState<string | null>("");
     const [selectedInvoice, setSelectedInvoice] = useState<string | null>("");
+
+    const [removeRoles, setRemovRoles] = useState(false)
+    const [warningProducts, setWarningProducts] = useState(false)
+    const [lastWarningProducts, setLastWarningProducts] = useState(false)
 
     const [paymentGetway, setPaymentGetway] = useState(usePaymentGetwayData());
     const [activePaymentIndex, setActivePaymentIndex] = useState(0);
@@ -28,8 +36,41 @@ export default function SideBar({ isProducts, setCart }: typeProducts) {
     const [takeawayOrSala, setTakeawayOrSala] = useState(0);
 
     const handleDelete = (index: number) => {
-        setCart(prev => prev.filter((_, i) => i !== index));
+        setCart(prev => {
+            const productToDelete = prev[index];
+
+            if (!productToDelete) return prev;
+
+            setProducts(categories =>
+                categories.map(cat => ({
+                    ...cat,
+                    items: cat.items.map(item =>
+                        item.name === productToDelete.title
+                            ? { ...item, quantity: 0 }
+                            : item
+                    )
+                }))
+            );
+
+            return prev.filter((_, i) => i !== index);
+        });
     };
+
+    const deleteAllProducts = () => {
+        setCart([]);
+
+        setProducts(categories =>
+            categories.map(cat => ({
+                ...cat,
+                items: cat.items.map(item => ({
+                    ...item,
+                    quantity: 0
+                }))
+            }))
+        );
+
+        setRemovRoles(false);
+    }
 
     const totalItems = isProducts.reduce((sum, item) => sum + item.amount, 0);
 
@@ -48,6 +89,23 @@ export default function SideBar({ isProducts, setCart }: typeProducts) {
 
     return (
         <div className="relative">
+            {removeRoles && (
+                <RemoveRoles
+                    handleDelete={deleteAllProducts}
+                    onClose={() => setRemovRoles(false)}
+                />
+            )}
+            {warningProducts && (
+                <WarningProducts
+                    onClose={() => setWarningProducts(false)}
+                />
+            )}
+            {lastWarningProducts && (
+                <WarningProducts
+                    isStyleBtn="!bg-[var(--color-remove-btn)]"
+                    onClose={() => setLastWarningProducts(false)}
+                />
+            )}
             <div className="sticky top-22 flex flex-col gap-[10px]">
                 <div className="shadow-[0_0_10px_rgba(0,0,0,0.10)] bg-[#fff] rounded-[11px] py-[24px] px-[15px] flex flex-col gap-[24px]">
                     <div className="flex gap-[6px] justify-center">
@@ -223,7 +281,9 @@ export default function SideBar({ isProducts, setCart }: typeProducts) {
                                 <button title="طباعه ، وتأكيد العمليه" className={`${isProducts.length == 0 ? 'opacity-[0.5]' : 'cursor-pointer transition-all duration-300 hover:text-[var(--color-btn-sidebar)] hover:bg-white'} w-full text-sm text-white font-semibold py-[12px] border border-2 border-[var(--color-btn-sidebar)] bg-[var(--color-btn-sidebar)] rounded-[13px]`}>
                                     طباعه ، وتأكيد العمليه
                                 </button>
-                                <Image src="/assets/icons/remove.svg" alt="critical" width={31} height={31} className="cursor-pointer" title="Remove" onClick={() => setCart([])} />
+                                <Image src="/assets/icons/remove.svg" alt="critical" width={31} height={31} className="cursor-pointer" title="Remove" onClick={() => {
+                                    setRemovRoles(true)
+                                }} />
                             </div>
                         </div>
                     </div>

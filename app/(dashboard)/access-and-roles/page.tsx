@@ -92,11 +92,11 @@ export default function AccessAndRoles() {
               displayedCustomers.map((customer: any, idx: any) => (
                 <tr key={idx} className={`hover:bg-[#F9FAFB]/50 transition-colors ${customer.status === "معلق" && "opacity-50"
                   }`}>
-                  <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.roles}</td>
-                  <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[var(--color-go-password)] underline overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.access}</td>
-                  <td className={`px-[8px] py-[15px]   text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.status === "معلق" ? 'text-[var(--color-red-table)]' : 'text-green-500'}`}>{customer.status}</td>
-                  <td className="px-[8px] py-[15px]  text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
-                  <td className={`px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.statusNow === "اعاده التفعيل" && 'text-[var(--color-red-table)]'}`}>
+                  <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.roles}</td>
+                  <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] underline overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.access}</td>
+                  <td className={`px-[8px] py-[15px] text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.status === "معلق" ? 'text-[var(--color-red-table)]' : 'text-green-500'}`}>{customer.status}</td>
+                  <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
+                  <td className={`px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.statusNow === "اعاده التفعيل" && 'text-[var(--color-red-table)]'}`}>
                     <span className={`${customer.statusNow === "اعاده التفعيل" ? 'bg-[var(--color-red-again)]' : 'bg-[var(--color-tow-template)]'} rounded-[4px] px-[11px] py-[5px]`}>{customer.statusNow}</span>
                   </td>
 
@@ -104,22 +104,19 @@ export default function AccessAndRoles() {
                     <div className="flex items-center justify-center gap-[10px]">
                       <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
                         () => {
-                          router.push("/ModeratorsThree/detalsMoerators");
+                          router.push(`/access-and-roles/${customer.id}`);
                         }}>
                         <img src="/img/كمغخخحه.svg" width="10" height="8px" />
                       </span>
 
                       <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
-                        router.push(`/access-and-roles/${customer.id}`);
-                      }}
-                      />
+                        router.push(`/access-and-roles/update/${customer.id}`);
+                      }} />
 
                       <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
                         setRemovRoles(true)
                         setId(customer.id);
-                      }
-
-                      } />
+                      }} />
 
                     </div>
                   </td>

@@ -1,4 +1,3 @@
-import Link from "next/link"
 import Image from "next/image"
 import { Category } from "@/app/TypeScript/TypeScript"
 
@@ -37,7 +36,7 @@ export default function Products({ products, setProducts }: ProductsProps) {
                             )
                         }} className={`transition-all duration-300 ${item.active ? 'bg-[var(--color-go-password)] text-white shadow-[10px_10px_36px_13px_rgba(24,56,102,0.2)] -translate-y-1' : 'translate-y-0'} hover:-translate-y-1 hover:bg-[var(--color-go-password)] hover:text-white hover:shadow-[10px_10px_36px_13px_rgba(24,56,102,0.2)] text-[var(--color-go-password)] cursor-pointer px-1 py-2 border border-1 border-[var(--color-go-password)] rounded-[10px] flex justify-center items-center`}>
                             <div className="flex-1 text-center">
-                                <span className="ms-2 font-semibold text-[11px]">{item.title}</span>
+                                <span className="font-semibold text-[11px]">{item.title}</span>
                             </div>
                             <Image src={`/assets/icons/${item.icon}`} alt="products" width={30} height={30} />
                         </li>

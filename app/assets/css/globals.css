@@ -70,6 +70,8 @@
     --color-btn-sidebar: #6C97E5;
     --color-text-popup: #3D3D3D80;
     --color-list: #7B7B7B;
+    --color-warning: #C1A466;
+    --color-remove-btn: #FF3A3A;
 }
 
 @font-face {
