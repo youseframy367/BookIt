@@ -4,31 +4,62 @@ import { Category } from "@/app/TypeScript/TypeScript"
 interface categoriesProps {
     activeCategory: Category | undefined;
     setProducts: React.Dispatch<React.SetStateAction<Category[]>>;
+    setCart: React.Dispatch<React.SetStateAction<any[]>>;
 }
 
-export default function Categories({ activeCategory, setProducts }: categoriesProps) {
+export default function Categories({ activeCategory, setProducts, setCart }: categoriesProps) {
     const updateQuantity = (index: number, delta: number) => {
         if (!activeCategory) return;
 
-        const updatedProducts = [...activeCategory.items];
+        const updatedItems = [...activeCategory.items];
+        const product = updatedItems[index];
 
-        const newQuantity = updatedProducts[index].quantity + delta;
-
+        const newQuantity = product.quantity + delta;
         if (newQuantity < 0) return;
 
-        updatedProducts[index].quantity = newQuantity;
+        product.quantity = newQuantity;
 
         setProducts(prev =>
             prev.map(cat =>
                 cat.title === activeCategory.title
-                    ? { ...cat, items: updatedProducts }
+                    ? { ...cat, items: updatedItems }
                     : cat
             )
         );
+
+        setCart(prev => {
+            const existing = prev.find(p => p.title === product.name);
+
+            if (newQuantity === 0) {
+                return prev.filter(p => p.title !== product.name);
+            }
+
+            if (existing) {
+                return prev.map(p =>
+                    p.title === product.name
+                        ? {
+                            ...p,
+                            amount: newQuantity,
+                            price: newQuantity * product.price
+                        }
+                        : p
+                );
+            }
+
+            return [
+                ...prev,
+                {
+                    title: product.name,
+                    singlePrice: product.price,
+                    amount: newQuantity,
+                    price: newQuantity * product.price
+                }
+            ];
+        });
     };
 
     return (
-        <div className="bg-[#fff] rounded-[11px] py-[23px] px-[35px]">
+        <div className="h-full bg-[#fff] rounded-[11px] py-[23px] px-[35px]">
             <div className="flex flex-col gap-[25px]">
                 <div className="flex items-center justify-between">
                     <h2 className="font-semibold text-base">{activeCategory?.title}</h2>

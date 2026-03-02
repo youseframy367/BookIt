@@ -4,9 +4,13 @@ import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import TimeSupscribtion from "./time";
 
-export default function Sidebar({ setTitle }) {
-  const [openDropdown, setOpenDropdown] = useState(null);
-  const [activeListIndex, setActiveListIndex] = useState(null);
+interface typeTitle {
+  setTitle: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function Sidebar({ setTitle }: typeTitle) {
+  const [openDropdown, setOpenDropdown] = useState<number | null>(null);
+  const [activeListIndex, setActiveListIndex] = useState<number | null>(null);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -41,7 +45,7 @@ export default function Sidebar({ setTitle }) {
 
   const activeIndex = getActiveIndex();
 
-  const handleClick = (item, i) => {
+  const handleClick = (item: any, i: any) => {
     setTitle(item.title);
 
     if (item.list) {
@@ -110,8 +114,9 @@ export default function Sidebar({ setTitle }) {
                   <ul className="list-disc text-[11px] rounded-[6px] mx-[5px] flex flex-col gap-3 px-[5px] py-[10px] mt-2">
                     {item.list.map((sub, index) => (
                       <li
+                        title={sub.title}
                         key={index}
-                        className={`cursor-pointer px-[5px] ${activeListIndex === index ? 'text-[#183866]' : 'text-[#333]'}`}
+                        className="cursor-pointer px-[5px] text-[var(--color-list)] text-[10px] font-normal"
                         onClick={(e) => {
                           e.stopPropagation();
                           setActiveListIndex(index);

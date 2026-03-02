@@ -4,15 +4,47 @@ import { useState } from "react";
 import Image from "next/image"
 import { usePaymentGetwayData } from "@/app/data/dataPaymentGetway";
 
-export default function SideBar() {
+interface items {
+    title: string;
+    price: number;
+    amount: number;
+    singlePrice: number;
+}
+
+interface typeProducts {
+    isProducts: items[];
+    setCart: React.Dispatch<React.SetStateAction<items[]>>;
+}
+
+export default function SideBar({ isProducts, setCart }: typeProducts) {
     const [selectedDetailsEmployees, setSelectedDetailsEmployees] = useState<string | null>("");
     const [selectedDetailsClients, setSelectedDetailsClients] = useState<string | null>("");
     const [selectedProducts, setSelectedProducts] = useState<string | null>("");
+    const [selectedInvoice, setSelectedInvoice] = useState<string | null>("");
 
     const [paymentGetway, setPaymentGetway] = useState(usePaymentGetwayData());
     const [activePaymentIndex, setActivePaymentIndex] = useState(0);
 
     const [takeawayOrSala, setTakeawayOrSala] = useState(0);
+
+    const handleDelete = (index: number) => {
+        setCart(prev => prev.filter((_, i) => i !== index));
+    };
+
+    const totalItems = isProducts.reduce((sum, item) => sum + item.amount, 0);
+
+    const subtotal = isProducts.reduce(
+        (sum, item) => sum + item.price,
+        0
+    );
+
+    const vatRate = 0.14;
+
+    const vat = subtotal * vatRate;
+
+    const totalWithVat = subtotal + vat;
+
+    const deliveryFee = takeawayOrSala === 1 ? subtotal * 0.1 : 0;
 
     return (
         <div className="relative">
@@ -39,7 +71,7 @@ export default function SideBar() {
                                 <h2 className="font-semibold text-sm">بيانات الموظف</h2>
                                 <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
-                            <span className={`text-[var(--color-sub-title)] overflow-hidden transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
+                            <span className={`text-xs text-[var(--color-sub-title)] overflow-hidden transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
                                 مؤمن الزبده
                             </span>
                         </div>
@@ -52,13 +84,19 @@ export default function SideBar() {
                                 <h2 className="font-semibold text-sm">بيانات العميل</h2>
                                 <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedDetailsClients === "Details Clients" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
-                            <div className={`flex justify-between overflow-hidden transition-all duration-300 ${selectedDetailsClients === "Details Clients" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
+                            <div className={`text-xs flex justify-between overflow-hidden transition-all duration-300 ${selectedDetailsClients === "Details Clients" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
                                 <span className="text-[var(--color-sub-title)]">
                                     كود العميل
                                 </span>
-                                <span className="text-[var(--color-sub-title)]">
-                                    #
-                                </span>
+                                {
+                                    isProducts.length == 0 ?
+                                        <span className="text-[var(--color-sub-title)]">
+                                            #
+                                        </span>
+                                        : <span className="text-[var(--color-title-sidebar)]">
+                                            #785
+                                        </span>
+                                }
                             </div>
                         </div>
                         <div className="flex flex-col gap-[11px]">
@@ -70,29 +108,101 @@ export default function SideBar() {
                                 <h2 className="font-semibold text-sm">المنتجات</h2>
                                 <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedProducts === "products" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
-                            <ul>
-                                <li className={`flex justify-between overflow-hidden transition-all duration-300 ${selectedProducts === "products" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
-                                    <span className="text-[var(--color-sub-title)]">
-                                        لم يحدد بعد
-                                    </span>
-                                </li>
-                            </ul>
+                            <div className="flex flex-col gap-[18px] overflow-auto max-h-[120px]">
+                                {
+                                    isProducts.length == 0 ? <div className={`${selectedProducts === "products" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
+                                        <span className="text-xs text-[var(--color-sub-title)]">
+                                            لم يحدد بعد
+                                        </span>
+                                    </div> :
+                                        isProducts.map((item, index) => {
+                                            return <div key={index} className="flex flex-col gap-[14px]">
+                                                <div className="flex items-center justify-between">
+                                                    <h2 className="text-[10px] font-semibold">{item.title}</h2>
+                                                    <button title="حذف" className="cursor-pointer" onClick={() => handleDelete(index)}>
+                                                        <Image src="/assets/icons/delete.png" alt="delete" width={10} height={12} />
+                                                    </button>
+                                                </div>
+                                                <ul className="flex flex-col gap-[12px]">
+                                                    <li className="text-[10px] flex justify-between items-center">
+                                                        <span className="font-semibold text-[var(--color-sub-title)]">السعر</span>
+                                                        <div className="text-center min-w-[20px]">
+                                                            <span className="font-bold text-[var(--color-title-sidebar)]">{item.price}</span>
+                                                        </div>
+                                                    </li>
+                                                    <li className="text-[10px] flex justify-between items-center">
+                                                        <span className="font-semibold text-[var(--color-sub-title)]">الكميه</span>
+                                                        <div className="text-center min-w-[20px]">
+                                                            <span className="font-bold text-[var(--color-title-sidebar)]">{item.amount}</span>
+                                                        </div>
+                                                    </li>
+                                                    <li className="text-[10px] flex justify-between items-center">
+                                                        <span className="font-semibold text-[var(--color-sub-title)]">سعر الوحده</span>
+                                                        <div className="text-center min-w-[20px]">
+                                                            <span className="font-bold text-[var(--color-title-sidebar)]">{item.singlePrice}</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        })
+                                }
+                            </div>
                         </div>
                         <div className="flex flex-col gap-[11px]">
                             <div className="flex justify-between" onClick={() =>
-                                setSelectedProducts(prev =>
+                                setSelectedInvoice(prev =>
                                     prev === "Invoice Details" ? null : "Invoice Details"
                                 )
                             }>
                                 <h2 className="font-semibold text-sm">تفاصيل الفاتوره</h2>
-                                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedProducts === "Invoice Details" ? 'rotate-0' : 'rotate-180'}`} />
+                                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedInvoice === "Invoice Details" ? 'rotate-0' : 'rotate-180'}`} />
+                            </div>
+                            <div className={`transition-all duration-300 ${selectedInvoice === "Invoice Details" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
+                                <ul className="flex flex-col gap-[12px]">
+                                    <li className="text-[10px] flex justify-between items-center">
+                                        <span className="font-semibold text-[var(--color-sub-title)]">عدد المنتجات</span>
+                                        <div className="text-center min-w-[20px]">
+                                            <span className="font-bold text-[var(--color-title-sidebar)]">{totalItems}</span>
+                                        </div>
+                                    </li>
+                                    <li className="text-[10px] flex justify-between items-center">
+                                        <span className="font-semibold text-[var(--color-sub-title)]">اجمالي القيمه بدون ضريبه المضافه</span>
+                                        <div className="text-center min-w-[20px]">
+                                            <span className="font-bold text-[var(--color-title-sidebar)]">{subtotal.toFixed(2)}</span>
+                                        </div>
+                                    </li>
+                                    {
+                                        takeawayOrSala == 1 &&
+                                        <li className="text-[10px] flex justify-between items-center">
+                                            <span className="font-semibold text-[var(--color-sub-title)]">ضريبة التوصيل</span>
+                                            <div className="text-center min-w-[20px]">
+                                                <span className="font-bold text-[var(--color-title-sidebar)]">{deliveryFee.toFixed(2)}</span>
+                                            </div>
+                                        </li>
+                                    }
+                                    <li className="text-[10px] flex justify-between items-center">
+                                        <span className="font-semibold text-[var(--color-sub-title)]">ضريبة القيمه المضافه 14%</span>
+                                        <div className="text-center min-w-[20px]">
+                                            <span className="font-bold text-[var(--color-title-sidebar)]">{vat.toFixed(2)}</span>
+                                        </div>
+                                    </li>
+                                    <li className="text-[10px] flex justify-between items-center">
+                                        <span className="font-semibold text-[var(--color-sub-title)]">الاجمالي شامل ضريبة القيمه المضافه</span>
+                                        <div className="text-center min-w-[20px]">
+                                            <span className="font-bold text-[var(--color-title-sidebar)]">{totalWithVat.toFixed(2)}</span>
+                                        </div>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                         <hr className="text-[var(--color-hero)]" />
                         <div className="flex flex-col gap-[13px]">
                             <div className="flex justify-between items-center">
                                 <span className="text-[10px] text-[var(--color-sub-title)]">الاجمالي</span>
-                                <span className="text-[var(--color-total-line)]">-------</span>
+                                {
+                                    isProducts.length == 0 ?
+                                        <span className="text-[var(--color-total-line)]">-------</span> : <span className="text-[10px] text-[var(--color-title-sidebar)]">{totalWithVat.toFixed(2)}</span>
+                                }
                             </div>
                         </div>
                         <div className="flex flex-col gap-[22px]">
@@ -110,13 +220,10 @@ export default function SideBar() {
                                 </div>
                             </div>
                             <div className="flex gap-[12px]">
-                                {/* cursor-pointer */}
-                                {/* transition-all duration-300 */}
-                                {/* hover:text-[var(--color-btn-sidebar)] hover:bg-white */}
-                                <button title="طباعه ، وتأكيد العمليه" className="opacity-[0.5] w-full text-sm text-white font-semibold py-[12px] border border-2 border-[var(--color-btn-sidebar)] bg-[var(--color-btn-sidebar)] rounded-[13px]">
+                                <button title="طباعه ، وتأكيد العمليه" className={`${isProducts.length == 0 ? 'opacity-[0.5]' : 'cursor-pointer transition-all duration-300 hover:text-[var(--color-btn-sidebar)] hover:bg-white'} w-full text-sm text-white font-semibold py-[12px] border border-2 border-[var(--color-btn-sidebar)] bg-[var(--color-btn-sidebar)] rounded-[13px]`}>
                                     طباعه ، وتأكيد العمليه
                                 </button>
-                                <Image src="/assets/icons/remove.svg" alt="critical" width={31} height={31} className="cursor-pointer" title="Remove" />
+                                <Image src="/assets/icons/remove.svg" alt="critical" width={31} height={31} className="cursor-pointer" title="Remove" onClick={() => setCart([])} />
                             </div>
                         </div>
                     </div>
