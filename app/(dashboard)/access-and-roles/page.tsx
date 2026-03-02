@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
+//import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
+import ConfirmModal from "@/app/components/Dashborad/AccessAndRoles/sure"
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Pagnation from "../../components/public/Pagnation";
@@ -24,10 +25,20 @@ export default function AccessAndRoles() {
       {/*----------------------------------------this is componnt control remove customers----------------------*/}
 
       {removeRoles && (
-        <RemoveRoles
+        // <RemoveRoles
+        //  id={numperOfId}
+        //  onClose={() => setRemovRoles(false)}
+        // />
+        <ConfirmModal
           id={numperOfId}
+          apiUrl="https://your-api.com/DleatBookit"
+          title=" تأكيد الإجراء"
+          message="هل أنت متأكد أنك تريد حذف هذا الدور ؟"
+          confirmText="تأكيد"
+          cancelText="إلغاء"
           onClose={() => setRemovRoles(false)}
         />
+
       )}
       {/* ------------------------------------ head bage show all customers----------------------------------------*/}
 

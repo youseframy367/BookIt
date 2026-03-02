@@ -3,6 +3,7 @@
 import { useRouter, usePathname } from "next/navigation";
 import { useState } from "react";
 import TimeSupscribtion from "./time";
+import { navigate } from "next/dist/client/components/segment-cache/navigation";
 // import LogOut from "../logOut";
 export default function Sidebar({ setTitle }) {
   const [openDropdown, setOpenDropdown] = useState(null);
@@ -15,8 +16,10 @@ export default function Sidebar({ setTitle }) {
 
   const navigat = [
     { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
-    { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/AllReservations', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
+    { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/Rejectedbookings', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
     { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" },
+    {name :'المشرفين', navigate:"/ModeratorsFor/AllMoerators" ,title :'المشرفين', icon :"/img/modetorIcon.svg" , iconActiv:"/img/modetorIconActiv.svg"},
+    { name :" المخزون" , navigate :"/Inventory/allInventory", title :"المخزون" , icon :"/img/mhzon.svg" , iconActiv :"/img/mhzonActive.svg"},
     { name: "الكاشير", navigate: '/cashier', title: "الكاشير", icon: "/assets/icons/cashier.svg", iconActiv: "/assets/icons/cashier-active.svg" }
   ]
 
@@ -61,7 +64,6 @@ export default function Sidebar({ setTitle }) {
 
           return (
             <div key={i} className="relative">
-              {/* العنصر الرئيسي */}
               <div
                 onClick={() => handleClick(item, i)}
                 className={`transition-all duration-300 ${isLogout ? 'text-[#183866]' : isActive ? 'text-[#fff]' : 'text-[#131313]'} ${isActive ? 'brder border-1 border-[rgba(30,30,30,0.1)] bg-[#183866]' : 'border-0 bg-transparent'} flex items-center justify-start p-[10px] mx-[5px] cursor-pointer rounded-[8px]`}
@@ -99,18 +101,13 @@ export default function Sidebar({ setTitle }) {
 
               </div>
 
-              {/* القائمة الفرعية */}
               {item.list && (
                 <div
                   className={`overflow-hidden ${isOpen ? 'max-h-[360px]' : 'max-h-0'}`}
                 >
-                  {/* style={{
-                    transition: "max-height 0.4s ease",
-                  }} */}
-                  
-                      {/* listStyleType: "disc", */}
+
                   <ul
-                  className="text-[11px] rounded-[6px] mx-[5px] my-[20px] px-[5px] py-[10px]"
+                    className="text-[11px] rounded-[6px] mx-[5px] my-[20px] px-[5px] py-[10px]"
                   >
                     {item.list.map((sub, index) => (
                       <li

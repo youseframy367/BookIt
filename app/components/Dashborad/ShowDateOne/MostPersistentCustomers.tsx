@@ -9,7 +9,7 @@ export default function MostPersistentCustomers() {
   ];
 
   return (
-    <div className="shadow-[0px_0px_2px_0px_#00000040] border border-1 border-[rgba(0,0,0,0.1)] w-[60%]  bg-[#fff] mr-[10px]  rounded-lg h-[300px]  overflow-hidden" dir="rtl">
+    <div className="shadow-[0px_0px_1px_0px_#00000040] border border-1 border-[rgba(0,0,0,0.1)] w-[60%]  bg-[#fff] mr-[10px]  rounded-lg h-[300px]  overflow-hidden" dir="rtl">
 
       {/*--------------------------------------- Header -------------------------------------------------------- */}
       <div className="w-full flex items-center px-[10px] py-[15px] justify-between rounded-t-[10px]  ">
