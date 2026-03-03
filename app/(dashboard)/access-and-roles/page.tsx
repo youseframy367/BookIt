@@ -92,11 +92,11 @@ export default function AccessAndRoles() {
                             displayedCustomers.map((customer: any, idx: any) => (
                                 <tr key={idx} className={`hover:bg-[#F9FAFB]/50 transition-colors ${customer.status === "معلق" && "opacity-50"
                                     }`}>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.roles}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.roles}</td>
                                     <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] underline overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.access}</td>
-                                    <td className={`px-[8px] py-[15px] text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.status === "معلق" ? 'text-[var(--color-red-table)]' : 'text-green-500'}`}>{customer.status}</td>
-                                    <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
-                                    <td className={`px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.statusNow === "اعاده التفعيل" && 'text-[var(--color-red-table)]'}`}>
+                                    <td className={`px-[8px] py-[15px] text-[10px] font-[400]  text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.status === "معلق" ? 'text-[var(--color-red-table)]' : 'text-green-500'}`}>{customer.status}</td>
+                                    <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
+                                    <td className={`px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.statusNow === "اعاده التفعيل" && 'text-[var(--color-red-table)]'}`}>
                                         <span className={`${customer.statusNow === "اعاده التفعيل" ? 'bg-[var(--color-red-again)]' : 'bg-[var(--color-tow-template)]'} rounded-[4px] px-[11px] py-[5px]`}>{customer.statusNow}</span>
                                     </td>
 
