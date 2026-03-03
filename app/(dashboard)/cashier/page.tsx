@@ -13,6 +13,8 @@ export default function Cashire() {
     const [search, setSearch] = useState("")
     const [searchCategory, setSearchCategory] = useState("");
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
     const activeCategory = products.find(category => category.active);
 
     const filteredProducts = products.filter(product =>
@@ -23,8 +25,8 @@ export default function Cashire() {
         <section>
             <div className="grid md:grid-cols-[8.7fr_3fr] gap-[30px]">
                 <div className="flex flex-col gap-5">
-                    <Products search={search} setSearch={setSearch} filteredProducts={filteredProducts} setProducts={setProducts} />
-                    <Categories searchCategory={searchCategory} setSearchCategory={setSearchCategory} activeCategory={activeCategory} setProducts={setProducts} setCart={setCart} />
+                    <Products search={search} setSearch={setSearch} filteredProducts={filteredProducts} setProducts={setProducts} isScrolled={isScrolled} setIsScrolled={setIsScrolled} />
+                    <Categories searchCategory={searchCategory} setSearchCategory={setSearchCategory} activeCategory={activeCategory} setProducts={setProducts} setCart={setCart} isScrolled={isScrolled} setIsScrolled={setIsScrolled} />
                 </div>
                 <SideBar isProducts={cart} setCart={setCart} setProducts={setProducts} />
             </div>

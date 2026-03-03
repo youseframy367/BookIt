@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image"
 import { Category } from "@/app/TypeScript/TypeScript"
 
@@ -6,14 +8,21 @@ interface ProductsProps {
     search: string;
     setSearch: React.Dispatch<React.SetStateAction<string>>;
     setProducts: React.Dispatch<React.SetStateAction<Category[]>>;
+    isScrolled: boolean;
+    setIsScrolled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Products({ filteredProducts, setProducts, search, setSearch }: ProductsProps) {
+export default function Products({ isScrolled, setIsScrolled, filteredProducts, setProducts, search, setSearch }: ProductsProps) {
     return (
-        < div className="flex flex-col gap-[20px] bg-[#fff] rounded-[11px] py-[23px] px-[35px]" >
-            <div className="flex items-center justify-between">
-                <h2 className="font-semibold text-base">أقسام المنتجات</h2>
-                <div className="flex items-center gap-[10px] flex-1 justify-end">
+        <div title={`${isScrolled && 'العوده الي الأصناف'}`} className={`transition-all duration-300 flex flex-col gap-[20px] bg-[#fff] rounded-[11px] ${isScrolled ? 'cursor-pointer py-0 group hover:bg-[var(--color-go-password)]' : 'py-[23px]'} px-[35px]`}>
+            <div onClick={() => setIsScrolled(false)} className={`${isScrolled ? 'mt-4' : 'mt-0'} transition-all duration-300 flex items-center justify-between`}>
+                <h2 className={`font-semibold text-base ${isScrolled && 'text-[var(--color-go-password)] group-hover:text-white'}`}>{isScrolled ? 'العوده الي الأصناف' : 'أقسام المنتجات'}</h2>
+                {
+                    isScrolled && <div className="transition-all duration-300 rotate-0 group-hover:-rotate-90 bg-white border border-[var(--color-go-password)] p-2 rounded-full">
+                        <Image src="/assets/icons/forward.svg" alt="forward" width={19} height={19} />
+                    </div>
+                }
+                <div className={`${isScrolled ? 'hidden' : 'flex'} items-center gap-[10px] flex-1 justify-end`}>
                     <div className="relative w-full max-w-[333px]">
                         <div className="absolute top-[10px] mr-[10px]">
                             <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
@@ -28,7 +37,7 @@ export default function Products({ filteredProducts, setProducts, search, setSea
                     </div>
                 </div>
             </div>
-            <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[20px]">
+            <ul className={`${isScrolled ? '-z-1 opacity-0 max-h-0' : 'opacity-100 max-h-[2000px]'} transition-all duration-300 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[20px]`}>
                 {
                     filteredProducts.map((item, index) => {
                         return <li key={index} title={item.title} onClick={() => {

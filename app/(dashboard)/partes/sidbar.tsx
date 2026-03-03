@@ -19,7 +19,7 @@ export default function Sidebar({ setTitle }: typeTitle) {
     { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
     { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/Rejectedbookings', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
     { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" },
-    {name :'المشرفين', navigate:"/ModeratorsFor/AllMoerators" ,title :'المشرفين', icon :"/img/modetorIcon.svg" , iconActiv:"/img/modetorIconActiv.svg"},
+    { name: 'المشرفين', navigate: "/ModeratorsFor/AllMoerators", title: 'المشرفين', icon: "/img/modetorIcon.svg", iconActiv: "/img/modetorIconActiv.svg" },
     {
       name: "الكاشير",
       navigate: '/cashier',
@@ -113,11 +113,13 @@ export default function Sidebar({ setTitle }: typeTitle) {
               {item.list && isOpen && (
                 <div className="mx-5">
                   <ul className="list-disc text-[11px] rounded-[6px] mx-[5px] flex flex-col gap-3 px-[5px] py-[10px] mt-2">
-                    {item.list.map((sub, index) => (
-                      <li
+                    {item.list.map((sub, index) => {
+                      const isActive = pathname === sub.navigate;
+                      
+                      return <li
                         title={sub.title}
                         key={index}
-                        className="cursor-pointer px-[5px] text-[var(--color-list)] text-[10px] font-normal"
+                        className={`${isActive ? 'text-[var(--color-go-password)]' : 'text-[var(--color-list)]'} cursor-pointer px-[5px] text-[10px] font-normal`}
                         onClick={(e) => {
                           e.stopPropagation();
                           setActiveListIndex(index);
@@ -127,7 +129,7 @@ export default function Sidebar({ setTitle }: typeTitle) {
                       >
                         {sub.title}
                       </li>
-                    ))}
+                    })}
                   </ul>
                 </div>
               )}

@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image"
 import { Category } from "@/app/TypeScript/TypeScript"
+import { useRef, useEffect } from "react";
 
 interface categoriesProps {
     activeCategory: Category | undefined;
@@ -7,9 +10,13 @@ interface categoriesProps {
     setCart: React.Dispatch<React.SetStateAction<any[]>>;
     searchCategory: string;
     setSearchCategory: React.Dispatch<React.SetStateAction<string>>;
+    setIsScrolled: React.Dispatch<React.SetStateAction<boolean>>;
+    isScrolled: boolean;
 }
 
-export default function Categories({ searchCategory, setSearchCategory, activeCategory, setProducts, setCart }: categoriesProps) {
+export default function Categories({ setIsScrolled, isScrolled, searchCategory, setSearchCategory, activeCategory, setProducts, setCart }: categoriesProps) {
+    const listRef = useRef<HTMLDivElement>(null);
+
     const filteredItems = activeCategory?.items.filter(item =>
         item.name.toLowerCase().includes(searchCategory.toLowerCase())
     );
@@ -64,6 +71,12 @@ export default function Categories({ searchCategory, setSearchCategory, activeCa
         });
     };
 
+    useEffect(() => {
+        if (!isScrolled && listRef.current) {
+            listRef.current.scrollTop = 0;
+        }
+    }, [isScrolled]);
+
     return (
         <div className="h-full bg-[#fff] rounded-[11px] py-[23px] px-[35px]">
             <div className="flex flex-col gap-[25px]">
@@ -84,7 +97,15 @@ export default function Categories({ searchCategory, setSearchCategory, activeCa
                         </div>
                     </div>
                 </div>
-                <div className="grid grid-cols-3 gap-[25px] h-[400px] overflow-scroll">
+
+                <div
+                    ref={listRef}
+                    className="grid grid-cols-3 gap-[25px] h-[400px] overflow-scroll"
+                    onScroll={(e) => {
+                        const target = e.currentTarget;
+                        setIsScrolled(target.scrollTop > 0);
+                    }}
+                >
                     {filteredItems?.map((item, index) => (
                         <div key={index}>
                             <div className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group relative flex flex-col gap-[14px] border border-1 py-[11px] px-[8px] rounded-[10px]">

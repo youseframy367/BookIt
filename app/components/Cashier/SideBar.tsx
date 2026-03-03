@@ -107,7 +107,7 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                     onClose={() => setLastWarningProducts(false)}
                 />
             )}
-            <div className="sticky top-22 flex flex-col gap-[10px]">
+            <div className="sticky top-20 flex flex-col gap-[10px]">
                 <div className="shadow-[0_0_10px_rgba(0,0,0,0.10)] bg-[#fff] rounded-[11px] py-[24px] px-[15px] flex flex-col gap-[24px]">
                     <div className="flex gap-[6px] justify-center">
                         <button onClick={() => setTakeawayOrSala(0)} title="صاله" className={`${takeawayOrSala == 0 && 'hover:text-[var(--color-btn-sidebar)] hover:bg-white bg-[var(--color-btn-sidebar)] text-white'} text-[var(--color-btn-sidebar)] cursor-pointer text-xs font-semibold transition-all duration-300 py-[8px] px-[40px] border border-2 border-[var(--color-btn-sidebar)] rounded-[13px]`}>
