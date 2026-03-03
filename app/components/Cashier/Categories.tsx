@@ -5,9 +5,15 @@ interface categoriesProps {
     activeCategory: Category | undefined;
     setProducts: React.Dispatch<React.SetStateAction<Category[]>>;
     setCart: React.Dispatch<React.SetStateAction<any[]>>;
+    searchCategory: string;
+    setSearchCategory: React.Dispatch<React.SetStateAction<string>>;
 }
 
-export default function Categories({ activeCategory, setProducts, setCart }: categoriesProps) {
+export default function Categories({ searchCategory, setSearchCategory, activeCategory, setProducts, setCart }: categoriesProps) {
+    const filteredItems = activeCategory?.items.filter(item =>
+        item.name.toLowerCase().includes(searchCategory.toLowerCase())
+    );
+
     const updateQuantity = (index: number, delta: number) => {
         if (!activeCategory) return;
 
@@ -69,6 +75,8 @@ export default function Categories({ activeCategory, setProducts, setCart }: cat
                                 <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
                             </div>
                             <input
+                                value={searchCategory}
+                                onChange={(e) => setSearchCategory(e.target.value)}
                                 type="search"
                                 placeholder="البحث"
                                 className="w-full h-[32px] pr-[30px] bg-[#F9FAFB] border border-[#E9EAF0] rounded-[8px] text-[#8C94A3] text-[12px] focus:outline-none focus:border-[var(--color-go-password)]"
@@ -77,7 +85,7 @@ export default function Categories({ activeCategory, setProducts, setCart }: cat
                     </div>
                 </div>
                 <div className="grid grid-cols-3 gap-[25px] h-[400px] overflow-scroll">
-                    {activeCategory?.items.map((item, index) => (
+                    {filteredItems?.map((item, index) => (
                         <div key={index}>
                             <div className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group relative flex flex-col gap-[14px] border border-1 py-[11px] px-[8px] rounded-[10px]">
                                 <div className="overflow-hidden relative w-full h-[174px] rounded-[10px]">

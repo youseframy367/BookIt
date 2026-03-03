@@ -2,11 +2,13 @@ import Image from "next/image"
 import { Category } from "@/app/TypeScript/TypeScript"
 
 interface ProductsProps {
-    products: Category[];
+    filteredProducts: Category[];
+    search: string;
+    setSearch: React.Dispatch<React.SetStateAction<string>>;
     setProducts: React.Dispatch<React.SetStateAction<Category[]>>;
 }
 
-export default function Products({ products, setProducts }: ProductsProps) {
+export default function Products({ filteredProducts, setProducts, search, setSearch }: ProductsProps) {
     return (
         < div className="flex flex-col gap-[20px] bg-[#fff] rounded-[11px] py-[23px] px-[35px]" >
             <div className="flex items-center justify-between">
@@ -17,6 +19,8 @@ export default function Products({ products, setProducts }: ProductsProps) {
                             <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
                         </div>
                         <input
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
                             type="search"
                             placeholder="البحث"
                             className="w-full h-[32px] pr-[30px] bg-[#F9FAFB] border border-[#E9EAF0] rounded-[8px] text-[#8C94A3] text-[12px] focus:outline-none focus:border-[var(--color-go-password)]"
@@ -26,7 +30,7 @@ export default function Products({ products, setProducts }: ProductsProps) {
             </div>
             <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[20px]">
                 {
-                    products.map((item, index) => {
+                    filteredProducts.map((item, index) => {
                         return <li key={index} title={item.title} onClick={() => {
                             setProducts(prev =>
                                 prev.map((product, i) => ({

@@ -21,10 +21,10 @@ interface typeProducts {
 }
 
 export default function SideBar({ isProducts, setCart, setProducts }: typeProducts) {
-    const [selectedDetailsEmployees, setSelectedDetailsEmployees] = useState<string | null>("");
-    const [selectedDetailsClients, setSelectedDetailsClients] = useState<string | null>("");
+    const [selectedDetailsEmployees, setSelectedDetailsEmployees] = useState<string | null>("Details Employees");
+    const [selectedDetailsClients, setSelectedDetailsClients] = useState<string | null>("Details Clients");
     const [selectedProducts, setSelectedProducts] = useState<string | null>("");
-    const [selectedInvoice, setSelectedInvoice] = useState<string | null>("");
+    const [selectedInvoice, setSelectedInvoice] = useState<string | null>("Invoice Details");
 
     const [removeRoles, setRemovRoles] = useState(false)
     const [warningProducts, setWarningProducts] = useState(false)

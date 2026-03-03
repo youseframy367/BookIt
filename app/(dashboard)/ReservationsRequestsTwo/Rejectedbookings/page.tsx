@@ -39,7 +39,7 @@ export default function Rejectedbookings() {
 
   const allData = useAllReservationsData();
 
-  
+
 
   const Rejectedbooking = [
     { SinceDay: "10/2/2025", today: "20/10/2025", numPerson: 2, ClosedFrom: "5:00 PM", openFrom: "5:00 PM", id: "233034" },
@@ -99,17 +99,8 @@ export default function Rejectedbookings() {
     return { allDataTrue, allDataFalse };
   }, [allData]);
 
-  const filteredData = typeApproved ? allDataTrue : allDataFalse;
-
-  /// useEffect(() => {
-  //   const typeFilter = window.sessionStorage.getItem("type");
-  //  setTypeApproved(typeFilter === "true");
-  // }, []);
-
   const [AddDay, setAddDay] = useState(false)
   const [filterData, setFilterData] = useState({ site: "", type: "", date: "" });
-
-  //const Rejectedbooking = useDataRejectedBookingData();
 
   function saveDataInSecon(customer: any) {
     const bookingData = {
@@ -147,76 +138,38 @@ export default function Rejectedbookings() {
     window.sessionStorage.setItem("bookingEditData", JSON.stringify(bookingData));
     router.push("/ReservationsRequestsTwo/OrderDetails");
   }
-  function to24Hour(timeStr: any) {
-    if (!timeStr) return "";
-    const [time, modifier] = timeStr.split(" ");
-    let [hours, minutes] = time.split(":");
-    if (modifier === "PM" && hours !== "12") hours = String(+hours + 12);
-    if (modifier === "AM" && hours === "12") hours = "00";
-    return `${hours.padStart(2, "0")}:${minutes}`;
-  }
 
- 
-const filteredCustomers = useMemo(() => {
-  const sourceData = typeTable === "Booking" 
-    ? (typeApproved ? allDataTrue : allDataFalse) 
-    : Rejectedbooking;
+  const filteredCustomers = useMemo(() => {
+    const sourceData = typeTable === "Booking"
+      ? (typeApproved ? allDataTrue : allDataFalse)
+      : Rejectedbooking;
 
-  const lowerSearch = searchTerm.toLowerCase();
+    const lowerSearch = searchTerm.toLowerCase();
 
-  return sourceData.filter((item) => {
-    const searchMatch =
-      !searchTerm || Object.values(item).some(
-        (val) => val?.toString().toLowerCase().includes(lowerSearch)
-      );
+    return sourceData.filter((item) => {
+      const searchMatch =
+        !searchTerm || Object.values(item).some(
+          (val) => val?.toString().toLowerCase().includes(lowerSearch)
+        );
 
-  //  const filterMatch =
-  //   (!filterData.date || item.SinceDay?.includes(filterData.date) || item.today?.includes(filterData.date)) &&
-   //   (!filterData.numPerson || item.numPerson?.toString() === filterData.numPerson) &&
-   //   (!filterData.time || item.ClosedFrom?.includes(filterData.time) || item.openFrom?.includes(filterData.time));
+      return searchMatch
+    });
+  }, [allDataTrue, allDataFalse, searchTerm, filterData, typeApproved, typeTable]);
 
-    return searchMatch //&& filterMatch;
-  });
-}, [allDataTrue, allDataFalse, searchTerm, filterData, typeApproved, typeTable]);
-
-  //  const numPages = Math.ceil(filteredCustomers.length / numRow);
-  ////  const displayedCustomers = filteredCustomers.slice(
-  //   (currentPage - 1) * numRow,
-  //   currentPage * numRow
-  //  );
-
-  //  const scroll = (direction: any) => {
-  // if (!numbersRef.current) return;
-  //   const scrollAmount = 120;
-  //   numbersRef.current.scrollBy({
-  //     left: direction === "right" ? scrollAmount : -scrollAmount,
-  //     behavior: "smooth",
-  //   });
-  //  };
-
-
-
-
-
-
-
-
-
-
-// استدعاء الباجنيشن
-const {
-  currentPage,
-  setCurrentPage,
-  numPages,
-  setNumRow,
-  displayedCustomers,
-  scroll,
-  numRow,
-  numbersRef,
-} = usePagnation(
-  filteredCustomers, // <-- استخدم always filteredCustomers
-  searchTerm
-);
+  // استدعاء الباجنيشن
+  const {
+    currentPage,
+    setCurrentPage,
+    numPages,
+    setNumRow,
+    displayedCustomers,
+    scroll,
+    numRow,
+    numbersRef,
+  } = usePagnation(
+    filteredCustomers, // <-- استخدم always filteredCustomers
+    searchTerm
+  );
   return (
     <div className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
       {/*----------------------------------------this is componnt control remove customers----------------------*/}
@@ -233,18 +186,14 @@ const {
 
       {filter && <Filter setFilter={setFilter} onSearch={setFilterData} />}
 
-
       {/*-------------------------------------- Add Day ----------------------------------------------------------*/}
       {AddDay && (
         <AddBookingDays onClose={() => setAddDay(false)} />
       )}
 
-
       {/* ------------------------------------ head bage show all customers----------------------------------------*/}
 
-
-
-      <div className="p-[10px] px-[0px] flex flex-wrap items-center justify-between gap-4 ">
+      <div className="flex flex-wrap items-center justify-between gap-4 p-[10px]">
         <p className="text-[#1D1D1D] font-bold text-[16px] whitespace-nowrap">قائمة طلبات الحجز بالكامل</p>
         <div className="flex items-center gap-[10px] flex-1 justify-end ml-[10px]">
 
@@ -313,7 +262,7 @@ const {
       {/*--------------------------------------------- tabel booking -----------------------------------------------*/}
       {typeTable === "Booking" ? (
 
-        <div className="h-[80vh] mb-[30px] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+        <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           <table className="min-w-full text-right">
             <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
               <tr >
@@ -351,12 +300,12 @@ const {
               {displayedCustomers.length > 0 ? (
                 displayedCustomers.map((customer: any, idx: any) => (
                   <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors">
-                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.CustomerName}</td>
-                    <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numBerson}</td>
-                    <td className="px-[8px] py-[15px]   text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.Date}</td>
-                    <td className="px-[8px] py-[15px]  text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
-                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.MobileNumber}</td>
-                    <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.mail}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.CustomerName}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numBerson}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.Date}</td>
+                    <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.MobileNumber}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.mail}</td>
                     {typeApproved && (
                       <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                         <div className="flex items-center justify-center gap-[10px]">
@@ -407,12 +356,10 @@ const {
         </div>
       ) : (
 
-        <div className="h-[80vh] mb-[30px] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+        <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
           <table className="min-w-full text-right">
             <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
               <tr >
-
-
 
                 <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
                   اليوم من
@@ -426,43 +373,31 @@ const {
                   عدد الاشخاص المتاح لاستقبالهم
                 </th>
 
-
                 <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
                   مغلق من
                 </th>
-
 
                 <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
                   مغلق الى
                 </th>
 
-
-
-
-
-
                 <th className=" py-3 text-[12px] font-bold text-[#475467] pl-[5px]  whitespace-nowrap text-center">
                   الاجراء
                 </th>
-
-
-
-
-
               </tr>
             </thead>
             <tbody className="divide-gray-50">
               {displayedCustomers.length > 0 ? (
-                displayedCustomers.map((customer, idx) => (
+                displayedCustomers.map((customer: any, idx: any) => (
 
                   <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors">
-                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.SinceDay}</td>
-                    <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.today}</td>
-                    <td className="px-[8px] py-[15px]   text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numPerson}</td>
-                    <td className="px-[8px] py-[15px]  text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.ClosedFrom}</td>
-                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.openFrom}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.SinceDay}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.today}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numPerson}</td>
+                    <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.ClosedFrom}</td>
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.openFrom}</td>
 
-                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                       <div className="flex items-center justify-center gap-[10px]">
                         <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
                           () => {
@@ -503,10 +438,7 @@ const {
             </tbody>
           </table>
         </div>
-
-
       )
-
       }
       {/*------------------------------ control of bage ------------------------------------------------------------*/}
       <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />

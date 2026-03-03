@@ -1,6 +1,6 @@
 export default function Pagnation({ numRow, setNumRow, scroll, numbersRef, numPages, currentPage, setCurrentPage }) {
     return (
-        <div className="flex w-full justify-between items-center p-[20px]">
+        <div className="flex w-full justify-between items-center py-[10px] px-[20px]">
             <div className="flex items-center gap-[10px]">
                 <p className="text-[12px] font-normal text-[rgba(29,29,29,0.8)]">
                     حدد عدد صفوف السجلات لكل صفحة
@@ -15,7 +15,7 @@ export default function Pagnation({ numRow, setNumRow, scroll, numbersRef, numPa
                     ))}
                 </select>
             </div>
-            <div className="flex items-center justify-center gap-2 m-5" >
+            <div className="flex items-center justify-center gap-2" >
                 {/* السهم اليسار */}
                 < button
                     onClick={() => scroll("left")

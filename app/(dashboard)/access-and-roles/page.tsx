@@ -27,7 +27,7 @@ export default function AccessAndRoles() {
                     onClose={() => setRemovRoles(false)} />
             )
             }
-            <div className="p-[10px] px-[0px] flex flex-wrap items-center justify-between gap-4 ">
+            <div className="p-[10px] flex flex-wrap items-center justify-between gap-4 ">
                 <p className="text-[#1D1D1D] font-bold text-[16px] whitespace-nowrap">كل الادوار</p>
                 <div className="flex items-center gap-[10px] flex-1 justify-end ml-[10px]">
 
@@ -52,7 +52,7 @@ export default function AccessAndRoles() {
 
             {/*--------------------------------------------- tabel Customers -----------------------------------------------*/}
 
-            <div className="h-[80vh] mb-[30px] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+            <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
                 <table className="min-w-full text-right">
                     <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
                         <tr >
