@@ -7,7 +7,7 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
             <div className="flex flex-col gap-[23px]">
                 <div className="pt-[23px] flex flex-wrap items-center justify-between gap-4">
                     <h2 className="text-[#1D1D1D] font-semibold text-base whitespace-nowrap">عرض الدور</h2>
-                    <div className="text-[var(--color-red-table)] text-xs font-semibold bg-[var(--color-red-again)] rounded-[10px] px-[15px] py-[10px]">
+                    <div className="cursor-pointer text-[var(--color-red-table)] text-xs font-semibold bg-[var(--color-red-again)] rounded-[10px] px-[15px] py-[10px]">
                         <span>اعاده التفعيل</span>
                     </div>
                 </div>
@@ -31,10 +31,10 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                     </div>
                 </div>
                 <div className="flex justify-between">
-                    <Link href="/AccessAndRoles" className="border border-1 border-[var(--color-navbar)] flex gap-[8px] rounded-[8px] py-[7px] px-[23px]">
+                    <Link title="الغاء" href="/access-and-roles" className="border border-1 border-[var(--color-navbar)] flex gap-[8px] rounded-[8px] py-[7px] px-[23px]">
                         <span className="font-semibold text-[var(--color-btn-update)]">الغاء</span>
                     </Link>
-                    <button className="border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-sm px-[23px] py-[7px] rounded-[12px] font-medium">
+                    <button title="حفظ" className="cursor-pointer border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-sm px-[23px] py-[7px] rounded-[12px] font-medium">
                         حفظ
                     </button>
                 </div>

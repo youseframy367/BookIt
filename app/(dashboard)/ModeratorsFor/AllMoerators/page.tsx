@@ -1,26 +1,19 @@
 
 "use client";
 
-
 import { useState, useMemo, } from "react";
 import { useRouter } from "next/navigation";
 import { usePagnation } from "../../../hooks/usePagnation";
 import { useMsgModetor } from "../../../data/dataModetor";
-//import ControlTable from "../../partes/controlTable";
 import Pagnation from "../../../components/public/Pagnation";
-import ConfirmModal from "../../../components/Dashborad/AccessAndRoles/sure";
+import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
+
 export default function AllMoerators() {
   const router = useRouter()
-  const [remove, setRemove] = useState(false)
   const [searchTerm, setSearchTerm] = useState("");
- // const [numRow, setNumRow] = useState(10);
- // const [currentPage, setCurrentPage] = useState(1);
-  const [numId ,setNumId]=useState()
-
+  const [removeRoles, setRemovRoles] = useState(false)
 
   const dataMoerators = useMsgModetor()
-
-
 
   const filtered = useMemo(() => {
     if (!searchTerm) return dataMoerators;
@@ -36,32 +29,22 @@ export default function AllMoerators() {
     );
   }, [searchTerm, dataMoerators]);
 
-const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
-  usePagnation(filtered, searchTerm);
+  const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
+    usePagnation(filtered, searchTerm);
 
+  const handleDelete = () => {
 
-
- /// const numPages = Math.ceil(filtered.length / numRow);
- // const startIndex = (currentPage - 1) * numRow;
- // const displayedCustomers = filtered.slice(startIndex, startIndex + numRow);
+  };
 
   return (
     <div className="flex w-[98%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden m-[1%]">
-      {remove && (
-        
-             <ConfirmModal
-                  id={numId}
-                  apiUrl="https://your-api.com/moerators"
-                  title= " تأكيد الإجراء"
-                  message=  "هل أنت متأكد أنك تريد حذف هذا المدير ؟"
-                  confirmText="تأكيد"
-                  cancelText="إلغاء"
-                  onClose={() => setRemove(false)}
-                />
-        
-        
-        
-       )}
+      {removeRoles && (
+        <RemoveRoles
+          text="هل أنت متأكد أنك تريد حذف هذا المدير ؟"
+          handleDelete={handleDelete}
+          onClose={() => setRemovRoles(false)} />
+      )
+      }
 
       {/*---------------------------------------header Bage ----------------------------------------------------*/}
 
@@ -84,11 +67,10 @@ const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, sc
             />
           </div>
 
-          <button
-            className=" text-[#fff] bg-[#183866] text-[500] flex items-center justify-center px-5 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px]"
+          <button title="إضافة"
+            className="cursor-pointer text-[#fff] bg-[#183866] text-[500] flex items-center justify-center px-5 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px]"
 
             onClick={() => {
-
               router.push("/ModeratorsFor/AddMoerators");
             }}
           >
@@ -113,14 +95,12 @@ const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, sc
               <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap">الحاله</th>
               <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap">الحساب</th>
               <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap">الاجراء</th>
-
-
             </tr>
           </thead>
 
           <tbody className="divide-gray-50">
             {displayedCustomers.length > 0 ? (
-              displayedCustomers.map((m, i) => (
+              displayedCustomers.map((m: any, i: any) => (
                 <tr key={i} className="hover:bg-[#F9FAFB]/50 transition-colors">
                   <td className="px-[8px] py-[12px]" style={{
                     display: 'flex',
@@ -142,7 +122,6 @@ const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, sc
                   <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
                   >{m.title}</td>
 
-
                   <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
                   >{m.nameGop}</td>
                   <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
@@ -152,15 +131,9 @@ const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, sc
                   }}
 
                     onClick={() => {
-
-
                       window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(m));
                       router.push("/ModeratorsFor/updateMoerators");
-
-
                     }}
-
-
 
                   >{m.stat ? "نشط" : "معطل"}</td>
                   <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] " style={{
@@ -176,45 +149,31 @@ const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, sc
 
                     }}
 
-
                   >{m.acount ? "ايقاف الحساب" : 'تفعيل'}</td>
-                  <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]" >
-
-
+                  <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                     <div className="flex items-center justify-center gap-[10px]">
-                      <img src="/img/كمغخخحه.svg" width="10px" height="8px"
+                      <span title="معاينه" className="cursor-pointer flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
+                        () => {
+                          window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(m));
+                          router.push("/ModeratorsFor/detalsMoerators");
+                        }}>
+                        <img src="/img/كمغخخحه.svg" width="10" height="8px" />
+                      </span>
 
-                        onClick={
-                          () => {
-
-                            window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(m));
-                            router.push("/ModeratorsFor/detalsMoerators");
-
-                          }}
-
-                      />
-
-
-                      <img src="/img/تعديل.svg" onClick={() => {
-                        window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(m));
+                      <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
                         router.push("/ModeratorsFor/updateMoerators");
+                      }} />
 
-
-                      }}
-                      ></img>
-                      <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
-                        setNumId(m.id)
-                        setRemove(true)
-
+                      <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                        setRemovRoles(true)
                       }} />
                     </div>
-
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="12" className="p-[20px] text-center text-gray-500 text-[12px]">
+                <td className="p-[20px] text-center text-gray-500 text-[12px]">
                   لا يوجد سجلات
                 </td>
               </tr>
@@ -222,23 +181,8 @@ const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, sc
           </tbody>
         </table>
       </div>
-
-
-
- {/* ------------------------------------filter Bage----------------------------------------- */}
+      {/* ------------------------------------filter Bage----------------------------------------- */}
       <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      {/* ---------------------------------------------control of bage -----------------------------------------
-
-
-
-     <ControlTable
-   //     numRow={numRow}
-  //      setNumRow={setNumRow}
-   //     numPages={numPages}
-   //     currentPage={currentPage}
-   //     setCurrentPage={setCurrentPage}
-   //   />
-   */}
     </div>
   );
 }

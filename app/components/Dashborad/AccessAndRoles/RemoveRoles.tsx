@@ -1,6 +1,12 @@
 "use client";
 
-export default function RemoveRoles({ handleDelete, onClose }: any) {
+interface typeData {
+    text: string;
+    onClose: () => void;
+    handleDelete: () => void;
+}
+
+export default function RemoveRoles({ text, handleDelete, onClose }: typeData) {
     return (
         <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
             <div className="w-[684px] h-[178px] rounded-[12px] bg-white p-[20px]">
@@ -11,7 +17,7 @@ export default function RemoveRoles({ handleDelete, onClose }: any) {
                         </p>
 
                         <p className="text-[rgba(19,19,19,0.5)] text-[18px] font-normal">
-                            هل أنت متأكد أنك تريد حذف هذا الدور
+                            {text}
                         </p>
                     </div>
                     <div className="flex gap-[16px] direction-ltr mt-[20px]">

@@ -32,7 +32,7 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                                 prev === "Add Role" ? null : "Add Role"
                             )
                         }>
-                            <div className="py-[13px] w-full flex justify-between items-center">
+                            <div title="تعديل دور" className="cursor-pointer py-[13px] w-full flex justify-between items-center">
                                 <span className="text-base font-semibold">تعديل دور</span>
                                 <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedAddRole == 'Add Role' && 'rotate-179'}`} />
                             </div>
@@ -56,7 +56,7 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                                 prev === "access" ? null : "access"
                             )
                         }>
-                            <div className="py-[13px] w-full flex justify-between items-center">
+                            <div title="تعديل دور" className="cursor-pointer py-[13px] w-full flex justify-between items-center">
                                 <span className="text-base font-semibold">الصلاحيات ( AR )</span>
                                 <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedAccess == 'access' && 'rotate-179'}`} />
                             </div>

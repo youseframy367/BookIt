@@ -19,11 +19,16 @@ export default function AccessAndRoles() {
     const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
         usePagnation(DataCustomers, searchTerm)
 
+    const handleDelete = () => {
+
+    };
+
     return (
         <section className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
             {removeRoles && (
                 <RemoveRoles
-                    id={numperOfId}
+                    text="هل أنت متأكد أنك تريد حذف هذا الدور ؟"
+                    handleDelete={handleDelete}
                     onClose={() => setRemovRoles(false)} />
             )
             }
@@ -89,7 +94,11 @@ export default function AccessAndRoles() {
                                 <tr key={idx} className={`hover:bg-[#F9FAFB]/50 transition-colors ${customer.status === "معلق" && "opacity-50"
                                     }`}>
                                     <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.roles}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] underline overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.access}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] underline overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                                        <Link href={`/access-and-roles/${customer.id}`} title={customer.access} className="cursor-pointer">
+                                            {customer.access}
+                                        </Link>
+                                    </td>
                                     <td className={`px-[8px] py-[15px] text-[10px] font-[400]  text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.status === "معلق" ? 'text-[var(--color-red-table)]' : 'text-green-500'}`}>{customer.status}</td>
                                     <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
                                     <td className={`px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.statusNow === "اعاده التفعيل" && 'text-[var(--color-red-table)]'}`}>
@@ -98,18 +107,18 @@ export default function AccessAndRoles() {
 
                                     <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                                         <div className="flex items-center justify-center gap-[10px]">
-                                            <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
+                                            <span title="معاينه" className="cursor-pointer flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
                                                 () => {
                                                     router.push(`/access-and-roles/${customer.id}`);
                                                 }}>
                                                 <img src="/img/كمغخخحه.svg" width="10" height="8px" />
                                             </span>
 
-                                            <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
+                                            <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
                                                 router.push(`/access-and-roles/update/${customer.id}`);
                                             }} />
 
-                                            <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                                            <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
                                                 setRemovRoles(true)
                                                 setId(customer.id);
                                             }} />

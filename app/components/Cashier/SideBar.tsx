@@ -91,6 +91,7 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
         <div className="relative">
             {removeRoles && (
                 <RemoveRoles
+                    text="هل أنت متأكد أنك تريد حذف هذه الفاتوره ؟"
                     handleDelete={deleteAllProducts}
                     onClose={() => setRemovRoles(false)}
                 />

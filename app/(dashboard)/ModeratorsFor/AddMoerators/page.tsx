@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 export default function AddModerators() {
   const router = useRouter()
   const [imageSrc, setImageSrc] = useState('/img/trrruyeryer.svg');
-  const [imageFile, setImageFile] = useState(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const [formData, setFormData] = useState({
     nameAr: '',
@@ -23,22 +23,29 @@ export default function AddModerators() {
     password: ''
   });
 
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
     if (file) {
       setImageFile(file);
       const reader = new FileReader();
-      reader.onload = (e) => setImageSrc(e.target.result);
+
+      reader.onload = (e) => {
+        const result = e.target?.result;
+        if (typeof result === "string") {
+          setImageSrc(result);
+        }
+      };
+
       reader.readAsDataURL(file);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (!formData.nameAr || !formData.email) {
