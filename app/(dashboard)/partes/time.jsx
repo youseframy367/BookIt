@@ -7,14 +7,12 @@ export default function TimeSupscribtion() {
   const [showTime, setShowTime] = useState(true);
   const [currentSponsor, setCurrentSponsor] = useState(0);
 
-  // 🖼️ صور الرعاة (تقدر تجيبها من API)
   const sponsors = [
     "/img/result 1.png",
     "/img/FAxacBciPwmGGziG44usNqMrhpSsBJqVGg6QXn0Q 1.png",
     "/img/e6b08986e699dd21b87627e3b0a86a309ee36f03.png",
   ];
 
-  // 🔁 التبديل بين الوقت والصور كل 5 ثواني
   useEffect(() => {
     const interval = setInterval(() => {
       setShowTime((prev) => !prev);
@@ -22,7 +20,6 @@ export default function TimeSupscribtion() {
     return () => clearInterval(interval);
   }, []);
 
-  // ⏭️ لو حاليا في وضع الصور، بدّل الصورة كل 5 ثواني
   useEffect(() => {
     if (!showTime) {
       const imgInterval = setInterval(() => {
@@ -32,7 +29,6 @@ export default function TimeSupscribtion() {
     }
   }, [showTime, sponsors.length]);
 
-  // 🎨 إعدادات الأنيميشن
   const fadeVariants = {
     hidden: { opacity: 0, y: 20, scale: 0.98 },
     visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8 } },

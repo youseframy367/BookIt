@@ -21,16 +21,12 @@ export default function AccessAndRoles() {
 
     return (
         <section className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
-            {/*----------------------------------------this is componnt control remove customers----------------------*/}
-
             {removeRoles && (
                 <RemoveRoles
                     id={numperOfId}
-                    onClose={() => setRemovRoles(false)}
-                />
-            )}
-            {/* ------------------------------------ head bage show all customers----------------------------------------*/}
-
+                    onClose={() => setRemovRoles(false)} />
+            )
+            }
             <div className="p-[10px] px-[0px] flex flex-wrap items-center justify-between gap-4 ">
                 <p className="text-[#1D1D1D] font-bold text-[16px] whitespace-nowrap">كل الادوار</p>
                 <div className="flex items-center gap-[10px] flex-1 justify-end ml-[10px]">

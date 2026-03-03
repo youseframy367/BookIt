@@ -606,17 +606,30 @@ html[dir="rtl"] .swiper-button-next {
     }
 }
 
-/* إخفاء شريط التمرير في جميع المتصفحات، مع الإبقاء على التمرير */
 body {
-  /* لإخفاء شريط التمرير في IE و Edge القديم */
   -ms-overflow-style: none;
-  overflow-x: hidden;
-
-  /* لإخفاء شريط التمرير في Firefox */
   scrollbar-width: none;
 }
 
-/* لإخفاء شريط التمرير في Chrome و Safari و Edge الجديد */
 body::-webkit-scrollbar {
   display: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* لإخفاء الأسهم في متصفحات Chrome, Edge, Safari */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* لإخفاء الأسهم في Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
 }

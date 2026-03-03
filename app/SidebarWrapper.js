@@ -24,7 +24,7 @@ export default function MainLayout({ children }) {
             </div>
             <div className="flex-1 flex flex-col">
               <header className="fixed w-[80%] top-0 h-[70px] z-[999] bg-white flex items-center px-8 pt-7 pb-5 flex justify-between">
-                <h2 className="text-[#3D3D3D] mt-[5px] text-[18px] font-bold">{title}</h2>
+                <h2 className="text-[#3D3D3D] mt-[-6px] text-[18px] font-bold">{title}</h2>
                 <div className="flex gap-[16px] items-center">
                   <img src={dataHeader.img} className="w-[36px] h-[36px]"></img>
                   <div className="flex flex-col gap-[4px]">

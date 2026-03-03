@@ -17,8 +17,9 @@ export default function Sidebar({ setTitle }: typeTitle) {
 
   const navigat = [
     { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
-    { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/AllReservations', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
+    { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/Rejectedbookings', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
     { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" },
+    {name :'المشرفين', navigate:"/ModeratorsFor/AllMoerators" ,title :'المشرفين', icon :"/img/modetorIcon.svg" , iconActiv:"/img/modetorIconActiv.svg"},
     {
       name: "الكاشير",
       navigate: '/cashier',

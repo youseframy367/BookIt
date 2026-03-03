@@ -58,7 +58,7 @@ export default function Graph() {
     <div className="flex justify-between w-[100%] m-0 p-0">
       {/*------------------------------------ Graph col ----------------------------------------- */}
       <div
-        className="w-[49%] m-[1%] h-[420px] bg-white rounded-[12px] p-[15px] border border-2 border-[rgba(0,0,0,0.1)]" dir="rtl"
+        className="w-[49%] m-[1%] h-[420px] bg-white rounded-[12px] p-[15px] border border-1 border-[rgba(0,0,0,0.1)]" dir="rtl"
       >
         {/* Header Section */}
         <div className="w-full flex items-center px-[5px] py-[10px] justify-between">

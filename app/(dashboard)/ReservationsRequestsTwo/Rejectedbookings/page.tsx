@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect, useMemo } from "react";
+import Pagnation from "@/app/components/public/Pagnation";
+import { usePagnation } from "@/app/hooks/usePagnation";
 import { useRouter } from "next/navigation";
 import RemoveBooking from "../removeBooking";
 import Filter from "../filter";
 import AddBookingDays from "../../../components/Dashborad/Reservations/AddBookingDays";
-import { useDataRejectedBookingData } from "@/app/data/dataRejectedbooking";
+//import { useDataRejectedBookingData } from "@/app/data/dataRejectedbooking";
+import { useAllReservationsData } from "../../../data/dataAllReservations";
 
 type BookingEdit = {
   numPersons: number;
@@ -23,26 +25,91 @@ export default function Rejectedbookings() {
 
   const router = useRouter()
   const [selectedBooking, setSelectedBooking] = useState<BookingEdit | null>(null);
-  const numbersRef = useRef<HTMLDivElement | null>(null);
+  // const numbersRef = useRef<HTMLDivElement | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState(false);
-  const [numRow, setNumRow] = useState(13);
-  const [currentPage, setCurrentPage] = useState(1);
+  //  const [numRow, setNumRow] = useState(13);
+  // const [currentPage, setCurrentPage] = useState(1);
+  const [typeTable, setTypeTable] = useState("Booking");
   const [removeBooKing, setRemovBooKing] = useState(false)
   const [numperOfId, setId] = useState<string | null>(null);
-  const [approved, setApproved] = useState<boolean | null>(null);
+  const [approved, setApproved] = useState<boolean | null>(true);
 
   const [typeApproved, setTypeApproved] = useState(false);
 
-  useEffect(() => {
-    const typeFilter = window.sessionStorage.getItem("type");
-    setTypeApproved(typeFilter === "true");
-  }, []);
+  const allData = useAllReservationsData();
+
+  
+
+  const Rejectedbooking = [
+    { SinceDay: "10/2/2025", today: "20/10/2025", numPerson: 2, ClosedFrom: "5:00 PM", openFrom: "5:00 PM", id: "233034" },
+    { SinceDay: "11/2/2025", today: "21/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "1:00 PM", id: "233035" },
+    { SinceDay: "12/2/2025", today: "22/10/2025", numPerson: 3, ClosedFrom: "10:30 PM", openFrom: "2:00 PM", id: "233036" },
+    { SinceDay: "13/2/2025", today: "23/10/2025", numPerson: 5, ClosedFrom: "12:00 AM", openFrom: "6:00 PM", id: "233037" },
+    { SinceDay: "14/2/2025", today: "24/10/2025", numPerson: 2, ClosedFrom: "4:00 PM", openFrom: "10:00 AM", id: "233038" },
+    { SinceDay: "15/2/2025", today: "25/10/2025", numPerson: 1, ClosedFrom: "11:00 PM", openFrom: "12:00 PM", id: "233039" },
+    { SinceDay: "16/2/2025", today: "26/10/2025", numPerson: 3, ClosedFrom: "9:00 PM", openFrom: "5:00 PM", id: "233040" },
+    { SinceDay: "17/2/2025", today: "27/10/2025", numPerson: 6, ClosedFrom: "11:30 PM", openFrom: "4:00 PM", id: "233041" },
+    { SinceDay: "18/2/2025", today: "28/10/2025", numPerson: 2, ClosedFrom: "10:00 PM", openFrom: "3:00 PM", id: "233042" },
+    { SinceDay: "19/2/2025", today: "29/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233043" },
+    { SinceDay: "20/2/2025", today: "30/10/2025", numPerson: 2, ClosedFrom: "8:00 PM", openFrom: "2:00 PM", id: "233044" },
+    { SinceDay: "21/2/2025", today: "31/10/2025", numPerson: 7, ClosedFrom: "9:00 PM", openFrom: "1:00 PM", id: "233045" },
+    { SinceDay: "22/2/2025", today: "01/11/2025", numPerson: 2, ClosedFrom: "5:30 PM", openFrom: "11:00 AM", id: "233046" },
+    { SinceDay: "23/2/2025", today: "02/11/2025", numPerson: 8, ClosedFrom: "10:00 PM", openFrom: "12:00 PM", id: "233047" },
+    { SinceDay: "24/2/2025", today: "03/11/2025", numPerson: 4, ClosedFrom: "11:45 PM", openFrom: "5:00 PM", id: "233048" },
+    { SinceDay: "25/2/2025", today: "04/11/2025", numPerson: 1, ClosedFrom: "6:00 PM", openFrom: "8:00 AM", id: "233049" },
+    { SinceDay: "26/2/2025", today: "05/11/2025", numPerson: 3, ClosedFrom: "10:00 PM", openFrom: "3:00 PM", id: "233050" },
+    { SinceDay: "27/2/2025", today: "06/11/2025", numPerson: 5, ClosedFrom: "9:30 PM", openFrom: "2:00 PM", id: "233051" },
+    { SinceDay: "28/2/2025", today: "07/11/2025", numPerson: 9, ClosedFrom: "10:30 PM", openFrom: "12:00 PM", id: "233052" },
+    { SinceDay: "01/3/2025", today: "08/11/2025", numPerson: 2, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233053" },
+    { SinceDay: "10/2/2025", today: "20/10/2025", numPerson: 2, ClosedFrom: "5:00 PM", openFrom: "5:00 PM", id: "233034" },
+    { SinceDay: "11/2/2025", today: "21/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "1:00 PM", id: "233035" },
+    { SinceDay: "12/2/2025", today: "22/10/2025", numPerson: 3, ClosedFrom: "10:30 PM", openFrom: "2:00 PM", id: "233036" },
+    { SinceDay: "13/2/2025", today: "23/10/2025", numPerson: 5, ClosedFrom: "12:00 AM", openFrom: "6:00 PM", id: "233037" },
+    { SinceDay: "14/2/2025", today: "24/10/2025", numPerson: 2, ClosedFrom: "4:00 PM", openFrom: "10:00 AM", id: "233038" },
+    { SinceDay: "15/2/2025", today: "25/10/2025", numPerson: 1, ClosedFrom: "11:00 PM", openFrom: "12:00 PM", id: "233039" },
+    { SinceDay: "16/2/2025", today: "26/10/2025", numPerson: 3, ClosedFrom: "9:00 PM", openFrom: "5:00 PM", id: "233040" },
+    { SinceDay: "17/2/2025", today: "27/10/2025", numPerson: 6, ClosedFrom: "11:30 PM", openFrom: "4:00 PM", id: "233041" },
+    { SinceDay: "18/2/2025", today: "28/10/2025", numPerson: 2, ClosedFrom: "10:00 PM", openFrom: "3:00 PM", id: "233042" },
+    { SinceDay: "19/2/2025", today: "29/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233043" },
+    { SinceDay: "20/2/2025", today: "30/10/2025", numPerson: 2, ClosedFrom: "8:00 PM", openFrom: "2:00 PM", id: "233044" },
+    { SinceDay: "21/2/2025", today: "31/10/2025", numPerson: 7, ClosedFrom: "9:00 PM", openFrom: "1:00 PM", id: "233045" },
+    { SinceDay: "22/2/2025", today: "01/11/2025", numPerson: 2, ClosedFrom: "5:30 PM", openFrom: "11:00 AM", id: "233046" },
+    { SinceDay: "23/2/2025", today: "02/11/2025", numPerson: 8, ClosedFrom: "10:00 PM", openFrom: "12:00 PM", id: "233047" },
+    { SinceDay: "24/2/2025", today: "03/11/2025", numPerson: 4, ClosedFrom: "11:45 PM", openFrom: "5:00 PM", id: "233048" },
+    { SinceDay: "25/2/2025", today: "04/11/2025", numPerson: 1, ClosedFrom: "6:00 PM", openFrom: "8:00 AM", id: "233049" },
+    { SinceDay: "26/2/2025", today: "05/11/2025", numPerson: 3, ClosedFrom: "10:00 PM", openFrom: "3:00 PM", id: "233050" },
+    { SinceDay: "27/2/2025", today: "06/11/2025", numPerson: 5, ClosedFrom: "9:30 PM", openFrom: "2:00 PM", id: "233051" },
+    { SinceDay: "28/2/2025", today: "07/11/2025", numPerson: 9, ClosedFrom: "10:30 PM", openFrom: "12:00 PM", id: "233052" },
+    { SinceDay: "01/3/2025", today: "08/11/2025", numPerson: 2, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233053" },
+
+
+
+
+
+  ]
+
+
+
+
+  // filter data 
+  const { allDataTrue, allDataFalse } = useMemo(() => {
+    const allDataTrue = allData.filter((item) => item.RequestStatus === true);
+    const allDataFalse = allData.filter((item) => item.RequestStatus === false);
+    return { allDataTrue, allDataFalse };
+  }, [allData]);
+
+  const filteredData = typeApproved ? allDataTrue : allDataFalse;
+
+  /// useEffect(() => {
+  //   const typeFilter = window.sessionStorage.getItem("type");
+  //  setTypeApproved(typeFilter === "true");
+  // }, []);
 
   const [AddDay, setAddDay] = useState(false)
   const [filterData, setFilterData] = useState({ site: "", type: "", date: "" });
-  
-  const Rejectedbooking = useDataRejectedBookingData();
+
+  //const Rejectedbooking = useDataRejectedBookingData();
 
   function saveDataInSecon(customer: any) {
     const bookingData = {
@@ -89,55 +156,67 @@ export default function Rejectedbookings() {
     return `${hours.padStart(2, "0")}:${minutes}`;
   }
 
-  const filteredCustomers = useMemo(() => {
-    const lowerSearch = searchTerm.toLowerCase();
+ 
+const filteredCustomers = useMemo(() => {
+  const sourceData = typeTable === "Booking" 
+    ? (typeApproved ? allDataTrue : allDataFalse) 
+    : Rejectedbooking;
 
-    return Rejectedbooking.filter((customer) => {
-      const searchMatch =
-        !searchTerm ||
-        Object.values(customer).some((val) =>
-          val?.toString().toLowerCase().includes(lowerSearch)
-        );
+  const lowerSearch = searchTerm.toLowerCase();
 
-      const siteMatch =
-        !filterData.site ||
-        customer.numPerson.toString() === String(filterData.site);
+  return sourceData.filter((item) => {
+    const searchMatch =
+      !searchTerm || Object.values(item).some(
+        (val) => val?.toString().toLowerCase().includes(lowerSearch)
+      );
 
-      const timeMatch = (() => {
-        if (!filterData.type) return true;
-        const custTime24 = to24Hour(customer.ClosedFrom);
-        const filterTime = String(filterData.type).slice(0, 5);
-        return custTime24 === filterTime;
-      })();
+  //  const filterMatch =
+  //   (!filterData.date || item.SinceDay?.includes(filterData.date) || item.today?.includes(filterData.date)) &&
+   //   (!filterData.numPerson || item.numPerson?.toString() === filterData.numPerson) &&
+   //   (!filterData.time || item.ClosedFrom?.includes(filterData.time) || item.openFrom?.includes(filterData.time));
 
-      const dateMatch = (() => {
-        if (!filterData.date) return true;
-        if (!customer.SinceDay) return false;
-        const [d, m, y] = customer.SinceDay.split("/");
-        const formattedDate = `${y}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
-        return formattedDate === filterData.date;
-      })();
+    return searchMatch //&& filterMatch;
+  });
+}, [allDataTrue, allDataFalse, searchTerm, filterData, typeApproved, typeTable]);
 
-      if (typeApproved === true) return customer.approved === true && searchMatch && siteMatch && timeMatch && dateMatch;
-      if (typeApproved === false) return customer.approved === false && searchMatch && siteMatch && timeMatch && dateMatch;
-      return searchMatch && siteMatch && timeMatch && dateMatch;
-    });
-  }, [Rejectedbooking, searchTerm, filterData, typeApproved]);
-  const numPages = Math.ceil(filteredCustomers.length / numRow);
-  const displayedCustomers = filteredCustomers.slice(
-    (currentPage - 1) * numRow,
-    currentPage * numRow
-  );
+  //  const numPages = Math.ceil(filteredCustomers.length / numRow);
+  ////  const displayedCustomers = filteredCustomers.slice(
+  //   (currentPage - 1) * numRow,
+  //   currentPage * numRow
+  //  );
 
-  const scroll = (direction: any) => {
-    if (!numbersRef.current) return;
-    const scrollAmount = 120;
-    numbersRef.current.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
+  //  const scroll = (direction: any) => {
+  // if (!numbersRef.current) return;
+  //   const scrollAmount = 120;
+  //   numbersRef.current.scrollBy({
+  //     left: direction === "right" ? scrollAmount : -scrollAmount,
+  //     behavior: "smooth",
+  //   });
+  //  };
 
+
+
+
+
+
+
+
+
+
+// استدعاء الباجنيشن
+const {
+  currentPage,
+  setCurrentPage,
+  numPages,
+  setNumRow,
+  displayedCustomers,
+  scroll,
+  numRow,
+  numbersRef,
+} = usePagnation(
+  filteredCustomers, // <-- استخدم always filteredCustomers
+  searchTerm
+);
   return (
     <div className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
       {/*----------------------------------------this is componnt control remove customers----------------------*/}
@@ -190,12 +269,11 @@ export default function Rejectedbookings() {
           />
 
           <button
-            className={`border-[1px] bprder-[#183866] ${typeApproved === false
-              ? "bg-[#183866] text-[#fff]"
-              : "text-[#183866]"
-              } text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[132px] whitespace-nowrap`}
+            className={`border-[1px] bprder-[#183866] 
+              "text-[#183866]"
+               text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[132px] whitespace-nowrap`}
             onClick={() => {
-              setTypeApproved(false);
+              setTypeTable("Days");
             }}
           >
             أيام الحجوزات التي تم رفعها
@@ -208,6 +286,7 @@ export default function Rejectedbookings() {
               } text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[116px] whitespace-nowrap`}
             onClick={() => {
               setTypeApproved(true);
+              setTypeTable("Booking")
             }}
           >
             التي تمت الموافقة عليها
@@ -231,160 +310,206 @@ export default function Rejectedbookings() {
 
         </div>
       </div>
+      {/*--------------------------------------------- tabel booking -----------------------------------------------*/}
+      {typeTable === "Booking" ? (
 
-      {/*--------------------------------------------- tabel Customers -----------------------------------------------*/}
+        <div className="h-[80vh] mb-[30px] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <table className="min-w-full text-right">
+            <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
+              <tr >
 
-      <div className="h-[80vh] mb-[30px] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-        <table className="min-w-full text-right">
-          <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
-            <tr >
-              <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                اليوم من
-              </th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
+                  اسم العميل
+                </th>
 
-              <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                اليوم الى
-              </th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
+                  عدد الاشخاص
+                </th>
 
-              <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center" >
-                عدد الاشخاص المتاح لاستقبالهم
-              </th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center" >
+                  يوم الحجز المرغوب
+                </th>
 
-              <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                مغلق من
-              </th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
+                  التوقيت
+                </th>
 
-              <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
-                مغلق الى
-              </th>
-              <th className=" py-3 text-[12px] font-bold text-[#475467] pl-[5px]  whitespace-nowrap text-center">
-                الاجراء
-              </th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
+                  رقم الجوال
+                </th>
 
-            </tr>
-          </thead>
-          <tbody className="divide-gray-50">
-            {displayedCustomers.length > 0 ? (
-              displayedCustomers.map((customer, idx) => (
-                <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors">
-                  <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.SinceDay}</td>
-                  <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.today}</td>
-                  <td className="px-[8px] py-[15px]   text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numPerson}</td>
-                  <td className="px-[8px] py-[15px]  text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.ClosedFrom}</td>
-                  <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.openFrom}</td>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center"  >
+                  البريد
+                </th>
 
-                  <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
-                    <div className="flex items-center justify-center gap-[10px]">
-                      <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={() => { typeApproved === true ? showData(customer) : saveDataInSecon(customer) }}>
-                        <img src="/img/كمغخخحه.svg" width="10" height="8px" />
-                      </span>
-                      {!typeApproved && (
-                        <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => saveDataInSecon(customer)}
-                        ></img>
-                      )}
-                      <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
-                        setRemovBooKing(true)
-                        setId(customer.id);
-                        setApproved(customer.approved)
-                      }
+                <th className=" py-3 text-[12px] font-bold text-[#475467]   whitespace-nowrap text-center">
+                  الاجراء
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-gray-50">
+              {displayedCustomers.length > 0 ? (
+                displayedCustomers.map((customer: any, idx: any) => (
+                  <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors">
+                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.CustomerName}</td>
+                    <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numBerson}</td>
+                    <td className="px-[8px] py-[15px]   text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.Date}</td>
+                    <td className="px-[8px] py-[15px]  text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
+                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.MobileNumber}</td>
+                    <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.mail}</td>
+                    {typeApproved && (
+                      <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                        <div className="flex items-center justify-center gap-[10px]">
+                          <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={() => { typeApproved === true ? showData(customer) : saveDataInSecon(customer) }}>
+                            <img src="/img/كمغخخحه.svg" width="10" height="8px" />
+                          </span>
+                          {!typeApproved && (
+                            <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => saveDataInSecon(customer)}
+                            ></img>
+                          )}
+                          <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                            setRemovBooKing(true)
+                            setId(customer.id);
+                            setApproved(customer.approved)
+                          }
 
-                      } />
+                          } />
 
-                    </div>
+                        </div>
+                      </td>
+                    )}
+                    {!typeApproved && (
+
+                      <td className=" py-[15px] flex justify-center items-center  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                        <p className="w-[69px] h-[24px] bg-[#1838660D] flex justify-center rounded-[4px] items-center text-[8px] font-[500] text-[#183866]"
+                          onClick={() => {
+                            const customerWithBtn = { ...customer, hidenBtn: customer.hidenBtn ?? true };
+                            window.sessionStorage.setItem("bookingEditData", JSON.stringify(customerWithBtn));
+                            router.push("/ReservationsRequestsTwo/OrderDetails");
+                          }}>
+                          رؤيه الطلب
+                        </p>
+                      </td>
+
+                    )}
+
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={9} className="p-8 text-center text-[12px] text-[rgba(29,29,29,0.7)]">
+                    لا يوجد سجلات
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={9} className="p-8 text-center text-[12px] text-[rgba(29,29,29,0.7)]">
-                  لا يوجد سجلات
-                </td>
+              )}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+
+        <div className="h-[80vh] mb-[30px] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <table className="min-w-full text-right">
+            <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
+              <tr >
+
+
+
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
+                  اليوم من
+                </th>
+
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
+                  اليوم الى
+                </th>
+
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center" >
+                  عدد الاشخاص المتاح لاستقبالهم
+                </th>
+
+
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
+                  مغلق من
+                </th>
+
+
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
+                  مغلق الى
+                </th>
+
+
+
+
+
+
+                <th className=" py-3 text-[12px] font-bold text-[#475467] pl-[5px]  whitespace-nowrap text-center">
+                  الاجراء
+                </th>
+
+
+
+
+
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody className="divide-gray-50">
+              {displayedCustomers.length > 0 ? (
+                displayedCustomers.map((customer, idx) => (
 
+                  <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors">
+                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.SinceDay}</td>
+                    <td className="px-[8px] py-[15px]   text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.today}</td>
+                    <td className="px-[8px] py-[15px]   text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numPerson}</td>
+                    <td className="px-[8px] py-[15px]  text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.ClosedFrom}</td>
+                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.openFrom}</td>
+
+                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                      <div className="flex items-center justify-center gap-[10px]">
+                        <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
+                          () => {
+
+                            window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(customer));
+                            router.push("/ModeratorsThree/detalsMoerators");
+
+                          }}>
+                          <img src="/img/كمغخخحه.svg" width="10" height="8px" />
+                        </span>
+
+                        <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
+                          window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(customer));
+                          router.push("/ModeratorsThree/updateMoerators");
+
+
+                        }}
+                        ></img>
+
+                        <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                          setRemovBooKing(true)
+                          setId(customer.id);
+                        }
+
+                        } />
+
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan={9} className="p-8 text-center text-[12px] text-[rgba(29,29,29,0.7)]">
+                    لا يوجد سجلات
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+
+
+      )
+
+      }
       {/*------------------------------ control of bage ------------------------------------------------------------*/}
-      <div className="flex w-full justify-between items-center p-[20px]">
-        <div className="flex items-center gap-[10px]">
-          <p className="text-[12px] font-normal text-[rgba(29,29,29,0.8)]">
-            حدد عدد صفوف السجلات لكل صفحة
-          </p>
-          <select
-            style={{
-              appearance: "none",
-              WebkitAppearance: "none",
-              MozAppearance: "none",
-              backgroundColor: "white",
-              fontSize: "16px",
-              backgroundImage: "url('arrow.svg')",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "right 10px center",
-              backgroundSize: "12px",
-            }} value={numRow}
-            onChange={(e) => setNumRow(parseInt(e.target.value))}
-            className="border border-gray-300 rounded-md px-4 py-1 text-[12px] text-[#1D1D1D] focus:outline-none focus:ring-1 focus:ring-[#183866]"
-          >
-            {[10, 20, 30, 40, 50].map((n) => (
-              <option key={n} value={n}>{n}</option>
-            ))}
-          </select>
-        </div>
-
-        {/* ------------------------------------filter Bage-----------------------------------------*/}
-
-        <div className="flex items-center justify-center gap-2 m-5">
-          <button
-            onClick={() => scroll("left")}
-            className="w-[40px] h-[40px] flex items-center justify-center rounded-r-[8px] bg-white shadow-[0_0_2px_#00000040] hover:bg-[#f7f8fa] transition-all duration-200"
-          >
-            <img
-              src="/img/;lhjn;jh.svg"
-              className="w-3 h-3"
-              alt="next"
-            />
-          </button>
-
-          <div
-            ref={numbersRef}
-            className="flex overflow-x-auto overflow-y-hidden w-[200px] scroll-smooth no-scrollbar"
-          >
-            {[...Array(numPages)].map((_, i) => {
-              const isActive = currentPage === i + 1;
-              return (
-                <div
-                  key={i}
-                  onClick={() => setCurrentPage(i + 1)}
-                  className={`min-w-[40px] h-[40px] shadow-[0_0_2px_#00000040] flex items-center justify-center  text-[13px] font-medium cursor-pointer transition-all duration-200
-                ${isActive
-                      ? "bg-[#183866] text-white shadow-[0_0_4px_#18386680]"
-                      : "bg-white text-[#1D1D1D] hover:bg-[#f3f4f6] shadow-[0_0_2px_#59595933]"
-                    }`}
-                >
-                  {i + 1}
-                </div>
-              );
-            })}
-          </div>
-
-
-
-
-          <button
-            onClick={() => scroll("right")}
-            className="w-[40px] h-[40px] flex items-center justify-center rounded-l-[8px] bg-white shadow-[0_0_2px_#00000040] hover:bg-[#f7f8fa] transition-all duration-200"
-          >
-            <img
-              src="/img/;lhjn;jh.svg"
-              className="w-3 h-3 rotate-180"
-              alt="prev"
-            />
-          </button>
-
-        </div>
-
-      </div>
+      <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );
 }
