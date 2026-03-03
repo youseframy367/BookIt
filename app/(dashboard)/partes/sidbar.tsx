@@ -3,6 +3,8 @@
 import { useRouter, usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import TimeSupscribtion from "./time";
+import Image from "next/image";
+import Link from "next/link";
 
 interface typeTitle {
   setTitle: React.Dispatch<React.SetStateAction<string>>;
@@ -76,66 +78,78 @@ export default function Sidebar({ setTitle }: typeTitle) {
   }, [pathname]);
 
   return (
-    <div dir="rtl" className="flex flex-col w-[20%] bg-[#fff] fixed h-full top-0 right-0 z-[99]">
-      <TimeSupscribtion />
+    <div className="pb-[35px] flex flex-col justify-between w-[20%] bg-[#fff] fixed h-full top-0 right-0 z-[99]">
+      <div className="flex flex-col">
+        <TimeSupscribtion />
 
-      <div className="mt-[10px] w-[99%] ml-[1%] p-[5px]">
-        {navigat.map((item, i) => {
-          const isActive = activeIndex === i;
-          const isOpen = openDropdown === i;
+        <div className="mt-[10px] w-[99%] ml-[1%] p-[5px]">
+          {navigat.map((item, i) => {
+            const isActive = activeIndex === i;
+            const isOpen = openDropdown === i;
 
-          return (
-            <div key={i} className="relative">
-              <div
-                onClick={() => handleClick(item, i)}
-                className={`transition-all duration-300 ${isActive ? 'text-[#fff]' : 'text-[#131313]'} ${isActive ? 'border border-[rgba(30,30,30,0.1)] bg-[#183866]' : 'border-0 bg-transparent'} flex items-center justify-start p-[10px] mx-[5px] cursor-pointer rounded-[8px]`}
-              >
-                <img src={isActive ? item.iconActiv : item.icon} alt={item.name} className="ml-[14px] w-[20px] h-[22px]" />
-                <span className="text-[12px] font-normal text-nowrap">{item.name}</span>
+            return (
+              <div key={i} className="elative">
+                <div
+                  onClick={() => handleClick(item, i)}
+                  className={`transition-all duration-300 ${isActive ? 'text-[#fff]' : 'text-[#131313]'} ${isActive ? 'border border-[rgba(30,30,30,0.1)] bg-[#183866]' : 'border-0 bg-transparent'} flex items-center justify-start p-[10px] mx-[5px] cursor-pointer rounded-[8px]`}
+                >
+                  <img src={isActive ? item.iconActiv : item.icon} alt={item.name} className="ml-[14px] w-[20px] h-[22px]" />
+                  <span className="text-[12px] font-normal text-nowrap">{item.name}</span>
 
-                {item.list && (
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className={`mr-[auto] ${isOpen ? "rotate-180deg" : "rotate-0deg"} transition-all duration-300`}
-                  >
-                    <path d="M6 9l6 6 6-6" />
-                  </svg>
+                  {item.list && (
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className={`mr-[auto] ${isOpen ? "rotate-180deg" : "rotate-0deg"} transition-all duration-300`}
+                    >
+                      <path d="M6 9l6 6 6-6" />
+                    </svg>
+                  )}
+                </div>
+
+                {item.list && isOpen && (
+                  <div className="mx-5">
+                    <ul className="list-disc text-[11px] rounded-[6px] mx-[5px] flex flex-col gap-3 px-[5px] py-[10px] mt-2">
+                      {item.list.map((sub, index) => {
+                        const isActive = pathname === sub.navigate;
+
+                        return <li
+                          title={sub.title}
+                          key={index}
+                          className={`${isActive ? 'text-[var(--color-go-password)]' : 'text-[var(--color-list)]'} cursor-pointer px-[5px] text-[10px] font-normal`}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveListIndex(index);
+                            setTitle(sub.title);
+                            router.push(sub.navigate);
+                          }}
+                        >
+                          {sub.title}
+                        </li>
+                      })}
+                    </ul>
+                  </div>
                 )}
               </div>
-
-              {item.list && isOpen && (
-                <div className="mx-5">
-                  <ul className="list-disc text-[11px] rounded-[6px] mx-[5px] flex flex-col gap-3 px-[5px] py-[10px] mt-2">
-                    {item.list.map((sub, index) => {
-                      const isActive = pathname === sub.navigate;
-                      
-                      return <li
-                        title={sub.title}
-                        key={index}
-                        className={`${isActive ? 'text-[var(--color-go-password)]' : 'text-[var(--color-list)]'} cursor-pointer px-[5px] text-[10px] font-normal`}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveListIndex(index);
-                          setTitle(sub.title);
-                          router.push(sub.navigate);
-                        }}
-                      >
-                        {sub.title}
-                      </li>
-                    })}
-                  </ul>
-                </div>
-              )}
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+      </div>
+      <div className="flex flex-col gap-[24px] mx-5">
+        <Link href="" className="flex gap-[13px] items-center" title="الملف الشخصي">
+          <Image src="/assets/icons/profile.svg" alt="profile" width={20} height={20} />
+          <span className="font-normal text-xs text-[var(--color-go-password)]">الملف الشخصي</span>
+        </Link>
+        <Link href="/" className="flex gap-[13px] items-center" title="تسجيل الخروج">
+          <Image src="/assets/icons/sign-out.svg" alt="sign out" width={20} height={20} />
+          <span className="font-normal text-xs text-[var(--color-log-out)]">تسجيل الخروج</span>
+        </Link>
       </div>
     </div>
   );

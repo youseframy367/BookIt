@@ -20,7 +20,7 @@ export default function RemoveRoles({ text, handleDelete, onClose }: typeData) {
                             {text}
                         </p>
                     </div>
-                    <div className="flex gap-[16px] direction-ltr mt-[20px]">
+                    <div className="flex gap-[16px] justify-end mt-[20px]">
                         <button
                             className="bg-[#183866] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center"
                             onClick={() => {
