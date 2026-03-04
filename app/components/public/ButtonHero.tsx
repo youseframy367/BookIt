@@ -31,7 +31,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                 <div className="grid md:grid-cols-[10.2fr_1fr] bg-white rounded-t-2xl md:rounded-2xl shadow">
                     <div className="w-full py-3 md:py-6 px-3 md:px-8 grid grid-cols-3 gap-2 md:gap-5" dir="ltr">
                         <div className={`flex items-center ${nextPage && 'py-5'
-                            } relative font-normal text-[8px] md:text-xl font-rubik bg-[var(--color-input-email)] rounded-xl lg:w-[315px]`}>
+                            } relative font-normal text-[8px] md:text-xl font-rubik bg-[var(--color-danger-light)] rounded-xl lg:w-[315px]`}>
                             <div className={`absolute ${mounted ? i18n.language === 'ar' ? "right-5" : "left-3" : ""} md:top-4`}>
                                 <div className="relative w-[15px] h-[15px] md:w-[30px] md:h-[30px]">
                                     <Image
@@ -71,14 +71,14 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                         )}
                                     />
                                     : <div>
-                                        <span className="text-[8px] md:text-lg pl-10 md:pl-15 pr-5 w-full h-full text-[var(--color-red)]">
+                                        <span className="text-[8px] md:text-lg pl-10 md:pl-15 pr-5 w-full h-full text-[var(--strong-red)]">
                                             {selectedDate ? selectedDate.toLocaleDateString() : ""}
                                         </span>
                                     </div>
 
                             }
                         </div>
-                        <div className={`flex items-center ${nextPage && 'md:py-5'} relative font-normal font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]`}>
+                        <div className={`flex items-center ${nextPage && 'md:py-5'} relative font-normal font-rubik bg-[var(--color-danger-light)] rounded-xl w-full lg:w-[315px]`}>
                             {
                                 !nextPage ?
                                     <>
@@ -100,13 +100,13 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                         />
                                     </>
                                     : <div>
-                                        <span className="text-[8px] md:text-lg pl-10 md:pl-15 pr-5 w-full h-full text-[var(--color-red)]">
+                                        <span className="text-[8px] md:text-lg pl-10 md:pl-15 pr-5 w-full h-full text-[var(--strong-red)]">
                                             {selectedTime ? selectedTime.format("hh:mm A") : ""}
                                         </span>
                                     </div>
                             }
                         </div>
-                        <div className={`flex items-center ${nextPage && 'md:py-5'} relative font-normal font-rubik bg-[var(--color-input-email)] rounded-xl w-full lg:w-[315px]`}>
+                        <div className={`flex items-center ${nextPage && 'md:py-5'} relative font-normal font-rubik bg-[var(--color-danger-light)] rounded-xl w-full lg:w-[315px]`}>
                             {
                                 !nextPage ?
                                     <>
@@ -123,7 +123,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                             dir="rtl"
                                             value={selectedUser || ""}
                                             onChange={(e) => setSelectedUser(e.target.value)}
-                                            className="text-[8px] md:text-xl px-8 md:px-15 md:py-5 text-[var(--color-red)] w-full h-full"
+                                            className="text-[8px] md:text-xl px-8 md:px-15 md:py-5 text-[var(--strong-red)] w-full h-full"
                                         >
                                             <option value="">{mounted ? t('select') : ""}</option>
                                             <option value="2">2</option>
@@ -166,21 +166,21 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                             </div>
                                         </div>
                                         <div>
-                                            <span className="text-[8px] md:text-lg pl-10 md:pl-15 pr-5 w-full h-full text-[var(--color-red)]">{selectedUser || "—"}</span>
+                                            <span className="text-[8px] md:text-lg pl-10 md:pl-15 pr-5 w-full h-full text-[var(--strong-red)]">{selectedUser || "—"}</span>
                                         </div>
                                     </>
                             }
                         </div>
                     </div>
                     <div className={`${mounted ? i18n.language === 'ar' && "rotate-180" : ""} w-full px-8 md:px-0 md:w-[unset] hidden md:flex md:justify-center`}>
-                        <Link title="Details Customer" href="/details-customer" className={`${nextPage ? 'bg-[var(--color-not-active)] cursor-default' : 'bg-[var(--color-red)]'} w-full md:w-[unset] border- arraw rounded-r-xl xl:px-[40px] flex justify-center items-center`}>
+                        <Link title="Details Customer" href="/details-customer" className={`${nextPage ? 'bg-[var(--color-gray-medium-transparent)] cursor-default' : 'bg-[var(--strong-red)]'} w-full md:w-[unset] border- arraw rounded-r-xl xl:px-[40px] flex justify-center items-center`}>
                             <div className="w-[28px] h-[60px] relative">
                                 <Image src="/assets/icons/arraw.png" alt="arraw" className="object-cover" fill />
                             </div>
                         </Link>
                     </div>
                 </div>
-                <Link href="/details-customer" className="relative z-2 text-white w-full flex md:hidden justify-center bg-[var(--color-red)] py-2 rounded-b-2xl">
+                <Link href="/details-customer" className="relative z-2 text-white w-full flex md:hidden justify-center bg-[var(--strong-red)] py-2 rounded-b-2xl">
                     <div className="keyframes-book items-center flex gap-3">
                         <span className="text-sm font-normal">{mounted ? t('book-table') : ""}</span>
                         <Image src="/assets/icons/bookit.svg" alt="bookit" width={15} height={15} />

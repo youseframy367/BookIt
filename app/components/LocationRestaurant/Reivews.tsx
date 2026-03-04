@@ -23,7 +23,7 @@ export default function Reivews() {
             <div className="grid md:grid-cols-2 gap-5">
                 {
                     reviews.map((item, index) => {
-                        return <div key={index} data-aos="fade-up" className="hidden md:flex flex-col items-start gap-5 bg-[var(--color-reviews)] rounded-[12px] py-10 px-10">
+                        return <div key={index} data-aos="fade-up" className="hidden md:flex flex-col items-start gap-5 bg-[var(--color-gray-faint-transparent)] rounded-[12px] py-10 px-10">
                             <CardsReviews item={item} />
                         </div>
                     })
@@ -39,7 +39,7 @@ export default function Reivews() {
                     {
                         reviews.map((item, index) => {
                             return <SwiperSlide key={index}>
-                                <div className="flex flex-col items-start gap-5 bg-[var(--color-reviews)] rounded-[12px] p-[20px] md:py-10 md:px-10">
+                                <div className="flex flex-col items-start gap-5 bg-[var(--color-gray-faint-transparent)] rounded-[12px] p-[20px] md:py-10 md:px-10">
                                     <CardsReviews item={item} />
                                 </div>
                             </SwiperSlide>

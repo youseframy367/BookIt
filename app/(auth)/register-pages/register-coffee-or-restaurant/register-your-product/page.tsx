@@ -76,7 +76,7 @@ export default function RegisterYourProduct() {
                                 <div className="w-full flex flex-col gap-2 mb-2 mt-2">
                                     <label
                                         htmlFor="Email"
-                                        className="text-[var(--color-label-input)] text-sm font-medium"
+                                        className="text-[var(--color-black)] text-sm font-medium"
                                     >
                                         البريد الإلكتروني
                                     </label>
@@ -87,13 +87,13 @@ export default function RegisterYourProduct() {
                                         id="Email"
                                         value={email}
                                         onChange={(e) => setEmail(e.target.value)}
-                                        className="text-[var(--color-input)] px-3 py-3 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                        className="text-[var(--color-black-light)] px-3 py-3 border border-1 border-[var(--gray)] rounded-lg"
                                     />
                                 </div>
                                 <div className="flex flex-col w-full gap-2 mb-2 mt-2">
                                     <label
                                         htmlFor=""
-                                        className="text-[var(--color-label-input)] text-sm font-medium"
+                                        className="text-[var(--color-black)] text-sm font-medium"
                                     >
                                         ادخل اسم المكان التجاري
                                     </label>
@@ -101,13 +101,13 @@ export default function RegisterYourProduct() {
                                         type="text"
                                         placeholder="ادخل اسم المكان الخاص بك"
                                         required
-                                        className="text-[var(--color-input)] px-3 py-3 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                        className="text-[var(--color-black-light)] px-3 py-3 border border-1 border-[var(--gray)] rounded-lg"
                                     />
                                 </div>
                                 <div className="flex flex-col w-full gap-2 mb-2 mt-2">
                                     <label
                                         htmlFor=""
-                                        className="text-[var(--color-label-input)] text-sm font-medium"
+                                        className="text-[var(--color-black)] text-sm font-medium"
                                     >
                                         رقم الجوال
                                     </label>
@@ -115,7 +115,7 @@ export default function RegisterYourProduct() {
                                         type="numbrt"
                                         placeholder="أدخل رقم الهاتف"
                                         required
-                                        className="text-[var(--color-input)] px-3 py-3 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                        className="text-[var(--color-black-light)] px-3 py-3 border border-1 border-[var(--gray)] rounded-lg"
                                     />
                                 </div>
                             </div>
@@ -124,20 +124,20 @@ export default function RegisterYourProduct() {
                                 <div className="flex flex-col w-full gap-2 mb-2 mt-2">
                                     <label
                                         htmlFor=""
-                                        className="text-[var(--color-label-input)] text-sm font-medium"
+                                        className="text-[var(--color-black)] text-sm font-medium"
                                     >
                                         رقم جوال اخر  ( اختياري )
                                     </label>
                                     <input
                                         type="numbrt"
                                         placeholder="أدخل رقم الهاتف"
-                                        className="text-[var(--color-input)] px-3 py-3 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                        className="text-[var(--color-black-light)] px-3 py-3 border border-1 border-[var(--gray)] rounded-lg"
                                     />
                                 </div>
                                 <div className="flex flex-col w-full gap-2 mb-2 mt-2">
                                     <label
                                         htmlFor=""
-                                        className="text-[var(--color-label-input)] text-sm font-medium"
+                                        className="text-[var(--color-black)] text-sm font-medium"
                                     >
 
                                         ادخل موقع المكان التجارى
@@ -146,21 +146,21 @@ export default function RegisterYourProduct() {
                                         type="text"
                                         placeholder="مثال ( كافيه - مطعم )"
                                         required
-                                        className="text-[var(--color-input)] px-3 py-3 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                        className="text-[var(--color-black-light)] px-3 py-3 border border-1 border-[var(--gray)] rounded-lg"
                                     />
                                 </div>
 
                                 <div className="flex flex-col w-full gap-2 mb-2 mt-2">
                                     <label
                                         htmlFor=""
-                                        className="text-[var(--color-label-input)] text-sm font-medium"
+                                        className="text-[var(--color-black)] text-sm font-medium"
                                     >
                                         نوع التجاره الخاصه بك
                                     </label>
                                     <input
                                         type="numbrt"
                                         placeholder="أدخل رقم الهاتف"
-                                        className="text-[var(--color-input)] px-3 py-3 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                        className="text-[var(--color-black-light)] px-3 py-3 border border-1 border-[var(--gray)] rounded-lg"
                                     />
                                 </div>
 

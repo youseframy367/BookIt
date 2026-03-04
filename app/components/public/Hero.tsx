@@ -14,7 +14,7 @@ export default function Hero({ title, image, isShowGallery, nextPage, isActiveBu
     return (
         <section>
             <div className="mt-5 md:mt-0 container-mobile relative w-full h-[500px] md:h-[75vh]">
-                <div className="realtive w-full h-full bg-[var(--color-hero)] rounded-[30px] md:rounded-none">
+                <div className="realtive w-full h-full bg-[var(--alpha)] rounded-[30px] md:rounded-none">
                     <div data-aos="fade-up" className="flex justify-center items-center w-full h-full pb-25 text-center">
                         <div className="px-2 md:px-0 md:w-[1300px]">
                             <h2 className={`text-2xl md:text-[87px] ${mounted ? i18n.language === 'ar' && "font-ArefRuqaa" : ""} font-semibold text-white`}>{mounted ? title : '...'}</h2>

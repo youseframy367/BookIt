@@ -10,16 +10,19 @@ import { useProductsCahsersData } from "../../../data/dataProductsCahser";
 import * as XLSX from 'xlsx';
 import jsPDF from 'jspdf';
 import { toPng } from "html-to-image";
+import { useMenuSearch } from "@/app/hooks/useBodyClass";
 
 export default function Products() {
     const router = useRouter()
     const [searchTerm, setSearchTerm] = useState("");
     const [numperOfId, setId] = useState()
     const [removeRoles, setRemovRoles] = useState(false)
-    const [add, setAdd] = useState(false);
+    // const [add, setAdd] = useState(false);
     const tableRef = useRef<HTMLDivElement>(null);
 
     const DataCustomers = useProductsCahsersData();
+
+    const { openMenu, menuRef, setOpenMenu, buttonRef, setShow } = useMenuSearch();
 
     const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
         usePagnation(DataCustomers, searchTerm)
@@ -56,8 +59,13 @@ export default function Products() {
         };
     };
 
+    const toggleMenu = () => {
+        setOpenMenu(prev => !prev);
+        setShow(false);
+    }
+
     return (
-        <section className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
+        <section className="flex w-[98%] m-[1%] bg-[#fff] rounded-[11px] flex-col px-[15px] ">
             {removeRoles && (
                 <RemoveRoles
                     text="هل أنت متأكد أنك تريد حذف هذا الدور ؟"
@@ -83,28 +91,19 @@ export default function Products() {
                     </div>
 
                     <div className="relative z-99">
-                        <button onClick={() => setAdd(true)} className="cursor-pointer text-center border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
+                        <button ref={buttonRef} onClick={toggleMenu} className="cursor-pointer text-center border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
                             اضافة
                         </button>
-                        {
-                            add && <>
-                                <div className="w-[190%] rounded-[12px] py-[20px] px-[24px] absolute left-0 bg-white top-11 z-[999] flex flex-col gap-[22px]">
-                                    <div onClick={() => setAdd(false)} className="cursor-pointer absolute right-2 top-1">
-                                        <Image src="/assets/icons/close.png" alt="png" width={20} height={18} />
-                                    </div>
-                                    <div onClick={exportExcel} className="flex items-center gap-[8px] cursor-pointer" title="تصدير Excel">
-                                        <Image src="/assets/icons/excel.svg" alt="excel" width={20} height={18} />
-                                        <span>تصدير Excel</span>
-                                    </div>
-                                    <div onClick={exportPDF} className="flex items-center gap-[8px] cursor-pointer" title="تصدير PDF">
-                                        <Image src="/assets/icons/pdf.svg" alt="pdf" width={20} height={18} />
-                                        <span>تصدير PDF</span>
-                                    </div>
-                                </div>
-                                <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
-                                </div>
-                            </>
-                        }
+                        <div ref={menuRef} className={`${openMenu ? 'opacity-[1]' : 'opacity-[0]'} w-[190%] rounded-[12px] py-[20px] px-[24px] absolute left-0 bg-white top-11 z-[999] flex flex-col gap-[22px]`}>
+                            <div onClick={exportExcel} className="flex items-center gap-[8px] cursor-pointer" title="تصدير Excel">
+                                <Image src="/assets/icons/excel.svg" alt="excel" width={20} height={18} />
+                                <span>تصدير Excel</span>
+                            </div>
+                            <div onClick={exportPDF} className="flex items-center gap-[8px] cursor-pointer" title="تصدير PDF">
+                                <Image src="/assets/icons/pdf.svg" alt="pdf" width={20} height={18} />
+                                <span>تصدير PDF</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -113,7 +112,7 @@ export default function Products() {
 
             <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }} ref={tableRef}>
                 <table className="min-w-full text-right">
-                    <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
+                    <thead className="sticky top-0 bg-[#F6F6F6] rounded-[4px]">
                         <tr >
 
                             <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
@@ -155,15 +154,15 @@ export default function Products() {
                             displayedCustomers.map((customer: any, idx: any) => (
                                 <tr key={idx} className={`hover:bg-[#F9FAFB]/50 transition-colors ${customer.status === "معلق" && "opacity-50"
                                     }`}>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.name}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-dark-blue-gray)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.name}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                                         {customer.code}
                                     </td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.time}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-blue-payment)] overflow-hidden whitespace-nowrap text-center">{customer.paymentGetway}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.address}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-price)] overflow-hidden whitespace-nowrap text-center">{customer.price}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.typeOrder}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap text-center">{customer.time}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-blue-deep)] overflow-hidden whitespace-nowrap text-center">{customer.paymentGetway}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap text-center">{customer.address}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-green-bright)] overflow-hidden whitespace-nowrap text-center">{customer.price}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap text-center">{customer.typeOrder}</td>
 
                                     <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap text-center">
                                         <div className="flex items-center justify-center gap-[10px]">

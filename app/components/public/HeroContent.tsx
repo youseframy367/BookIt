@@ -10,7 +10,7 @@ export default function Hero({ title, backgroundImage, paddingMobile }: dataHero
     return (
         <section>
             <div className="relative w-full md:h-[75vh]">
-                <div className={`text-center ${paddingMobile} md:py-0 realtive w-full h-full bg-[var(--color-hero)]`}>
+                <div className={`text-center ${paddingMobile} md:py-0 realtive w-full h-full bg-[var(--alpha)]`}>
                     <div className="container flex items-center justify-center w-full h-full">
                         <h2 className={`${mounted ? i18n.language === 'ar' && "font-ArefRuqaa" : ""} text-white text-xl md:text-[89px] font-semibold`} dangerouslySetInnerHTML={{ __html: title || '' }}></h2>
                     </div>

@@ -9,11 +9,11 @@ export default function WarningProducts({ isStyleBtn, onClose }: any) {
                     <div className="w-full flex flex-col gap-[25px]">
                         <div className="flex gap-[8px]">
                             <Image src="/assets/icons/warning.svg" alt="تحذير" width={19} height={17} />
-                            <span className="font-semibold text-xl text-[var(--color-warning)]">تحذير</span>
+                            <span className="font-semibold text-xl text-[var(--color-golden-light)]">تحذير</span>
                         </div>
 
                         <p className="text-[rgba(19,19,19,0.5)] text-lg font-normal">
-                            منتج  <span className="text-[var(--color-warning)]">( اللبن - السكر )</span> قد وصلوا الي الحد الادني كن حذرا
+                            منتج  <span className="text-[var(--color-golden-light)]">( اللبن - السكر )</span> قد وصلوا الي الحد الادني كن حذرا
                         </p>
                     </div>
                     <div className="flex justify-end gap-[16px] mt-[20px]">
@@ -26,7 +26,7 @@ export default function WarningProducts({ isStyleBtn, onClose }: any) {
                         </button>
                         <button
                             title="تنفيذ علي أي حال"
-                            className={`${isStyleBtn} cursor-pointer bg-[var(--color-warning)] text-white text-[14px] font-medium py-[13px] px-[7px] rounded-[8px] h-[38px] flex justify-center items-center`}
+                            className={`${isStyleBtn} cursor-pointer bg-[var(--color-golden-light)] text-white text-[14px] font-medium py-[13px] px-[7px] rounded-[8px] h-[38px] flex justify-center items-center`}
                             onClick={onClose}
                         >
                             تنفيذ علي أي حال

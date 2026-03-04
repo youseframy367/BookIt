@@ -65,7 +65,7 @@ export default function RestaurantManagers() {
                 return <SwiperSlide key={index}>
                   <div
                     dir={`${mounted ? i18n.language === 'ar' ? "rtl" : "ltr" : ""}`}
-                    className="p-[20px] md:p-[40px] md:pt-[60px] bg-[var(--color-commints)]"
+                    className="p-[20px] md:p-[40px] md:pt-[60px] bg-[var(--color-bg-soft)]"
                   >
                     <p className={`text-sm md:text-lg text-[#767E86] leading-[23px] ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""}`}>
                       {mounted ? item.details : "..."}

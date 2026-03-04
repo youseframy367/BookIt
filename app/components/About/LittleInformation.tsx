@@ -10,21 +10,21 @@ export default function LittleInformation() {
     const numbers = useDataInformation();
 
     return (
-        <section className="bg-[var(--color-little-formation)]">
+        <section className="bg-[var(--color-background-light)]">
             <div className="remove-container container">
                 <div className="w-full md:py-30 flex flex-col-reverse md:grid md:grid-cols-2 items-center gap-8 md:gap-20">
                     <div className="container">
                         <div className="flex flex-col gap-5" data-aos="fade-up">
                             <div className="md:w-[550px]">
-                                <h2 className={`md:leading-[60px] font-medium text-[29px] md:text-[55px] ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} text-[var(--color-span-paner)]`}>{mounted ? t("little-information") : '...'}</h2>
+                                <h2 className={`md:leading-[60px] font-medium text-[29px] md:text-[55px] ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} text-[var(--color-dark-olive)]`}>{mounted ? t("little-information") : '...'}</h2>
                             </div>
-                            <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-DMSans_24pt" : ""} leading-[25px] font-normal text-[var(--color-text-about)]`}>{mounted ? t("at-book-it") : '...'}</span>
+                            <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-DMSans_24pt" : ""} leading-[25px] font-normal text-[var(--color-gray-dark)]`}>{mounted ? t("at-book-it") : '...'}</span>
                             <div className="w-full items-center justify-center">
                                 <div className="justify-center items-center flex flex-col gap-5" data-aos="fade-up">
                                     <ul className="grid md:grid-cols-2 gap-6">
                                         {
                                             numbers.map((item, index) => {
-                                                return <li key={index} className="rounded-[8px] bg-white p-5 border border-2 border-[var(--color-line)] flex flex-col items-center justify-center gap-3">
+                                                return <li key={index} className="rounded-[8px] bg-white p-5 border border-2 border-[var(--color-gray-light-transparent)] flex flex-col items-center justify-center gap-3">
                                                     <h2 className="text-[55px]">
                                                         <CountUp
                                                             start={0}

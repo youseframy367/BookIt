@@ -32,7 +32,7 @@ export default function Role() {
 
                     {/* Title */}
                     <div className="mt-5 md:mt-0 flex flex-col justify-center items-center gap-5 md:gap-10">
-                        <p className="text-[var(--color-red)] text-3xl md:text-6xl font-semibold mt-[-50px]">
+                        <p className="text-[var(--strong-red)] text-3xl md:text-6xl font-semibold mt-[-50px]">
                             {mounted ? t("choose-register") : '...'}
                         </p>
 
@@ -49,11 +49,11 @@ export default function Role() {
                         <div onClick={() => setRole("Customer")}
                             className={`w-full md:w-[360px] py-3 rounded-[15px] flex flex-col items-center justify-center cursor-pointer
              ${role === "Customer"
-                                    ? "border-4 border-[var(--color-red)]"
+                                    ? "border-4 border-[var(--strong-red)]"
                                     : "border border-[rgba(72,72,72,0.5)]"}`}
                         >
                             <Image src="/assets/icons/iconUser.png" width={124} height={30} alt="icon user" className="object-cover" />
-                            <p className={`text-xl mt-4 mb-0 font-medium ${role === "Customer" ? "text-[var(--color-active-choose)]" : "text-black"}`}>
+                            <p className={`text-xl mt-4 mb-0 font-medium ${role === "Customer" ? "text-[var(--color-red-dark)]" : "text-black"}`}>
                                 {mounted ? t("customer") : '...'}
                             </p>
                             <p className="text-[14px] font-medium text-center m-[5%] w-[90%] text-[rgba(85,85,85,0.38)]">
@@ -65,11 +65,11 @@ export default function Role() {
                         <div onClick={() => setRole("Owner")}
                             className={`w-full md:w-[360px] py-3 rounded-[15px] flex flex-col items-center justify-center cursor-pointer
              ${role === "Owner"
-                                    ? "border-4 border-[var(--color-red)]"
+                                    ? "border-4 border-[var(--strong-red)]"
                                     : "border border-[rgba(72,72,72,0.5)]"}`}
                         >
                             <Image src="/assets/icons/onerIcon.png" width={124} height={30} alt="icon user" className="object-cover" />
-                            <p className={`text-xl mt-4 mb-0 font-medium ${role === "Owner" ? "text-[var(--color-active-choose)]" : "text-black"}`}>
+                            <p className={`text-xl mt-4 mb-0 font-medium ${role === "Owner" ? "text-[var(--color-red-dark)]" : "text-black"}`}>
                                 {mounted ? t("owner") : '...'}
                             </p>
                             <p className="text-[14px] font-medium text-center m-[5%] w-[90%] text-[rgba(85,85,85,0.38)]">
@@ -84,7 +84,7 @@ export default function Role() {
                         onClick={() => {
                             setIsActive(true);
                             handleStart();
-                        }} className="w-full md:w-[360px] cursor-pointer text-white font-normal text-xl font-rubik bg-[var(--color-red)] px-2 py-3 rounded-xl">{mounted ? t("start-now") : '...'}</button>
+                        }} className="w-full md:w-[360px] cursor-pointer text-white font-normal text-xl font-rubik bg-[var(--strong-red)] px-2 py-3 rounded-xl">{mounted ? t("start-now") : '...'}</button>
 
                     {/* Loader Overlay */}
                     {isLoading && (

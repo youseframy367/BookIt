@@ -9,7 +9,7 @@ export default function Hero() {
     return (
         <section>
             <div className="container-mobile mt-5 relative w-full h-[500px] md:h-[82.3vh]">
-                <div className="realtive w-full h-full bg-[var(--color-hero)] rounded-[30px] md:rounded-none">
+                <div className="realtive w-full h-full bg-[var(--alpha)] rounded-[30px] md:rounded-none">
                     <div data-aos="fade-up" className="flex justify-center items-center w-full h-full">
                         <h2 className="font-qwigley text-[100px] md:text-[350px] font-normal text-white">Seafood</h2>
                     </div>

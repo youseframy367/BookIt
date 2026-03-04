@@ -18,7 +18,7 @@ export default function CoffeOrRestaurant() {
 
                     {/* Title */}
                     <div className="flex flex-col justify-center items-center gap-5 md:gap-10">
-                        <p className="text-[var(--color-red)] text-3xl md:text-6xl font-semibold">
+                        <p className="text-[var(--strong-red)] text-3xl md:text-6xl font-semibold">
                             حدد نوع الخدمه التي تريدها
                             {/* {mounted ? t("choose-services") : '...'} */}
                             {/* "choose-services": "Select the type of service you want", */}
@@ -41,11 +41,11 @@ export default function CoffeOrRestaurant() {
                         <div onClick={() => setRole("Coffee")}
                             className={`w-[360px] h-[281px] rounded-[15px] flex flex-col items-center justify-center cursor-pointer
              ${role === "Coffee"
-                                    ? "border-4 border-[var(--color-red)]"
+                                    ? "border-4 border-[var(--strong-red)]"
                                     : "border border-[rgba(72,72,72,0.5)]"}`}
                         >
                             <Image src="/assets/icons/coffee.svg" width={124} height={30} alt="icon coffee" />
-                            <p className={`text-xl mt-4 mb-0 font-medium ${role === "Coffee" ? "text-[var(--color-active-choose)]" : "text-black"}`}>
+                            <p className={`text-xl mt-4 mb-0 font-medium ${role === "Coffee" ? "text-[var(--color-red-dark)]" : "text-black"}`}>
                                 هل هذا الحساب خاص بكافيه
                                 {/* {mounted ? t("coffee") : '...'} */}
                                 {/* "coffee": "هل هذا الحساب خاص بكافيه", */}
@@ -62,11 +62,11 @@ export default function CoffeOrRestaurant() {
                         <div onClick={() => setRole("Restaurant")}
                             className={`w-[360px] h-[281px] rounded-[15px] flex flex-col items-center justify-center cursor-pointer
              ${role === "Restaurant"
-                                    ? "border-4 border-[var(--color-red)]"
+                                    ? "border-4 border-[var(--strong-red)]"
                                     : "border border-[rgba(72,72,72,0.5)]"}`}
                         >
                             <img src="/assets/icons/fill-our-blog.svg" className="w-[124px]" />
-                            <p className={`text-xl mt-4 mb-0 font-medium ${role === "Restaurant" ? "text-[var(--color-active-choose)]" : "text-black"}`}>
+                            <p className={`text-xl mt-4 mb-0 font-medium ${role === "Restaurant" ? "text-[var(--color-red-dark)]" : "text-black"}`}>
                                 هل هذا الحساب خاص بمطعم
                                 {/* {mounted ? t("role-restaurant") : '...'} */}
                                 {/* "role-restaurant": "Is this account for a restaurant?", */}
@@ -83,7 +83,7 @@ export default function CoffeOrRestaurant() {
 
                     {/* Start Button */}
                     <button disabled={isLoading}
-                        onClick={() => handlePageLoginOrRegister()} className="mt-[47px] w-full md:w-[400px] cursor-pointer text-white font-normal text-xl bg-[var(--color-red)] px-2 py-3 rounded-xl">ابدأ الآن</button>
+                        onClick={() => handlePageLoginOrRegister()} className="mt-[47px] w-full md:w-[400px] cursor-pointer text-white font-normal text-xl bg-[var(--strong-red)] px-2 py-3 rounded-xl">ابدأ الآن</button>
                     {/* {mounted ? t("start-now") : '...'} */}
                 </div>
             </div>

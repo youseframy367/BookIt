@@ -105,7 +105,7 @@ export default function LogAcount() {
           onClick={() => router.push("/register-pages/new-account")}
         >
           {mounted ? t("dont-have") : '...'}
-          <span className="text-[var(--color-red)] underline"> {mounted ? t("sign-up") : '...'}</span>
+          <span className="text-[var(--strong-red)] underline"> {mounted ? t("sign-up") : '...'}</span>
         </p>
         <ToastContainer />
       </LayoutLoginAndRegister>

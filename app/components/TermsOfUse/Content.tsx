@@ -16,7 +16,7 @@ export default function Content() {
                     <h2 className="
    text-[42px] font-normal
     bg-gradient-to-r
-    from-[var(--color-red)]
+    from-[var(--strong-red)]
     via-red-100
     via-red-200
     to-transparent

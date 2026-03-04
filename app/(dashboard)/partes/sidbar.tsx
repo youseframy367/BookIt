@@ -122,7 +122,7 @@ export default function Sidebar({ setTitle }: typeTitle) {
                         return <li
                           title={sub.title}
                           key={index}
-                          className={`${isActive ? 'text-[var(--color-go-password)]' : 'text-[var(--color-list)]'} cursor-pointer px-[5px] text-[10px] font-normal`}
+                          className={`${isActive ? 'text-[var(--color-dark-blue-gray)]' : 'text-[var(--color-gray-medium-three)]'} cursor-pointer px-[5px] text-[10px] font-normal`}
                           onClick={(e) => {
                             e.stopPropagation();
                             setActiveListIndex(index);
@@ -142,13 +142,13 @@ export default function Sidebar({ setTitle }: typeTitle) {
         </div>
       </div>
       <div className="flex flex-col gap-[24px] mx-5">
-        <Link href="" className="flex gap-[13px] items-center" title="الملف الشخصي">
+        <Link href="/showDateOne/Portfolio" className="flex gap-[13px] items-center" title="الملف الشخصي">
           <Image src="/assets/icons/profile.svg" alt="profile" width={20} height={20} />
-          <span className="font-normal text-xs text-[var(--color-go-password)]">الملف الشخصي</span>
+          <span className="font-normal text-xs text-[var(--color-dark-blue-gray)]">الملف الشخصي</span>
         </Link>
         <Link href="/" className="flex gap-[13px] items-center" title="تسجيل الخروج">
           <Image src="/assets/icons/sign-out.svg" alt="sign out" width={20} height={20} />
-          <span className="font-normal text-xs text-[var(--color-log-out)]">تسجيل الخروج</span>
+          <span className="font-normal text-xs text-[var(--color-red-bright-three)]">تسجيل الخروج</span>
         </Link>
       </div>
     </div>

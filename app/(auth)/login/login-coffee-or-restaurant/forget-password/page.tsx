@@ -35,7 +35,7 @@ export default function ForgetPassword() {
           <div className="flex flex-col gap-[16px]">
             <h2 className="text-xl font-semibold">نسيت كلمة المرور ؟</h2>
             {/* {mounted ? t('forgot-password') : '...'} */}
-            <span className="text-[var(--color-text-login)] font-normal text-base">لا تقلق، سنساعدك في إعادة تعيين كلمة المرور الخاصة بك.</span>
+            <span className="text-[var(--color-gray-medium)] font-normal text-base">لا تقلق، سنساعدك في إعادة تعيين كلمة المرور الخاصة بك.</span>
             {/* {mounted ? t('dont-worry') : '...'} */}
           </div>
 
@@ -43,7 +43,7 @@ export default function ForgetPassword() {
             <div className="flex flex-col w-full gap-2 mb-2 mt-2">
               <label
                 htmlFor="Email"
-                className="text-[var(--color-label-input)] text-sm font-medium"
+                className="text-[var(--color-black)] text-sm font-medium"
               >
                 البريد الإلكتروني
                 {/* {mounted ? t('email') : '...'} */}
@@ -55,7 +55,7 @@ export default function ForgetPassword() {
                 id="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="text-[var(--color-input)] px-3 py-2 border border-1 border-[var(--color-navbar)] rounded-lg"
+                className="text-[var(--color-black-light)] px-3 py-2 border border-1 border-[var(--gray)] rounded-lg"
               />
               {/* {mounted ? t('enter-email') : 'Enter your email'} */}
             </div>

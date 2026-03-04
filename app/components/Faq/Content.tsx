@@ -44,7 +44,7 @@ export default function Content({ items }: questionsAndAnswaer) {
                             >
                                 <button
                                     onClick={() => toggle(index)}
-                                    className="bg-[var(--color-red)] w-full flex items-center justify-between py-3 px-3 md:px-7"
+                                    className="bg-[var(--strong-red)] w-full flex items-center justify-between py-3 px-3 md:px-7"
                                 >
                                     <span className="text-white text-[12px] md:text-xl font-medium font-medium">
                                         {mounted ? item.title : '...'}

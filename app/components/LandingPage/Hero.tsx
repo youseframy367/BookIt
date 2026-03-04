@@ -17,17 +17,17 @@ export default function Hero() {
                 <div className="container flex flex-col items-center justify-center gap-[22px] md:gap-[42px] w-full h-full">
                     <SocailMedia />
                     <div className="flex flex-col items-center justify-center text-center gap-[12px] md:gap-[32px]">
-                        <h2 className={`${mounted ? i18n.language === 'ar' ? "font-ArefRuqaa xl:leading-[115px]" : "font-PlayfairDisplay xl:leading-[76px]" : ""} font-normal md:w-[700px] text-[25px] xl:text-[100px] text-[var(--color-span-paner)]`}>
+                        <h2 className={`${mounted ? i18n.language === 'ar' ? "font-ArefRuqaa xl:leading-[115px]" : "font-PlayfairDisplay xl:leading-[76px]" : ""} font-normal md:w-[700px] text-[25px] xl:text-[100px] text-[var(--color-dark-olive)]`}>
                             {mounted ? t('best-food') : "..."}
                         </h2>
 
-                        <p className="md:w-[500px] font-normal text-[var(--color-span-paner)] text-[14px] md:text-[18px] leading-[32px]">
+                        <p className="md:w-[500px] font-normal text-[var(--color-dark-olive)] text-[14px] md:text-[18px] leading-[32px]">
                             {mounted ? t('discover-kitchens') : "..."}
                         </p>
 
                         <Link href="/role-restaurant-or-coffee" title="join as restaurant owner"
                             className={`cursor-pointer flex items-center gap-3 px-5 py-3 rounded-full
-          bg-[var(--color-red)] text-white font-semibold text-[12px] md:text-[16px] transition-transform duration-200 hover:-translate-y-1`}
+          bg-[var(--strong-red)] text-white font-semibold text-[12px] md:text-[16px] transition-transform duration-200 hover:-translate-y-1`}
                         >
                             {mounted ? t('join-owner') : "..."}
                             <img src="/assets/icons/uil_arrow-up(4).png" alt="arrow" className={`${mounted ? i18n.language === 'ar' && "-rotate-80" : ""}`} />

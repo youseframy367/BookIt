@@ -99,7 +99,7 @@ export default function Otp() {
               رمز التحقق
               {/* {mounted ? t("verification-code") : "..."} */}
             </h2>
-            <span className="text-[var(--color-text-login)] font-normal text-base">
+            <span className="text-[var(--color-gray-medium)] font-normal text-base">
               ستتلقى رمز تحقق مكون من 6 أرقام
               {/* {mounted ? t("you-will-send-code") : "..."} */}
             </span>
@@ -117,7 +117,7 @@ export default function Otp() {
                 }}
                 onChange={(e) => handleChange(e, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
-                className="h-[50px] w-[50px] rounded-lg border-2 border-[var(--color-line)] text-center text-2xl font-semibold outline-none focus:border-[#E22023]"
+                className="h-[50px] w-[50px] rounded-lg border-2 border-[var(--color-gray-light-transparent)] text-center text-2xl font-semibold outline-none focus:border-[#E22023]"
               />
             ))}
           </div>

@@ -30,7 +30,7 @@ export default function FooterBottom() {
                         links.map((item, index) => (
                             <li key={index}>
                                 <Link href={item.link} title={mounted ? item.title : '...'}>
-                                    <span className={`hover:text-[var(--color-red)] ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} font-normal text-lg`}>{mounted ? item.title : '...'}</span>
+                                    <span className={`hover:text-[var(--strong-red)] ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} font-normal text-lg`}>{mounted ? item.title : '...'}</span>
                                 </Link>
                             </li>
                         ))

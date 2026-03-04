@@ -16,12 +16,12 @@ export default function CustomCursor() {
 
     return (
         <div
-            className="bg-white fixed top-0 left-0 w-[30px] h-[30px] border border-3 border-[var(--color-line)] rounded-full pointer-events-none z-50 flex justify-center items-center"
+            className="bg-white fixed top-0 left-0 w-[30px] h-[30px] border border-3 border-[var(--color-gray-light-transparent)] rounded-full pointer-events-none z-50 flex justify-center items-center"
             style={{
                 transform: `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -60%) rotate(-8deg)`,
             }}
         >
-            <span className="cursor-dot w-[9px] h-[9px] rounded-full bg-[var(--color-red)]" />
+            <span className="cursor-dot w-[9px] h-[9px] rounded-full bg-[var(--strong-red)]" />
         </div>
     );
 }

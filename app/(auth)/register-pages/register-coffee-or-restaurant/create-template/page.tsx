@@ -13,7 +13,7 @@ export default function CreateTemplate() {
     const router = useRouter();
     const templates = useTemplatesData();
     const { show, setShow } = useMenuSearch();
-    
+
     return (
         <section className="relative" dir="rtl">
             <div className="font-cairo pt-[80px] text-white">
@@ -26,7 +26,7 @@ export default function CreateTemplate() {
                                 اختيار قالب الويب سايت
                             </h2>
                             <div className="md:w-[940px] text-center">
-                                <span className="text-sm md:text-lg font-normal text-[var(--color-text-create-template)]">من فضلك اختار الواجهه الرئيسيه التي ستظهر للمستخدمين يرجي العلم ان هذه الواجهه ستظل مستمره معك
+                                <span className="text-sm md:text-lg font-normal text-[var(--color-gray)]">من فضلك اختار الواجهه الرئيسيه التي ستظهر للمستخدمين يرجي العلم ان هذه الواجهه ستظل مستمره معك
                                     لذا احرص  ان تختار الواجهه المناسبه لك ( اضغط علي القالب وشاهده جيدا وبعد ذلك اضغط موافق للأستكمال ) </span>
                             </div>
                         </div>
@@ -34,7 +34,7 @@ export default function CreateTemplate() {
                             <div className="grid md:grid-cols-2 gap-[34px]">
                                 {
                                     templates.map((item, index) => {
-                                        return <div className="overflow-hidden cursor-pointer group w-full rounded-[24px] bg-gradient-to-br from-[var(--color-one-template)] to-[var(--color-tow-template)] pt-1 relative" key={index}>
+                                        return <div className="overflow-hidden cursor-pointer group w-full rounded-[24px] bg-gradient-to-br from-[var(--color-teal)] to-[var(--color-dark-blue-overlay)] pt-1 relative" key={index}>
                                             <div onClick={() => setShow(true)} >
                                                 <div title="القالب" className={`group overflow-hidden ${!show && 'z-1'} flex justify-center items-center absolute top-7 right-5 bg-white/20 backdrop-blur-md rounded-full w-[40px] h-[40px] border border-2 border-white`}>
                                                     <Image src="/assets/icons/arraw.svg" alt="arraw" width={13} height={13} className="transition-all duration-300 group-hover:-top-2 group-hover:left-[30px] absolute left-[13px] top-3" />
@@ -56,7 +56,7 @@ export default function CreateTemplate() {
                                                                 <Submit title="نعم ؛ انا موافق علي هذا القالب وأريد الاستمرار به" width="w-full" />
                                                             </div>
                                                             <div className="w-[30%]" onClick={() => setShow(false)}>
-                                                                <Submit isColor="bg-white text-[var(--color-go-password)]" title="لا ؛ لم يعجبني هذا القالب اريد ان اشاهد اخر" width="w-full" />
+                                                                <Submit isColor="bg-white text-[var(--color-dark-blue-gray)]" title="لا ؛ لم يعجبني هذا القالب اريد ان اشاهد اخر" width="w-full" />
                                                             </div>
                                                         </div>
                                                     </div>

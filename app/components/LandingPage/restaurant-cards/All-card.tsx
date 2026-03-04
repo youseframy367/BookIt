@@ -7,7 +7,7 @@ export default function AllCard({ item }: dataCards) {
 
     return (
         <>
-            {/* <div className={`md:hidden absolute z-1 top-0 ${mounted ? i18n.language === 'ar' ? "rounded-tr-[14px] rounded-bl-[14px]" : "rounded-tl-[14px] rounded-br-[14px]" : ""} bg-[var(--color-red)] p-2 md:p-8`}>
+            {/* <div className={`md:hidden absolute z-1 top-0 ${mounted ? i18n.language === 'ar' ? "rounded-tr-[14px] rounded-bl-[14px]" : "rounded-tl-[14px] rounded-br-[14px]" : ""} bg-[var(--strong-red)] p-2 md:p-8`}>
                 <Image src={`/assets/icons/${item.like ? "full-heart" : "heart"}.svg`} alt="hert" width={24} height={24} />
             </div> */}
 
@@ -23,7 +23,7 @@ export default function AllCard({ item }: dataCards) {
             <div className="container-content flex flex-col justify-between gap-5 my-5 md:my-3">
                 <div className="flex justify-between items-center">
                     <div className="flex flex-col gap-3">
-                        <h2 className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-Poppins" : ""} text-[var(--color-footer)] text-[22px] font-normal`}>
+                        <h2 className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-Poppins" : ""} text-[var(--color-dark-blue)] text-[22px] font-normal`}>
                             {mounted ? item.name : '...'}
                         </h2>
 
@@ -45,7 +45,7 @@ export default function AllCard({ item }: dataCards) {
                     </div>
                     <div className="flex gap-3 opacity-[0.7]">
                         <Image src="/assets/icons/map.svg" alt="map" width={24} height={24} style={{ filter: "invert(47%) sepia(5%) saturate(200%) hue-rotate(180deg) brightness(95%) contrast(90%)" }} />
-                        <span className={`text-[var(--color-not-active)] text-base font-normal ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-Poppins" : ""}`}>{mounted ? item.area : '...'}</span>
+                        <span className={`text-[var(--color-gray-medium-transparent)] text-base font-normal ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-Poppins" : ""}`}>{mounted ? item.area : '...'}</span>
                     </div>
                 </div>
 

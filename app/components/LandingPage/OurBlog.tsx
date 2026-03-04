@@ -14,7 +14,7 @@ export default function OurBlog() {
             <div className="h-[500px] md:h-[400px] md:h-auto w-full relative">
               <Image src="/assets/icons/our-blog.png" alt="our blog" fill className="object-cover" />
             </div>
-            <div className="flex flex-col gap-[10px] md:gap-[37px] text-[var(--color-footer)]">
+            <div className="flex flex-col gap-[10px] md:gap-[37px] text-[var(--color-dark-blue)]">
               <p className={`text-xl md:text-[40px] md:leading-[70px] ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} font-normal`}>
                 {mounted ? t("question-our-blog") : "..."}
               </p>

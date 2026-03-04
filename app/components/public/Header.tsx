@@ -81,7 +81,7 @@ export default function Header() {
                 }`}
         >
             <div className="flex flex-col">
-                <div className="bg-[var(--color-navbar)]">
+                <div className="bg-[var(--gray)]">
                     <div className="container">
                         <div className="flex py-3 items-center justify-between">
                             <div className="absolute right-0 flex items-center lg:hidden">
@@ -103,7 +103,7 @@ export default function Header() {
                                                         title={mounted ? item.name : '...'}
                                                         key={index}
                                                         href={item.href}
-                                                        className={`${isActive && 'text-[var(--color-red)]'} ${mounted ? i18n.language === 'ar' && "font-cairo" : ""} hover:text-[var(--color-red)] text-lg font-normal`}
+                                                        className={`${isActive && 'text-[var(--strong-red)]'} ${mounted ? i18n.language === 'ar' && "font-cairo" : ""} hover:text-[var(--strong-red)] text-lg font-normal`}
                                                     >
                                                         {mounted ? item.name : '...'}
                                                     </Link>
@@ -127,7 +127,7 @@ export default function Header() {
                             <Link href="/" title='BOOK IT'>
                                 <Image src="/assets/icons/logo.svg" alt='logo' width={139} height={54} />
                             </Link>
-                            <div className="w-[75%] bg-[var(--color-search)] rounded-full relative flex items-center">
+                            <div className="w-[75%] bg-[var(--very-light-gray)] rounded-full relative flex items-center">
                                 <Image src="/assets/icons/search.svg" alt='search' width={20} height={20} className='absolute start-5' />
                                 <input value={search}
                                     onChange={(e) => {
@@ -149,8 +149,8 @@ export default function Header() {
                                         return (
                                             <li
                                                 key={index}
-                                                className={`whitespace-nowrap ${isActive ? "before:w-full text-[var(--color-red)]" : ""
-                                                    } hover:text-[var(--color-red)] pb-1 relative transition-all before:duration-400 before:content-[''] before:absolute before:bottom-0 before:bg-[var(--color-red)] hover:before:w-full before:w-[0] before:h-[2px]`}
+                                                className={`whitespace-nowrap ${isActive ? "before:w-full text-[var(--strong-red)]" : ""
+                                                    } hover:text-[var(--strong-red)] pb-1 relative transition-all before:duration-400 before:content-[''] before:absolute before:bottom-0 before:bg-[var(--strong-red)] hover:before:w-full before:w-[0] before:h-[2px]`}
                                             >
                                                 <Link
                                                     href={item.href}
@@ -170,7 +170,7 @@ export default function Header() {
                     {
                         show &&
                         <div ref={searchRef}>
-                            <ul className={`z-1 rounded-b-xl border-t-2 border-[var(--color-line)] border-top absolute bg-white w-full lg:w-[550px] ${mounted ? i18n.language === 'ar' ? "lg:right-34" : "lg:left-34" : ""}`}>
+                            <ul className={`z-1 rounded-b-xl border-t-2 border-[var(--color-gray-light-transparent)] border-top absolute bg-white w-full lg:w-[550px] ${mounted ? i18n.language === 'ar' ? "lg:right-34" : "lg:left-34" : ""}`}>
                                 <li className='flex justify-between items-center p-3'>
                                     <div className='flex items-center gap-5'>
                                         <Image src="/assets/icons/icon-resturans.svg" alt='resturans' width={40} height={40} className='object-cover' />
@@ -179,7 +179,7 @@ export default function Header() {
                                             <span className='opacity-[0.5] text-[10px] font-normal'>Next to Jumia Building & BLOM Bank, 90th Street, New Cairo, Cairo Governorate, Egypt.</span>
                                         </div>
                                     </div>
-                                    <Link href="" title='resturant' className='text-nowrap rounded-[8px] text-white p-2 text-[10px] font-normal bg-[var(--color-red)] transition-all duration-400 shadow hover:shadow-[0_8px_20px_rgba(239,68,68,0.55)]'>Enter the restaurant</Link>
+                                    <Link href="" title='resturant' className='text-nowrap rounded-[8px] text-white p-2 text-[10px] font-normal bg-[var(--strong-red)] transition-all duration-400 shadow hover:shadow-[0_8px_20px_rgba(239,68,68,0.55)]'>Enter the restaurant</Link>
                                 </li>
                                 <li className='flex justify-between items-center p-3'>
                                     <div className='flex items-center gap-5'>
@@ -189,9 +189,9 @@ export default function Header() {
                                             <span className='opacity-[0.5] text-[10px] font-normal'>Next to Jumia Building & BLOM Bank, 90th Street, New Cairo, Cairo Governorate, Egypt.</span>
                                         </div>
                                     </div>
-                                    <Link href="" title='resturant' className='text-nowrap rounded-[8px] text-white p-2 text-[10px] font-normal bg-[var(--color-red)] transition-all duration-400 shadow hover:shadow-[0_8px_20px_rgba(239,68,68,0.55)]'>Enter the restaurant</Link>
+                                    <Link href="" title='resturant' className='text-nowrap rounded-[8px] text-white p-2 text-[10px] font-normal bg-[var(--strong-red)] transition-all duration-400 shadow hover:shadow-[0_8px_20px_rgba(239,68,68,0.55)]'>Enter the restaurant</Link>
                                 </li>
-                                <hr className='text-[var(--color-not-active)]' />
+                                <hr className='text-[var(--color-gray-medium-transparent)]' />
                                 <div className='pb-1 text-center'>
                                     <span className='opacity-[0.5] text-[8px] font-normal'>No other search results found .</span>
                                 </div>

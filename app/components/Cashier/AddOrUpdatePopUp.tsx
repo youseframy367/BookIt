@@ -22,13 +22,13 @@ export default function AddOrUpdatePopUp({ title, text, input, setShowCustomer }
                         </div>
                     </div>
 
-                    <hr className="text-[var(--color-placholder-input)]" />
+                    <hr className="text-[var(--color-grayish-blue)]" />
 
                     <div className="px-[20px] flex flex-col gap-[15px]">
-                        <p className="text-[var(--color-name-role)] text-xs font-normal">
+                        <p className="text-[var(--color-dark-bg-tow)] text-xs font-normal">
                             {text}
                         </p>
-                        <input type="text" placeholder={input} className="text-xs border border-[var(--color-placholder-input)] rounded-[8px] py-[12px] px-[12px]" />
+                        <input type="text" placeholder={input} className="text-xs border border-[var(--color-grayish-blue)] rounded-[8px] py-[12px] px-[12px]" />
                     </div>
                 </div>
                 <div className="px-[20px] flex justify-between gap-[16px] direction-ltr mt-[20px]">

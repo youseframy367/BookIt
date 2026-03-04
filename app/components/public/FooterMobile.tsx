@@ -84,29 +84,29 @@ export default function FooterMobile() {
                 <SearchMobile search={search} setSearch={setSearch} setShowSearch={setShow} showSearch={show} />
             </div>
 
-            <section className="w-full z-2 fixed md:hidden bottom-0 w-full py-4 px-5 bg-[var(--color-footer-mobile)]">
+            <section className="w-full z-2 fixed md:hidden bottom-0 w-full py-4 px-5 bg-[var(--color-dark-bg)]">
                 <ul className="flex justify-between items-center">
                     <li>
-                        <Link href="/" className={`overflow-hidden relative flex gap-3 rounded-full p-3 transition-all duration-300 ${isActive("/") && !show ? "w-full bg-[var(--color-active-footer)] text-[var(--color-red)]" : "w-[49px]"
+                        <Link href="/" className={`overflow-hidden relative flex gap-3 rounded-full p-3 transition-all duration-300 ${isActive("/") && !show ? "w-full bg-[var(--color-red-overlay)] text-[var(--strong-red)]" : "w-[49px]"
                             }`}>
                             <Image src="/assets/icons/home.svg" alt="home" width={24} height={24} className={`${isActive("/") && !show && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
                             <span>Home</span>
                         </Link>
                     </li>
-                    <li onClick={toggleSearch} className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${show ? "w-[33%] bg-[var(--color-active-footer)] text-[var(--color-red)]" : "w-[49px]"
+                    <li onClick={toggleSearch} className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${show ? "w-[33%] bg-[var(--color-red-overlay)] text-[var(--strong-red)]" : "w-[49px]"
                         }`}>
                         <Image src={`/assets/icons/${show ? 'active-search' : 'search'}.svg`} alt="search" width={24} height={24} className={`${show && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
                         <span className="ms-2">Search</span>
                     </li>
                     <li>
-                        <Link href="/liked-restaurants" className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${isActive("/liked-restaurants") ? "w-full bg-[var(--color-active-footer)] text-[var(--color-red)]" : "w-[49px]"
+                        <Link href="/liked-restaurants" className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${isActive("/liked-restaurants") ? "w-full bg-[var(--color-red-overlay)] text-[var(--strong-red)]" : "w-[49px]"
                             }`}>
                             <Image src={`/assets/icons/${isActive("/liked-restaurants") ? "heart.png" : "heart-footer-bottom.svg"}`} alt="heart" width={24} height={24} />
                             <span className="ms-2">Like</span>
                         </Link>
                     </li>
                     <li>
-                        <Link href="/about" className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${isActive("/about") ? "w-full bg-[var(--color-active-footer)] text-[var(--color-red)]" : "w-[49px]"
+                        <Link href="/about" className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${isActive("/about") ? "w-full bg-[var(--color-red-overlay)] text-[var(--strong-red)]" : "w-[49px]"
                             }`}>
                             <Image src={`/assets/icons/${isActive("/about") ? "active-about" : "info"}.svg`} alt="info" width={24} height={24} />
                             <span className="ms-2">About</span>
@@ -119,11 +119,11 @@ export default function FooterMobile() {
                     </li>
                 </ul>
 
-                <div ref={menuRef} className={`p-[20px] flex flex-col gap-5 rounded-r-[20px] fixed top-0 overflow-scroll h-[91.1vh] transition-all duration-300 ${openMenu ? 'opacity-[1] left-0' : 'opacity-[0] left-[-70%]'} w-[70%] bg-gradient-to-br from-[var(--color-text-star)]/40 to-[var(--color-text-star)]/70 backdrop-blur-2xl text-white`}>
+                <div ref={menuRef} className={`p-[20px] flex flex-col gap-5 rounded-r-[20px] fixed top-0 overflow-scroll h-[91.1vh] transition-all duration-300 ${openMenu ? 'opacity-[1] left-0' : 'opacity-[0] left-[-70%]'} w-[70%] bg-gradient-to-br from-[var(--dark-charcoal)]/40 to-[var(--dark-charcoal)]/70 backdrop-blur-2xl text-white`}>
                     <ul className="py-[20px] pt-[100px]">
                         {
                             lastMenu.map((item, index) => {
-                                return <li className={`${pathname == item.link && 'bg-gradient-to-r from-[var(--color-active-menu)] to-[var(--color-active-menu)]/10'} p-4`} key={index}>
+                                return <li className={`${pathname == item.link && 'bg-gradient-to-r from-[var(--color-red-light-overlay)] to-[var(--color-red-light-overlay)]/10'} p-4`} key={index}>
                                     <Link href={item.link} onClick={() => setOpenMenu(false)} className="flex gap-5">
                                         <div className="flex justify-start w-[25px]">
                                             <img src={`/assets/icons/${item.icon}.svg`} alt={item.icon} />

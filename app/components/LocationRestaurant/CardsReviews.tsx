@@ -8,7 +8,7 @@ export default function CardsReviews({ item }: reivews) {
 
     return (
         <>
-            <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-sm md:text-lg font-normal text-[var(--color-text-footer)]`}>{mounted ? item.title : '...'}</span>
+            <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-sm md:text-lg font-normal text-[var(--slate-gray)]`}>{mounted ? item.title : '...'}</span>
             <div className="flex gap-1">
                 {[...Array(totalStars)].map((_, index) => {
                     const starValue = index + 1;
@@ -22,8 +22,8 @@ export default function CardsReviews({ item }: reivews) {
                 })}
             </div>
             <div className="flex flex-col">
-                <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} text-sm md:text-2xl text-[var(--color-text-footer)]`}>{mounted ? item.name : '...'}</span>
-                <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-sm md:text-lg text-[var(--color-text-footer)]`}>{mounted ? item.job : '...'}</span>
+                <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} text-sm md:text-2xl text-[var(--slate-gray)]`}>{mounted ? item.name : '...'}</span>
+                <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-sm md:text-lg text-[var(--slate-gray)]`}>{mounted ? item.job : '...'}</span>
             </div>
         </>
     )

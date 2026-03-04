@@ -23,7 +23,7 @@ export default function Products({ products, marginTop }: isProducts) {
                         products.map((item, index) => {
                             return <div data-aos="fade-up" key={index} className="min-h-[200px] rounded-[25px] flex flex-col bg-white shadow-[0_0_12px_rgba(0,0,0,0.15)]">
                                 <div className={`flex ${mounted ? i18n.language === 'en' && "justify-end" : ""}`}>
-                                    <div className={`${mounted ? i18n.language === 'ar' ? "rounded-tl-[25px] rounded-br-[25px]" : "rounded-tr-[25px] rounded-bl-[25px]" : ""} bg-[var(--color-red)] p-3 cursor-pointer`} onClick={() => toggleFavorite(item.id)}>
+                                    <div className={`${mounted ? i18n.language === 'ar' ? "rounded-tl-[25px] rounded-br-[25px]" : "rounded-tr-[25px] rounded-bl-[25px]" : ""} bg-[var(--strong-red)] p-3 cursor-pointer`} onClick={() => toggleFavorite(item.id)}>
                                         <div className="relative w-[15px] h-[15px] md:w-[24px] md:h-[24px]">
                                             <Image
                                                 src={`/assets/icons/${item.active ? "full-heart" : "heart"}.svg`}
@@ -41,12 +41,12 @@ export default function Products({ products, marginTop }: isProducts) {
                                     </div>
                                     <div className="h-full p-5 flex flex-col justify-between gap-3">
                                         <h2 className="font-semibold text-lg md:text-3xl">{mounted ? item.title : '...'}</h2>
-                                        <span className="text-[var(--color-text-products)] font-semibold text-xs md:text-[22px]">{mounted ? item.subTitle : '...'}</span>
+                                        <span className="text-[var(--dark-gray)] font-semibold text-xs md:text-[22px]">{mounted ? item.subTitle : '...'}</span>
                                         <div className="flex justify-between">
-                                            <span className="font-semibold text-lg md:text-3xl"><span className={`${mounted ? i18n.language === 'ar' && "font-ArefRuqaa" : ""} text-2xl text-[var(--color-red)]`}>{mounted ? t("currency") : '...'}</span> {item.amount} </span>
+                                            <span className="font-semibold text-lg md:text-3xl"><span className={`${mounted ? i18n.language === 'ar' && "font-ArefRuqaa" : ""} text-2xl text-[var(--strong-red)]`}>{mounted ? t("currency") : '...'}</span> {item.amount} </span>
                                             <div className="flex items-center gap-2">
                                                 <Image src="/assets/icons/star.svg" alt="star" width={24} height={24} />
-                                                <span className="font-semibold text-base md:text-[22px] text-[var(--color-text-star)]">{item.rating}</span>
+                                                <span className="font-semibold text-base md:text-[22px] text-[var(--dark-charcoal)]">{item.rating}</span>
                                             </div>
                                         </div>
                                     </div>

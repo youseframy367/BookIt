@@ -18,7 +18,7 @@ export default function Content() {
     via-red-200    
     bg-clip-text
     text-transparent
-    ${mounted ? i18n.language === 'ar' ? "to-[var(--color-red)] from-transparent" :"from-[var(--color-red)] to-transparent" : ""}
+    ${mounted ? i18n.language === 'ar' ? "to-[var(--strong-red)] from-transparent" :"from-[var(--strong-red)] to-transparent" : ""}
     `}>
                         Privacy Policy
                     </h2>

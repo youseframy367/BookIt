@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "app/components/Dashbord/removeMoerators.tx", "app/(dashboard)/AccessAndRoles/page.jsx", "app/hooks/usePagnation.js"  ],
+, "app/components/Dashbord/removeMoerators.tx", "app/(dashboard)/AccessAndRoles/page.jsx", "app/hooks/usePagnation.js", "app/SidebarWrapper.js", "app/(dashboard)/ReservationsRequestsTwo/OrderDetails/page.jsx", "app/(dashboard)/ReservationsRequestsTwo/checkApproved.jsx"  ],
   "exclude": ["node_modules"]
 }

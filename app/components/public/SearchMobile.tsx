@@ -9,7 +9,7 @@ export default function SearchMobile({ showSearch, setSearch, setShowSearch, sea
                 showSearch &&
                 <div className="md:hidden fixed top-10 z-1 w-full flex flex-col gap-10">
                     <div className="flex justify-center w-full">
-                        <div className="w-[85%] opacity-[0.7] bg-[var(--color-search-mobile)] rounded-lg relative flex items-center">
+                        <div className="w-[85%] opacity-[0.7] bg-[var(--color-black-opacity)] rounded-lg relative flex items-center">
                             <Image src="/assets/icons/search.svg" alt='search' width={20} height={20} className='opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0 absolute start-5' />
                             <input value={search}
                                 onChange={(e) => {
@@ -39,7 +39,7 @@ export default function SearchMobile({ showSearch, setSearch, setShowSearch, sea
                                 </div>
                             </div>
                         </li>
-                        <hr className='text-[var(--color-not-active)]' />
+                        <hr className='text-[var(--color-gray-medium-transparent)]' />
                         <div className='pb-1 text-center'>
                             <span className='opacity-[0.5] text-[8px] font-normal'>No other search results found .</span>
                         </div>

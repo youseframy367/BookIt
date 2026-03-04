@@ -16,7 +16,7 @@ export default function Footer() {
     return (
         <>
             <FormLastNews />
-            <footer className={`text-white ${pathname != '/about' ? 'mt-20 md:mt-70' : 'mt-30 md:mt-0'} bg-[var(--color-footer)] relative z-1`}>
+            <footer className={`text-white ${pathname != '/about' ? 'mt-20 md:mt-70' : 'mt-30 md:mt-0'} bg-[var(--color-dark-blue)] relative z-1`}>
                 <div className="container">
                     <div className="pb-10 pt-50 grid grid-cols-2 xl:grid-cols-[3fr_2fr_2fr_2fr_2fr] gap-5">
                         <div className="items-center flex flex-col gap-5">

@@ -41,7 +41,7 @@ export default function Otp() {
                 <form action="" onSubmit={handleotp} className="relative flex flex-col gap-15">
                     <div className="flex flex-col md:justify-center md:items-center gap-5 text-center md:text-start">
                         <h2 className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-Inter" : ""} font-semibold text-3xl`}>{mounted ? t('verification-code') : '...'}</h2>
-                        <span className="text-base font-normal text-[var(--color-otp)]">{mounted ? t('you-will-send-code') : '...'}</span>
+                        <span className="text-base font-normal text-[var(--color-gray-cool)]">{mounted ? t('you-will-send-code') : '...'}</span>
                         <div className="w-full md:w-[70%]">
                             <OtpInput
                                 value={otp}
@@ -106,7 +106,7 @@ export default function Otp() {
                                         />
                                     </div>
                                 </div>
-                                <div className="text-center px-5 text-[var(--color-text-footer)] font-semibold text-[22px]">
+                                <div className="text-center px-5 text-[var(--slate-gray)] font-semibold text-[22px]">
                                     <span>{mounted ? t('booking-confirmed') : '...'}</span>
                                 </div>
                             </div>

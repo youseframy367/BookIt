@@ -40,7 +40,7 @@ export default function Register() {
                         {/* {mounted ? t('welcome-you') : '...'} */}
                         {/* "welcome-you": "مرحبًا بك", */}
                         {/* "welcome-you": "Welcome You", */}
-                        <span className="text-[var(--color-text-login)] font-normal text-base">مرحبا بك في BOOK IN لادارة حجوزاتك، انشئ متجرك الان</span>
+                        <span className="text-[var(--color-gray-medium)] font-normal text-base">مرحبا بك في BOOK IN لادارة حجوزاتك، انشئ متجرك الان</span>
                         {/* {mounted ? t('welcome-you-register') : '...'} */}
                         {/* "welcome-you-register": "مرحبا بك في BOOK IN لادارة حجوزاتك، انشئ متجرك الان", */}
                         {/* "welcome-you-register": "Welcome to BOOK IN, please register to manage your reservations", */}
@@ -50,7 +50,7 @@ export default function Register() {
                         <div className="flex flex-col w-full gap-2 mb-2 mt-2">
                             <label
                                 htmlFor="Email"
-                                className="text-[var(--color-label-input)] text-sm font-medium"
+                                className="text-[var(--color-black)] text-sm font-medium"
                             >
                                 البريد الإلكتروني
                                 {/* {mounted ? t('email') : '...'} */}
@@ -62,7 +62,7 @@ export default function Register() {
                                 id="Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="text-[var(--color-input)] px-3 py-2 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                className="text-[var(--color-black-light)] px-3 py-2 border border-1 border-[var(--gray)] rounded-lg"
                             />
                             {/* {mounted ? t('enter-email') : 'Enter your email'} */}
                         </div>
@@ -71,7 +71,7 @@ export default function Register() {
                         <div className="flex flex-col w-full gap-2">
                             <label
                                 htmlFor=""
-                                className="text-[var(--color-label-input)] text-sm font-medium"
+                                className="text-[var(--color-black)] text-sm font-medium"
                             >
                                 كلمة المرور
                                 {/* {mounted ? t('password') : '...'} */}
@@ -81,7 +81,7 @@ export default function Register() {
                                 placeholder="أدخل كلمة المرور"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="text-[var(--color-input)] px-3 py-2 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                className="text-[var(--color-black-light)] px-3 py-2 border border-1 border-[var(--gray)] rounded-lg"
                             />
                             {/* {mounted ? t('enter-password') : 'Enter your password'} */}
                         </div>
@@ -90,7 +90,7 @@ export default function Register() {
                         <div className="flex flex-col w-full gap-2">
                             <label
                                 htmlFor=""
-                                className="text-[var(--color-label-input)] text-sm font-medium"
+                                className="text-[var(--color-black)] text-sm font-medium"
                             >
                                 تأكيد كلمة المرور
                                 {/* {mounted ? t('confirm-password') : '...'} */}
@@ -100,7 +100,7 @@ export default function Register() {
                                 placeholder="أدخل كلمة المرور"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
-                                className="text-[var(--color-input)] px-3 py-2 border border-1 border-[var(--color-navbar)] rounded-lg"
+                                className="text-[var(--color-black-light)] px-3 py-2 border border-1 border-[var(--gray)] rounded-lg"
                             />
                             {/* placeholder={mounted ? t('enter-password') : 'Enter your password'} */}
                         </div>
@@ -112,7 +112,7 @@ export default function Register() {
                             {/* {mounted ? t("continue-new-account") : '...'} */}
                             {/* "continue-new-account": "استكمال خطوات انشاء الحساب", */}
                         </div>
-                        <span className="font-normal text-center">هل لديك حساب ؟ <Link href="/login/login-coffee-or-restaurant/login" className="text-[var(--color-go-password)]">تسجيل الدخول</Link></span>
+                        <span className="font-normal text-center">هل لديك حساب ؟ <Link href="/login/login-coffee-or-restaurant/login" className="text-[var(--color-dark-blue-gray)]">تسجيل الدخول</Link></span>
                     </div>
                 </div>
                 <ToastContainer />

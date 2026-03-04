@@ -15,7 +15,7 @@ export default function Rating() {
                             <div className="flex justify-center w-2">
                                 <span>{index + 1}</span>
                             </div>
-                            <div style={{ '--before-width': `${item}%` } as React.CSSProperties} className="rounded-[2px] before:rounded-[2px] rating-bar w-full h-[7px] bg-[var(--color-line)] relative before:absolute before:left-0 before:content-[''] before:h-[7px] before:bg-[var(--color-red)]"></div>
+                            <div style={{ '--before-width': `${item}%` } as React.CSSProperties} className="rounded-[2px] before:rounded-[2px] rating-bar w-full h-[7px] bg-[var(--color-gray-light-transparent)] relative before:absolute before:left-0 before:content-[''] before:h-[7px] before:bg-[var(--strong-red)]"></div>
                         </li>
                     })
                 }

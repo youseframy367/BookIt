@@ -19,7 +19,7 @@ export default function PaymentMethod() {
     return (
         <section className="font-cairo w-full relative" dir="rtl">
             <div className="flex justify-center pt-[80px]">
-                <ul className={`before:transition-all before:duration-200 relative before:content-[''] ${period == 'شهري' ? 'before:right-2' : period == 'ربع سنويه' ? 'before:right-28' : 'before:right-59 before:!w-[58px]'} before:w-[88px] before:h-[35px] before:absolute before:rounded-[8px] before:bg-gradient-to-br before:from-[var(--color-active-payment)] before:to-[var(--color-active-payment-tow)] py-[5] px-[18px] gap-[35px] rounded-[12px] flex bg-[var(--color-nav-payments)] border border-2 border-[var(--color-border-pamyments)]`}>
+                <ul className={`before:transition-all before:duration-200 relative before:content-[''] ${period == 'شهري' ? 'before:right-2' : period == 'ربع سنويه' ? 'before:right-28' : 'before:right-59 before:!w-[58px]'} before:w-[88px] before:h-[35px] before:absolute before:rounded-[8px] before:bg-gradient-to-br before:from-[var(--color-cyan-bright)] before:to-[var(--color-teal-dark)] py-[5] px-[18px] gap-[35px] rounded-[12px] flex bg-[var(--color-white-overlay)] border border-2 border-[var(--color-white-faint)]`}>
                     <li onClick={() => setPeriod("شهري")} className={`${period == 'شهري' && '!text-black'} text-white relative text-sm font-medium cursor-pointer ms-2 p-[8px]`} title="شهري">شهري</li>
                     <li onClick={() => setPeriod("ربع سنويه")} className={`${period == 'ربع سنويه' && '!text-black'} text-white relative text-sm font-medium cursor-pointer ms-2 p-[8px]`} title="ربع سنويه">ربع سنويه</li>
                     <li onClick={() => setPeriod("سنوي")} className={`${period == 'سنوي' && '!text-black'} text-white relative text-sm font-medium cursor-pointer ms-2 p-[8px]`} title="سنوي">سنوي</li>
@@ -38,7 +38,7 @@ export default function PaymentMethod() {
                                     onClick={() => setActiveIndex(index)}
                                     className={`
         relative flex flex-col gap-[20px] md:gap-[44px] py-[15px] md:py-[55px] px-[31px] rounded-[32px] text-white        
-        ${isActive ? 'border border-[1px] border-[var(--color-active-payment)] bg-gradient-to-b from-[var(--color-one-payment-card-hover)] to-[var(--color-one-payment-card)]' : 'bg-[linear-gradient(to_bottom,var(--color-one-payment-card),var(--color-tow-payment-card),var(--color-three-payment-card))]'}
+        ${isActive ? 'border border-[1px] border-[var(--color-cyan-bright)] bg-gradient-to-b from-[var(--color-teal-light)] to-[var(--color-cyan-light)]' : 'bg-[linear-gradient(to_bottom,var(--color-one-payment-card),var(--color-cyan-transparent),var(--color-cyan-light-transparent))]'}
       `}
                                 >
                                     <div className={`
@@ -49,13 +49,13 @@ export default function PaymentMethod() {
                                     </div>
                                     <div className="w-full flex flex-col gap-[10px] md:gap-[20px]">
                                         <div className="flex flex-col gap-[20px]">
-                                            <div className="transition-all duration-300 group-hover:bg-[var(--color-active-payment-tow)] flex justify-center items-center w-[40px] h-[40px] rounded-full border-2 border-[var(--color-border-payment)] bg-[var(--color-border-pamyments)]">
-                                                <div className="transition-all duration-300 w-[20px] h-[20px] rounded-full border-5 group-hover:border-[var(--color-search-mobile)] border-white">
+                                            <div className="transition-all duration-300 group-hover:bg-[var(--color-teal-dark)] flex justify-center items-center w-[40px] h-[40px] rounded-full border-2 border-[var(--color-white-light-transparent)] bg-[var(--color-white-faint)]">
+                                                <div className="transition-all duration-300 w-[20px] h-[20px] rounded-full border-5 group-hover:border-[var(--color-black-opacity)] border-white">
                                                 </div>
                                             </div>
                                             <div className="flex flex-col gap-[9px]">
                                                 <h2 className="text-xl font-medium font-SpaceGrotesk">
-                                                    {item.title} <span className="text-[var(--color-title-card)]">{item.titleTow}</span>
+                                                    {item.title} <span className="text-[var(--color-white-translucent)]">{item.titleTow}</span>
                                                 </h2>
                                                 <span className="text-sm font-normal">{item.subTitle}</span>
                                             </div>
@@ -65,7 +65,7 @@ export default function PaymentMethod() {
                                                 {item.currens}
                                                 <span>{item.prices[period]}</span>
                                             </h2>
-                                            <span className="font-Amiri text-[var(--color-text-payment)] text-lg font-normal">
+                                            <span className="font-Amiri text-[var(--color-white-light-gray)] text-lg font-normal">
                                                 / {period}
                                             </span>
                                         </div>
@@ -73,12 +73,12 @@ export default function PaymentMethod() {
                                             <Link
                                                 href={item.link}
                                                 title="اشترك الان"
-                                                className={`${isActive ? 'from-[var(--color-active-payment)] to-[var(--color-card-btn-tow)] bg-gradient-to-br' : ''} border border-2 border-[var(--color-border-btn-payment)] bg-gradient-to-br from-[var(--color-nav-payments)] to-[var(--color-btn-tow)] font-bold text-xs md:text-base flex items-center gap-2 flex-row-reverse justify-center px-4 py-[7px] md:px-8 md:py-[11px] w-full rounded-[12px] relative cursor-pointer transition-all duration-300`}
+                                                className={`${isActive ? 'from-[var(--color-cyan-bright)] to-[var(--color-teal-dark-tow)] bg-gradient-to-br' : ''} border border-2 border-[var(--color-white-light)] bg-gradient-to-br from-[var(--color-white-overlay)] to-[var(--color-transparent)] font-bold text-xs md:text-base flex items-center gap-2 flex-row-reverse justify-center px-4 py-[7px] md:px-8 md:py-[11px] w-full rounded-[12px] relative cursor-pointer transition-all duration-300`}
                                             >
                                                 <span className="relative z-1">اشترك الان</span>
                                             </Link>
                                         </div>
-                                        <hr className="text-[var(--color-line-payment)]" />
+                                        <hr className="text-[var(--color-white-light-translucent)]" />
                                     </div>
                                     <div>
                                         <span>{item.titleMenu}</span>
@@ -95,7 +95,7 @@ export default function PaymentMethod() {
                                                             height={16}
                                                             className="mt-[2px]"
                                                         />
-                                                        <span className="text-[var(--color-text-payment)] text-sm font-medium">
+                                                        <span className="text-[var(--color-white-light-gray)] text-sm font-medium">
                                                             {item}
                                                         </span>
                                                     </li>
@@ -108,7 +108,7 @@ export default function PaymentMethod() {
                                             <Link
                                                 href=""
                                                 title={item.link}
-                                                className={`border border-2 border-[var(--color-border-btn-payment)] bg-gradient-to-br from-[var(--color-nav-payments)] to-[var(--color-btn-tow)] font-bold text-xs md:text-base flex items-center gap-2 flex-row-reverse justify-center px-4 py-[7px] md:px-8 md:py-[11px] w-full rounded-[12px] relative cursor-pointer transition-all duration-300`}
+                                                className={`border border-2 border-[var(--color-white-light)] bg-gradient-to-br from-[var(--color-white-overlay)] to-[var(--color-transparent)] font-bold text-xs md:text-base flex items-center gap-2 flex-row-reverse justify-center px-4 py-[7px] md:px-8 md:py-[11px] w-full rounded-[12px] relative cursor-pointer transition-all duration-300`}
                                             >
                                                 <span className="relative z-1">عرض المزيد عن هذه الباقه</span>
                                             </Link>

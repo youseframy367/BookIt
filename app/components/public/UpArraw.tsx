@@ -21,7 +21,7 @@ export default function UpArraw() {
             href="#paner"
             className={`z-2 fixed  ${showArrow ? "bottom-25 md:bottom-10" : "bottom-[-100px]"} right-10 transition-all duration-500`}
         >
-            <div className="cursor-pointer bg-white rounded-full border-[var(--color-red)] border-2 w-[50px] h-[50px] flex justify-center items-center shadow-lg">
+            <div className="cursor-pointer bg-white rounded-full border-[var(--strong-red)] border-2 w-[50px] h-[50px] flex justify-center items-center shadow-lg">
                 <Image
                     src="/assets/icons/arraw-select.svg"
                     alt="Arrow"

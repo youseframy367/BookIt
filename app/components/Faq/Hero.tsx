@@ -13,7 +13,7 @@ export default function Hero({ search, setSearch }: isFilter) {
     return (
         <section>
             <div className="relative w-full md:h-[75vh]">
-                <div className="py-10 md:py-0 realtive w-full h-full bg-[var(--color-hero)]">
+                <div className="py-10 md:py-0 realtive w-full h-full bg-[var(--alpha)]">
                     <div className="container h-full">
                         <button
                             title="back"

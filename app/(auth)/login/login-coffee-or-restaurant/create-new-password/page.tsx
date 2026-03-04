@@ -34,7 +34,7 @@ export default function CreateNewPassword() {
         <div className="mt-10 w-full flex flex-col gap-[20px]">
           <div className="flex flex-col gap-[16px]">
             <h2 className="text-xl font-semibold">انشاء كلمة مرور جديدة</h2>
-            <span className="text-[var(--color-text-login)] font-normal text-base">تغير كلمة المرور الخاصه بك ادخل كلمة مرور قوية</span>
+            <span className="text-[var(--color-gray-medium)] font-normal text-base">تغير كلمة المرور الخاصه بك ادخل كلمة مرور قوية</span>
           </div>
 
           <div className="flex flex-col gap-[16px]">
@@ -42,7 +42,7 @@ export default function CreateNewPassword() {
             <div className="flex flex-col w-full gap-2">
               <label
                 htmlFor="Password"
-                className="text-[var(--color-label-input)] text-sm font-medium"
+                className="text-[var(--color-black)] text-sm font-medium"
               >
                 {mounted ? t('new-enter-password') : '...'}
               </label>
@@ -52,13 +52,13 @@ export default function CreateNewPassword() {
                 id="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-[var(--color-input)] px-3 py-2 border border-1 border-[var(--color-navbar)] rounded-lg"
+                className="text-[var(--color-black-light)] px-3 py-2 border border-1 border-[var(--gray)] rounded-lg"
               />
             </div>
             <div className="flex flex-col w-full gap-2">
               <label
                 htmlFor="Password"
-                className="text-[var(--color-label-input)] text-sm font-medium"
+                className="text-[var(--color-black)] text-sm font-medium"
               >
                 {mounted ? t('confirm-new-password') : '...'}
               </label>
@@ -68,7 +68,7 @@ export default function CreateNewPassword() {
                 id="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-[var(--color-input)] px-3 py-2 border border-1 border-[var(--color-navbar)] rounded-lg"
+                className="text-[var(--color-black-light)] px-3 py-2 border border-1 border-[var(--gray)] rounded-lg"
               />
             </div>
           </div>

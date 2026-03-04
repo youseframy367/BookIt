@@ -9,7 +9,7 @@ export default function Contact() {
 
     return (
         <>
-            <Hero title={`<span class='text-[var(--color-red)]'>${mounted ? t('Connect') : '...'}</span> ${mounted ? t('with-us') : '...'}`} backgroundImage="contact" paddingMobile="py-22" />
+            <Hero title={`<span class='text-[var(--strong-red)]'>${mounted ? t('Connect') : '...'}</span> ${mounted ? t('with-us') : '...'}`} backgroundImage="contact" paddingMobile="py-22" />
             <Content />
         </>
     )

@@ -103,23 +103,23 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
             )}
             {lastWarningProducts && (
                 <WarningProducts
-                    isStyleBtn="!bg-[var(--color-remove-btn)]"
+                    isStyleBtn="!bg-[var(--color-red-bright-tow)]"
                     onClose={() => setLastWarningProducts(false)}
                 />
             )}
             <div className="sticky top-20 flex flex-col gap-[10px]">
                 <div className="shadow-[0_0_10px_rgba(0,0,0,0.10)] bg-[#fff] rounded-[11px] py-[24px] px-[15px] flex flex-col gap-[24px]">
                     <div className="flex gap-[6px] justify-center">
-                        <button onClick={() => setTakeawayOrSala(0)} title="صاله" className={`${takeawayOrSala == 0 && 'hover:text-[var(--color-btn-sidebar)] hover:bg-white bg-[var(--color-btn-sidebar)] text-white'} text-[var(--color-btn-sidebar)] cursor-pointer text-xs font-semibold transition-all duration-300 py-[8px] px-[40px] border border-2 border-[var(--color-btn-sidebar)] rounded-[13px]`}>
+                        <button onClick={() => setTakeawayOrSala(0)} title="صاله" className={`${takeawayOrSala == 0 && 'hover:text-[var(--color-light-blue)] hover:bg-white bg-[var(--color-light-blue)] text-white'} text-[var(--color-light-blue)] cursor-pointer text-xs font-semibold transition-all duration-300 py-[8px] px-[40px] border border-2 border-[var(--color-light-blue)] rounded-[13px]`}>
                             صاله
                         </button>
-                        <button onClick={() => setTakeawayOrSala(1)} title="تيك اوي" className={`${takeawayOrSala == 1 && 'hover:text-[var(--color-btn-sidebar)] hover:bg-white bg-[var(--color-btn-sidebar)] text-white'} cursor-pointer text-xs text-[var(--color-btn-sidebar)] hover:text-white font-semibold transition-all duration-300 py-[8px] px-[40px] hover:bg-[var(--color-btn-sidebar)] border border-2 border-[var(--color-btn-sidebar)] rounded-[13px]`}>
+                        <button onClick={() => setTakeawayOrSala(1)} title="تيك اوي" className={`${takeawayOrSala == 1 && 'hover:text-[var(--color-light-blue)] hover:bg-white bg-[var(--color-light-blue)] text-white'} cursor-pointer text-xs text-[var(--color-light-blue)] hover:text-white font-semibold transition-all duration-300 py-[8px] px-[40px] hover:bg-[var(--color-light-blue)] border border-2 border-[var(--color-light-blue)] rounded-[13px]`}>
                             تيك اوي
                         </button>
                     </div>
                     <div className="flex flex-col gap-[13px]">
                         <div>
-                            <h2 className="font-semibold text-lg text-[var(--color-title-sidebar)]">تفاصيل الفاتوره</h2>
+                            <h2 className="font-semibold text-lg text-[var(--color-dark-gray)]">تفاصيل الفاتوره</h2>
                         </div>
                         <div className="flex flex-col gap-[11px]">
                             <div className="flex justify-between" onClick={() =>
@@ -130,7 +130,7 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                                 <h2 className="font-semibold text-sm">بيانات الموظف</h2>
                                 <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
-                            <span className={`text-xs text-[var(--color-sub-title)] overflow-hidden transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
+                            <span className={`text-xs text-[var(--color-dark-gray-translucent)] overflow-hidden transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
                                 مؤمن الزبده
                             </span>
                         </div>
@@ -144,15 +144,15 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                                 <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedDetailsClients === "Details Clients" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
                             <div className={`text-xs flex justify-between overflow-hidden transition-all duration-300 ${selectedDetailsClients === "Details Clients" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
-                                <span className="text-[var(--color-sub-title)]">
+                                <span className="text-[var(--color-dark-gray-translucent)]">
                                     كود العميل
                                 </span>
                                 {
                                     isProducts.length == 0 ?
-                                        <span className="text-[var(--color-sub-title)]">
+                                        <span className="text-[var(--color-dark-gray-translucent)]">
                                             #
                                         </span>
-                                        : <span className="text-[var(--color-title-sidebar)]">
+                                        : <span className="text-[var(--color-dark-gray)]">
                                             #785
                                         </span>
                                 }
@@ -170,7 +170,7 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                             <div className="flex flex-col gap-[18px] overflow-auto max-h-[120px]">
                                 {
                                     isProducts.length == 0 ? <div className={`${selectedProducts === "products" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
-                                        <span className="text-xs text-[var(--color-sub-title)]">
+                                        <span className="text-xs text-[var(--color-dark-gray-translucent)]">
                                             لم يحدد بعد
                                         </span>
                                     </div> :
@@ -184,21 +184,21 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                                                 </div>
                                                 <ul className="flex flex-col gap-[12px]">
                                                     <li className="text-[10px] flex justify-between items-center">
-                                                        <span className="font-semibold text-[var(--color-sub-title)]">السعر</span>
+                                                        <span className="font-semibold text-[var(--color-dark-gray-translucent)]">السعر</span>
                                                         <div className="text-center min-w-[20px]">
-                                                            <span className="font-bold text-[var(--color-title-sidebar)]">{item.price}</span>
+                                                            <span className="font-bold text-[var(--color-dark-gray)]">{item.price}</span>
                                                         </div>
                                                     </li>
                                                     <li className="text-[10px] flex justify-between items-center">
-                                                        <span className="font-semibold text-[var(--color-sub-title)]">الكميه</span>
+                                                        <span className="font-semibold text-[var(--color-dark-gray-translucent)]">الكميه</span>
                                                         <div className="text-center min-w-[20px]">
-                                                            <span className="font-bold text-[var(--color-title-sidebar)]">{item.amount}</span>
+                                                            <span className="font-bold text-[var(--color-dark-gray)]">{item.amount}</span>
                                                         </div>
                                                     </li>
                                                     <li className="text-[10px] flex justify-between items-center">
-                                                        <span className="font-semibold text-[var(--color-sub-title)]">سعر الوحده</span>
+                                                        <span className="font-semibold text-[var(--color-dark-gray-translucent)]">سعر الوحده</span>
                                                         <div className="text-center min-w-[20px]">
-                                                            <span className="font-bold text-[var(--color-title-sidebar)]">{item.singlePrice}</span>
+                                                            <span className="font-bold text-[var(--color-dark-gray)]">{item.singlePrice}</span>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -219,48 +219,48 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                             <div className={`transition-all duration-300 ${selectedInvoice === "Invoice Details" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
                                 <ul className="flex flex-col gap-[12px]">
                                     <li className="text-[10px] flex justify-between items-center">
-                                        <span className="font-semibold text-[var(--color-sub-title)]">عدد المنتجات</span>
+                                        <span className="font-semibold text-[var(--color-dark-gray-translucent)]">عدد المنتجات</span>
                                         <div className="text-center min-w-[20px]">
-                                            <span className="font-bold text-[var(--color-title-sidebar)]">{totalItems}</span>
+                                            <span className="font-bold text-[var(--color-dark-gray)]">{totalItems}</span>
                                         </div>
                                     </li>
                                     <li className="text-[10px] flex justify-between items-center">
-                                        <span className="font-semibold text-[var(--color-sub-title)]">اجمالي القيمه بدون ضريبه المضافه</span>
+                                        <span className="font-semibold text-[var(--color-dark-gray-translucent)]">اجمالي القيمه بدون ضريبه المضافه</span>
                                         <div className="text-center min-w-[20px]">
-                                            <span className="font-bold text-[var(--color-title-sidebar)]">{subtotal.toFixed(2)}</span>
+                                            <span className="font-bold text-[var(--color-dark-gray)]">{subtotal.toFixed(2)}</span>
                                         </div>
                                     </li>
                                     {
                                         takeawayOrSala == 1 &&
                                         <li className="text-[10px] flex justify-between items-center">
-                                            <span className="font-semibold text-[var(--color-sub-title)]">ضريبة التوصيل</span>
+                                            <span className="font-semibold text-[var(--color-dark-gray-translucent)]">ضريبة التوصيل</span>
                                             <div className="text-center min-w-[20px]">
-                                                <span className="font-bold text-[var(--color-title-sidebar)]">{deliveryFee.toFixed(2)}</span>
+                                                <span className="font-bold text-[var(--color-dark-gray)]">{deliveryFee.toFixed(2)}</span>
                                             </div>
                                         </li>
                                     }
                                     <li className="text-[10px] flex justify-between items-center">
-                                        <span className="font-semibold text-[var(--color-sub-title)]">ضريبة القيمه المضافه 14%</span>
+                                        <span className="font-semibold text-[var(--color-dark-gray-translucent)]">ضريبة القيمه المضافه 14%</span>
                                         <div className="text-center min-w-[20px]">
-                                            <span className="font-bold text-[var(--color-title-sidebar)]">{vat.toFixed(2)}</span>
+                                            <span className="font-bold text-[var(--color-dark-gray)]">{vat.toFixed(2)}</span>
                                         </div>
                                     </li>
                                     <li className="text-[10px] flex justify-between items-center">
-                                        <span className="font-semibold text-[var(--color-sub-title)]">الاجمالي شامل ضريبة القيمه المضافه</span>
+                                        <span className="font-semibold text-[var(--color-dark-gray-translucent)]">الاجمالي شامل ضريبة القيمه المضافه</span>
                                         <div className="text-center min-w-[20px]">
-                                            <span className="font-bold text-[var(--color-title-sidebar)]">{totalWithVat.toFixed(2)}</span>
+                                            <span className="font-bold text-[var(--color-dark-gray)]">{totalWithVat.toFixed(2)}</span>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <hr className="text-[var(--color-hero)]" />
+                        <hr className="text-[var(--alpha)]" />
                         <div className="flex flex-col gap-[13px]">
                             <div className="flex justify-between items-center">
-                                <span className="text-[10px] text-[var(--color-sub-title)]">الاجمالي</span>
+                                <span className="text-[10px] text-[var(--color-dark-gray-translucent)]">الاجمالي</span>
                                 {
                                     isProducts.length == 0 ?
-                                        <span className="text-[var(--color-total-line)]">-------</span> : <span className="text-[10px] text-[var(--color-title-sidebar)]">{totalWithVat.toFixed(2)}</span>
+                                        <span className="text-[var(--color-dark-gray-light-translucent)]">-------</span> : <span className="text-[10px] text-[var(--color-dark-gray)]">{totalWithVat.toFixed(2)}</span>
                                 }
                             </div>
                         </div>
@@ -270,7 +270,7 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                                 <div className="flex gap-[6px] justify-between">
                                     {
                                         paymentGetway.map((item, index) => {
-                                            return <button key={index} onClick={() => setActivePaymentIndex(index)} title={item.title} className={`${activePaymentIndex == index ? 'bg-[var(--color-btn-sidebar)] text-white hover:bg-white hover:text-[var(--color-btn-sidebar)]' : 'hover:text-white hover:bg-[var(--color-btn-sidebar)]'} group text-[var(--color-btn-sidebar)] transition-all duration-300 cursor-pointer w-full py-[8px] flex gap-[6px] justify-center border border-[var(--color-btn-sidebar)] rounded-[8px]`}>
+                                            return <button key={index} onClick={() => setActivePaymentIndex(index)} title={item.title} className={`${activePaymentIndex == index ? 'bg-[var(--color-light-blue)] text-white hover:bg-white hover:text-[var(--color-light-blue)]' : 'hover:text-white hover:bg-[var(--color-light-blue)]'} group text-[var(--color-light-blue)] transition-all duration-300 cursor-pointer w-full py-[8px] flex gap-[6px] justify-center border border-[var(--color-light-blue)] rounded-[8px]`}>
                                                 <Image src={`/assets/icons/${item.icon}`} alt="critical" width={20} height={15} className={`${activePaymentIndex == index ? 'brightness-0 invert group-hover:brightness-[unset] group-hover:invert-[unset]' : 'group-hover:brightness-0 group-hover:invert'} transition-all duration-300`} />
                                                 <span className="text-[14px]">{item.title}</span>
                                             </button>
@@ -279,7 +279,7 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                                 </div>
                             </div>
                             <div className="flex gap-[12px]">
-                                <button title="طباعه ، وتأكيد العمليه" className={`${isProducts.length == 0 ? 'opacity-[0.5]' : 'cursor-pointer transition-all duration-300 hover:text-[var(--color-btn-sidebar)] hover:bg-white'} w-full text-sm text-white font-semibold py-[12px] border border-2 border-[var(--color-btn-sidebar)] bg-[var(--color-btn-sidebar)] rounded-[13px]`}>
+                                <button title="طباعه ، وتأكيد العمليه" className={`${isProducts.length == 0 ? 'opacity-[0.5]' : 'cursor-pointer transition-all duration-300 hover:text-[var(--color-light-blue)] hover:bg-white'} w-full text-sm text-white font-semibold py-[12px] border border-2 border-[var(--color-light-blue)] bg-[var(--color-light-blue)] rounded-[13px]`}>
                                     طباعه ، وتأكيد العمليه
                                 </button>
                                 <Image src="/assets/icons/remove.svg" alt="critical" width={31} height={31} className="cursor-pointer" title="Remove" onClick={() => {
@@ -292,7 +292,7 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                 {activePaymentIndex != 0 && (
                     <div className="shadow-[0_0_10px_rgba(0,0,0,0.10)] bg-[#fff] rounded-[16px] py-[24px] px-[15px] flex items-center gap-[13px]">
                         <Image src="/assets/icons/pin.svg" alt="pin" width={15} height={15} />
-                        <span className="font-semibold text-xs text-[var(--color-text-popup)]">سيتم تسجيل العمليه عند مشرف المطعم بأنها قد تمت من خلال البطاقه البنكيه وليس دفع نقدي .</span>
+                        <span className="font-semibold text-xs text-[var(--color-dark-gray-50)]">سيتم تسجيل العمليه عند مشرف المطعم بأنها قد تمت من خلال البطاقه البنكيه وليس دفع نقدي .</span>
                     </div>
                 )}
             </div>

@@ -38,7 +38,7 @@ export default function LogAcountCoffeeOrResturant() {
           <div className="flex flex-col gap-[16px]">
             <h2 className="text-xl font-semibold">مرحبًا بك <span className="text-2xl movementHasn">👋</span></h2>
             {/* <h2 className="text-xl font-semibold">{mounted ? t('welcome-you') : '...'} <span className="text-2xl movementHasn">👋</span></h2> */}
-            <span className="text-[var(--color-text-login)] font-normal text-base">مرحبا بك في BOOK IN ، سجّل الدخول الان</span>
+            <span className="text-[var(--color-gray-medium)] font-normal text-base">مرحبا بك في BOOK IN ، سجّل الدخول الان</span>
             {/* {mounted ? t('welcome-you-login') : '...'} */}
             {/* "welcome-you-login": "Welcome to BOOK IN, please log in", */}
             {/* "welcome-you-login": "مرحبا بك في BOOK IN ، سجّل الدخول الان", */}
@@ -48,7 +48,7 @@ export default function LogAcountCoffeeOrResturant() {
             <div className="flex flex-col w-full gap-2 mb-2 mt-2">
               <label
                 htmlFor="Email"
-                className="text-[var(--color-label-input)] text-sm font-medium"
+                className="text-[var(--color-black)] text-sm font-medium"
               >
                 البريد الإلكتروني
                 {/* {mounted ? t('email') : '...'} */}
@@ -60,7 +60,7 @@ export default function LogAcountCoffeeOrResturant() {
                 id="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="text-[var(--color-input)] px-3 py-2 border border-1 border-[var(--color-navbar)] rounded-lg"
+                className="text-[var(--color-black-light)] px-3 py-2 border border-1 border-[var(--gray)] rounded-lg"
               />
               {/* {mounted ? t('enter-email') : 'Enter your email'} */}
             </div>
@@ -69,7 +69,7 @@ export default function LogAcountCoffeeOrResturant() {
             <div className="flex flex-col w-full gap-2">
               <label
                 htmlFor="Password"
-                className="text-[var(--color-label-input)] text-sm font-medium"
+                className="text-[var(--color-black)] text-sm font-medium"
               >
                 كلمة المرور
                 {/* {mounted ? t('password') : '...'} */}
@@ -80,7 +80,7 @@ export default function LogAcountCoffeeOrResturant() {
                 id="Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="text-[var(--color-input)] px-3 py-2 border border-1 border-[var(--color-navbar)] rounded-lg"
+                className="text-[var(--color-black-light)] px-3 py-2 border border-1 border-[var(--gray)] rounded-lg"
               />
               {/* {mounted ? t('enter-password') : 'Enter your password'} */}
             </div>
@@ -97,7 +97,7 @@ export default function LogAcountCoffeeOrResturant() {
             </div>
 
             <p
-              className="text-[var(--color-go-password)] underline text-sm font-medium cursor-pointer"
+              className="text-[var(--color-dark-blue-gray)] underline text-sm font-medium cursor-pointer"
               onClick={() => router.push("/login/login-coffee-or-restaurant/forget-password")}
             >
               نسيت كلمة المرور ؟
@@ -109,7 +109,7 @@ export default function LogAcountCoffeeOrResturant() {
               <Submit title="تسجيل الدخول" width="w-full" loading={loading} />
               {/* {mounted ? t("sign-in") : '...'} */}
             </div>
-            <span className="font-normal text-center">ليس لديك حساب ؟ <Link href="/register-pages/register-coffee-or-restaurant/register" className="text-[var(--color-go-password)]">انشئ حساب</Link></span>
+            <span className="font-normal text-center">ليس لديك حساب ؟ <Link href="/register-pages/register-coffee-or-restaurant/register" className="text-[var(--color-dark-blue-gray)]">انشئ حساب</Link></span>
           </div>
         </div>
         <ToastContainer />
