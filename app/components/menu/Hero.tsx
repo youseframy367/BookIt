@@ -1,14 +1,18 @@
 "use client";
+
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 
 export default function Hero() {
+    const { mounted, i18n } = useTranslationSetup();
+
     const { id } = useParams();
 
     return (
         <section>
-            <div className="container-mobile mt-5 relative w-full h-[500px] md:h-[82.3vh]">
+            <div className="container-mobile relative w-full h-[500px] md:h-[82.3vh]">
                 <div className="realtive w-full h-full bg-[var(--alpha)] rounded-[30px] md:rounded-none">
                     <div data-aos="fade-up" className="flex justify-center items-center w-full h-full">
                         <h2 className="font-qwigley text-[100px] md:text-[350px] font-normal text-white">Seafood</h2>
@@ -16,7 +20,7 @@ export default function Hero() {
                     <div className="container">
                         <div className="absolute top-5 md:top-13">
                             <Link title="back" href={`/details-restaurant-public/${id}`} className="hidden md:flex border border-2 border-white rounded-full py-[10px] px-[17px] bg-[var(--color-arraw-back)]">
-                                <Image src="/assets/icons/arraw.png" alt="arraw" width={14} height={30} className="rotate-180" />
+                                <Image src="/assets/icons/arraw.png" alt="arraw" width={14} height={30} className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} rotate-180`} />
                             </Link>
                             <Link title="back" href={`/details-restaurant-public/${id}`} className="md:hidden">
                                 <Image src="/assets/icons/arraw-mobile.svg" alt="arraw" width={44} height={44} />

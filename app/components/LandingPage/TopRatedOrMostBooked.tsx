@@ -11,9 +11,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-import { Navigation } from 'swiper/modules';
 
 interface HeaderItem {
   title: string;
@@ -84,11 +81,6 @@ export default function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitl
                   <Swiper
                     key={mounted ? i18n.dir() : ''}
                     dir={mounted ? i18n.dir() : ''}
-                    modules={[Navigation]}
-                    navigation={{
-                      prevEl: ".swiper-button-prev",
-                      nextEl: ".swiper-button-next",
-                    }}
                     slidesPerView={1.3}
                     spaceBetween={30}
                     className="mySwiper mt-5"

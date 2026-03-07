@@ -75,6 +75,10 @@
     --color-blue-deep: #144EA1;
     --color-green-bright: #23BD33;
     --color-red-bright-three: #FF1300;
+    --color-red-bright-four: #7C1213;
+    --color-gray-tow: #FFFFFFA6;
+    --color-black-tow: #00000040;
+    --color-gray-three: #6C737F;
 }
 
 @font-face {
@@ -263,6 +267,7 @@ html {
     scroll-behavior: smooth;
 }
 
+.container-payment-method,
 .container,
 .container-content {
     width: 95%;
@@ -280,6 +285,10 @@ html {
     max-width: 1200px;
 }
 
+.container-payment-method {
+    max-width: 1300px;
+}
+
 input[type="date"]::-webkit-calendar-picker-indicator {
     display: none;
     -webkit-appearance: none;
@@ -293,7 +302,7 @@ select {
 
 .active {
     color: white;
-    background-color: var(--color-red);
+    background-color: var(--strong-red);
     border: transparent;
 }
 
@@ -382,18 +391,18 @@ html[dir="rtl"] .swiper-button-next {
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
     background-color: transparent !important;
-    color: var(--color-red) !important;
-    border: 2px solid var(--color-red) !important;
-    border-radius: 50% !important;
+    color: var(--strong-red) !important;
+    border: 2px solid var(--strong-red) !important;
+    border-radius: 50% !important;    
 }
 
 .booked-day:hover,
 .booked-day {
-    background-color: var(--color-red) !important;
+    background-color: var(--strong-red) !important;
     color: white !important;
     border-radius: 50% !important;
     border: 2px solid white !important;
-    outline: 2px solid var(--color-red) !important;
+    outline: 2px solid var(--strong-red) !important;
 }
 
 .css-18qp6qv {
@@ -403,7 +412,7 @@ html[dir="rtl"] .swiper-button-next {
 }
 
 .css-7p02jm {
-    color: var(--color-red) !important;
+    color: var(--strong-red) !important;
 }
 
 .css-1ysp02-MuiButtonBase-root-MuiIconButton-root {
@@ -443,7 +452,7 @@ html[dir="rtl"] .swiper-button-next {
 
 .css-1usb7ps {
     background-color: var(--color-red-overlay-dark) !important;
-    color: var(--color-red) !important;
+    color: var(--strong-red) !important;
     padding: 5px 10px;
     border-radius: 4px;
 }
@@ -458,22 +467,22 @@ html[dir="rtl"] .swiper-button-next {
 }
 
 .MuiClockPointer-thumb {
-    border: 16px solid var(--color-red) !important;
+    border: 16px solid var(--strong-red) !important;
 }
 
 .MuiClockPointer-root,
 .MuiClockNumber-root.Mui-selected,
 .MuiClock-pin {
-    background-color: var(--color-red) !important;
+    background-color: var(--strong-red) !important;
 }
 
 .css-1fb7els-MuiPickersSectionList-root-MuiPickersInputBase-sectionsContainer-MuiPickersOutlinedInput-sectionsContainer,
 .MuiClockPointer-root {
-    color: var(--color-red) !important;
+    color: var(--strong-red) !important;
 }
 
 .react-datepicker__input-container {
-    color: var(--color-red) !important;
+    color: var(--strong-red) !important;
 }
 
 @keyframes breatheBook {
@@ -512,7 +521,7 @@ html[dir="rtl"] .swiper-button-next {
 }
 
 .input-email:focus-visible {
-    outline: 2px solid var(--color-red) !important;
+    outline: 2px solid var(--strong-red) !important;
 }
 
 .sliderSimple-section {

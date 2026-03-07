@@ -32,7 +32,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                     <div className="w-full py-3 md:py-6 px-3 md:px-8 grid grid-cols-3 gap-2 md:gap-5" dir="ltr">
                         <div className={`flex items-center ${nextPage && 'py-5'
                             } relative font-normal text-[8px] md:text-xl font-rubik bg-[var(--color-danger-light)] rounded-xl lg:w-[315px]`}>
-                            <div className={`absolute ${mounted ? i18n.language === 'ar' ? "right-5" : "left-3" : ""} md:top-4`}>
+                            <div className={`absolute ${mounted ? i18n.language === 'ar' ? "right-3" : "left-3" : ""} md:top-4`}>
                                 <div className="relative w-[15px] h-[15px] md:w-[30px] md:h-[30px]">
                                     <Image
                                         src="/assets/icons/calendar.svg"
@@ -44,7 +44,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                             {
                                 !nextPage ?
                                     <DatePicker
-                                        className={`${mounted ? i18n.language === 'ar' ? "md:text-end" : "ps-8 md:ps-15" : ""} px-3 py-3 md:py-5`}
+                                        className={`${mounted ? i18n.language === 'ar' ? "md:text-end pe-8 md:pe-15" : "ps-8 md:ps-15" : ""} rounded-lg input-email px-3 py-3 md:py-5`}
                                         selected={selectedDate}
                                         onChange={setSelectedDate}
                                         dayClassName={getDayClassName}
@@ -123,7 +123,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                             dir="rtl"
                                             value={selectedUser || ""}
                                             onChange={(e) => setSelectedUser(e.target.value)}
-                                            className="text-[8px] md:text-xl px-8 md:px-15 md:py-5 text-[var(--strong-red)] w-full h-full"
+                                            className="z-1 input-email rounded-lg text-[8px] md:text-xl px-8 md:px-15 md:py-5 text-[var(--strong-red)] w-full h-full"
                                         >
                                             <option value="">{mounted ? t('select') : ""}</option>
                                             <option value="2">2</option>
@@ -146,7 +146,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                             <option value="19">19</option>
                                             <option value="20">20</option>
                                         </select>
-                                        <div className={`absolute ${mounted ? i18n.language === 'ar' ? "left-3" : "right-3" : ""} top-5`}>
+                                        <div className={`z-0 absolute ${mounted ? i18n.language === 'ar' ? "left-3" : "right-3" : ""} top-5`}>
                                             <div className="relative w-[15px] h-[15px] md:w-[30px] md:h-[30px]">
                                                 <Image
                                                     src="/assets/icons/arraw-select.svg"
