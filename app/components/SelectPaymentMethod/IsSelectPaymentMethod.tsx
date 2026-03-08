@@ -14,6 +14,7 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
     const [isMobile, setIsMobile] = useState(false);
     const [isFirstOpen, setIsFirstOpen] = useState(false);
     const [isSecondOpen, setIsSecondOpen] = useState(false);
+    const [showWarning, setShowWarning] = useState(false);
 
     useEffect(() => {
         const checkMobile = () => {
@@ -32,8 +33,16 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                     <div className="flex flex-col gap-[43px] text-center">
                         <h2 data-aos="fade-up" className="text-[var(--strong-red)] text-[22px] md:text-[56px] font-bold">{mounted ? t('select-payment-method') : '...'}</h2>
                         <div className="flex flex-col md:flex-row gap-[49px]" data-aos="fade-up">
+                            {showWarning && (
+                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs px-3 py-1 rounded">
+                                    Please complete the previous step first
+                                </div>
+                            )}
                             <div className="h-full">
-                                <div onClick={isMobile ? () => setIsFirstOpen(!isFirstOpen) : undefined} className={`${allChecked && "group"} flex flex-col relative`}>
+                                <div onClick={isMobile ? () => setIsFirstOpen(!isFirstOpen) : undefined} className={`${allChecked && "group"} flex flex-col relative`} onMouseEnter={() => {
+                                    !allChecked && setShowWarning(true);
+                                }}
+                                    onMouseLeave={() => setShowWarning(false)}>
                                     <div className="shadow-xl rounded-[20px] bg-gradient-to-br to-[var(--strong-red)] from-[var(--color-red-bright-four)] w-full relative">
                                         <div className="relative w-full h-[199px] md:h-[350px]">
                                             <Image src="/assets/icons/wallet-numbers.svg" alt="user visa" fill className="object-cover rounded-[20px]" />
@@ -65,7 +74,10 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                                 </div>
                             </div>
                             <div className="h-full">
-                                <div onClick={isMobile ? () => setIsSecondOpen(!isSecondOpen) : undefined} className={`${allChecked && "group"} flex flex-col relative`}>
+                                <div onClick={isMobile ? () => setIsSecondOpen(!isSecondOpen) : undefined} className={`${allChecked && "group"} flex flex-col relative`} onMouseEnter={() => {
+                                    !allChecked && setShowWarning(true);
+                                }}
+                                    onMouseLeave={() => setShowWarning(false)}>
                                     <div className="h-full shadow-xl rounded-[20px] bg-gradient-to-br to-[var(--strong-red)] from-[var(--color-red-bright-four)] w-full relative">
                                         <div className="relative w-full h-[199px] md:h-[350px]">
                                             <Image src="/assets/icons/face-wallet.svg" alt="user visa" fill className="object-cover rounded-[20px]" />

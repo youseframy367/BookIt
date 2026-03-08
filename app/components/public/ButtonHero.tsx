@@ -17,6 +17,9 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
 
     const [bookedDate, setBookedDate] = useState<Date | null>(new Date('2026-02-28'));
 
+    const [showError, isShowError] = useState(false);
+    const [isReadOnly, setIsReadOnly] = useState(false);
+
     const bookedHours = [10, 13, 16];
     const bookedMinutes = [0, 30];
 
@@ -29,7 +32,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
         <div className="absolute bottom-[-35px] w-full">
             <div className="container-content">
                 <div className="grid md:grid-cols-[10.2fr_1fr] bg-white rounded-t-2xl md:rounded-2xl shadow">
-                    <div className="w-full py-3 md:py-6 px-3 md:px-8 grid grid-cols-3 gap-2 md:gap-5" dir="ltr">
+                    <div className={`w-full py-3 ${showError && 'md:pt-6 md:pb-11'} md:py-6 px-3 md:px-8 grid grid-cols-3 gap-2 md:gap-5`} dir="ltr">
                         <div className={`flex items-center ${nextPage && 'py-5'
                             } relative font-normal text-[8px] md:text-xl font-rubik bg-[var(--color-danger-light)] rounded-xl lg:w-[315px]`}>
                             <div className={`absolute ${mounted ? i18n.language === 'ar' ? "right-3" : "left-3" : ""} md:top-4`}>
@@ -106,7 +109,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                     </div>
                             }
                         </div>
-                        <div className={`flex items-center ${nextPage && 'md:py-5'} relative font-normal font-rubik bg-[var(--color-danger-light)] rounded-xl w-full lg:w-[315px]`}>
+                        <div className={`flex justify-center items-center ${nextPage && 'md:py-5'} relative font-normal font-rubik bg-[var(--color-danger-light)] rounded-xl w-full lg:w-[315px]`}>
                             {
                                 !nextPage ?
                                     <>
@@ -119,42 +122,10 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                                 />
                                             </div>
                                         </div>
-                                        <select
-                                            dir="rtl"
-                                            value={selectedUser || ""}
-                                            onChange={(e) => setSelectedUser(e.target.value)}
-                                            className="z-1 input-email rounded-lg text-[8px] md:text-xl px-8 md:px-15 md:py-5 text-[var(--strong-red)] w-full h-full"
-                                        >
-                                            <option value="">{mounted ? t('select') : ""}</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                            <option value="13">13</option>
-                                            <option value="14">14</option>
-                                            <option value="15">15</option>
-                                            <option value="16">16</option>
-                                            <option value="17">17</option>
-                                            <option value="18">18</option>
-                                            <option value="19">19</option>
-                                            <option value="20">20</option>
-                                        </select>
-                                        <div className={`z-0 absolute ${mounted ? i18n.language === 'ar' ? "left-3" : "right-3" : ""} top-5`}>
-                                            <div className="relative w-[15px] h-[15px] md:w-[30px] md:h-[30px]">
-                                                <Image
-                                                    src="/assets/icons/arraw-select.svg"
-                                                    alt="arraw-select"
-                                                    fill
-                                                />
-                                            </div>
-                                        </div>
+                                        <input type="number" className={`w-full h-full ${mounted ? i18n.language === 'ar' ? "px-5" : "px-12" : ""} text-[var(--strong-red)] input-email rounded-lg`} placeholder={mounted ? t('number-of-people') : ""}
+                                            onChange={(e: any) => {
+                                                e.target.value > 20 ? isShowError(true) : e.target.value < 21 ? isShowError(false) : null;
+                                            }} />
                                     </> : <>
                                         <div className="absolute left-3 top-6">
                                             <div className="relative w-[15px] h-[15px] md:w-[30px] md:h-[30px]">
@@ -170,10 +141,18 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                         </div>
                                     </>
                             }
+                            {
+                                showError && <div className="flex items-center gap-2 absolute -bottom-8 text-[var(--strong-red)]">
+                                    <Image src="/assets/icons/warning.svg" alt="warning" width={12} height={11} className="" style={{
+                                        filter: "invert(18%) sepia(92%) saturate(5474%) hue-rotate(351deg) brightness(93%) contrast(92%)"
+                                    }} />
+                                    <span className="mt-[2.4px] text-[10px]">The maximum number are 20 of people</span>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div className={`${mounted ? i18n.language === 'ar' && "rotate-180" : ""} w-full px-8 md:px-0 md:w-[unset] hidden md:flex md:justify-center`}>
-                        <Link title="Details Customer" href="/details-customer" className={`${nextPage ? 'bg-[var(--color-gray-medium-transparent)] cursor-default' : 'bg-[var(--strong-red)]'} w-full md:w-[unset] border- arraw rounded-r-xl xl:px-[40px] flex justify-center items-center`}>
+                        <Link title="Details Customer" href={nextPage || showError ? "" : "/details-customer"} className={`${nextPage || showError ? 'bg-[var(--color-gray-medium-transparent)] cursor-default' : 'bg-[var(--strong-red)]'} w-full md:w-[unset] border- arraw rounded-r-xl xl:px-[40px] flex justify-center items-center`}>
                             <div className="w-[28px] h-[60px] relative">
                                 <Image src="/assets/icons/arraw.png" alt="arraw" className="object-cover" fill />
                             </div>

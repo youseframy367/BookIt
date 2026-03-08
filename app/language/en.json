@@ -156,7 +156,6 @@
     "cookie-preferences": "Cookie Preferences",
     "accessibility-statement": "Accessibility Statement",
     "pane-vino": "Pane Vino - InterContinental Cairo Semiramis",
-    "select": "Select number of people",
     "create-new-password": "Create a new password",
     "select-payment-method": "Select payment method",
     "text-payment-1": " You can complete your payment securely and conveniently using your bank card (Visa or MasterCard). A confirmation request will be processed instantly once your card details are verified, and the transaction will be completed through a fast, fully encrypted, and secure payment gateway to ensure maximum protection of your financial information and personal data",
@@ -170,5 +169,6 @@
     "note-4": "I acknowledge that I have read the booking terms and conditions, and I accept full responsibility for the reservation.",
     "procedd-to-pay": "Proceed to pay with your bank card",
     "enter-wallet-number": "Enter Wallet Number",
-    "pay-now": "Pay Now"
+    "pay-now": "Pay Now",
+    "number-of-people": "Number of People"
 }
