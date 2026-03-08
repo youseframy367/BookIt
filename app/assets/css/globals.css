@@ -79,6 +79,8 @@
     --color-gray-tow: #FFFFFFA6;
     --color-black-tow: #00000040;
     --color-gray-three: #6C737F;
+    --color-gray-four: #9DA4AE;
+    --color-black-three: #161616;
 }
 
 @font-face {
@@ -200,7 +202,7 @@
 }
 
 body.search-active {
-    position: relative;        
+    position: relative;
 }
 
 body.search-active::before {
@@ -393,7 +395,7 @@ html[dir="rtl"] .swiper-button-next {
     background-color: transparent !important;
     color: var(--strong-red) !important;
     border: 2px solid var(--strong-red) !important;
-    border-radius: 50% !important;    
+    border-radius: 50% !important;
 }
 
 .booked-day:hover,
@@ -619,29 +621,35 @@ html[dir="rtl"] .swiper-button-next {
 }
 
 body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 body::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .no-scrollbar::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
+
 .no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
+
 /* لإخفاء الأسهم في متصفحات Chrome, Edge, Safari */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* لإخفاء الأسهم في Firefox */
 input[type="number"] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.red-icon {
+    filter: invert(18%) sepia(92%) saturate(5474%) hue-rotate(351deg) brightness(93%) contrast(92%);
 }

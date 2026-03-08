@@ -27,8 +27,9 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
     const [selectedInvoice, setSelectedInvoice] = useState<string | null>("Invoice Details");
 
     const [removeRoles, setRemovRoles] = useState(false)
+
     const [warningProducts, setWarningProducts] = useState(false)
-    const [lastWarningProducts, setLastWarningProducts] = useState(false)
+    const [lastWarningProducts, setLastWarningProducts] = useState(true)
 
     const [paymentGetway, setPaymentGetway] = useState(usePaymentGetwayData());
     const [activePaymentIndex, setActivePaymentIndex] = useState(0);
@@ -98,12 +99,13 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
             )}
             {warningProducts && (
                 <WarningProducts
+                    isColor="color-golden-light"
                     onClose={() => setWarningProducts(false)}
                 />
             )}
             {lastWarningProducts && (
                 <WarningProducts
-                    isStyleBtn="!bg-[var(--color-red-bright-tow)]"
+                    isColor="color-red-bright-tow"
                     onClose={() => setLastWarningProducts(false)}
                 />
             )}

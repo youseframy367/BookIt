@@ -1,14 +1,19 @@
 "use client";
 
-
-
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function Sales() {
     const router = useRouter()
     const [imageSrc, setImageSrc] = useState('/img/trrruyeryer.svg');
     const [imageFile, setImageFile] = useState<File | null>(null);
+
+    const [showSizePaper, setShowSizePaper] = useState(false);
+    const [textSizePaper, setTextSizePaper] = useState("");
+
+    const [date, setdate] = useState(false);
+    const [textdate, setTextdate] = useState("");
 
     const [formData, setFormData] = useState({
         nameAr: '',
@@ -95,8 +100,8 @@ export default function Sales() {
                     </div>
                     <hr className="text-[var(--color-black-05)]" />
                 </div>
-                <div className="px-4 flex justify-between my-5">
-                    <div className="mt-10">
+                <div className="px-4 grid grid-cols-[3fr_3fr_3fr_3fr] my-5 gap-[16px]">
+                    <div className="flex flex-col items-center mt-10">
                         <div className="relative w-[163px]">
                             <img src={imageSrc} width="163px" height="164px" alt="معاينة الصورة" />
                             <input
@@ -114,7 +119,7 @@ export default function Sales() {
                                 تحميل الصورة
                             </label>
                         </div>
-                        <p className="text-[#6E7485] font-normal text-xs w-[178px] text-center mt-5">
+                        <p className="text-[#6E7485] font-normal text-[10px] w-[178px] text-center mt-5">
                             من فضلك حدد لوجو المطعم او الكافيه الخاص بك يرجي العلم ان هذا اللوجو سيظهر في الفاتوره
                         </p>
                     </div>
@@ -126,7 +131,7 @@ export default function Sales() {
                                 name="nameAr"
                                 value={formData.nameAr}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2"
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
                                 placeholder="أدخل اسم المتجر"
                                 required
                             />
@@ -138,7 +143,7 @@ export default function Sales() {
                                 name="titleAr"
                                 value={formData.titleAr}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2"
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
                                 placeholder="ادخل رقم الهاتف"
                                 required
                             />
@@ -150,7 +155,7 @@ export default function Sales() {
                                 name="idNumber"
                                 value={formData.idNumber}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2"
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
                                 placeholder="%"
                                 required
                             />
@@ -158,79 +163,89 @@ export default function Sales() {
                     </div>
                     <div className="flex flex-col gap-2.5">
                         <div className="flex flex-col gap-4.5">
-                            <label htmlFor="nameEn" className="text-[#1D2026] tracking-[-1%] font-normal text-xs"> حجم ورقة الطباعه</label>
-                            <input
-                                type="text"
-                                name="nameEn"
-                                value={formData.nameEn}
-                                onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2"
-                                placeholder="أدخل اسم المشرف"
-                                required
-                            />
+                            <span className="text-[#1D2026] tracking-[-1%] font-normal text-xs">حجم ورقة الطباعه</span>
+                            <div className="relative flex flex-col gap-[5px]">
+                                <div onClick={() => setShowSizePaper(prev => !prev)} className={`${showSizePaper && 'bg-gray-300'} border border-gray-300 py-[12px] px-2 rounded-[10px] flex justify-between`}>
+                                    <span className={`${showSizePaper ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>حدد حجم الورقه</span>
+                                    <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${showSizePaper && 'rotate-180'}`} />
+                                </div>
+                                {
+                                    showSizePaper && <ul className="bg-white w-full border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-13 p-[8px] flex flex-col gap-2">
+                                        <li className={`${textSizePaper == '80' && 'text-white bg-[var(--color-dark-blue-gray)]'} text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--color-black-three)] flex justify-between`} onClick={() => setTextSizePaper('80')}>
+                                            <span>طباعة 80mm</span>
+                                            {textSizePaper == '80' && <span>✔</span>}
+                                        </li>
+                                        <li className={`${textSizePaper == '58' && 'text-white bg-[var(--color-dark-blue-gray)]'} text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--color-black-three)] flex justify-between`} onClick={() => setTextSizePaper('58')}>
+                                            <span>طباعة 58mm</span>
+                                            {textSizePaper == '58' && <span>✔</span>}
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
                         </div>
                         <div className="flex flex-col gap-4.5">
-                            <label htmlFor="titleEn" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">العنوان (En)</label>
+                            <label htmlFor="titleEn" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">السجل الضريبي ( اختياري )</label>
                             <input
                                 type="text"
                                 name="titleEn"
                                 value={formData.titleEn}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2"
-                                placeholder="أدخل العنوان"
-                                required
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
+                                placeholder="أدخل السجل ان وجد"
                             />
                         </div>
                         <div className="flex flex-col gap-4.5">
-                            <label htmlFor="role" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">الدور</label>
-                            <select
-                                name="role"
-                                value={formData.role}
-                                onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2 bg-white"
-                                required
-                            >
-                                <option value="" disabled>حدد الدور</option>
-                                <option value="مشرف">مشرف</option>
-                                <option value="سيلز">سيلز</option>
-
-                            </select>
+                            <span className="text-[#1D2026] tracking-[-1%] font-normal text-xs">تنسيق الوقت</span>
+                            <div className="relative flex flex-col gap-[5px]">
+                                <div onClick={() => setdate(prev => !prev)} className={`${date && 'bg-gray-300'} border border-gray-300 py-[12px] px-2 rounded-[10px] flex justify-between`}>
+                                    <span className={`${date ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>حدد تنسيق الوقت</span>
+                                    <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${date && 'rotate-180'}`} />
+                                </div>
+                                {
+                                    date && <ul className="bg-white w-full border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-13 p-[8px] flex flex-col gap-2">
+                                        <li className={`${textdate == '12' && 'text-white bg-[var(--color-dark-blue-gray)]'} text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--color-black-three)] flex justify-between`} onClick={() => setTextdate('12')}>
+                                            <span>12 ساعة (AM/PM) → الساعة بصيغة 1:00 PM</span>
+                                            {textdate == '12' && <span>✔</span>}
+                                        </li>
+                                        <li className={`${textdate == '24' && 'text-white bg-[var(--color-dark-blue-gray)]'} text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--color-black-three)] flex justify-between`} onClick={() => setTextdate('24')}>
+                                            <span>24 ساعة → الساعة بصيغة 13:00</span>
+                                            {textdate == '24' && <span>✔</span>}
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
                         </div>
+                        {/* <div className="flex flex-col gap-4.5">
+                            <label htmlFor="nameEn" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">تنسيق الوقت</label>
+                            <select name="" id="" className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                            </select>
+                        </div> */}
                     </div>
                     <div className="flex flex-col gap-2.5">
                         <div className="flex flex-col gap-4.5">
-                            <label htmlFor="phone" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">رقم الجوال</label>
+                            <label htmlFor="phone" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">حدد العمله</label>
                             <input
                                 type="numbr"
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2"
-                                placeholder="أدخل رقم الجوال"
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
+                                placeholder="جنيه مصري"
                                 required
+                                readOnly
                             />
                         </div>
                         <div className="flex flex-col gap-4.5">
-                            <label htmlFor="email" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">البريد الإلكتروني</label>
+                            <label htmlFor="number" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">الرقم الضريبي ( اختياري )</label>
                             <input
-                                type="email"
-                                name="email"
+                                type="number"
+                                name="number"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2"
-                                placeholder="أدخل البريد الإلكتروني"
-                                required
-                            />
-                        </div>
-                        <div className="flex flex-col gap-4.5">
-                            <label htmlFor="password" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">كلمة المرور</label>
-                            <input
-                                type="password"
-                                name="password"
-                                value={formData.password}
-                                onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[220px] h-[42px] border border-gray-300 rounded px-2"
-                                placeholder="أدخل كلمة المرور"
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
+                                placeholder="أدخل الرقم ان وجد"
                                 required
                             />
                         </div>
@@ -252,7 +267,7 @@ export default function Sales() {
 
                     className="text-white w-[100px] h-12 rounded-xl flex justify-center items-center text-base font-medium tracking-[-1%]"
                 >
-                    إضافة
+                    حفظ
                 </button>
             </div>
         </div>

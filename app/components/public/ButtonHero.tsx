@@ -143,9 +143,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                             }
                             {
                                 showError && <div className="flex items-center gap-2 absolute -bottom-8 text-[var(--strong-red)]">
-                                    <Image src="/assets/icons/warning.svg" alt="warning" width={12} height={11} className="" style={{
-                                        filter: "invert(18%) sepia(92%) saturate(5474%) hue-rotate(351deg) brightness(93%) contrast(92%)"
-                                    }} />
+                                    <Image src="/assets/icons/warning.svg" alt="warning" width={12} height={11} className="red-icon" />
                                     <span className="mt-[2.4px] text-[10px]">The maximum number are 20 of people</span>
                                 </div>
                             }
