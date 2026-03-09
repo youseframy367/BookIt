@@ -4,6 +4,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
 
 export default function UpdateModerators({ id }: { id: string }) {
     const router = useRouter();
@@ -25,6 +26,11 @@ export default function UpdateModerators({ id }: { id: string }) {
 
     const [amount, setamount] = useState(false);
     const [textAmount, setTextAmount] = useState("");
+
+    const [lastAmount, setlastAmount] = useState(false);
+    const [textlastAmount, setTextlastAmount] = useState("");
+
+    const [removeRoles, setRemovRoles] = useState(false);
 
     useEffect(() => {
         const data = window.sessionStorage.getItem("dateAcuntModetor");
@@ -65,8 +71,19 @@ export default function UpdateModerators({ id }: { id: string }) {
 
     };
 
+    const handleDelete = () => {
+
+    };
+
     return (
-        <div className=" w-[98%] m-[1%] bg-[#fff] rounded-[11px] p-[15px] h-[85vh]">
+        <section className=" w-[98%] m-[1%] bg-[#fff] rounded-[11px] p-[15px]">
+            {removeRoles && (
+                <RemoveRoles
+                    text="هل أنت متأكد من أنك تريد اعادة ظبط هذه الكميه وحذف البيانات الحاليه ؟"
+                    handleDelete={handleDelete}
+                    onClose={() => setRemovRoles(false)} />
+            )
+            }
             <div className="w-[97%] mx-[1%] mt-[3%] flex flex-col p-[10px] bg-[#FEFEFE] rounded-[10px] shadow-[0_0_2px_0_rgba(0,0,0,0.25)]">
                 <div className="w-[100%] flex justify-between items-center">
                     <p className="text-[#131313] font-semibold">تعديل المنتج</p>
@@ -118,76 +135,42 @@ export default function UpdateModerators({ id }: { id: string }) {
                                         type="numer"
                                         name="phone"
                                         onChange={handleChange}
-                                        className="bg-[var(--color-gray-nine)] text-[#8C94A3] text-[12px] font-normal w-[290px] h-[42px] px-[5px] w-full"
+                                        className="rounded-r-lg bg-[var(--color-gray-nine)] text-[#8C94A3] text-[12px] font-normal w-[290px] h-[42px] px-[5px] w-full"
                                         placeholder="أدخل رقم الجوال"
                                         required
+                                        readOnly
                                     />
                                 </div>
                                 <div className="w-[17%] relative flex flex-col gap-[10px]">
                                     <span className="opacity-0">s</span>
-                                    <div onClick={() => setamount(prev => !prev)} className="relative before:content-[''] before:absolute before:top-[10%] before:right-0 before:bg-[var(--alpha)] before:h-[80%] before:w-[1px] bg-[var(--color-gray-nine)] py-[11px] px-2 flex justify-between">
+                                    <div onClick={() => setamount(prev => !prev)} className="rounded-l-lg relative before:content-[''] before:absolute before:top-[10%] before:right-0 before:bg-[var(--alpha)] before:h-[80%] before:w-[1px] bg-[var(--color-gray-nine)] py-[11px] px-2 flex justify-between">
                                         <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${amount && 'rotate-180'}`} />
                                         <span className={`${amount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>كيلو</span>
                                     </div>
                                     {
-                                        amount && <ul className="bg-white w-full border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-20 p-[8px] flex flex-col gap-2">
-                                            <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--color-green-bright)] flex justify-between`} onClick={() => setTextAmount('متوفر')}>
-                                                <span>متوفر</span>
-                                                {textAmount == 'متوفر' && <span>✔</span>}
+                                        amount && <ul className="-left-5 bg-white w-[200%] border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-20 p-[8px] flex flex-col gap-2">
+                                            <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer flex justify-between`} onClick={() => setTextAmount('طن')}>
+                                                <span>طن</span>
+                                                {textAmount == 'طن' && <span>✔</span>}
                                             </li>
-                                            <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--color-gold)] flex justify-between`} onClick={() => setTextAmount('كميه قليله ')}>
-                                                <span>كميه قليله </span>
-                                                {textAmount == 'كميه قليله ' && <span>✔</span>}
+                                            <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer flex justify-between`} onClick={() => setTextAmount('كيلو')}>
+                                                <span>كيلو</span>
+                                                {textAmount == 'كيلو' && <span>✔</span>}
                                             </li>
-                                            <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--strong-red)] flex justify-between`} onClick={() => setTextAmount('نفذ')}>
-                                                <span>نفذ</span>
-                                                {textAmount == 'نفذ' && <span>✔</span>}
+                                            <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer flex justify-between`} onClick={() => setTextAmount('جرام')}>
+                                                <span>جرام</span>
+                                                {textAmount == 'جرام' && <span>✔</span>}
                                             </li>
                                         </ul>
                                     }
                                 </div>
                             </div>
-                            <div className="relative flex flex-col gap-[12px] w-full">
-                                {/* <label htmlFor="" className="text-xs text-[var(--color-dark-bg-tow)]">الكميه المتاحه</label>
-                                <div onClick={() => setamount(prev => !prev)} className={`${amount && 'bg-gray-300'} border border-gray-300 py-[12px] px-2 rounded-[10px] flex justify-between`}>
-                                    <span className={`${amount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>حدد الكميه</span>
-                                    <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${amount && 'rotate-180'}`} />
-                                </div>
-                                {
-                                    amount && <ul className="bg-white w-full border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-20 p-[8px] flex flex-col gap-2">
-                                        <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--color-green-bright)] flex justify-between`} onClick={() => setTextAmount('متوفر')}>
-                                            <span>متوفر</span>
-                                            {textAmount == 'متوفر' && <span>✔</span>}
-                                        </li>
-                                        <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--color-gold)] flex justify-between`} onClick={() => setTextAmount('كميه قليله ')}>
-                                            <span>كميه قليله </span>
-                                            {textAmount == 'كميه قليله ' && <span>✔</span>}
-                                        </li>
-                                        <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer text-[var(--strong-red)] flex justify-between`} onClick={() => setTextAmount('نفذ')}>
-                                            <span>نفذ</span>
-                                            {textAmount == 'نفذ' && <span>✔</span>}
-                                        </li>
-                                    </ul>
-                                } */}
-                            </div>
-                            {/* <label htmlFor="phone" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">الكميه المتاحه</label>
-                            <input
-                                type="numer"
-                                name="phone"
-                                onChange={handleChange}
-                                className="text-[#8C94A3] text-[12px] font-normal w-[290px] h-[42px] border border-gray-300 rounded px-[5px] w-full"
-                                placeholder="أدخل رقم الجوال"
-                                required
-                            /> */}
                         </div>
                         <div className="flex flex-col gap-[18px] w-full">
-                            <label htmlFor="idNumber" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">رقم الهوية</label>
+                            <label htmlFor="idNumber" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">تاريخ الاضافه</label>
                             <input
-                                type="numbr"
-                                name="idNumber"
-                                onChange={handleChange}
+                                type="date"
                                 className="text-[#8C94A3] text-sm font-normal w-[290px] h-[42px] border border-gray-300 rounded px-[5px] w-full"
-                                placeholder="أدخل رقم الهوية"
                                 required
                             />
                         </div>
@@ -205,17 +188,41 @@ export default function UpdateModerators({ id }: { id: string }) {
                                 required
                             />
                         </div>
-                        <div className="flex flex-col gap-[18px] w-full">
-                            <label htmlFor="titleAr" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">العنوان (AR)</label>
-                            <input
-                                type="text"
-                                name="titleAr"
-                                value={formData.titleAr}
-                                onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-[290px] h-[42px] border border-gray-300 rounded px-[5px] w-full"
-                                placeholder="أدخل العنوان"
-                                required
-                            />
+                        <div className="flex">
+                            <div className="flex flex-col gap-[18px] w-[87%]">
+                                <label htmlFor="phone" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">الحد الادني الذي يوضح بأن الكميه قريبه من النفاذ</label>
+                                <input
+                                    type="numer"
+                                    name="phone"
+                                    onChange={handleChange}
+                                    className="border border-gray-300 rounded-r-lg text-[#8C94A3] text-[12px] font-normal w-[290px] h-[42px] px-[5px] w-full"
+                                    placeholder="10"
+                                    required
+                                />
+                            </div>
+                            <div className="w-[17%] relative flex flex-col gap-[9.6px]">
+                                <span className="opacity-0">s</span>
+                                <div onClick={() => setlastAmount(prev => !prev)} className="rounded-l-lg relative before:content-[''] before:absolute before:top-[10%] before:right-0 before:h-[80%] before:w-[1px] border border-gray-300 py-[11px] px-2 flex justify-between">
+                                    <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${lastAmount && 'rotate-180'}`} />
+                                    <span className={`${lastAmount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>كيلو</span>
+                                </div>
+                                {
+                                    lastAmount && <ul className="-left-5 bg-white w-[200%] border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-20 p-[8px] flex flex-col gap-2">
+                                        <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer flex justify-between`} onClick={() => setTextlastAmount('طن')}>
+                                            <span>طن</span>
+                                            {textlastAmount == 'طن' && <span>✔</span>}
+                                        </li>
+                                        <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer flex justify-between`} onClick={() => setTextlastAmount('كيلو')}>
+                                            <span>كيلو</span>
+                                            {textlastAmount == 'كيلو' && <span>✔</span>}
+                                        </li>
+                                        <li className={`text-xs rounded-[6px] p-[8px] cursor-pointer flex justify-between`} onClick={() => setTextlastAmount('جرام')}>
+                                            <span>جرام</span>
+                                            {textlastAmount == 'جرام' && <span>✔</span>}
+                                        </li>
+                                    </ul>
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -228,10 +235,7 @@ export default function UpdateModerators({ id }: { id: string }) {
                     إلغاء
                 </button>
                 <button
-                    onClick={() => {
-                        handleSubmit();
-                    }}
-
+                    onClick={() => setRemovRoles(true)}
                     style={{
                         background: "#183866"
                     }}
@@ -240,6 +244,6 @@ export default function UpdateModerators({ id }: { id: string }) {
                     حفظ
                 </button>
             </div>
-        </div>
+        </section>
     );
 }
