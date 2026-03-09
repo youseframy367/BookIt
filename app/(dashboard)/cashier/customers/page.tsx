@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import AddOrUpdatePopUp from "@/app/components/Cashier/AddOrUpdatePopUp";
+import AddOrUpdatePopUp from "@/app/components/Dashborad/Cashier/AddOrUpdatePopUp";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
 import Pagnation from "@/app/components/public/Pagnation";
 import { usePagnation } from "@/app/hooks/usePagnation";

@@ -81,6 +81,13 @@
     --color-gray-three: #6C737F;
     --color-gray-four: #9DA4AE;
     --color-black-three: #161616;
+    --color-blue-tow: #0C00FF;
+    --color-gray-five: #E9EAF040;
+    --color-gray-six: #E9EAF0;
+    --color-gold: #CB9626;
+    --color-gray-seven: #F4F4FE;
+    --color-gray-ate: #6E7485;
+    --color-gray-nine: #B0B0B040;
 }
 
 @font-face {
@@ -289,11 +296,6 @@ html {
 
 .container-payment-method {
     max-width: 1300px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-    display: none;
-    -webkit-appearance: none;
 }
 
 select {

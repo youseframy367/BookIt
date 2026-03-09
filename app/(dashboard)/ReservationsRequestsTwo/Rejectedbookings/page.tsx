@@ -39,8 +39,6 @@ export default function Rejectedbookings() {
 
   const allData = useAllReservationsData();
 
-
-
   const Rejectedbooking = [
     { SinceDay: "10/2/2025", today: "20/10/2025", numPerson: 2, ClosedFrom: "5:00 PM", openFrom: "5:00 PM", id: "233034" },
     { SinceDay: "11/2/2025", today: "21/10/2025", numPerson: 4, ClosedFrom: "11:00 PM", openFrom: "1:00 PM", id: "233035" },
@@ -82,15 +80,7 @@ export default function Rejectedbookings() {
     { SinceDay: "27/2/2025", today: "06/11/2025", numPerson: 5, ClosedFrom: "9:30 PM", openFrom: "2:00 PM", id: "233051" },
     { SinceDay: "28/2/2025", today: "07/11/2025", numPerson: 9, ClosedFrom: "10:30 PM", openFrom: "12:00 PM", id: "233052" },
     { SinceDay: "01/3/2025", today: "08/11/2025", numPerson: 2, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233053" },
-
-
-
-
-
   ]
-
-
-
 
   // filter data 
   const { allDataTrue, allDataFalse } = useMemo(() => {

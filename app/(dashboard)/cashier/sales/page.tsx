@@ -52,41 +52,6 @@ export default function Sales() {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-
-        if (!formData.nameAr || !formData.email) {
-            alert('يرجى ملء الحقول المطلوبة');
-            return;
-        }
-
-        const data = new FormData();
-        data.append('nameAr', formData.nameAr);
-        data.append('titleAr', formData.titleAr);
-        data.append('idNumber', formData.idNumber);
-        data.append('confirmPassword', formData.confirmPassword);
-        data.append('nameEn', formData.nameEn);
-        data.append('titleEn', formData.titleEn);
-        data.append('role', formData.role);
-        data.append('phone', formData.phone);
-        data.append('email', formData.email);
-        data.append('password', formData.password);
-        if (imageFile) {
-            data.append('image', imageFile);
-        }
-
-        try {
-            const response = await fetch('/api/add-moderator', {
-                method: 'POST',
-                body: data
-            });
-            if (response.ok) {
-                alert('تم إضافة المشرف بنجاح');
-            } else {
-                alert('حدث خطأ في الإرسال');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            alert('خطأ في الاتصال');
-        }
     };
 
     return (
@@ -148,17 +113,17 @@ export default function Sales() {
                                 required
                             />
                         </div>
-                        <div className="flex flex-col gap-4.5">
+                        <div className="relative flex flex-col gap-4.5">
                             <label htmlFor="idNumber" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">نسبة الضريبه</label>
                             <input
                                 type="number"
                                 name="idNumber"
                                 value={formData.idNumber}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
-                                placeholder="%"
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-5"                                
                                 required
                             />
+                            <span className="opacity-[0.5] top-[56%] right-2 absolute">%</span>
                         </div>
                     </div>
                     <div className="flex flex-col gap-2.5">
@@ -215,13 +180,6 @@ export default function Sales() {
                                 }
                             </div>
                         </div>
-                        {/* <div className="flex flex-col gap-4.5">
-                            <label htmlFor="nameEn" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">تنسيق الوقت</label>
-                            <select name="" id="" className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            </select>
-                        </div> */}
                     </div>
                     <div className="flex flex-col gap-2.5">
                         <div className="flex flex-col gap-4.5">
@@ -231,7 +189,7 @@ export default function Sales() {
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
+                                className="bg-[var(--color-gray-five)] text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
                                 placeholder="جنيه مصري"
                                 required
                                 readOnly

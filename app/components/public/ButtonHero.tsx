@@ -122,7 +122,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                                 />
                                             </div>
                                         </div>
-                                        <input type="number" className={`w-full h-full ${mounted ? i18n.language === 'ar' ? "px-5" : "px-12" : ""} text-[var(--strong-red)] input-email rounded-lg`} placeholder={mounted ? t('number-of-people') : ""}
+                                        <input type="number" className={`text-center w-full h-full ${mounted ? i18n.language === 'ar' ? "px-5" : "px-12" : ""} text-[var(--strong-red)] input-email rounded-lg`} placeholder={mounted ? t('number-of-people') : ""}
                                             onChange={(e: any) => {
                                                 e.target.value > 20 ? isShowError(true) : e.target.value < 21 ? isShowError(false) : null;
                                             }} />

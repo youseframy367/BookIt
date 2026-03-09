@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Image from "next/image"
 import { usePaymentGetwayData } from "@/app/data/dataPaymentGetway";
-import RemoveRoles from "../Dashborad/AccessAndRoles/RemoveRoles";
-import WarningProducts from "../../components/Cashier/Warning";
+import RemoveRoles from "../AccessAndRoles/RemoveRoles";
+import WarningProducts from "./Warning";
 import { Category } from "@/app/TypeScript/TypeScript";
 
 interface items {
@@ -29,7 +29,7 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
     const [removeRoles, setRemovRoles] = useState(false)
 
     const [warningProducts, setWarningProducts] = useState(false)
-    const [lastWarningProducts, setLastWarningProducts] = useState(true)
+    const [lastWarningProducts, setLastWarningProducts] = useState(false)
 
     const [paymentGetway, setPaymentGetway] = useState(usePaymentGetwayData());
     const [activePaymentIndex, setActivePaymentIndex] = useState(0);

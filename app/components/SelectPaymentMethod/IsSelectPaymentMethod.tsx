@@ -34,8 +34,9 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                         <h2 data-aos="fade-up" className="text-[var(--strong-red)] text-[22px] md:text-[56px] font-bold">{mounted ? t('select-payment-method') : '...'}</h2>
                         <div className="flex flex-col md:flex-row gap-[49px]" data-aos="fade-up">
                             {showWarning && (
-                                <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-red-500 text-white text-xs px-3 py-1 rounded">
-                                    Please complete the previous step first
+                                <div className="flex gap-2 absolute -top-10 left-1/2 -translate-x-1/2 text-red-500 text-xs text-[var(--strong-red)] px-3 py-1 rounded">
+                                    <span>{mounted ? t('waring-text') : '...'}</span>
+                                    <Image src="/assets/icons/warning.svg" alt="warning" width={12} height={11} className="red-icon" />
                                 </div>
                             )}
                             <div className="h-full">

@@ -1,9 +1,9 @@
 "use client"
 
 import { useState } from "react"
-import Products from "../../components/Cashier/Products"
-import Categories from "../../components/Cashier/Categories"
-import SideBar from "../../components/Cashier/SideBar"
+import Products from "../../components/Dashborad/Cashier/Products"
+import Categories from "../../components/Dashborad/Cashier/Categories"
+import SideBar from "../../components/Dashborad/Cashier/SideBar"
 import { useProductsData } from "@/app/data/dataProducts"
 
 export default function Cashire() {

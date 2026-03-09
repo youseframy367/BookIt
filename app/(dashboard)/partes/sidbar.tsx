@@ -23,6 +23,20 @@ export default function Sidebar({ setTitle }: typeTitle) {
     { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" },
     { name: 'المشرفين', navigate: "/ModeratorsFor/AllMoerators", title: 'المشرفين', icon: "/img/modetorIcon.svg", iconActiv: "/img/modetorIconActiv.svg" },
     {
+      name: "المخزون",
+      navigate: '/inventory',
+      title: "المخزون",
+      icon: "/assets/icons/inventory.svg",
+      iconActiv: "/assets/icons/inventory-white.svg",
+      list: [
+        { title: "اضافة منتج جديد للمخزون", navigate: "/1" },
+        { title: "الجرد اليوميي", navigate: "/2" },
+        { title: "تقارير المخزون", navigate: "/3" },
+        { title: "الموردون", navigate: "/4" },
+        { title: "تحويل المخزون بين الفروع", navigate: "/5" }
+      ]
+    },
+    {
       name: "الكاشير",
       navigate: '/cashier',
       title: "الكاشير",
@@ -106,7 +120,7 @@ export default function Sidebar({ setTitle }: typeTitle) {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className={`mr-[auto] ${isOpen ? "rotate-180deg" : "rotate-0deg"} transition-all duration-300`}
+                      className={`mr-[auto] ${isOpen ? "rotate-180" : "rotate-0"} transition-all duration-300`}
                     >
                       <path d="M6 9l6 6 6-6" />
                     </svg>

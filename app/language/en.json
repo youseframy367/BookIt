@@ -10,7 +10,7 @@
     "popular-dishes": "Popular Dishes",
     "popular-dishes-1": "Popular Dishes",
     "liked-restaurants": "Your favorite restaurants",
-    "liked": "Liked Restaurants",
+    "liked": "favorite restaurants",
     "information": "Information",
     "tech-support": "Supports",
     "contact-info": "Contact Info",
@@ -170,5 +170,6 @@
     "procedd-to-pay": "Proceed to pay with your bank card",
     "enter-wallet-number": "Enter Wallet Number",
     "pay-now": "Pay Now",
-    "number-of-people": "Number of People"
+    "number-of-people": "Number of People",
+    "waring-text": "You must agree to the Terms and Conditions before proceeding to the payment methods."
 }
