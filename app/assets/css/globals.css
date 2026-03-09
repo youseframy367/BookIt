@@ -596,6 +596,7 @@ body {
 
   /* لإخفاء شريط التمرير في Firefox */
   scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 /* لإخفاء شريط التمرير في Chrome و Safari و Edge الجديد */

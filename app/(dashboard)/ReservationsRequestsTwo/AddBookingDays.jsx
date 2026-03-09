@@ -12,13 +12,15 @@ export default function AddBookingDays({ onClose }) {
   const [endTime, setEndTime] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
-
+  const [minDeposit, setMinDeposit] = useState<number | "">("");
+  const [isFreeBooking, setIsFreeBooking] = useState(false);
   useEffect(() => {
   const stored = window.sessionStorage.getItem("bookingEditData");
   if (stored) {
     const data = JSON.parse(stored);
     setIsEditMode(true);
 
+<<<<<<< Updated upstream:app/(dashboard)/ReservationsRequestsTwo/AddBookingDays.jsx
     setNumPersons(data.numPersons || "");
 
     const [dFrom, mFrom, yFrom] = data.dateFrom?.split("/") || [];
@@ -46,6 +48,44 @@ export default function AddBookingDays({ onClose }) {
     setEndTime(parseTime(data.endTime));
   }
 }, []);
+=======
+      // عدد الأشخاص
+      setNumPersons(data.numPersons || "");
+
+      // تواريخ الحجز
+      const [dFrom, mFrom, yFrom] = data.dateFrom?.split("/") || [];
+      const [dTo, mTo, yTo] = data.dateTo?.split("/") || [];
+      setSelectedDateFrom(
+        data.dateFrom ? new Date(`${yFrom}-${mFrom}-${dFrom}`) : null
+      );
+      setSelectedDateTo(
+        data.dateTo ? new Date(`${yTo}-${mTo}-${dTo}`) : null
+      );
+
+      // الحد الأدنى للمقدم (يتعامل مع "10 جنيه")
+      const minDepRaw = data.minDeposit; // مثال: "10 جنيه"
+      const minDepNumber = minDepRaw
+        ? parseInt(minDepRaw.replace(/\D/g, ""), 10)
+        : "";
+      setMinDeposit(minDepNumber);
+      setIsFreeBooking(minDepNumber === 0);
+
+      // أوقات عدم التوفر
+      const parseTime = (timeStr: any) => {
+        if (!timeStr) return null;
+        const [time, modifier] = timeStr.split(" ");
+        let [hours, minutes] = time.split(":");
+        hours = modifier === "PM" && hours !== "12" ? +hours + 12 : hours;
+        hours = modifier === "AM" && hours === "12" ? 0 : +hours;
+        const date = new Date();
+        date.setHours(hours, +minutes, 0, 0);
+        return date;
+      };
+      setStartTime(parseTime(data.startTime));
+      setEndTime(parseTime(data.endTime));
+    }
+  }, []);
+>>>>>>> Stashed changes:app/components/Dashborad/Reservations/AddBookingDays.tsx
 
   const handleSubmit = async () => {
     if (!selectedDateFrom || !selectedDateTo || !numPersons) {
@@ -59,6 +99,7 @@ export default function AddBookingDays({ onClose }) {
       dateTo: selectedDateTo?.toISOString(),
       startTime: startTime ? startTime.toISOString() : null,
       endTime: endTime ? endTime.toISOString() : null,
+      minDeposit: isFreeBooking ? 0 : minDeposit,
     };
 
     try {
@@ -96,7 +137,7 @@ export default function AddBookingDays({ onClose }) {
           <h2 className="text-[14px] font-[500] text-[#1D2026] mb-1">
             {isEditMode
               ? "مشاهده ونعديل تفاصيل اليوم"
-              : "اضافة ايام الحجوزات بالأعداد المتاحه"}
+              : "اضافة ايام حجز جديده"}
           </h2>
           <img
             src="/img/X.svg"
@@ -108,6 +149,28 @@ export default function AddBookingDays({ onClose }) {
         </div>
 
         <div className="p-[20px] flex flex-col gap-6 border-b border-[#E9EAF0]">
+
+          <div className="flex flex-col gap-[18px]">
+            <label className="text-[12px] font-medium text-[#1D2026]" htmlFor="num">حدد الحد الادنى لمقدم الحجز</label>
+            <input
+              type="number"
+              value={isFreeBooking ? 0 : minDeposit}
+              onChange={(e) =>
+                setMinDeposit(e.target.value ? Number(e.target.value) : "")
+              }
+              placeholder="ادخل الحد الادنى"
+              className="no-spinner border text-[#8C94A3] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 h-[42px]"
+            />
+            <div className=" flex gap-[10px] px-2">
+              <input
+
+                checked={isFreeBooking}
+                onChange={(e) => setIsFreeBooking(e.target.checked)}
+                type="checkbox" id="check"></input>
+              <label htmlFor="check" className=" text-[10px] font-[500] text-[#636872]">لا ؛ أريد الحجز مجاني بدون دفع مقدم</label>
+
+            </div>
+          </div>
           <div className="flex flex-col gap-[18px]">
             <label className="text-[12px] font-medium text-[#1D2026]">
               عدد الأشخاص المتاح استقبالهم
@@ -144,8 +207,13 @@ export default function AddBookingDays({ onClose }) {
               <div className="flex w-[195px]">
                 <DatePicker
                   selected={selectedDateTo}
+<<<<<<< Updated upstream:app/(dashboard)/ReservationsRequestsTwo/AddBookingDays.jsx
                   onChange={(date) => setSelectedDateTo(date)}
                   placeholderText="الى"
+=======
+                  onChange={(date: any) => setSelectedDateTo(date)}
+                  placeholderText="الى ( اختيارى )"
+>>>>>>> Stashed changes:app/components/Dashborad/Reservations/AddBookingDays.tsx
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
@@ -172,7 +240,7 @@ export default function AddBookingDays({ onClose }) {
                   timeIntervals={5}
                   timeCaption="من"
                   dateFormat="HH:mm"
-                  placeholderText="من"
+                  placeholderText="00 : 00 PM"
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
@@ -192,7 +260,7 @@ export default function AddBookingDays({ onClose }) {
                   timeIntervals={5}
                   timeCaption="إلى"
                   dateFormat="HH:mm"
-                  placeholderText="إلى"
+                  placeholderText="00 : 00 PM"
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
@@ -205,15 +273,20 @@ export default function AddBookingDays({ onClose }) {
             </div>
           </div>
 
-          <div className="flex justify-between m-3">
+          <div className="flex justify-between  m-2">
             <button
+<<<<<<< Updated upstream:app/(dashboard)/ReservationsRequestsTwo/AddBookingDays.jsx
               className="bg-[#F5F7FA] text-[#131313] rounded-lg font-medium text-[12px] w-[90px] h-[38px]"
               onClick={() => onClose(true)}
+=======
+              className="bg-[#F5F7FA] text-[#131313] rounded-lg font-medium text-[12px] w-[90px] h-[38px] cursor-pointer"
+              onClick={onClose}
+>>>>>>> Stashed changes:app/components/Dashborad/Reservations/AddBookingDays.tsx
             >
               الغاء
             </button>
             <button
-              className="bg-[#183866] text-white rounded-lg font-medium text-[12px] w-[90px] h-[38px]"
+              className="bg-[#183866] text-white rounded-lg font-medium text-[12px] w-[90px] h-[38px] cursor-pointer"
               onClick={handleSubmit}
               disabled={loading}
             >
