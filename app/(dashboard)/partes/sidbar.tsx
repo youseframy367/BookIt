@@ -30,8 +30,8 @@ export default function Sidebar({ setTitle }: typeTitle) {
       icon: "/assets/icons/inventory.svg",
       iconActiv: "/assets/icons/inventory-white.svg",
       list: [
-        { title: "اضافة منتج جديد للمخزون", navigate: "/1" },
-        { title: "الجرد اليوميي", navigate: "/2" },
+        { title: "اضافة منتج جديد للمخزون", navigate: "/inventory/add-inventory" },
+        { title: "الجرد اليوميي", navigate: "/inventory/daily-inventory" },
         { title: "تقارير المخزون", navigate: "/3" },
         { title: "الموردون", navigate: "/4" },
         { title: "تحويل المخزون بين الفروع", navigate: "/5" }

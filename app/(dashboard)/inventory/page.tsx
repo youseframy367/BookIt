@@ -165,7 +165,7 @@ export default function Inventory() {
 
             <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }} ref={tableRef}>
                 <table className="min-w-full text-right">
-                    <thead className="sticky top-0 bg-[#F6F6F6] rounded-[4px]">
+                    <thead className="sticky top-0 bg-[#F9FAFB] rounded-[4px]">
                         <tr>
                             <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap" >صورة المنتج</th>
                             <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap">اسم المنتج</th>
