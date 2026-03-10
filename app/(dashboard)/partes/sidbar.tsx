@@ -32,7 +32,7 @@ export default function Sidebar({ setTitle }: typeTitle) {
       list: [
         { title: "اضافة منتج جديد للمخزون", navigate: "/inventory/add-inventory" },
         { title: "الجرد اليوميي", navigate: "/inventory/daily-inventory" },
-        { title: "تقارير المخزون", navigate: "/3" },
+        { title: "تقارير المخزون", navigate: "/inventory/inventory-reports" },
         { title: "الموردون", navigate: "/4" },
         { title: "تحويل المخزون بين الفروع", navigate: "/5" }
       ]

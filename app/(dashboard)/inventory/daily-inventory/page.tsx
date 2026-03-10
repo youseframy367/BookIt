@@ -7,15 +7,12 @@ import { useDailyInventoryData } from "../../../data/dataDailyInventory";
 import Pagnation from "../../../components/public/Pagnation";
 import Image from "next/image";
 import Export from "@/app/components/Dashborad/Inventory/Export";
-import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
 import { useRouter } from "next/navigation";
 
 export default function DailyInventory() {
     const router = useRouter()
     const [searchTerm, setSearchTerm] = useState("");
     const [showFilter, setShowFilter] = useState(false);
-
-    const [removeRoles, setRemovRoles] = useState(false);
 
     const tableRef = useRef<HTMLDivElement>(null);
 
@@ -44,13 +41,6 @@ export default function DailyInventory() {
 
     return (
         <section className="flex w-[98%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden m-[1%]">
-            {removeRoles && (
-                <RemoveRoles
-                    text="هل أنت متأكد أنك تريد حذف المنتج هذا من المخزون ؟"
-                    handleDelete={handleDelete}
-                    onClose={() => setRemovRoles(false)} />
-            )
-            }
             {showFilter && (
                 <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
                     <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
