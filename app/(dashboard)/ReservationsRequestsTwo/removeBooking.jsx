@@ -2,7 +2,7 @@
 
 import axios from "axios";
 
-export default function RemoveBooking({ id, onClose, typeApproved }) {
+export default function RemoveBooking({ id, onClose }) {
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(`https://your-api.com/DleatBookit/${id}`);
@@ -66,11 +66,7 @@ export default function RemoveBooking({ id, onClose, typeApproved }) {
                 fontWeight: "400",
               }}
             >
-              {typeApproved ?
-                "هل أنت متأكد أنك تريد حذف هذا الموعد ؟" :
-                " هل أنت متأكد أنك تريد حذف هذا اليوم المحدد من الحجوزات؟"
-
-              }
+              هل أنت متأكد أنك تريد حذف هذا اليوم المحدد من الحجوزات؟
             </p>
           </div>
           <div

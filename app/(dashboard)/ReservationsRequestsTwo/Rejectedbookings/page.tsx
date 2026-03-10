@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import RemoveBooking from "../removeBooking";
 import Filter from "../filter";
 import AddBookingDays from "../../../components/Dashborad/Reservations/AddBookingDays";
-//import { useDataRejectedBookingData } from "@/app/data/dataRejectedbooking";
 import { useAllReservationsData } from "../../../data/dataAllReservations";
 
 type BookingEdit = {
@@ -25,11 +24,8 @@ export default function Rejectedbookings() {
 
   const router = useRouter()
   const [selectedBooking, setSelectedBooking] = useState<BookingEdit | null>(null);
-  // const numbersRef = useRef<HTMLDivElement | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [filter, setFilter] = useState(false);
-  //  const [numRow, setNumRow] = useState(13);
-  // const [currentPage, setCurrentPage] = useState(1);
   const [typeTable, setTypeTable] = useState("Booking");
   const [removeBooKing, setRemovBooKing] = useState(false)
   const [numperOfId, setId] = useState<string | null>(null);
@@ -82,7 +78,9 @@ export default function Rejectedbookings() {
     { SinceDay: "01/3/2025", today: "08/11/2025", numPerson: 2, ClosedFrom: "11:00 PM", openFrom: "6:00 PM", id: "233053" },
   ]
 
-  // filter data 
+  const [removeBooking, setRemoveBooking] = useState(false);
+
+  // filter data
   const { allDataTrue, allDataFalse } = useMemo(() => {
     const allDataTrue = allData.filter((item) => item.RequestStatus === true);
     const allDataFalse = allData.filter((item) => item.RequestStatus === false);
@@ -102,31 +100,12 @@ export default function Rejectedbookings() {
       id: customer.id,
       approved: customer.approved,
       hidenBtn: false,
+      state: customer.state
     };
 
     window.sessionStorage.setItem("bookingEditData", JSON.stringify(bookingData));
     setSelectedBooking(bookingData);
     setAddDay(true);
-  }
-
-  function showData(customer: any) {
-    const bookingData = {
-      numBerson: customer.numPerson,
-      dateFrom: customer.SinceDay,
-      Date: customer.today,
-      time: customer.ClosedFrom,
-      MobileNumber: customer.numPon,
-      PreferenceForSitting: customer.PreferenceForSitting,
-      CustomerName: customer.nameClint,
-      note: customer.note,
-      mail: customer.mail,
-      hidenBtn: false,
-      occasion: customer.occasion
-
-    };
-
-    window.sessionStorage.setItem("bookingEditData", JSON.stringify(bookingData));
-    router.push("/ReservationsRequestsTwo/OrderDetails");
   }
 
   const filteredCustomers = useMemo(() => {
@@ -162,26 +141,18 @@ export default function Rejectedbookings() {
   );
   return (
     <div className="flex w-[98%] m-[1%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden px-[15px] ">
-      {/*----------------------------------------this is componnt control remove customers----------------------*/}
-
       {removeBooKing && (
         <RemoveBooking
           id={numperOfId}
           onClose={() => setRemovBooKing(false)}
-          typeApproved={approved}
         />
       )}
 
-      {/*---------------------------- --------filter customers---------------------------------------------------*/}
-
       {filter && <Filter setFilter={setFilter} onSearch={setFilterData} />}
 
-      {/*-------------------------------------- Add Day ----------------------------------------------------------*/}
       {AddDay && (
         <AddBookingDays onClose={() => setAddDay(false)} />
       )}
-
-      {/* ------------------------------------ head bage show all customers----------------------------------------*/}
 
       <div className="flex flex-wrap items-center justify-between gap-4 p-[10px]">
         <p className="text-[#1D1D1D] font-bold text-[16px] whitespace-nowrap">قائمة طلبات الحجز بالكامل</p>
@@ -208,7 +179,7 @@ export default function Rejectedbookings() {
           />
 
           <button
-            className={`border-[1px] bprder-[#183866] 
+            className={`border-[1px] bprder-[#183866]
               "text-[#183866]"
                text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[132px] whitespace-nowrap`}
             onClick={() => {
@@ -216,19 +187,6 @@ export default function Rejectedbookings() {
             }}
           >
             أيام الحجوزات التي تم رفعها
-          </button>
-
-          <button
-            className={`border-[1px] bprder-[#183866] ${typeApproved === true
-              ? "bg-[#183866] text-[#fff]"
-              : "text-[#183866]"
-              } text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[116px] whitespace-nowrap`}
-            onClick={() => {
-              setTypeApproved(true);
-              setTypeTable("Booking")
-            }}
-          >
-            التي تمت الموافقة عليها
           </button>
           <button
             className={`border-[1px] border-[#183866] ${AddDay
@@ -249,94 +207,53 @@ export default function Rejectedbookings() {
 
         </div>
       </div>
-      {/*--------------------------------------------- tabel booking -----------------------------------------------*/}
       {typeTable === "Booking" ? (
 
-        <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-          <table className="min-w-full text-right">
+        <div className="h-[87vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <table className="min-w-full max-h-[80%] text-right">
             <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
-              <tr >
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                  اسم العميل
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                  عدد الاشخاص
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center" >
-                  يوم الحجز المرغوب
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                  التوقيت
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
-                  رقم الجوال
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center"  >
-                  البريد
-                </th>
-
-                <th className=" py-3 text-[12px] font-bold text-[#475467]   whitespace-nowrap text-center">
-                  الاجراء
-                </th>
+              <tr>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">اسم العميل</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">عدد الاشخاص</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">يوم الحجز المرغوب</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">التوقيت</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">رقم الجوال</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">البريد</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">الحاله</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">مبلغ تحت الحساب</th>
               </tr>
             </thead>
             <tbody className="divide-gray-50">
               {displayedCustomers.length > 0 ? (
-                displayedCustomers.map((customer: any, idx: any) => (
-                  <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors">
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.CustomerName}</td>
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numBerson}</td>
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.Date}</td>
-                    <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.MobileNumber}</td>
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.mail}</td>
-                    {typeApproved && (
-                      <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
-                        <div className="flex items-center justify-center gap-[10px]">
-                          <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={() => { typeApproved === true ? showData(customer) : saveDataInSecon(customer) }}>
-                            <img src="/img/كمغخخحه.svg" width="10" height="8px" />
-                          </span>
-                          {!typeApproved && (
-                            <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => saveDataInSecon(customer)}
-                            ></img>
-                          )}
-                          <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
-                            setRemovBooKing(true)
-                            setId(customer.id);
-                            setApproved(customer.approved)
-                          }
-
-                          } />
-
-                        </div>
-                      </td>
-                    )}
-                    {!typeApproved && (
-
-                      <td className=" py-[15px] flex justify-center items-center  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
-                        <p className="w-[69px] h-[24px] bg-[#1838660D] flex justify-center rounded-[4px] items-center text-[8px] font-[500] text-[#183866]"
-                          onClick={() => {
-                            const customerWithBtn = { ...customer, hidenBtn: customer.hidenBtn ?? true };
-                            window.sessionStorage.setItem("bookingEditData", JSON.stringify(customerWithBtn));
-                            router.push("/ReservationsRequestsTwo/OrderDetails");
-                          }}>
-                          رؤيه الطلب
-                        </p>
-                      </td>
-
-                    )}
-
+                displayedCustomers.map((customer: any, idx: number) => (
+                  <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors"
+                    onClick={() => {
+                      const customerWithBtn = { ...customer, hidenBtn: customer.hidenBtn ?? true };
+                      window.sessionStorage.setItem("bookingEditData", JSON.stringify(customerWithBtn));
+                      router.push("/ReservationsRequestsTwo/OrderDetails");
+                    }}>
+                    <td className="px-3 py-4 text-[10px] text-[#1D1D1DB3] text-center">{customer.CustomerName}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#1D1D1DB3] text-center">{customer.numBerson}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#1D1D1DB3] text-center">{customer.Date}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#183866] text-center">{customer.time}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#1D1D1DB3] text-center">{customer.MobileNumber}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#1D1D1DB3] text-center">{customer.mail}</td>
+                    <td
+                      className="px-3 py-4 text-[10px] text-center"
+                      style={{
+                        color:
+                          customer.state === "ملغى" ? "#FF3A3A" :
+                            customer.state === "مستكمل" ? "#22C55E" :
+                              customer.state === "لم يتم التأكيد" ? "#D69C21" :
+                                "#1D1D1DB3"
+                      }}
+                    >{customer.state}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#C68700] text-center">{customer.AmountBaid}</td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={9} className="p-8 text-center text-[12px] text-[rgba(29,29,29,0.7)]">
+                  <td colSpan={7} className="p-[30px] text-center text-[12px] text-[#8C94A3]">
                     لا يوجد سجلات
                   </td>
                 </tr>
@@ -345,71 +262,41 @@ export default function Rejectedbookings() {
           </table>
         </div>
       ) : (
-
-        <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-          <table className="min-w-full text-right">
+        <div className="h-[87vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+          <table className="min-w-full max-h-[80%] text-right">
             <thead className="sticky top-0 bg-[#F6F6F6] z-10 rounded-[4px]">
-              <tr >
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                  اليوم من
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                  اليوم الى
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center" >
-                  عدد الاشخاص المتاح لاستقبالهم
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467]  whitespace-nowrap text-center">
-                  مغلق من
-                </th>
-
-                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
-                  مغلق الى
-                </th>
-
-                <th className=" py-3 text-[12px] font-bold text-[#475467] pl-[5px]  whitespace-nowrap text-center">
-                  الاجراء
-                </th>
+              <tr>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">اليوم من</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">اليوم إلى</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">عدد الأشخاص المتاح لاستقبالهم</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">غير متاح من</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">متاح من</th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center">مقدم حجز </th>
+                <th className="px-4 py-3 text-[12px] font-bold text-[#475467] text-center"> الاجراء</th>
               </tr>
             </thead>
             <tbody className="divide-gray-50">
               {displayedCustomers.length > 0 ? (
-                displayedCustomers.map((customer: any, idx: any) => (
-
+                displayedCustomers.map((day: any, idx: number) => (
                   <tr key={idx} className="hover:bg-[#F9FAFB]/50 transition-colors">
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.SinceDay}</td>
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.today}</td>
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400]  text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.numPerson}</td>
-                    <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[#183866] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.ClosedFrom}</td>
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.openFrom}</td>
-
-                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                    <td className="px-3 py-4 text-[10px] text-[#1D1D1DB3] text-center">{day.SinceDay}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#1D1D1DB3] text-center">{day.today}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#1D1D1DB3] text-center">{day.numPerson}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#183866] text-center">{day.ClosedFrom}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#183866] text-center">{day.openFrom}</td>
+                    <td className="px-3 py-4 text-[10px] text-[#D69815] text-center">{day.ReservationBrovider}</td>
+                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                       <div className="flex items-center justify-center gap-[10px]">
-                        <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
-                          () => {
-
-                            window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(customer));
-                            router.push("/ModeratorsThree/detalsMoerators");
-
-                          }}>
+                        <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={() => { saveDataInSecon(day) }}>
                           <img src="/img/كمغخخحه.svg" width="10" height="8px" />
                         </span>
-
-                        <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
-                          window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(customer));
-                          router.push("/ModeratorsThree/updateMoerators");
-
-
-                        }}
+                        <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => saveDataInSecon(day)}
                         ></img>
 
                         <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
-                          setRemovBooKing(true)
-                          setId(customer.id);
+                          setRemoveBooking(true)
+                          setId(day.id);
+                          setApproved(day.approved)
                         }
 
                         } />
@@ -420,8 +307,8 @@ export default function Rejectedbookings() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan={9} className="p-8 text-center text-[12px] text-[rgba(29,29,29,0.7)]">
-                    لا يوجد سجلات
+                  <td colSpan={7} className="p-[30px] text-center text-[12px] text-[#8C94A3]">
+                    لا توجد أيام مضافة
                   </td>
                 </tr>
               )}
@@ -430,7 +317,6 @@ export default function Rejectedbookings() {
         </div>
       )
       }
-      {/*------------------------------ control of bage ------------------------------------------------------------*/}
       <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
   );

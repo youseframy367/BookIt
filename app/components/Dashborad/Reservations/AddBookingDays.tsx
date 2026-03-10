@@ -16,6 +16,8 @@ export default function AddBookingDays({ onClose }: passClose) {
   const [endTime, setEndTime] = useState<Date | null>(null);
   const [loading, setLoading] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
+  const [minDeposit, setMinDeposit] = useState<number | "">("");
+  const [isFreeBooking, setIsFreeBooking] = useState(false);
 
   useEffect(() => {
     const stored = window.sessionStorage.getItem("bookingEditData");
@@ -64,6 +66,7 @@ export default function AddBookingDays({ onClose }: passClose) {
       dateTo: selectedDateTo?.toISOString(),
       startTime: startTime ? startTime.toISOString() : null,
       endTime: endTime ? endTime.toISOString() : null,
+      minDeposit: isFreeBooking ? 0 : minDeposit,
     };
 
     try {
@@ -101,7 +104,7 @@ export default function AddBookingDays({ onClose }: passClose) {
           <h2 className="text-[14px] font-[500] text-[#1D2026] mb-1">
             {isEditMode
               ? "مشاهده ونعديل تفاصيل اليوم"
-              : "اضافة ايام الحجوزات بالأعداد المتاحه"}
+              : "اضافة ايام حجز جديده"}
           </h2>
           <img
             src="/img/X.svg"
@@ -113,6 +116,28 @@ export default function AddBookingDays({ onClose }: passClose) {
         </div>
 
         <div className="p-[20px] flex flex-col gap-6 border-b border-[#E9EAF0]">
+
+          <div className="flex flex-col gap-[18px]">
+            <label className="text-[12px] font-medium text-[#1D2026]" htmlFor="num">حدد الحد الادنى لمقدم الحجز</label>
+            <input
+              type="number"
+              value={isFreeBooking ? 0 : minDeposit}
+              onChange={(e) =>
+                setMinDeposit(e.target.value ? Number(e.target.value) : "")
+              }
+              placeholder="ادخل الحد الادنى"
+              className="no-spinner border text-[#8C94A3] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 h-[42px]"
+            />
+            <div className=" flex gap-[10px] px-2">
+              <input
+
+                checked={isFreeBooking}
+                onChange={(e) => setIsFreeBooking(e.target.checked)}
+                type="checkbox" id="check"></input>
+              <label htmlFor="check" className=" text-[10px] font-[500] text-[#636872]">لا ؛ أريد الحجز مجاني بدون دفع مقدم</label>
+
+            </div>
+          </div>
           <div className="flex flex-col gap-[18px]">
             <label className="text-[12px] font-medium text-[#1D2026]">
               عدد الأشخاص المتاح استقبالهم
@@ -150,7 +175,7 @@ export default function AddBookingDays({ onClose }: passClose) {
                 <DatePicker
                   selected={selectedDateTo}
                   onChange={(date: any) => setSelectedDateTo(date)}
-                  placeholderText="الى"
+                  placeholderText="الى ( اختيارى )"
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
@@ -177,7 +202,7 @@ export default function AddBookingDays({ onClose }: passClose) {
                   timeIntervals={5}
                   timeCaption="من"
                   dateFormat="HH:mm"
-                  placeholderText="من"
+                  placeholderText="00 : 00 PM"
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
@@ -197,7 +222,7 @@ export default function AddBookingDays({ onClose }: passClose) {
                   timeIntervals={5}
                   timeCaption="إلى"
                   dateFormat="HH:mm"
-                  placeholderText="إلى"
+                  placeholderText="00 : 00 PM"
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
@@ -210,15 +235,15 @@ export default function AddBookingDays({ onClose }: passClose) {
             </div>
           </div>
 
-          <div className="flex justify-between m-3">
+          <div className="flex justify-between  m-2">
             <button
-              className="bg-[#F5F7FA] text-[#131313] rounded-lg font-medium text-[12px] w-[90px] h-[38px]"
+              className="bg-[#F5F7FA] text-[#131313] rounded-lg font-medium text-[12px] w-[90px] h-[38px] cursor-pointer"
               onClick={onClose}
             >
               الغاء
             </button>
             <button
-              className="bg-[#183866] text-white rounded-lg font-medium text-[12px] w-[90px] h-[38px]"
+              className="bg-[#183866] text-white rounded-lg font-medium text-[12px] w-[90px] h-[38px] cursor-pointer"
               onClick={handleSubmit}
               disabled={loading}
             >

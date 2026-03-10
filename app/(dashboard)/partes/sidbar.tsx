@@ -22,6 +22,7 @@ export default function Sidebar({ setTitle }: typeTitle) {
     { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/Rejectedbookings', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
     { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" },
     { name: 'المشرفين', navigate: "/ModeratorsFor/AllMoerators", title: 'المشرفين', icon: "/img/modetorIcon.svg", iconActiv: "/img/modetorIconActiv.svg" },
+    { name: "التقارير", navigate: "/Reports/AllReports", title: " التقارير ", icon: "/img/Vector-10888.svg", iconActiv: "/img/Vector-145455.svg" },
     {
       name: "المخزون",
       navigate: '/inventory',
@@ -120,8 +121,7 @@ export default function Sidebar({ setTitle }: typeTitle) {
                       strokeWidth="2"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      className={`mr-[auto] ${isOpen ? "rotate-180" : "rotate-0"} transition-all duration-300`}
-                    >
+                      className={`mr-[auto] ${isOpen ? "rotate-180" : "rotate-0"} transition-all duration-300`}>
                       <path d="M6 9l6 6 6-6" />
                     </svg>
                   )}

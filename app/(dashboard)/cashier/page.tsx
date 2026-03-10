@@ -28,6 +28,7 @@ export default function Cashire() {
                     <Products search={search} setSearch={setSearch} filteredProducts={filteredProducts} setProducts={setProducts} isScrolled={isScrolled} setIsScrolled={setIsScrolled} />
                     <Categories searchCategory={searchCategory} setSearchCategory={setSearchCategory} activeCategory={activeCategory} setProducts={setProducts} setCart={setCart} isScrolled={isScrolled} setIsScrolled={setIsScrolled} />
                 </div>
+
                 <SideBar isProducts={cart} setCart={setCart} setProducts={setProducts} />
             </div>
         </section>

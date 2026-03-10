@@ -13,6 +13,7 @@ export default function Products() {
     const [searchTerm, setSearchTerm] = useState("");
     const [numperOfId, setId] = useState()
     const [removeRoles, setRemovRoles] = useState(false)
+
     const tableRef = useRef<HTMLDivElement>(null);
 
     const DataCustomers = useProductsCahsersData();
@@ -49,7 +50,6 @@ export default function Products() {
                             className="w-full h-[32px] pr-[30px] bg-[#F9FAFB] border border-[#E9EAF0] rounded-[8px] text-[#8C94A3] text-[12px] focus:outline-none focus:border-[#183866]"
                         />
                     </div>
-
                     <Export displayedCustomers={displayedCustomers} tableRef={tableRef} />
                 </div>
             </div>
@@ -89,26 +89,25 @@ export default function Products() {
                                 نوع الأوردر
                             </th>
 
-                            <th className=" py-3 text-[12px] font-bold text-[#475467] pl-[25px]  whitespace-nowrap text-center">
+                            <th className=" py-3 text-[12px] font-bold text-[#475467] whitespace-nowrap text-center">
                                 الاجراء
                             </th>
-
                         </tr>
-                    </thead>
+                    </thead >
                     <tbody className="divide-gray-50">
                         {displayedCustomers.length > 0 ? (
                             displayedCustomers.map((customer: any, idx: any) => (
                                 <tr key={idx} className={`hover:bg-[#F9FAFB]/50 transition-colors ${customer.status === "معلق" && "opacity-50"
                                     }`}>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-dark-blue-gray)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.name}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.name}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                                         {customer.code}
                                     </td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap text-center">{customer.time}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-blue-deep)] overflow-hidden whitespace-nowrap text-center">{customer.paymentGetway}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap text-center">{customer.address}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-green-bright)] overflow-hidden whitespace-nowrap text-center">{customer.price}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap text-center">{customer.typeOrder}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.time}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-blue-payment)] overflow-hidden whitespace-nowrap text-center">{customer.paymentGetway}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.address}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-price)] overflow-hidden whitespace-nowrap text-center">{customer.price}</td>
+                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.typeOrder}</td>
 
                                     <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap text-center">
                                         <div className="flex items-center justify-center gap-[10px]">
@@ -130,7 +129,7 @@ export default function Products() {
 
                                         </div>
                                     </td>
-                                </tr>
+                                </tr >
                             ))
                         ) : (
                             <tr>
@@ -138,13 +137,14 @@ export default function Products() {
                                     لا يوجد سجلات
                                 </td>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
+                        )
+                        }
+                    </tbody >
+                </table >
+            </div >
 
             {/* ------------------------------------filter Bage----------------------------------------- */}
-            <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
-        </section>
+            < Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+        </section >
     );
 }
