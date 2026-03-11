@@ -1,188 +1,95 @@
-
 "use client";
 
-import { useState, useMemo, useRef, } from "react";
-import { usePagnation } from "../../../hooks/usePagnation";
-import { useDailyInventoryData } from "../../../data/dataDailyInventory";
-import Pagnation from "../../../components/public/Pagnation";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import ReactApexChart from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
+import { useState } from "react";
 
-export default function InventoryReports() {
-    const router = useRouter()
-    const [searchTerm, setSearchTerm] = useState("");
-    const [showFilter, setShowFilter] = useState(false);
+const ApexChart = () => {
+    const [date, setDate] = useState("2026-03-15");
 
-    const tableRef = useRef<HTMLDivElement>(null);
+    const series = [
+        {
+            name: "التضخم",
+            data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2],
+        },
+    ];
 
-    const dataMoerators = useDailyInventoryData()
-
-    const filtered = useMemo(() => {
-        if (!searchTerm) return dataMoerators;
-
-        const lowerSearch = searchTerm.toLowerCase();
-
-        return dataMoerators.filter((item) =>
-            Object.values(item).some(
-                (val) =>
-                    val &&
-                    val.toString().toLowerCase().includes(lowerSearch)
-            )
-        );
-    }, [searchTerm, dataMoerators]);
-
-    const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
-        usePagnation(filtered, searchTerm);
-
-    const handleDelete = () => {
-
+    const options: ApexOptions = {
+        chart: {
+            height: 350,
+            type: "bar",
+            toolbar: {
+                show: false,
+            },
+        },
+        plotOptions: {
+            bar: {
+                columnWidth: "13%",
+                borderRadius: 3,
+                borderRadiusApplication: "end",
+                dataLabels: {
+                    position: "top",
+                },
+            },
+        },
+        fill: {
+            type: "gradient",
+            gradient: {
+                shade: "light",
+                type: "vertical",
+                shadeIntensity: 0.5,
+                gradientToColors: ["#6D3AFF"],
+                inverseColors: false,
+                opacityFrom: 1,
+                opacityTo: 1,
+                stops: [0, 100],
+            },
+            colors: ["#183866"],
+        },
+        dataLabels: {
+            enabled: true,
+            formatter: (val: number) => val + " كيلو",
+            offsetY: -20,
+            style: { fontSize: "12px", colors: ["#304758"] },
+        },
+        xaxis: {
+            categories: [
+                "لحمه", "فراخ", "بابريكا", "ليمون", "فلفل", "طماطم",
+                "جزر", "مانجا", "لبن", "ملح", "سكر", "دقيق",
+            ],
+            position: "bottom",
+            axisBorder: { show: false },
+            axisTicks: { show: false },
+        },
+        yaxis: {
+            labels: {
+                formatter: (val: number) => val + " كيلو",
+            },
+        },
     };
 
     return (
-        <section className="flex w-[98%] h-[86vh] bg-[#fff] rounded-[11px] flex-col overflow-hidden m-[1%]">
-            {showFilter && (
-                <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
-                    <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
-                        <div className="w-[484px] rounded-[12px] bg-white py-[20px]">
-                            <div>
-                                <div className="w-full flex flex-col gap-[25px]">
-                                    <div className="flex items-center justify-between px-[20px]">
-                                        <p className="text-[#131313] font-semibold text-[20px]">
-                                            فلتر تقارير المخزون
-                                        </p>
-                                        <Image src="/assets/icons/close.png" alt="close" width={18} height={18} onClick={() => setShowFilter(false)} className="cursor-pointer" title="اغلاق" />
-                                    </div>
-                                    <hr className="text-[var(--color-gray-six)]" />
-
-                                    <div className="px-[20px] flex flex-col gap-[16px]">
-                                        <div className="flex flex-col gap-[12px]">
-                                            <label htmlFor="" className="text-xs text-[var(--color-dark-bg-tow)]">الكميه المتاحه</label>
-                                            <input type="text" placeholder="أدخل الكميه" className="border border-2 py-[9px] px-[12px] rounded-[8px] border-[var(--color-gray-six)]" />
-                                        </div>
-                                        <div className="flex gap-[12px]">
-                                            <div className="flex flex-col gap-[12px]">
-                                                <label htmlFor="" className="text-xs text-[var(--color-dark-bg-tow)]">الجرد الأخير</label>
-                                                <input type="number" placeholder="اخر عملية جرد" className="border border-2 py-[9px] px-[12px] rounded-[8px] border-[var(--color-gray-six)]" />
-                                            </div>
-                                            <div className="flex flex-col gap-[12px] w-full">
-                                                <label htmlFor="" className="text-xs text-[var(--color-dark-bg-tow)]">تاريخ اخر عمليات جرد</label>
-                                                <input type="date" className="border border-2 py-[9px] px-[12px] rounded-[8px] border-[var(--color-gray-six)]" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="flex gap-[16px] justify-between mt-[20px] px-[20px]">
-                                    <button
-                                        className="bg-[#F5F7FA] text-[#183866] text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center"
-                                        onClick={() => setShowFilter(false)}
-                                    >
-                                        إلغاء
-                                    </button>
-                                    <button
-                                        className="bg-[#183866] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center"
-                                        onClick={() => {
-                                            handleDelete()
-                                            setShowFilter(false)
-                                        }}
-                                    >
-                                        بحث
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+        <section className="p-5 flex w-[98%] bg-[#fff] rounded-[11px] flex-col overflow-hidden m-[1%]">
+            <div className="flex flex-col gap-5">
+                <div className="flex justify-between items-center">
+                    <div className="flex flex-col gap-[10px] text-xl">
+                        <h2 className="font-normal text-[var(--color-gray-ten)]">تقارير مخزونك</h2>
+                        <span className="font-bold">الأكثر سحبا من المخزون في هذا الشهر</span>
                     </div>
-                </div>
-            )
-            }
-
-            {/*---------------------------------------header Bage ----------------------------------------------------*/}
-
-            <div className="p-[10px] flex flex-wrap items-center justify-between ">
-                <p className="text-[#1D1D1D] font-bold text-[16px] whitespace-nowrap">
-                    تقارير المخزون
-                </p>
-
-                <div className="flex items-center gap-[15px] flex-1 justify-end">
-                    <div className="relative w-[300px]">
-                        <span className="absolute top-[10px] mr-[10px]">
-                            <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
-                        </span>
+                    <div className="flex items-center gap-[8px] py-[8px] px-[16px] rounded-[4px] border border-[var(--color-gray-eleven)]">
                         <input
-                            type="search"
-                            placeholder="ابحث عن مشرف..."
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            className="w-[300px] h-[36px] pr-[30px] bg-[#F9FAFB] border border-[#E9EAF0] rounded-[6px] text-[#8C94A3] text-[12px] focus:outline-none focus:border-[#183866]"
+                            type="date"
+                            value={date}
+                            onChange={(e) => setDate(e.target.value)}
+                            min="2026-03-01"
+                            max="2026-03-31"
                         />
-
                     </div>
-
-                    <img
-                        onClick={() => {
-                            setShowFilter(true)
-                        }}
-                        src="/img/Frame 1686553878.svg"
-                        className="w-[32px] h-[32px] cursor-pointer"
-                        alt="filter"
-                    />
                 </div>
+                <ReactApexChart options={options} series={series} type="bar" height={350} />
             </div>
-
-            <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }} ref={tableRef}>
-                <table className="min-w-full text-right">
-                    <thead className="sticky top-0 bg-[#F9FAFB] rounded-[4px]">
-                        <tr>
-                            <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap" >صورة المنتج</th>
-                            <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap">اسم المنتج</th>
-                            <th className="px-[8px] py-[15px] text-center text-[12px] font-bold text-[#475467]  whitespace-nowrap" >الكمية في النظام</th>
-                            <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap">الجرد الاخير</th>
-                            <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap">تاريخ اخر عملية جرد</th>
-                            <th className="px-[8px] text-center py-[12px] text-[12px] font-bold text-[#475467]  whitespace-nowrap">الجرد اليومي</th>
-                        </tr>
-                    </thead>
-
-                    <tbody className="divide-gray-50">
-                        {displayedCustomers.length > 0 ? (
-                            displayedCustomers.map((m: any, i: any) => (
-                                <tr key={i} className="hover:bg-[#F9FAFB]/50 transition-colors">
-                                    <td className="px-[8px] py-[12px]" style={{
-                                        display: 'flex',
-                                        justifyContent: 'center',
-                                        alignItems: 'center'
-                                    }}>
-                                        <img src={m.img} alt="صورة" className="w-[40px] h-[28px] rounded-[4px] mx-auto" />
-                                    </td>
-                                    <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
-                                    >{m.name}</td>
-                                    <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]" style={{
-                                        color: Number(m.kPrice.replace(" كيلو", "")) > 20
-                                            ? "#23BD33"
-                                            : Number(m.kPrice.replace(" كيلو", "")) < 20 && Number(m.kPrice.replace(" كيلو", "")) > 0 ? "#FFAE00" : "#FF3A3A"
-                                    }}
-                                    >{m.kPrice}</td>
-                                    <td className="px-[8px] py-[16px] text-[#FF3A3A] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
-                                    >{m.kAmount}</td>
-                                    <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
-                                    >{m.date}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
-                                        <span title={m.status} onClick={() => {
-                                            router.push("/inventory/inventory-reports/1");
-                                        }} className="cursor-pointer bg-[var(--color-dark-blue-overlay)] rounded-[4px] px-[11px] py-[5px]">{m.status}</span>
-                                    </td>
-                                </tr>
-                            ))
-                        ) : (
-                            <tr>
-                                <td className="p-[20px] text-center text-gray-500 text-[12px]">
-                                    لا يوجد سجلات
-                                </td>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
-            {/* ------------------------------------filter Bage----------------------------------------- */}
-            <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </section>
     );
-}
+};
+
+export default ApexChart;

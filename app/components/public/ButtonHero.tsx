@@ -18,8 +18,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
     const [bookedDate, setBookedDate] = useState<Date | null>(new Date('2026-02-28'));
 
     const [showError, isShowError] = useState(false);
-    const [isReadOnly, setIsReadOnly] = useState(false);
-
+    
     const bookedHours = [10, 13, 16];
     const bookedMinutes = [0, 30];
 
