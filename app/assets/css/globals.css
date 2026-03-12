@@ -91,6 +91,10 @@
     --color-gray-ten: #9291A5;
     --color-gray-eleven: #D0D3D9;
     --color-gray-twave: #5D6679;
+    --color-gray-four: #00000066;
+    --color-black-five: #00000099;
+    --color-black-six: #00000033;
+    --color-green: #54AFE6;
 }
 
 @font-face {
@@ -207,6 +211,12 @@
     font-weight: 400;
 }
 
+@font-face {
+    font-family: "Fontspring";
+    src: url("/assets/fonts/Fontspring-DEMO-integralcf-bold.otf") format("truetype");
+    font-weight: 700;
+}
+
 .payment-page-body {
     background: black;
 }
@@ -221,6 +231,10 @@ body.search-active::before {
     inset: 0;
     background: rgba(0, 0, 0, 0.821);
     z-index: 1;
+}
+
+.font-Fontspring {
+    font-family: "Fontspring", sans-serif;
 }
 
 .font-cairo {

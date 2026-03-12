@@ -1,7 +1,7 @@
 import { myFilter } from "@/app/TypeScript/TypeScript";
 import Image from "next/image";
 
-export default function SocailMedia({ filter }: myFilter) {
+export default function SocailMedia({ isBorder, filter }: myFilter) {
     const socailMedia = [
         {
             link: "https://wa.me/201055395693",
@@ -28,8 +28,8 @@ export default function SocailMedia({ filter }: myFilter) {
             link: "https://wa.me/201055395693",
             icon: "hero-whatsApp",
             title: "whatsApp",
-            width: "w-[30px]",
-            height: "h-[30px]"
+            width: "w-[32px]",
+            height: "h-[32px]"
         }
     ];
 
@@ -38,7 +38,7 @@ export default function SocailMedia({ filter }: myFilter) {
             {socailMedia.map((item, index) => (
                 <li key={index}>
                     <a href={item.link} target="_blank" rel="noopener noreferrer">
-                        <div className={`relative ${item.width} ${item.height}`}>
+                        <div className={`${isBorder} relative ${item.width} ${item.height}`}>
                             <Image
                                 src={`/assets/icons/${item.icon}.svg`}
                                 alt={item.title}

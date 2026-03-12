@@ -151,6 +151,8 @@
     "answer": "an answer to your query?",
     "fill-out": "Fill out your information and we will respond to you as soon as possible",
     "created": "Created in partnership with Dev Master",
+    "created-1": "Created in partnership",
+    "created-2": "with Dev Master",
     "privacy-policy": "Privacy Policy",
     "terms": "Terms of Use",
     "cookie-preferences": "Cookie Preferences",
@@ -171,5 +173,7 @@
     "enter-wallet-number": "Enter Wallet Number",
     "pay-now": "Pay Now",
     "number-of-people": "Number of People",
-    "waring-text": "You must agree to the Terms and Conditions before proceeding to the payment methods."
+    "waring-text": "You must agree to the Terms and Conditions before proceeding to the payment methods.",
+    "subscribe-news-letter": "Subscribe to Newsletter",
+    "search-for-restaurants": "Search for the restaurants you want and start booking with them now."
 }

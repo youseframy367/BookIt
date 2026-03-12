@@ -133,6 +133,7 @@ export interface remove {
 
 export interface myFilter {
     filter?: string;
+    isBorder?: string;
 }
 
 interface ProductItem {
