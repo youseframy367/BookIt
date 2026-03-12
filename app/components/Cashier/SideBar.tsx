@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image"
 import { usePaymentGetwayData } from "@/app/data/dataPaymentGetway";
 import RemoveRoles from "../Dashborad/AccessAndRoles/RemoveRoles";
-import WarningProducts from "../../components/Cashier/Warning";
 import { Category } from "@/app/TypeScript/TypeScript";
 
 interface items {
@@ -27,8 +26,6 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
     const [selectedInvoice, setSelectedInvoice] = useState<string | null>("Invoice Details");
 
     const [removeRoles, setRemovRoles] = useState(false)
-    const [warningProducts, setWarningProducts] = useState(false)
-    const [lastWarningProducts, setLastWarningProducts] = useState(false)
 
     const [paymentGetway, setPaymentGetway] = useState(usePaymentGetwayData());
     const [activePaymentIndex, setActivePaymentIndex] = useState(0);
@@ -94,17 +91,6 @@ export default function SideBar({ isProducts, setCart, setProducts }: typeProduc
                     text="هل أنت متأكد أنك تريد حذف هذه الفاتوره ؟"
                     handleDelete={deleteAllProducts}
                     onClose={() => setRemovRoles(false)}
-                />
-            )}
-            {warningProducts && (
-                <WarningProducts
-                    onClose={() => setWarningProducts(false)}
-                />
-            )}
-            {lastWarningProducts && (
-                <WarningProducts
-                    isStyleBtn="!bg-[var(--color-remove-btn)]"
-                    onClose={() => setLastWarningProducts(false)}
                 />
             )}
             <div className="sticky top-20 flex flex-col gap-[10px]">
