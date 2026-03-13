@@ -143,7 +143,7 @@ export default function Suppliers() {
                         alt="filter"
                     />
 
-                    <Link href="" className="cursor-pointer text-center border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
+                    <Link href="/inventory/suppliers/add-suppliers" className="cursor-pointer text-center border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
                         اضافة
                     </Link>
                 </div>
