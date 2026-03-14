@@ -120,7 +120,7 @@ export default function Sales() {
                                 name="idNumber"
                                 value={formData.idNumber}
                                 onChange={handleChange}
-                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-5"                                
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-5"
                                 required
                             />
                             <span className="opacity-[0.5] top-[56%] right-2 absolute">%</span>
@@ -204,6 +204,18 @@ export default function Sales() {
                                 onChange={handleChange}
                                 className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
                                 placeholder="أدخل الرقم ان وجد"
+                                required
+                            />
+                        </div>
+                        <div className="flex flex-col gap-4.5">
+                            <label htmlFor="number" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">حدد ضريبة الطلبات</label>
+                            <input
+                                type="number"
+                                name="number"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className="text-[#8C94A3] text-sm font-normal w-full py-3 border border-gray-300 rounded-[10px] px-2"
+                                placeholder="جنيه مصري"
                                 required
                             />
                         </div>
