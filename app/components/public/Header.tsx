@@ -10,6 +10,8 @@ import BtnsSignInAndSignUp from './BtnsSignInAndSignUp';
 import { useTranslationSetup } from '@/app/hooks/useTranslationSetup';
 import { useNavigationData } from '@/app/data/dataHeader';
 import { useMenuSearch } from '@/app/hooks/useBodyClass';
+import { useBooking } from '@/app/(main)/context/BookingContext';
+import { useToggleLanguage } from '@/app/hooks/useToggleLanguage';
 
 export default function Header() {
     const { navigation, links } = useNavigationData();
@@ -20,6 +22,10 @@ export default function Header() {
     const [lastScrollTop, setLastScrollTop] = useState(0);
     const dropdownRefs = useRef<Map<string, HTMLElement>>(new Map());
     const [currentType, setCurrentType] = useState<string | null>(null);
+
+    const { activeUser } = useBooking();
+
+    const [selectedLogOut, setSelectedLogOut] = useState(false);
 
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
@@ -67,10 +73,7 @@ export default function Header() {
         };
     }, [activeDropdown, lastScrollTop]);
 
-    const toggleLanguage = () => {
-        const newLang = i18n.language === 'ar' ? 'en' : 'ar';
-        i18n.changeLanguage(newLang);
-    };
+    const { toggleLanguage } = useToggleLanguage();
 
     return (
         <Disclosure
@@ -91,30 +94,45 @@ export default function Header() {
                                     <XMarkIcon aria-hidden="true" className="hidden size-6 group-data-open:block" />
                                 </DisclosureButton>
                             </div>
-                            <div className="w-full flex items-center justify-end" dir="ltr">
-                                <div className="hidden sm:ml-6 lg:block">
-                                    <div className="flex items-center space-x-8">
-                                        <>
-                                            {
-                                                navigation.map((item, index) => {
-                                                    const isActive = pathname === item.href;
+                            <div className='flex w-full justify-between'>
+                                {activeUser &&
+                                    <div className='relative flex items-center gap-[8px]'>
+                                        <div className='whitespace-nowrap flex items-center gap-[8px] w-full' onClick={() => setSelectedLogOut(prev => !prev)}>
+                                            <Image src="/assets/icons/user.svg" alt='user' width={14} height={14} />
+                                            <span className='text-[var(--color-red-1)] font-normal text-xs'>Hello, Hesham abdelhamid</span>
+                                            <Image src="/assets/icons/arraw-select.svg" alt='arraw-select' width={10} height={10} className={`transition-all duration-400 ${selectedLogOut ? '-rotate-0' : '-rotate-180'}`} />
+                                        </div>
+                                        <Link href="" className={`${selectedLogOut ? 'opacity-100' : 'opacity-0'} gap-[12px] flex justify-center rounded-[10px] py-[13px] px-[30px] shadow-[0_0px_2px_var(--color-black-tow)] absolute -bottom-17 w-full bg-white ${selectedLogOut ? 'z-2' : 'z-0'}`}>
+                                            <Image src="/assets/icons/sign-out.svg" alt={mounted ? t("sign-out") : "..."} width={24} height={24} />
+                                            <span className='text-nowrap text-[var(--color-red-2)]'>{mounted ? t("sign-out") : "..."}</span>
+                                        </Link>
+                                    </div>
+                                }
+                                <div className="w-full flex items-center justify-end">
+                                    <div className="hidden lg:block">
+                                        <div className="flex items-center space-x-8">
+                                            <>
+                                                {
+                                                    navigation.map((item, index) => {
+                                                        const isActive = pathname === item.href;
 
-                                                    return <Link
-                                                        title={mounted ? item.name : '...'}
-                                                        key={index}
-                                                        href={item.href}
-                                                        className={`${isActive && 'text-[var(--strong-red)]'} ${mounted ? i18n.language === 'ar' && "font-cairo" : ""} hover:text-[var(--strong-red)] text-lg font-normal`}
-                                                    >
-                                                        {mounted ? item.name : '...'}
-                                                    </Link>
-                                                })
-                                            }
-                                            {
-                                                mounted && <div className="cursor-pointer">
-                                                    <Image src={`/assets/icons/${i18n.language == 'ar' ? 'en' : 'ar'}.svg`} alt='lang' width={30} height={30} onClick={toggleLanguage} />
-                                                </div>
-                                            }
-                                        </>
+                                                        return <Link
+                                                            title={mounted ? item.name : '...'}
+                                                            key={index}
+                                                            href={item.href}
+                                                            className={`${isActive && 'text-[var(--strong-red)]'} ${mounted ? i18n.language === 'ar' && "font-cairo" : ""} hover:text-[var(--strong-red)] text-lg font-normal`}
+                                                        >
+                                                            {mounted ? item.name : '...'}
+                                                        </Link>
+                                                    })
+                                                }
+                                                {
+                                                    mounted && <div className="cursor-pointer">
+                                                        <Image src={`/assets/icons/${i18n.language == 'ar' ? 'en' : 'ar'}.svg`} alt='lang' width={30} height={30} onClick={toggleLanguage} />
+                                                    </div>
+                                                }
+                                            </>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +182,7 @@ export default function Header() {
                                     })
                                 }
                             </ul>
-                            <BtnsSignInAndSignUp />
+                            {!activeUser && <BtnsSignInAndSignUp />}
                         </div>
                     </div>
                     {
@@ -200,6 +218,6 @@ export default function Header() {
                     }
                 </div>
             </div>
-        </Disclosure>
+        </Disclosure >
     )
 }

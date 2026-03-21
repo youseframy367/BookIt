@@ -8,13 +8,16 @@ import { usePathname } from "next/navigation";
 import SearchMobile from "./SearchMobile";
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 import BtnsSignInAndSignUp from "./BtnsSignInAndSignUp";
-import ChangeLanguage from "./ChangeLanguage";
 import { useMenuSearch } from "@/app/hooks/useBodyClass";
+import { useBooking } from "@/app/(main)/context/BookingContext";
+import { useToggleLanguage } from "@/app/hooks/useToggleLanguage";
 
 export default function FooterMobile() {
-    const { t, mounted } = useTranslationSetup();
+    const { i18n, t, mounted } = useTranslationSetup();
 
     const pathname = usePathname();
+
+    const { activeUser } = useBooking();
 
     const {
         show,
@@ -63,7 +66,14 @@ export default function FooterMobile() {
             link: "/terms-of-use",
             title: t('terms'),
             icon: "terms-of-use-menu"
-        }
+        },
+        ...(activeUser
+            ? [{
+                link: "/terms-of-use",
+                title: t('my-bookings'),
+                icon: "my-bookit"
+            },]
+            : []),
     ]
 
     const toggleSearch = () => {
@@ -77,6 +87,8 @@ export default function FooterMobile() {
     }
 
     const isActive = (path: string) => pathname === path && !show && !openMenu;
+
+    const { toggleLanguage } = useToggleLanguage();
 
     return (
         <>
@@ -120,25 +132,38 @@ export default function FooterMobile() {
                 </ul>
 
                 <div ref={menuRef} className={`p-[20px] flex flex-col gap-5 rounded-r-[20px] fixed top-0 overflow-scroll h-[91.1vh] transition-all duration-300 ${openMenu ? 'opacity-[1] left-0' : 'opacity-[0] left-[-70%]'} w-[70%] bg-gradient-to-br from-[var(--dark-charcoal)]/40 to-[var(--dark-charcoal)]/70 backdrop-blur-2xl text-white`}>
-                    <ul className="py-[20px] pt-[100px]">
+                    <div className="flex flex-col gap-[17px]">
+                        <div className="flex justify-center">
+                            <Image src="/assets/icons/logo-mobile.svg" alt="logo" width={151} height={58} />
+                        </div>
+                        <ul className="flex flex-col gap-[17px]">
+                            {
+                                lastMenu.map((item, index) => {
+                                    return <li className={`${pathname == item.link && 'bg-gradient-to-r from-[var(--color-red-light-overlay)] to-[var(--color-red-light-overlay)]/10'} py-3 px-4`} key={index}>
+                                        <Link href={item.link} onClick={() => setOpenMenu(false)} className="flex gap-5">
+                                            <div className="flex justify-start w-[25px]">
+                                                <img src={`/assets/icons/${item.icon}.svg`} alt={item.icon} />
+                                            </div>
+                                            <span className="font-normal text-base">{mounted ? item.title : '...'}</span>
+                                        </Link>
+                                    </li>
+                                })
+                            }
+                        </ul>
+                        <hr />
                         {
-                            lastMenu.map((item, index) => {
-                                return <li className={`${pathname == item.link && 'bg-gradient-to-r from-[var(--color-red-light-overlay)] to-[var(--color-red-light-overlay)]/10'} p-4`} key={index}>
-                                    <Link href={item.link} onClick={() => setOpenMenu(false)} className="flex gap-5">
-                                        <div className="flex justify-start w-[25px]">
-                                            <img src={`/assets/icons/${item.icon}.svg`} alt={item.icon} />
-                                        </div>
-                                        <span className="font-normal text-base">{mounted ? item.title : '...'}</span>
-                                    </Link>
-                                </li>
-                            })
+                            !activeUser &&
+                            <div className="text-center flex flex-col gap-[17px]">
+                                <BtnsSignInAndSignUp />
+                            </div>
                         }
-                    </ul>
-                    <div className="text-center flex flex-col gap-5">
-                        <BtnsSignInAndSignUp />
-                    </div>
-                    <div className="px-4">
-                        <ChangeLanguage />
+                        <div dir="ltr" onClick={toggleLanguage} className="bg-[var(--is-gray-seven)] cursor-pointer border border-[var(--strong-red)] rounded-[50px] p-[13px] flex justify-between items-center">
+                            <Image src="/assets/icons/change-language.svg" alt='language' width={20} height={20} className={`transition-all duration-300 ${i18n.language == 'ar' ? 'rotate-180' : 'rotate-0'}`} />
+                            <div className="flex gap-[8px]">
+                                <span className="text-md">{i18n.language == 'ar' ? 'English' : 'العربيه'}</span>
+                                <Image src={`/assets/icons/${i18n.language == 'ar' ? 'en' : 'ar'}.svg`} alt='lang' width={30} height={30} onClick={toggleLanguage} className="object-cover rounded-full" />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>

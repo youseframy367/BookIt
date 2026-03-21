@@ -9,6 +9,7 @@ type BookingContextType = {
     setSelectedTime: (time: Dayjs | null) => void;
     selectedUser: string | null;
     setSelectedUser: (user: string | null) => void;
+    activeUser: boolean;
 };
 
 const BookingContext = createContext<BookingContextType | null>(null);
@@ -17,9 +18,10 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [selectedTime, setSelectedTime] = useState<Dayjs | null>(dayjs());
     const [selectedUser, setSelectedUser] = useState<string | null>(null);
+    const [activeUser, setActiveUser] = useState<boolean>(true);
 
     return (
-        <BookingContext.Provider value={{ selectedDate, setSelectedDate, selectedTime, setSelectedTime, selectedUser, setSelectedUser }}>
+        <BookingContext.Provider value={{ activeUser, selectedDate, setSelectedDate, selectedTime, setSelectedTime, selectedUser, setSelectedUser }}>
             {children}
         </BookingContext.Provider>
     );
