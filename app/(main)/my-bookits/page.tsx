@@ -2,6 +2,7 @@
 
 import { useBookitsData } from "@/app/data/dataBookits";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function MyBookits() {
     const bookits = useBookitsData();
@@ -10,6 +11,14 @@ export default function MyBookits() {
 
     return (
         <section>
+            <div className="shadow-[0_1px_6px_var(--color-black-tow)] fixed top-0 p-[15px] bg-white z-1 flex items-center w-full">
+                <div className="flex flex-1">
+                    <Image src="/assets/icons/close.svg" alt="close" width={24} height={24} />
+                </div>
+                <div className="flex flex-[1.7]">
+                    <h2 className="text-[var(--strong-red)] text-lg font-medium">My Bookings</h2>
+                </div>
+            </div>
             <div className="container">
                 {removeRoles && (
                     <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
@@ -47,12 +56,12 @@ export default function MyBookits() {
                     </div>
                 )
                 }
-                <ul className="mt-[43] flex flex-col gap-[24px]">
+                <ul className="mt-[73px] md:mt-[43] flex flex-col md:gap-[24px]">
                     {
                         bookits.map((item, index) => {
                             return (
                                 <li key={index} data-aos="fade-up" className="w-full overflow-auto">
-                                    <div className="w-[1000px] md:w-[unset] overflow-scroll shadow-[0_1px_6px_#E5E9F2] py-[8px] px-[17px] flex flex-col gap-[18px] rounded-[16px]">
+                                    <div className="w-[1000px] md:w-[unset] overflow-scroll shadow-[0_1px_6px_#E5E9F2] md:py-[8px] px-[17px] flex flex-col md:gap-[18px] rounded-[16px]">
                                         <div className="rounded-[4px] text-xs font-normal flex">
                                             <div className="flex flex-col gap-[18px] w-full">
                                                 <div className="w-full bg-[var(--color-light-gray)] py-[12px] ps-[15px]">
