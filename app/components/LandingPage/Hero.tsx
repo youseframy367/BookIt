@@ -10,10 +10,10 @@ export default function Hero() {
 
     return (
         <main id="paner" className="relative">
-            <div className="py-10 md:py-0 md:h-[800px]">
-                <div className="absolute top-0 z-[-1] w-full h-full">
-                    <Image src="/assets/icons/bg.png" alt="background paner" className="object-cover" fill />
-                </div>
+            <div className="py-10 md:py-0 md:h-[800px] bg-[url('/assets/icons/bg.png')]
+    bg-cover
+    bg-center
+    bg-no-repeat">
                 <div className="container flex flex-col items-center justify-center gap-[22px] md:gap-[42px] w-full h-full">
                     <SocailMedia />
                     <div className="flex flex-col items-center justify-center text-center gap-[12px] md:gap-[32px]">
