@@ -1,22 +1,20 @@
 "use client";
 
+import { useInvoice } from "@/app/(dashboard)/context/InvoiceContext";
 import Image from "next/image"
-import { Category } from "@/app/TypeScript/TypeScript"
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 interface categoriesProps {
-    activeCategory: Category | undefined;
-    setProducts: React.Dispatch<React.SetStateAction<Category[]>>;
     setCart: React.Dispatch<React.SetStateAction<any[]>>;
-    searchCategory: string;
-    setSearchCategory: React.Dispatch<React.SetStateAction<string>>;
     setIsScrolled: React.Dispatch<React.SetStateAction<boolean>>;
     isScrolled: boolean;
 }
 
-export default function Categories({ setIsScrolled, isScrolled, searchCategory, setSearchCategory, activeCategory, setProducts, setCart }: categoriesProps) {
+export default function Categories({ isScrolled, setIsScrolled, setCart }: categoriesProps) {
+    const { products, setProducts } = useInvoice();
     const listRef = useRef<HTMLDivElement>(null);
-
+    const [searchCategory, setSearchCategory] = useState("");
+    const activeCategory = products.find(cat => cat.active);
     const filteredItems = activeCategory?.items.filter(item =>
         item.name.toLowerCase().includes(searchCategory.toLowerCase())
     );

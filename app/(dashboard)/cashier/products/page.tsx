@@ -113,13 +113,13 @@ export default function Products() {
                                         <div className="flex items-center justify-center gap-[10px]">
                                             <span title="معاينه" className="cursor-pointer flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
                                                 () => {
-                                                    router.push(`/access-and-roles/${customer.id}`);
+                                                    router.push(`/cashier/products/details-invoice/${customer.id}`);
                                                 }}>
                                                 <img src="/img/كمغخخحه.svg" width="10" height="8px" />
                                             </span>
 
                                             <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
-                                                router.push(`/access-and-roles/update/${customer.id}`);
+                                                router.push(`/cashier/products/details-employees/${customer.id}`);
                                             }} />
 
                                             <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
@@ -144,7 +144,7 @@ export default function Products() {
             </div >
 
             {/* ------------------------------------filter Bage----------------------------------------- */}
-            < Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+            <Pagnation numRow={numRow} setNumRow={setNumRow} scroll={scroll} numbersRef={numbersRef} numPages={numPages} currentPage={currentPage} setCurrentPage={setCurrentPage} />
         </section >
     );
 }

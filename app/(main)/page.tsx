@@ -9,7 +9,6 @@ import TopRated from "../components/LandingPage/TopRatedOrMostBooked";
 import { useDataRelatied } from "../data/dataRelatied";
 
 export default function Home() {
-    // testing new branch
     const { dataRealtied } = useDataRelatied();
 
     return (

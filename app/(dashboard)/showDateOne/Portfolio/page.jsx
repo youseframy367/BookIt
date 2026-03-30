@@ -1,5 +1,4 @@
 "use client";
-import { QRCodeSVG } from "qrcode.react";
 import { useState } from "react";
 import { useRef } from "react";
 
@@ -8,43 +7,43 @@ export default function Portfolio() {
   //////////////////////////////////////////////////
   //////link of site
   //////////////////////////////////////////////
-  const link =`
+  const link = `
   https://www.restaurant-management-system-t...
 `
 
-/////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////
 
-// downlod qr code
-////////////////////////////////////////////////////////
+  // downlod qr code
+  ////////////////////////////////////////////////////////
 
-const qrRef = useRef(null);
+  const qrRef = useRef(null);
 
-const downloadQR = () => {
-  const svg = qrRef.current.querySelector("svg");
-  if (!svg) return;
+  const downloadQR = () => {
+    const svg = qrRef.current.querySelector("svg");
+    if (!svg) return;
 
-  const serializer = new XMLSerializer();
-  const svgStr = serializer.serializeToString(svg);
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
+    const serializer = new XMLSerializer();
+    const svgStr = serializer.serializeToString(svg);
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d");
 
-  const img = new Image();
-  img.onload = () => {
-    canvas.width = img.width;
-    canvas.height = img.height;
-    ctx.drawImage(img, 0, 0);
-    const pngUrl = canvas.toDataURL("image/png").replace(
-      "image/png",
-      "image/octet-stream"
-    );
+    const img = new Image();
+    img.onload = () => {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+      const pngUrl = canvas.toDataURL("image/png").replace(
+        "image/png",
+        "image/octet-stream"
+      );
 
-    const downloadLink = document.createElement("a");
-    downloadLink.href = pngUrl;
-    downloadLink.download = "qr-code.png";
-    downloadLink.click();
+      const downloadLink = document.createElement("a");
+      downloadLink.href = pngUrl;
+      downloadLink.download = "qr-code.png";
+      downloadLink.click();
+    };
+    img.src = "data:image/svg+xml;base64," + btoa(svgStr);
   };
-  img.src = "data:image/svg+xml;base64," + btoa(svgStr);
-};
 
 
 
@@ -53,7 +52,7 @@ const downloadQR = () => {
     site: "القاهره",
     email: "youssefRamy@gmail.com",
     numPon: "010 2352 2063",
-    lastNumPon:"0102358890",
+    lastNumPon: "0102358890",
     TypeOfTrade: "حساب خاص بمطعم",
     image: "/img/lkhgkjggujk.svg",
   });
@@ -268,63 +267,63 @@ const downloadQR = () => {
       </div>
       <div className=" flex m-[15px] mx-[20px] justify-between">
 
-           <button className="w-[81px] h-[48px] border-[1px] border-[#E9EAF0] bg-[#fff] text-[#6E7485] rounded-[12px]">
+        <button className="w-[81px] h-[48px] border-[1px] border-[#E9EAF0] bg-[#fff] text-[#6E7485] rounded-[12px]">
           الغاء
         </button>
         <button className="w-[100px] h-[48px] bg-[#183866] rounded-[12px] text-[#fff] text-[16px] gap-[16px]">
           حفظ
         </button>
-     
-      </div>
-<hr className="w-[96%] m-[2%] h-[1px] bg-black/17 border-none" />
-<p className="text-[18px] font-[600] text-[#3D3D3D]">
-تفاصيل اخري مثل مشاركة  ( لينك السايت و QR )
-</p>
-<div className="w-[237px] flex flex-col  border-[1px] border-[#2BFFFF1A] m-[20px] h-[322px] rounded-[32px] bg-[linear-gradient(to_right,rgba(43,255,255,0.3),rgba(43,255,255,0.38),rgba(43,255,255,0.31))] backdrop-blur-[40px]">
-<div className="w-[215px] h-[31px] rounded-[30px] border-[0.3px] border-[rgba(0,0,0,0.7)] mx-auto my-[15px] flex items-center overflow-hidden">
-   <div className="flex justify-center items-center w-[24px] h-[24px] rounded-full bg-[#fff] my-auto mx-[5px]"
-      onClick={() => {
-      navigator.clipboard.writeText(link).then(() => {
-      });
-    }}
-   >
-    <img src="/img/gtfg.svg" alt="icon" />
-  </div>
- 
-  <a
-    className="flex-1 overflow-hidden whitespace-nowrap text-[8px] font-[600] px-[8px]"
-     ref={qrRef}
-    dir="ltr"
-    href={link}
-  >
-    {link}
-  </a>
 
-</div>
-     <div
-       ref={qrRef} 
-     className="mt-[-4px] p-[10px] bg-white rounded-lg shadow-lg w-[187px] h-[207px] mx-auto rounded-[17px] flex justify-center items-center">
-          <QRCodeCanvas  value={link} size={170} />
+      </div>
+      <hr className="w-[96%] m-[2%] h-[1px] bg-black/17 border-none" />
+      <p className="text-[18px] font-[600] text-[#3D3D3D]">
+        تفاصيل اخري مثل مشاركة  ( لينك السايت و QR )
+      </p>
+      <div className="w-[237px] flex flex-col  border-[1px] border-[#2BFFFF1A] m-[20px] h-[322px] rounded-[32px] bg-[linear-gradient(to_right,rgba(43,255,255,0.3),rgba(43,255,255,0.38),rgba(43,255,255,0.31))] backdrop-blur-[40px]">
+        <div className="w-[215px] h-[31px] rounded-[30px] border-[0.3px] border-[rgba(0,0,0,0.7)] mx-auto my-[15px] flex items-center overflow-hidden">
+          <div className="flex justify-center items-center w-[24px] h-[24px] rounded-full bg-[#fff] my-auto mx-[5px]"
+            onClick={() => {
+              navigator.clipboard.writeText(link).then(() => {
+              });
+            }}
+          >
+            <img src="/img/gtfg.svg" alt="icon" />
+          </div>
+
+          <a
+            className="flex-1 overflow-hidden whitespace-nowrap text-[8px] font-[600] px-[8px]"
+            ref={qrRef}
+            dir="ltr"
+            href={link}
+          >
+            {link}
+          </a>
+
+        </div>
+        <div
+          ref={qrRef}
+          className="mt-[-4px] p-[10px] bg-white rounded-lg shadow-lg w-[187px] h-[207px] mx-auto rounded-[17px] flex justify-center items-center">
+          <QRCodeCanvas value={link} size={170} />
         </div>
 
         <button
- onClick={() => {
-    const canvas = qrRef.current.querySelector("canvas");
-    if (!canvas) return;
+          onClick={() => {
+            const canvas = qrRef.current.querySelector("canvas");
+            if (!canvas) return;
 
-    const pngUrl = canvas.toDataURL("image/png").replace(
-      "image/png",
-      "image/octet-stream"
-    );
-    const downloadLink = document.createElement("a");
-    downloadLink.href = pngUrl;
-    downloadLink.download = "qr-code.png";
-    downloadLink.click();
-  }}        className="w-[186px] text-[14px] font-[500] text-[#fff] h-[37px] rounded-[12px]  bg-[linear-gradient(to_bottom,#2BFFFF,#1A9999)] shadow-[0_0_1px_2px_rgba(0,0,0,0.15)] mx-auto mt-[9px]">
+            const pngUrl = canvas.toDataURL("image/png").replace(
+              "image/png",
+              "image/octet-stream"
+            );
+            const downloadLink = document.createElement("a");
+            downloadLink.href = pngUrl;
+            downloadLink.download = "qr-code.png";
+            downloadLink.click();
+          }} className="w-[186px] text-[14px] font-[500] text-[#fff] h-[37px] rounded-[12px]  bg-[linear-gradient(to_bottom,#2BFFFF,#1A9999)] shadow-[0_0_1px_2px_rgba(0,0,0,0.15)] mx-auto mt-[9px]">
           تحميل الصوره بصيغه PNG
         </button>
 
-</div>
+      </div>
 
     </div>
   );

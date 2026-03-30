@@ -1,18 +1,22 @@
 "use client";
 
+import { useInvoice } from "@/app/(dashboard)/context/InvoiceContext";
 import Image from "next/image"
-import { Category } from "@/app/TypeScript/TypeScript"
+import { useState } from "react";
 
 interface ProductsProps {
-    filteredProducts: Category[];
-    search: string;
-    setSearch: React.Dispatch<React.SetStateAction<string>>;
-    setProducts: React.Dispatch<React.SetStateAction<Category[]>>;
     isScrolled: boolean;
     setIsScrolled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Products({ isScrolled, setIsScrolled, filteredProducts, setProducts, search, setSearch }: ProductsProps) {
+export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
+    const { products, setProducts } = useInvoice();
+    const [search, setSearch] = useState("");
+
+    const filteredProducts = products.filter(product =>
+        product.title.toLowerCase().includes(search.toLowerCase())
+    )
+
     return (
         <div title={`${isScrolled && 'العوده الي الأصناف'}`} className={`transition-all duration-300 flex flex-col gap-[20px] bg-[#fff] rounded-[11px] ${isScrolled ? 'cursor-pointer py-0 group hover:bg-[var(--color-dark-blue-gray)]' : 'py-[23px]'} px-[35px]`}>
             <div onClick={() => setIsScrolled(false)} className={`${isScrolled ? 'mt-4' : 'mt-0'} transition-all duration-300 flex items-center justify-between`}>

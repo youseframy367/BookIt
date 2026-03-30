@@ -208,7 +208,7 @@ export default function Sales() {
                             />
                         </div>
                         <div className="flex flex-col gap-4.5">
-                            <label htmlFor="number" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">حدد ضريبة الطلبات</label>
+                            <label htmlFor="number" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">حدد سعر توصيل الطلبات</label>
                             <input
                                 type="number"
                                 name="number"

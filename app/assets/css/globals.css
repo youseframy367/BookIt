@@ -70,6 +70,7 @@
     --color-dark-gray-translucent: #3D3D3DB2;
     --color-dark-gray-light-translucent: #3D3D3D33;
     --color-light-blue: #6C97E5;
+    --color-light-blue-2: #6C97E580;
     --color-dark-gray-50: #3D3D3D80;
     --color-gray-medium-three: #7B7B7B;
     --color-golden-light: #C1A466;
@@ -96,12 +97,14 @@
     --color-gray-eleven: #D0D3D9;
     --color-gray-twave: #5D6679;
     --color-gray-four: #00000066;
+    --color-gray-thirty: #3D3D3D40;
     --color-black-five: #00000099;
     --color-black-six: #00000033;
     --color-green: #54AFE6;
     --color-green-1: #1B8354;
     --color-rosewood: #976258;
     --color-black-seven: #1B83541A;
+    --color-black-ate: #0000001A;
 }
 
 @font-face {
@@ -340,7 +343,7 @@ select {
 
 :is(.swiper-button-prev, .swiper-button-next) svg {
     opacity: 0 !important;
-    display: none !important;
+    display: none !important;    
 }
 
 .swiper-button-next,
