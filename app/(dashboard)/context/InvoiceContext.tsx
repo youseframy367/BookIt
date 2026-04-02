@@ -32,6 +32,9 @@ type InvoiceContextType = {
 
     invoiceDetails: InvoiceDetails;
     setInvoiceDetails: React.Dispatch<React.SetStateAction<InvoiceDetails>>;
+
+    showQr: boolean;
+    setShowQr: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const InvoiceContext = createContext<InvoiceContextType | null>(null);
@@ -43,6 +46,7 @@ type Props = {
 export const InvoiceProvider = ({ children }: Props) => {
     const { data, setData } = useProductsData();
     const [takeawayOrSala, setTakeawayOrSala] = useState<number>(0);
+    const [showQr, setShowQr] = useState(false);
 
     const [customerData, setCustomerData] = useState<CustomerData>({
         name: "مؤمن الزبده",
@@ -72,6 +76,8 @@ export const InvoiceProvider = ({ children }: Props) => {
                 setCustomerData,
                 invoiceDetails,
                 setInvoiceDetails,
+                showQr,
+                setShowQr
             }
             }
         >

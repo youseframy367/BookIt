@@ -4,8 +4,9 @@ import { useReportData } from "@/app/data/dataReport";
 import Image from "next/image";
 // , { useRef }
 import React from "react";
-// import { QRCodeCanvas } from "qrcode.react";
+import { QRCodeCanvas } from "qrcode.react";
 import { useInvoice } from "@/app/(dashboard)/context/InvoiceContext";
+// import { link } from "fs/promises";
 
 interface items {
     title: string;
@@ -25,11 +26,13 @@ interface typeProducts {
 export default function PrintTheInvoice({ vat, deliveryFee, isCart, subtotal, totalWithVat }: typeProducts) {
     const reportData = useReportData();
 
+
     const {
         customerData,
+        showQr
     } = useInvoice();
 
-    // const link = `https://www.restaurant-management-system-t...`;
+    const link = `https://www.restaurant-management-system-t...`;
 
     return (
         <div dir="rtl" className="flex flex-col gap-[14px] py-[19px] px-[9px]">
@@ -134,6 +137,15 @@ export default function PrintTheInvoice({ vat, deliveryFee, isCart, subtotal, to
                 customerData.notes && <div className="rounded-xl bg-black text-white font-semibold flex items-center justify-center border border-[var(--color-gray-thirty)] py-[17px]">
                     {customerData.notes}
                 </div>
+            }
+            {
+                showQr &&
+                <>
+                    <div className="flex justify-center">
+                        <QRCodeCanvas value={link} size={90} />
+                    </div>
+                    <span className="text-center font-semibold">يمكنك مشاهدة المنيو الالكتروني الخاص بنا والحجز في المطعم من خلال اسكان QR Code</span>
+                </>
             }
             {/*<div className="flex justify-center">
                     <QRCodeCanvas value={link} size={90} />

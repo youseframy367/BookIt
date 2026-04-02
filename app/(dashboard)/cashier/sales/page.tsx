@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useInvoice } from "../../context/InvoiceContext";
 
 export default function Sales() {
     const router = useRouter()
     const [imageSrc, setImageSrc] = useState('/img/trrruyeryer.svg');
     const [imageFile, setImageFile] = useState<File | null>(null);
+
+    const { showQr, setShowQr } = useInvoice();
 
     const [showSizePaper, setShowSizePaper] = useState(false);
     const [textSizePaper, setTextSizePaper] = useState("");
@@ -124,6 +127,11 @@ export default function Sales() {
                                 required
                             />
                             <span className="opacity-[0.5] top-[56%] right-2 absolute">%</span>
+                        </div>
+                        <div className="relative flex gap-2.5">
+                            <input type="checkbox" id="qr" checked={showQr}
+                                onChange={(e) => setShowQr(e.target.checked)} />
+                            <label htmlFor="qr" className="text-xs">إضافة Qr Code الخص بالويب سايت في الفاتوره</label>
                         </div>
                     </div>
                     <div className="flex flex-col gap-2.5">
