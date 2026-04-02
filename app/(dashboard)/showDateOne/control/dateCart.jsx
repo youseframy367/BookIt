@@ -60,15 +60,12 @@ export default function DateCart() {
               className="flex justify-between border border-black/10 px-[10px] py-[12px] rounded-[8px] bg-white w-[24.3%] h-[142px] relative"
             >
 
-              {/* Card Content */}
               <div className="flex flex-col gap-[6px]">
 
-                {/* Title */}
                 <p className="text-[10px] font-normal text-[#504f4fcc]">
                   {card.title}
                 </p>
 
-                {/* Total */}
                 <p className="font-bold text-[#131313] my-[7px] text-[16px]">
                   {card.total}
                   {card.totalSuffix && (
@@ -78,7 +75,6 @@ export default function DateCart() {
 
                 <div className="flex flex-col gap-[10px] mt-[10px]">
 
-                  {/* This Month */}
                   <p className="text-[12px] font-semibold text-[#3D3D3D] whitespace-nowrap" dir="rtl">
                     <span>{card.subValue}</span>
                     {card.subSuffix && (
@@ -87,7 +83,6 @@ export default function DateCart() {
                     {" "}{card.subLabel}
                   </p>
 
-                  {/* Higher Than Last Month */}
                   <p className="flex gap-[5px] items-center text-[8px] font-normal text-[#3D3D3D]">
                     <img
                       src={isPositive ? "/img/ewerwft.svg" : "/img/gfgf.svg"}
@@ -102,7 +97,6 @@ export default function DateCart() {
                 </div>
               </div>
 
-              {/* Icon */}
               <img
                 src={card.icon}
                 alt="icon"
