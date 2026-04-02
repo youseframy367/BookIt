@@ -36,7 +36,7 @@ export default function TimeSupscribtion() {
   };
 
   return (
-    <div className="w-full flex justify-center items-center bg-[#20202033] h-[70px] font-poppins overflow-hidden relative">
+    <div className="w-full flex justify-center items-center bg-[#20202033] h-[70px] font-poppins overflow-hidden relative z-99999">
       <AnimatePresence mode="wait">
         {showTime ? (
           <motion.p

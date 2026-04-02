@@ -76,7 +76,7 @@ export default function Categories({ isScrolled, setIsScrolled, setCart }: categ
     }, [isScrolled]);
 
     return (
-        <div className="h-full bg-[#fff] rounded-[11px] py-[23px] px-[35px]">
+        <div className="h-auto bg-[#fff] rounded-[11px] py-[23px] px-[35px] mr-[1%] ">
             <div className="flex flex-col gap-[25px]">
                 <div className="flex items-center justify-between">
                     <h2 className="font-semibold text-base">{activeCategory?.title}</h2>
@@ -98,7 +98,8 @@ export default function Categories({ isScrolled, setIsScrolled, setCart }: categ
 
                 <div
                     ref={listRef}
-                    className="grid grid-cols-3 gap-[25px] h-[400px] overflow-scroll"
+                    className="grid grid-cols-3 gap-[25px] min-h-[450px]  overflow-scroll  overflow-x-hidden"
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                     onScroll={(e) => {
                         const target = e.currentTarget;
                         setIsScrolled(target.scrollTop > 0);

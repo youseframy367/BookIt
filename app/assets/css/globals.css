@@ -234,15 +234,16 @@
 body.search-active {
     position: relative;
 }
-
 body.search-active::before {
     content: "";
-    position: fixed;
+    position:absolute;
+    left:0px;
     inset: 0;
+
     background: rgba(0, 0, 0, 0.821);
     z-index: 1;
-}
 
+}
 .font-Fontspring {
     font-family: "Fontspring", sans-serif;
 }
@@ -343,7 +344,7 @@ select {
 
 :is(.swiper-button-prev, .swiper-button-next) svg {
     opacity: 0 !important;
-    display: none !important;    
+    display: none !important;
 }
 
 .swiper-button-next,

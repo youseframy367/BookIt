@@ -116,7 +116,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
     };
 
     return (
-        <div className="relative">
+        <div className="fixed left-[15px] overflow-hidden w-[20%]">
             <div ref={printRef} className="hidden">
                 <PrintTheInvoice vat={vat} deliveryFee={deliveryFee} subtotal={subtotal} totalWithVat={totalWithVat} isCart={isCart} />
             </div>
@@ -139,13 +139,13 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                     onClose={() => setLastWarningProducts(false)}
                 />
             )}
-            <div className="sticky top-20 flex flex-col gap-[10px]">
-                <div className="h-[700px] overflow-auto shadow-[0_0_10px_rgba(0,0,0,0.10)] bg-[#fff] rounded-[11px] py-[24px] px-[15px] flex flex-col gap-[24px]">
+            <div className=" top-20 flex flex-col gap-[10px] ">
+                <div className="h-[89vh] overflow-scroll  shadow-[0_0_10px_rgba(0,0,0,0.10)] bg-[#fff] rounded-[11px] py-[24px] px-[15px] flex flex-col gap-[24px] "style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
                     <div className="flex gap-[6px] justify-center">
-                        <button onClick={() => setTakeawayOrSala(0)} title="صاله" className={`${takeawayOrSala == 0 && 'hover:text-[var(--color-light-blue)] hover:bg-white bg-[var(--color-light-blue)] text-white'} text-[var(--color-light-blue)] cursor-pointer text-xs font-semibold transition-all duration-300 py-[8px] px-[40px] border border-2 border-[var(--color-light-blue)] rounded-[13px]`}>
+                        <button onClick={() => setTakeawayOrSala(0)} title="صاله" className={`${takeawayOrSala == 0 && 'hover:text-[var(--color-light-blue)] hover:bg-white bg-[var(--color-light-blue)] text-white'} text-[var(--color-light-blue)] cursor-pointer text-xs font-semibold transition-all duration-300 w-[110px] h-[30px] border border-2 border-[var(--color-light-blue)] rounded-[13px]`}>
                             صاله
                         </button>
-                        <button onClick={() => setTakeawayOrSala(1)} title="تيك اوي" className={`${takeawayOrSala == 1 && 'hover:text-[var(--color-light-blue)] hover:bg-white bg-[var(--color-light-blue)] text-white'} cursor-pointer text-xs text-[var(--color-light-blue)] hover:text-white font-semibold transition-all duration-300 py-[8px] px-[40px] hover:bg-[var(--color-light-blue)] border border-2 border-[var(--color-light-blue)] rounded-[13px]`}>
+                        <button onClick={() => setTakeawayOrSala(1)} title="تيك اوي" className={`${takeawayOrSala == 1 && 'hover:text-[var(--color-light-blue)] hover:bg-white bg-[var(--color-light-blue)] text-white'} cursor-pointer text-xs text-[var(--color-light-blue)] hover:text-white font-semibold whitespace-nowrap transition-all duration-300 w-[110px] h-[30px] hover:bg-[var(--color-light-blue)] border border-2 border-[var(--color-light-blue)] rounded-[13px]`}>
                             تيك اوي
                         </button>
                     </div>
@@ -221,7 +221,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                 <h2 className="font-semibold text-sm">المنتجات</h2>
                                 <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedProducts === "products" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
-                            <div className="flex flex-col gap-[18px] overflow-auto max-h-[120px]">
+                            <div className="flex flex-col gap-[18px] min-h-[20px]">
                                 {
                                     isCart.length == 0 ? <div className={`${selectedProducts === "products" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
                                         <span className="text-xs text-[var(--color-dark-gray-translucent)]">

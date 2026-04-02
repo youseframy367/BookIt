@@ -55,10 +55,11 @@ export default function Export({ tableRef, displayedCustomers }: passData) {
     }
 
     return (
-        <div className={`relative ${openMenu && 'z-1'}`}>
-            <button ref={buttonRef} onClick={toggleMenu} className="cursor-pointer text-center border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
+        <div className={` relative ${openMenu && 'z-1 ' }`}>
+            <button ref={buttonRef} onClick={toggleMenu} className="cursor-pointer text-center border-[1px] border-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
                 تصدير
             </button>
+
             <div ref={menuRef} className={`${openMenu ? 'opacity-[1] z-1' : 'opacity-[0] -z-1'} w-[190%] rounded-[12px] py-[20px] px-[24px] absolute left-0 bg-white top-11 flex flex-col gap-[22px]`}>
                 <div onClick={exportExcel} className="flex items-center gap-[8px] cursor-pointer" title="تصدير Excel">
                     <Image src="/assets/icons/excel.svg" alt="excel" width={20} height={18} />
@@ -69,6 +70,6 @@ export default function Export({ tableRef, displayedCustomers }: passData) {
                     <span>تصدير PDF</span>
                 </div>
             </div>
-        </div>
+            </div>
     )
 }

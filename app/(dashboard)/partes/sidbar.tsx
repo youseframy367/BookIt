@@ -92,10 +92,9 @@ export default function Sidebar({ setTitle }: typeTitle) {
   }, [pathname]);
 
   return (
-    <div className="pb-[35px] flex flex-col justify-between w-[20%] bg-[#fff] fixed h-full top-0 right-0 z-[99]">
+    <div className="pb-[35px] flex flex-col justify-between w-[20%] bg-[#fff] fixed h-full top-0 right-0 z-[1]">
       <div className="flex flex-col">
         <TimeSupscribtion />
-
         <div className="mt-[10px] w-[99%] ml-[1%] p-[5px]">
           {navigat.map((item, i) => {
             const isActive = activeIndex === i;
