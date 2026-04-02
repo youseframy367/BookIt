@@ -18,7 +18,7 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
     )
 
     return (
-        <div title={`${isScrolled && 'العوده الي الأصناف'}`} className={`transition-all duration-300 flex flex-col gap-[20px] bg-[#fff] rounded-[11px] ${isScrolled ? 'cursor-pointer py-0 group hover:bg-[var(--color-dark-blue-gray)]' : 'py-[23px]'} px-[35px]`}>
+        <div title={`${isScrolled && 'العوده الي الأصناف'}`} className={`transition-all mr-[1%] duration-300 flex flex-col gap-[20px] bg-[#fff] rounded-[11px] ${isScrolled ? 'cursor-pointer py-0 group hover:bg-[var(--color-dark-blue-gray)]' : 'py-[23px]'} px-[35px]`}>
             <div onClick={() => setIsScrolled(false)} className={`${isScrolled ? 'mt-4' : 'mt-0'} transition-all duration-300 flex items-center justify-between`}>
                 <h2 className={`font-semibold text-base ${isScrolled && 'text-[var(--color-dark-blue-gray)] group-hover:text-white'}`}>{isScrolled ? 'العوده الي الأصناف' : 'أقسام المنتجات'}</h2>
                 {
@@ -41,7 +41,7 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
                     </div>
                 </div>
             </div>
-            <ul className={`${isScrolled ? '-z-1 opacity-0 max-h-0' : 'opacity-100 max-h-[2000px]'} transition-all duration-300 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[20px]`}>
+            <ul className={`${isScrolled ? '-z-1 opacity-0 max-h-0' : 'opacity-100 max-h-[2000px]'} transition-all duration-300 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[15px]`}>
                 {
                     filteredProducts.map((item, index) => {
                         return <li key={index} title={item.title} onClick={() => {
@@ -51,9 +51,9 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
                                     active: i === index
                                 }))
                             )
-                        }} className={`transition-all duration-300 ${item.active ? 'bg-[var(--color-dark-blue-gray)] text-white shadow-[10px_10px_36px_13px_rgba(24,56,102,0.2)] -translate-y-1' : 'translate-y-0'} hover:-translate-y-1 hover:bg-[var(--color-dark-blue-gray)] hover:text-white hover:shadow-[10px_10px_36px_13px_rgba(24,56,102,0.2)] text-[var(--color-dark-blue-gray)] cursor-pointer px-1 py-2 border border-1 border-[var(--color-dark-blue-gray)] rounded-[10px] flex justify-center items-center`}>
+                        }} className={`transition-all duration-300 ${item.active ? 'bg-[var(--color-dark-blue-gray)] text-white shadow-[10px_10px_36px_13px_rgba(24,56,102,0.2)] -translate-y-1' : 'translate-y-0'} hover:-translate-y-1 hover:bg-[var(--color-dark-blue-gray)] hover:text-white hover:shadow-[10px_10px_36px_13px_rgba(24,56,102,0.2)] text-[var(--color-dark-blue-gray)] cursor-pointer px-2 py-2 border border-1 border-[var(--color-dark-blue-gray)] rounded-[10px] flex justify-center items-center`}>
                             <div className="flex-1 text-center">
-                                <span className="font-semibold text-[11px]">{item.title}</span>
+                                <span className="font-semibold text-[11px] whitespace-nowrap ">{item.title}</span>
                             </div>
                             <Image src={`/assets/icons/${item.icon}`} alt="products" width={30} height={30} />
                         </li>

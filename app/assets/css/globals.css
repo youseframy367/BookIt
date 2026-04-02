@@ -237,7 +237,8 @@ body.search-active {
 
 body.search-active::before {
     content: "";
-    position: fixed;
+    position: absolute;
+    left: 0px;
     inset: 0;
     background: rgba(0, 0, 0, 0.821);
     z-index: 1;

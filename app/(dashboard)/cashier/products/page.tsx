@@ -56,8 +56,8 @@ export default function Products() {
 
             {/*--------------------------------------------- tabel Customers -----------------------------------------------*/}
 
-            <div className="h-[80vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }} ref={tableRef}>
-                <table className="min-w-full text-right">
+            <div className="h-[74vh] overflow-auto" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }} ref={tableRef}>
+                <table className="min-w-full text-right h-[95%]">
                     <thead className="sticky top-0 bg-[#F6F6F6] rounded-[4px]">
                         <tr >
 
@@ -99,17 +99,17 @@ export default function Products() {
                             displayedCustomers.map((customer: any, idx: any) => (
                                 <tr key={idx} className={`hover:bg-[#F9FAFB]/50 transition-colors ${customer.status === "معلق" && "opacity-50"
                                     }`}>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.name}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
+                                    <td className="px-[8px] py-[10px] text-[10px] font-[400] text-[var(--color-go-password)]  overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ">{customer.name}</td>
+                                    <td className="px-[8px] py-[10px] text-[10px] font-[400] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                                         {customer.code}
                                     </td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.time}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-blue-payment)] overflow-hidden whitespace-nowrap text-center">{customer.paymentGetway}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.address}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-price)] overflow-hidden whitespace-nowrap text-center">{customer.price}</td>
-                                    <td className="px-[8px] py-[15px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.typeOrder}</td>
+                                    <td className="px-[8px] py-[10px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.time}</td>
+                                    <td className="px-[8px] py-[10px] text-[10px] font-[500] text-[#144EA1] overflow-hidden whitespace-nowrap text-center">{customer.paymentGetway}</td>
+                                    <td className="px-[8px] py-[10px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.address}</td>
+                                    <td className="px-[8px] py-[10px] text-[10px] font-[500] text-[#23BD33] overflow-hidden whitespace-nowrap text-center">{customer.price}</td>
+                                    <td className="px-[8px] py-[10px] text-[10px] font-[500] text-[var(--color-go-password)] overflow-hidden whitespace-nowrap text-center">{customer.typeOrder}</td>
 
-                                    <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap text-center">
+                                    <td className="px-[8px] py-[10px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap text-center">
                                         <div className="flex items-center justify-center gap-[10px]">
                                             <span title="معاينه" className="cursor-pointer flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={
                                                 () => {
