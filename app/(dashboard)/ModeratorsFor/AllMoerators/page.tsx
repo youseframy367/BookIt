@@ -111,7 +111,7 @@ export default function AllMoerators() {
                   </td>
                   <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
                   >{m.code}</td>
-                  <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
+                  <td className="px-[8px] py-[16px]  whitespace-nowrap text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
                   >{m.name}</td>
                   <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
                   >{m.numperPone}</td>
@@ -124,9 +124,9 @@ export default function AllMoerators() {
 
                   <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
                   >{m.nameGop}</td>
-                  <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
+                  <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]  whitespace-nowrap"
                   >{m.Powers}</td>
-                  <td className="px-[8px] py-[16px]  text-center text-[10px] text-[400] " style={{
+                  <td className="px-[8px] py-[16px]  text-center text-[10px] text-[400]  whitespace-nowrap" style={{
                     color: m.acount ? "#23BD33" : '#FF3A3A'
                   }}
 
@@ -136,7 +136,7 @@ export default function AllMoerators() {
                     }}
 
                   >{m.stat ? "نشط" : "معطل"}</td>
-                  <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] " style={{
+                  <td className="px-[8px] py-[16px] text-center text-[10px] text-[400]  whitespace-nowrap" style={{
                     color: m.acount ? "#183866" : '#FF3A3A'
                   }}
 
