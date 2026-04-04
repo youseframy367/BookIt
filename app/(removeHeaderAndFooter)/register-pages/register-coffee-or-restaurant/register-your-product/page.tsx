@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import LayoutLoginAndRegister from "@/app/components/layoutLoginAndRegister/LayoutLoginAndRegister";
 import Submit from "@/app/components/public/SubmitChangeCoffeeOrRes";
 
@@ -19,7 +18,7 @@ export default function RegisterYourProduct() {
         e.preventDefault();
         setLoading(true);
         try {
-            router.push("/PaymentMethod");
+            router.push("/register-pages/register-coffee-or-restaurant/payment-method");
         } catch (err: any) {
             toast.error(err.response.data.data);
         } finally {

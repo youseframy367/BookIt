@@ -105,6 +105,7 @@
     --color-rosewood: #976258;
     --color-black-seven: #1B83541A;
     --color-black-ate: #0000001A;
+    --color-black-nine: #1F1F1F;
 }
 
 @font-face {
@@ -294,10 +295,6 @@ html[dir="ltr"] body {
 
 html[dir="rtl"] body {
     font-family: "cairo", sans-serif;
-}
-
-::-webkit-scrollbar {
-    width: 0;
 }
 
 html {
@@ -650,9 +647,9 @@ html[dir="rtl"] .swiper-button-next {
     }
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
     display: none;
-}
+} */
 
 .no-scrollbar::-webkit-scrollbar {
     display: none;

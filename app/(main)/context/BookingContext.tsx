@@ -18,7 +18,7 @@ export function BookingProvider({ children }: { children: React.ReactNode }) {
     const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
     const [selectedTime, setSelectedTime] = useState<Dayjs | null>(dayjs());
     const [selectedUser, setSelectedUser] = useState<string | null>(null);
-    const [activeUser, setActiveUser] = useState<boolean>(true);
+    const [activeUser, setActiveUser] = useState<boolean>(false);
 
     return (
         <BookingContext.Provider value={{ activeUser, selectedDate, setSelectedDate, selectedTime, setSelectedTime, selectedUser, setSelectedUser }}>

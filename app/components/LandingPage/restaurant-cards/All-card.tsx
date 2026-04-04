@@ -7,10 +7,6 @@ export default function AllCard({ item }: dataCards) {
 
     return (
         <>
-            {/* <div className={`md:hidden absolute z-1 top-0 ${mounted ? i18n.language === 'ar' ? "rounded-tr-[14px] rounded-bl-[14px]" : "rounded-tl-[14px] rounded-br-[14px]" : ""} bg-[var(--strong-red)] p-2 md:p-8`}>
-                <Image src={`/assets/icons/${item.like ? "full-heart" : "heart"}.svg`} alt="hert" width={24} height={24} />
-            </div> */}
-
             <div className="w-full h-[200px] md:h-[300px] relative">
                 <Image
                     src={item.img}
