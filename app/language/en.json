@@ -177,5 +177,11 @@
     "subscribe-news-letter": "Subscribe to Newsletter",
     "search-for-restaurants": "Search for the restaurants you want and start booking with them now.",
     "my-bookings": "My Bookings",
-    "sign-out": "Sign-out"
+    "sign-out": "Sign-out",
+    "customer-name": "Customer Name",
+    "reservation-time": "Reservation Time",
+    "reservation-date": "Reservation Date",
+    "branch-location": "Branch Location",
+    "action": "Action",
+    "reservation-name": "Restaurant Name"
 }

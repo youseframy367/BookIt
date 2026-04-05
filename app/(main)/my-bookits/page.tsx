@@ -3,10 +3,11 @@
 import { useBookitsData } from "@/app/data/dataBookits";
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 
 export default function MyBookits() {
     const bookits = useBookitsData();
-
+    const { t, mounted } = useTranslationSetup();
     const [removeRoles, setRemovRoles] = useState(false)
 
     return (
@@ -65,42 +66,48 @@ export default function MyBookits() {
                                         <div className="rounded-[4px] text-xs font-normal flex">
                                             <div className="flex flex-col gap-[18px] w-full">
                                                 <div className="w-full bg-[var(--color-light-gray)] py-[12px] ps-[15px]">
-                                                    <span>Customer Name</span>
+                                                    <span>{mounted ? t("customer-name") : "..."}</span>
                                                 </div>
                                                 <span className="text-[var(--color-dark-blue-gray)] ps-[15px]">{item.name}</span>
                                             </div>
                                             <div className="flex flex-col text-center gap-[18px] w-full">
                                                 <div className="w-full bg-[var(--color-light-gray)] py-[12px]">
-                                                    <span>Number of People</span>
+                                                    <span>{mounted ? t("number-of-people") : "..."}</span>
                                                 </div>
                                                 <span className="text-[var(--color-dark-blue-gray)]">{item.numberOfPepole}</span>
                                             </div>
                                             <div className="flex flex-col text-center gap-[18px] w-full">
                                                 <div className="w-full bg-[var(--color-light-gray)] py-[12px]">
-                                                    <span>Reservation Time</span>
+                                                    <span>{mounted ? t("reservation-time") : "..."}</span>
                                                 </div>
                                                 <span className="text-[var(--color-dark-blue-gray)]">{item.reservationTime}</span>
                                             </div>
                                             <div className="flex flex-col text-center gap-[18px] w-full">
                                                 <div className="w-full bg-[var(--color-light-gray)] py-[12px]">
-                                                    <span>Reservation Date</span>
+                                                    <span>{mounted ? t("reservation-date") : "..."}</span>
                                                 </div>
                                                 <span className="text-[var(--color-dark-blue-gray)]">{item.reservationDate}</span>
                                             </div>
                                             <div className="flex flex-col text-center gap-[18px] w-full">
                                                 <div className="w-full bg-[var(--color-light-gray)] py-[12px]">
-                                                    <span>Branch Location</span>
+                                                    <span>{mounted ? t("branch-location") : "..."}</span>
                                                 </div>
                                                 <span className="text-[var(--color-dark-blue-gray)]">{item.branchLocation}</span>
                                             </div>
                                             <div className="flex flex-col text-center gap-[18px] w-full">
                                                 <div className="w-full bg-[var(--color-light-gray)] py-[12px]">
-                                                    <span>Action</span>
+                                                    <span>{mounted ? t("reservation-name") : "..."}</span>
+                                                </div>
+                                                <span className="text-[var(--color-dark-blue-gray)]">{item.name}</span>
+                                            </div>
+                                            <div className="flex flex-col text-center gap-[18px] w-full">
+                                                <div className="w-full bg-[var(--color-light-gray)] py-[12px]">
+                                                    <span>{mounted ? t("action") : "..."}</span>
                                                 </div>
                                                 <div className="flex justify-center">
                                                     <div onClick={() => {
-                                                        item.action == 'Cancel Booking' && setRemovRoles(true)
-                                                    }} className={`relative bottom-[6px] rounded-[4px] ${item.action == 'Cancel Booking' ? 'cursor-pointer text-[var(--strong-red)] bg-[var(--color-danger-light)]' : 'text-[var(--color-green-1)] bg-[var(--color-black-seven)]'} p-[7.5px]`}>
+                                                        item.action == "الغاء الحجز" && setRemovRoles(true)
+                                                    }} className={`relative bottom-[6px] rounded-[4px] ${item.action == "الغاء الحجز" ? 'cursor-pointer text-[var(--strong-red)] bg-[var(--color-danger-light)]' : 'text-[var(--color-green-1)] bg-[var(--color-black-seven)]'} p-[7.5px]`}>
                                                         <span>{item.action}</span>
                                                     </div>
                                                 </div>
