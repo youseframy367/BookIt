@@ -4,7 +4,7 @@ import { useState } from "react";
 import Sidebar from "./(dashboard)/partes/sidbar";
 import ControlBag from "./(dashboard)/showDateOne/control/page";
 import PopSeting from "./components/Dashborad/popSeting";
-
+import TimeSupscribtion from "./(dashboard)/partes/time";
 export default function MainLayout({ children }) {
 
   const dataHeader={
@@ -15,16 +15,17 @@ export default function MainLayout({ children }) {
 
   const [title, setTitle] = useState("لوحة التحكم الخاصة بإدارة BOOK IN");
   const [showSeting,setShowSeting]=useState(false)
+const [smoleScreen, setSmoleScreen] = useState(false);
 
         return (
           <div className="flex w-full min-h-screen font-['Cairo']">
            
-            <div className="w-[20%] shrink-0 h-screen border border-gray-100">
-              <Sidebar setTitle={setTitle} />
+            <div className={smoleScreen ? "w-0 shrink-0" : "w-[20%] shrink-0 h-screen border border-gray-100 "}>
+              <Sidebar setTitle={setTitle}  setSmoleScreen={setSmoleScreen}/>
             </div>
             <div className="flex-1 flex flex-col">
-              <header className="fixed w-[80%] top-0 h-[70px] z-[999] bg-white flex items-center px-8 pt-7 pb-5 flex justify-between">
-                <h2 className="text-[#3D3D3D] mt-[-6px] text-[18px] font-bold">{title}</h2>
+<header className={`fixed ${smoleScreen ? 'w-[100%]' : 'w-[80%]'} top-0 left-0 h-[70px] z-[999] bg-white flex items-center px-8 pt-7 pb-5 justify-between`}>           
+       <h1 className={smoleScreen?" text-[#3D3D3D] font-bold mr-[50px]":"ml-[0px] text-[#3D3D3D] mt-[5px] text-[18px] "}>{title}</h1>
                 <div className="flex gap-[16px] items-center">
                   <img src={dataHeader.img} className="w-[36px] h-[36px]"></img>
                   <div className="flex flex-col gap-[4px]">
@@ -47,6 +48,11 @@ export default function MainLayout({ children }) {
                 {children ?? <ControlBag />}
               </main>
             </div>
+            {
+              smoleScreen &&(
+                <TimeSupscribtion typeScren={smoleScreen?"smool":"big"}/>
+              )
+            }
           </div>
         );
 }

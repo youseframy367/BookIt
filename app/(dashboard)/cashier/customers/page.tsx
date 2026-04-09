@@ -27,7 +27,9 @@ export default function Customers() {
         usePagnation(DataCustomers, searchTerm)
 
     return (
-        <section className="flex w-[98%] m-[1%] bg-[#fff] rounded-[11px] flex-col px-[25px] ">
+        <section className="flex w-[98%] m-[1%] bg-[#fff] rounded-[11px] flex-col px-[25px] h-[85vh] overflow-scroll"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        >
             <div className="flex flex-col gap-[23px] pt-[23px]">
                 <div className="p-[10px] flex flex-wrap items-center justify-between ">
                     <p className="text-[#1D1D1D] font-bold text-[16px] whitespace-nowrap">
@@ -69,7 +71,10 @@ export default function Customers() {
                         onClose={() => setRemovRoles(false)} />
                 )
                 }
-                <ul className="flex flex-col gap-5 relative z-1">
+                <ul className="flex flex-col gap-5 relative z-1 h-[80%] overflow-scroll"
+                        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+
+                >
                     {
                         DataCustomers.map((item, index) => {
                             return <li key={index} className="border border-1 border-[var(--gray)] rounded-[16px] py-[16px]">

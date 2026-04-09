@@ -5,17 +5,32 @@ import { useState, useEffect } from "react";
 import TimeSupscribtion from "./time";
 import Image from "next/image";
 import Link from "next/link";
-
+import { FaBars, FaTimes } from "react-icons/fa";
 interface typeTitle {
   setTitle: React.Dispatch<React.SetStateAction<string>>;
+  setSmoleScreen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function Sidebar({ setTitle }: typeTitle) {
+
+export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen }: typeTitle) {
   const [openDropdown, setOpenDropdown] = useState<number | null>(null);
   const [activeListIndex, setActiveListIndex] = useState<number | null>(null);
+  const [smoleScreen, setSmoleScreen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const pathname = usePathname();
   const router = useRouter();
+
+  useEffect(() => {
+    const handleResize = () => {
+      const isSmall = window.innerWidth <= 1200;
+      setSmoleScreen(isSmall);
+      if (setParentSmoleScreen) setParentSmoleScreen(isSmall);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [setParentSmoleScreen]);
 
   const navigat = [
     { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
@@ -91,9 +106,9 @@ export default function Sidebar({ setTitle }: typeTitle) {
     }
   }, [pathname]);
 
-  return (
-    <div className="pb-[35px] flex flex-col justify-between w-[20%] bg-[#fff] fixed h-full top-0 right-0 z-[1]">
-      <div className="flex flex-col">
+  const sidebarContent = (
+<div className={`pb-[35px] flex flex-col justify-between ${smoleScreen ? 'w-[27%]' : 'w-[20%]'} bg-[#fff] fixed h-full top-0 right-0 z-[99999]`}>
+        <div className="flex flex-col">
         <TimeSupscribtion />
         <div className="mt-[10px] w-[99%] ml-[1%] p-[5px]">
           {navigat.map((item, i) => {
@@ -165,4 +180,59 @@ export default function Sidebar({ setTitle }: typeTitle) {
       </div>
     </div>
   );
+     return (
+    <>
+
+      {smoleScreen && (
+        <div
+          onClick={() => setIsOpen(true)}
+          style={{
+            position: "fixed",
+            display: isOpen ? "none":"block",
+            top: 20,
+            right: 30,
+            zIndex: 99999,
+            cursor: "pointer",
+            backgroundColor: "#183866",
+            padding: "8px 10px",
+            borderRadius: "8px",
+          }}
+        >
+          <FaBars size={20} color="#fff" />
+        </div>
+      )}
+
+      {/* Overlay - بيظهر لما الـ drawer يفتح */}
+      {smoleScreen && isOpen && (
+        <div
+          onClick={() => setIsOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            backgroundColor: "rgba(0,0,0,0.4)",
+            zIndex: 99999,
+          }}
+        >
+          {smoleScreen && (
+            <div
+              onClick={() => setIsOpen(false)}
+              style={{
+                position: "absolute",
+                left: "65%",
+                top: '50px',
+                cursor: "pointer",
+                color: "#183866",
+              }}
+            >
+              <FaTimes size={30} />
+            </div>
+          )}
+        </div>
+      )}
+
+   
+      {(!smoleScreen || isOpen) && sidebarContent}
+    </>
+  );
+
 }

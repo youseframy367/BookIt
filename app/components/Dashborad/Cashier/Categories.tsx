@@ -76,8 +76,11 @@ export default function Categories({ isScrolled, setIsScrolled, setCart }: categ
     }, [isScrolled]);
 
     return (
-        <div className="h-auto bg-[#fff] rounded-[11px] py-[23px] px-[35px] mr-[1%] ">
-            <div className="flex flex-col gap-[25px]">
+<div
+  className={`${isScrolled ? "h-[90vh]" : "h-[80vh]"} overflow-auto bg-[#fff] rounded-[11px] py-[23px] px-[35px] mr-[1%]`}
+style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+
+>            <div className="flex flex-col gap-[25px]">
                 <div className="flex items-center justify-between">
                     <h2 className="font-semibold text-base">{activeCategory?.title}</h2>
                     <div className="flex items-center gap-[10px] flex-1 justify-end">

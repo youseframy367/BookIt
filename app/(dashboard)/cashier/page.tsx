@@ -11,7 +11,7 @@ export default function Cashire() {
 
     return (
             <section>
-                <div className="grid md:grid-cols-[8.7fr_3fr] gap-[30px]">
+                <div className=" grid md:grid-cols-[8.7fr_3fr] gap-[20px]">
                     <div className="flex flex-col gap-5">
                         <Products isScrolled={isScrolled} setIsScrolled={setIsScrolled} />
                         <Categories isScrolled={isScrolled} setIsScrolled={setIsScrolled} setCart={setCart} />

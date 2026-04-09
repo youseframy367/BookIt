@@ -8,7 +8,7 @@ interface typeData {
 
 export default function RemoveRoles({ text, handleDelete, onClose }: typeData) {
     return (
-        <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
+        <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center ">
             <div className="w-[684px] h-[178px] rounded-[12px] bg-white p-[20px]">
                 <div>
                     <div className="w-full flex flex-col gap-[25px]">

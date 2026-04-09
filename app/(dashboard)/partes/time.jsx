@@ -2,8 +2,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function TimeSupscribtion() {
-  // ⏱️ الحالة: بنعرض الوقت ولا الصور؟
+export default function TimeSupscribtion({ typeScren = "big" }) {
   const [showTime, setShowTime] = useState(true);
   const [currentSponsor, setCurrentSponsor] = useState(0);
 
@@ -13,6 +12,7 @@ export default function TimeSupscribtion() {
     "/img/e6b08986e699dd21b87627e3b0a86a309ee36f03.png",
   ];
 
+  // تبديل العرض بين الوقت والصور كل 5 ثوانٍ
   useEffect(() => {
     const interval = setInterval(() => {
       setShowTime((prev) => !prev);
@@ -20,6 +20,7 @@ export default function TimeSupscribtion() {
     return () => clearInterval(interval);
   }, []);
 
+  // تبديل الصور نفسها كل 5 ثوانٍ في حالة عرض الصور
   useEffect(() => {
     if (!showTime) {
       const imgInterval = setInterval(() => {
@@ -30,13 +31,19 @@ export default function TimeSupscribtion() {
   }, [showTime, sponsors.length]);
 
   const fadeVariants = {
-    hidden: { opacity: 0, y: 20, scale: 0.98 },
-    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8 } },
-    exit: { opacity: 0, y: -20, scale: 0.98, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, y: 10, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6 } },
+    exit: { opacity: 0, y: -10, scale: 0.95, transition: { duration: 0.4 } },
   };
 
   return (
-    <div className="w-full flex justify-center items-center bg-[#20202033] h-[70px] font-poppins overflow-hidden relative z-99999">
+    <div
+      className={
+        typeScren === "big"
+          ? "w-full flex justify-center items-center bg-[#20202033] h-[70px] font-poppins overflow-hidden relative z-[99999]"
+          : "fixed bottom-4 left-1/2 -translate-x-1/2 w-[90%] max-w-[320px] bg-[#183866] backdrop-blur-md border border-white/10 rounded-2xl h-[55px] flex justify-center items-center z-[99999] shadow-2xl"
+      }
+    >
       <AnimatePresence mode="wait">
         {showTime ? (
           <motion.p
@@ -45,7 +52,9 @@ export default function TimeSupscribtion() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute text-[32px] text-white font-[700] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+            className={`absolute text-white font-[700] drop-shadow-[0_4px_4px_rgba(0,0,0,0.25)] ${
+              typeScren === "big" ? "text-[32px]" : "text-[18px]"
+            }`}
             dir="ltr"
           >
             2 DAY : 59 : 25
@@ -59,7 +68,9 @@ export default function TimeSupscribtion() {
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute h-[70px] w-auto object-contain transition-all duration-500"
+            className={`absolute object-contain transition-all duration-500 ${
+              typeScren === "big" ? "h-[60px]" : "h-[35px]"
+            } w-auto`}
           />
         )}
       </AnimatePresence>

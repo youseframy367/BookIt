@@ -2,7 +2,7 @@
 
 import { useInvoice } from "@/app/(dashboard)/context/InvoiceContext";
 import Image from "next/image"
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 
 interface ProductsProps {
     isScrolled: boolean;
@@ -17,12 +17,35 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
         product.title.toLowerCase().includes(search.toLowerCase())
     )
 
+  useEffect(() => {
+    const handleScroll = () => {
+  
+      if (window.scrollY > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    
+    // تنظيف الـ Listener عند الخروج
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
     return (
-        <div title={`${isScrolled && 'العوده الي الأصناف'}`} className={`transition-all mr-[1%] duration-300 flex flex-col gap-[20px] bg-[#fff] rounded-[11px] ${isScrolled ? 'cursor-pointer py-0 group hover:bg-[var(--color-dark-blue-gray)]' : 'py-[23px]'} px-[35px]`}>
+  <div 
+  title={`${isScrolled ? 'العوده الي الأصناف' : ''}`} 
+  className={`sticky top-[85px] transition-all duration-300 flex flex-col gap-[15px] bg-[#fff] rounded-[11px] z-[50]
+    ${isScrolled 
+      ? 'cursor-pointer h-[60px] justify-center group hover:bg-[var(--color-dark-blue-gray)]' 
+      : 'py-[23px] h-auto'} 
+    w-full px-[35px] `}
+>
+
             <div onClick={() => setIsScrolled(false)} className={`${isScrolled ? 'mt-4' : 'mt-0'} transition-all duration-300 flex items-center justify-between`}>
                 <h2 className={`font-semibold text-base ${isScrolled && 'text-[var(--color-dark-blue-gray)] group-hover:text-white'}`}>{isScrolled ? 'العوده الي الأصناف' : 'أقسام المنتجات'}</h2>
                 {
-                    isScrolled && <div className="transition-all duration-300 rotate-0 group-hover:-rotate-90 bg-white border border-[var(--color-dark-blue-gray)] p-2 rounded-full">
+                    isScrolled && <div className="transition-all duration-300 rotate-0 group-hover:-rotate-90 bg-white border border-[var(--color-dark-blue-gray)] p-2 rounded-full ">
                         <Image src="/assets/icons/forward.svg" alt="forward" width={19} height={19} />
                     </div>
                 }
@@ -41,7 +64,7 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
                     </div>
                 </div>
             </div>
-            <ul className={`${isScrolled ? '-z-1 opacity-0 max-h-0' : 'opacity-100 max-h-[2000px]'} transition-all duration-300 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[15px]`}>
+            <ul className={`${isScrolled ? '-z-1 opacity-0 max-h-0' : 'opacity-100 max-h-[2000px]'} transition-all duration-300 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-[15px]`}>
                 {
                     filteredProducts.map((item, index) => {
                         return <li key={index} title={item.title} onClick={() => {

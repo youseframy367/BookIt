@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState , useEffect } from "react";
 import Image from "next/image"
 import { usePaymentGetwayData } from "@/app/data/dataPaymentGetway";
 import RemoveRoles from "../AccessAndRoles/RemoveRoles";
@@ -39,6 +39,24 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
     const [lastWarningProducts, setLastWarningProducts] = useState(false)
     const [paymentGetway, setPaymentGetway] = useState(usePaymentGetwayData());
     const [activePaymentIndex, setActivePaymentIndex] = useState(0);
+
+  const [smoleScreen, setSmoleScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+     
+      const isSmall = window.innerWidth <= 1200;
+      setSmoleScreen(isSmall);
+    };
+
+
+    handleResize();
+
+   
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []); 
 
     const handleDelete = (index: number) => {
         const productToDelete = isCart[index];
@@ -116,8 +134,8 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
     };
 
     return (
-        <div className="fixed left-[15px] overflow-hidden w-[20%]">
-            <div ref={printRef} className="hidden">
+<div className={`fixed left-[15px] overflow-hidden ${smoleScreen ? 'w-[25%]' : 'w-[20%]'}`}>
+                <div ref={printRef} className="hidden">
                 <PrintTheInvoice vat={vat} deliveryFee={deliveryFee} subtotal={subtotal} totalWithVat={totalWithVat} isCart={isCart} />
             </div>
             {removeRoles && (
