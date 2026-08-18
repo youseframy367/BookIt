@@ -53,7 +53,7 @@ export default function OrderDetails() {
         <ChackApproved typeChack={type} onclose={() => setchekApproved(false)} />)}
       <p className="text-[18px] font-[600] mt-[20px]">تفاصيل طلب الحجز</p>
 
-      <div className="grid grid-cols-2 ml-[20%] mt-[10px]">
+      <div className="grid grid-cols-2 gap-[10px] mt-[10px]">
         {dateOrder.map((field, index) => (
           <div key={index} className="flex flex-col gap-[8px] my-[10px]">
             <label className="text-[14px] font-[400] text-[#131313]">{field.label}</label>

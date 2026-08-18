@@ -1,19 +1,23 @@
 "use client";
 
-import axios from "axios";
+import api from "@/utils/axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RemoveBooking({ id, onClose }) {
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`https://your-api.com/DleatBookit/${id}`);
+      // TODO: قم بتغيير المسار هنا إلى مسار حذف اليوم في الـ API الخاص بك
+      const API_DELETE_PATH = "/Bookit/" + id;
+      const response = await api.delete(API_DELETE_PATH);
       console.log("Deleted successfully:", response.data);
 
-      alert("تم حذف اليوم بنجاح ✅");
+      toast.success("تم حذف اليوم بنجاح ✅");
 
-      onClose();
+      if (onClose) onClose();
     } catch (error) {
       console.error("Failed to delete:", error);
-      alert("حدث خطأ أثناء حذف اليوم ❌");
+      toast.error("حدث خطأ أثناء حذف اليوم ❌");
     }
   };
 
@@ -34,8 +38,9 @@ export default function RemoveBooking({ id, onClose }) {
     >
       <div
         style={{
-          width: "684px",
-          height: "178px",
+          width: "min(684px, 90%)",
+          minHeight: "178px",
+          height: "auto",
           borderRadius: "12px",
           background: "#fff",
           padding: "20px",

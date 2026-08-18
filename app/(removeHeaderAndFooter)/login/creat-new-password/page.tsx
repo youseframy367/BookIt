@@ -3,6 +3,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Submit from "@/app/components/public/Submit";
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
+import api from "@/utils/axios";
+import { toast } from "react-toastify";
 
 export default function NewBassword() {
   const { t, mounted } = useTranslationSetup();
@@ -26,23 +28,13 @@ export default function NewBassword() {
     const data = { email, password };
 
     try {
-      const response = await fetch("http://localhost:5000/api/reset-password", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to reset password");
-      }
-
-      const result = await response.json();
-      console.log("Server response:", result);
-      alert("Password changed successfully!");
-      // navigate("/login");
-    } catch (error) {
+      // ملاحظة: عدّل مسار إعادة تعيين كلمة المرور حسب الـ API الخاص بك
+      const result = await api.post("/reset-password", data);
+      console.log("Server response:", result.data);
+      toast.success("تم تغيير كلمة المرور بنجاح ✅");
+    } catch (error: any) {
       console.error(error);
-      alert("Error resetting password");
+      toast.error(error?.response?.data?.data || "خطأ أثناء إعادة تعيين كلمة المرور ❌");
       setClick(false);
     }
   };
@@ -53,12 +45,12 @@ export default function NewBassword() {
         className="h-screen flex flex-col justify-center bg-cover bg-center -z-1"
         style={{ backgroundImage: "url('/assets/icons/bg-new-password.png')" }}
       >
-        <div className="w-full h-full absolute bg-black opacity-[0.5] absolute">
+        <div className="w-full h-full absolute bg-black opacity-[0.5]">
         </div>
         <div className="relative z-1 container flex flex-col justify-center items-center">
           <form action=""
             method=""
-            onClick={handleSubmit} className="flex flex-col items-center md:w-[781px] h-[659px] p-10 bg-white rounded-lg">
+            onClick={handleSubmit} className="flex flex-col items-center w-[95%] md:w-[781px] h-auto md:h-[659px] p-6 md:p-10 bg-white rounded-lg">
             <div className="w-full flex justify-end">
               <button
                 className="border-none outline-none"

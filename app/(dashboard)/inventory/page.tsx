@@ -9,6 +9,8 @@ import Pagnation from "../../components/public/Pagnation";
 import Image from "next/image";
 import Export from "@/app/components/Dashborad/Inventory/Export";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
+import api from "@/utils/axios";
+import { toast } from "react-toastify";
 
 export default function Inventory() {
     const router = useRouter()
@@ -41,8 +43,25 @@ export default function Inventory() {
     const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
         usePagnation(filtered, searchTerm);
 
-    const handleDelete = () => {
+    // حذف منتج من المخزون عبر الـ API
+    const handleDelete = async () => {
+        try {
+            // TODO: عدّل المسار هنا إلى مسار حذف المنتج في الـ API الخاص بك
+            const API_DELETE_PATH = "/inventory/product";
+            await api.delete(API_DELETE_PATH);
+            toast.success("تم حذف المنتج من المخزون بنجاح ✅");
+        } catch (error) {
+            console.error("Failed to delete:", error);
+            toast.error("حدث خطأ أثناء حذف المنتج ❌");
+        }
+    };
 
+    // تطبيق فلتر المخزون
+    const applyFilter = () => {
+        if (textStatus) {
+            const lowerStatus = textStatus.toLowerCase();
+            setSearchTerm((prev) => `${prev} ${lowerStatus}`.trim());
+        }
     };
 
     return (
@@ -56,7 +75,6 @@ export default function Inventory() {
             }
             {showFilter && (
                 <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
-                    <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
                         <div className="w-[484px] rounded-[12px] bg-white py-[20px]">
                             <div>
                                 <div className="w-full flex flex-col gap-[25px]">
@@ -114,17 +132,16 @@ export default function Inventory() {
                                     <button
                                         className="bg-[#183866] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center"
                                         onClick={() => {
-                                            handleDelete()
+                                            applyFilter()
                                             setShowFilter(false)
                                         }}
                                     >
                                         بحث
                                     </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
             )
             }
 

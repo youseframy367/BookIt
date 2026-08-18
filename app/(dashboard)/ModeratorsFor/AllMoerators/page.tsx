@@ -7,6 +7,8 @@ import { usePagnation } from "../../../hooks/usePagnation";
 import { useMsgModetor } from "../../../data/dataModetor";
 import Pagnation from "../../../components/public/Pagnation";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
+import api from "@/utils/axios";
+import { toast } from "react-toastify";
 
 export default function AllMoerators() {
   const router = useRouter()
@@ -32,8 +34,17 @@ export default function AllMoerators() {
   const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
     usePagnation(filtered, searchTerm);
 
-  const handleDelete = () => {
-
+  // حذف مشرف عبر الـ API
+  const handleDelete = async () => {
+    try {
+      // TODO: عدّل المسار هنا إلى مسار حذف المشرف في الـ API الخاص بك
+      const API_DELETE_PATH = "/moderators";
+      await api.delete(API_DELETE_PATH);
+      toast.success("تم حذف المدير بنجاح ✅");
+    } catch (error) {
+      console.error("Failed to delete:", error);
+      toast.error("حدث خطأ أثناء حذف المدير ❌");
+    }
   };
 
   return (

@@ -14,7 +14,7 @@ export default function ControlBag() {
 
       <Graph />
 
-      <div className='w-full flex gap-[10px] h-[300px]'>
+      <div className='w-full flex flex-col md:flex-row gap-[10px] h-auto md:h-[300px]'>
         <MostPersistentCustomers />
         <CustomerInquiries />
       </div>

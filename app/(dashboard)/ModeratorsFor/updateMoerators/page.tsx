@@ -44,7 +44,7 @@ export default function AddModerators() {
         </p>
       </div>
       <div>
-        <div className="grid grid-cols-3 gap-[17px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[17px]">
           <div className="flex flex-col gap-[18px] w-full">
             <label className="text-[#1D2026] tracking-[-1%] font-normal text-xs">اسم المستخدم</label>
             <input

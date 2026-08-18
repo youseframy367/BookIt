@@ -25,14 +25,14 @@ export default function Kitchen() {
     return (
         <section className="font-cairo relative" dir="rtl">
             <div className="flex justify-center pt-[80px]">
-                <ul className={`before:transition-all before:duration-200 relative before:content-[''] ${period == 'صاله' ? 'before:right-2' : period == 'تيك اوي' ? 'before:right-26' : 'before:right-59'} before:w-[78px] before:h-[35px] before:absolute before:rounded-[8px] before:bg-gradient-to-br before:from-[var(--color-cyan-bright)] before:to-[var(--color-teal-dark)] py-[5] px-[18px] gap-[35px] rounded-[12px] flex bg-[var(--color-white-overlay)] border border-2 border-[var(--color-white-faint)]`}>
+                <ul className={`before:transition-all before:duration-200 relative before:content-[''] ${period == 'صاله' ? 'before:translate-x-0' : 'before:translate-x-[-100%]'} before:w-[78px] before:h-[35px] before:absolute before:rounded-[8px] before:bg-gradient-to-br before:from-[var(--color-cyan-bright)] before:to-[var(--color-teal-dark)] py-[5] px-[18px] gap-[35px] rounded-[12px] flex bg-[var(--color-white-overlay)] border border-2 border-[var(--color-white-faint)]`}>
                     <li onClick={() => setPeriod("صاله")} className={`${period == 'صاله' && '!text-black'} text-white relative text-sm font-medium cursor-pointer ms-2 p-[8px]`} title="صاله">صاله</li>
                     <li onClick={() => setPeriod("تيك اوي")} className={`${period == 'تيك اوي' && '!text-black'} text-white relative text-sm font-medium cursor-pointer ms-2 p-[8px]`} title="تيك اوي">تيك اوي</li>
                 </ul>
             </div>
             <Images />
             <div className="container mt-10 h-full relative">
-                <div className="w-full h-full flex items-center absolute">
+                <div className="w-full h-full flex items-center justify-between absolute inset-x-0">
                     <button title="right"
                         className="w-[60px] h-[60px] flex items-center justify-center rounded-xl bg-[var(--color-black-nine)] swiper-button-prev"
                     >

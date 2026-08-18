@@ -1,6 +1,7 @@
 "use client";
-import { useState } from "react";
-import { useRef } from "react";
+import { useState, useRef } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { QRCodeCanvas } from "qrcode.react";
 export default function Portfolio() {
@@ -68,26 +69,32 @@ export default function Portfolio() {
 
   const [newImageFile, setNewImageFile] = useState(null);
 
+  // إندفاع (debounce) لتجنب إرسال طلب API مع كل ضغطة مفتاح
+  const debounceTimer = useRef(null);
+
   // فتح input معين عند الضغط على صورته
   const handleEditClick = (key) => {
     setDisabledInputs((prev) => ({ ...prev, [key]: false }));
   };
 
-  // تعديل أي input وإرسال البيانات فوراً للباك
-  const handleInputChange = async (key, value) => {
+  // تعديل أي input وإرسال البيانات للباك بعد توقف المستخدم عن الكتابة (500ms)
+  const handleInputChange = (key, value) => {
     const updatedData = { ...dataPortfolio, [key]: value };
     setDataPortfolio(updatedData);
 
-    try {
-      await fetch("/api/update-portfolio", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData),
-      });
-      console.log(`${key} updated`);
-    } catch (err) {
-      console.error(err);
-    }
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    debounceTimer.current = setTimeout(async () => {
+      try {
+        await fetch("/api/update-portfolio", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedData),
+        });
+        console.log(`${key} updated`);
+      } catch (err) {
+        console.error(err);
+      }
+    }, 500);
   };
 
   // تعديل الصورة وإرسالها للباك
@@ -96,7 +103,7 @@ export default function Portfolio() {
     if (!file) return;
 
     if (file.size > 1024 * 1024) {
-      alert("حجم الصورة أكبر من 1 ميجا بايت ❌");
+      toast.error("حجم الصورة أكبر من 1 ميجا بايت ❌");
       return;
     }
 
@@ -104,7 +111,7 @@ export default function Portfolio() {
     img.src = URL.createObjectURL(file);
     img.onload = () => {
       if (img.width !== img.height) {
-        alert("يجب أن تكون نسبة الصورة 1:1 ❌");
+        toast.error("يجب أن تكون نسبة الصورة 1:1 ❌");
         return;
       }
 
@@ -133,11 +140,11 @@ export default function Portfolio() {
   };
 
   return (
-    <div className="w-[98%] m-[1%] h-[100vh] bg-[#fff] rounded-[16px] shadow-[0_1px_6px_#E5E9F2] p-[20px]">
+    <div className="w-[98%] m-[1%] h-auto md:h-[100vh] bg-[#fff] rounded-[16px] shadow-[0_1px_6px_#E5E9F2] p-[20px]">
       <p className="text-[18px] font-[600] text-[#3D3D3D] m-[10px]">تعديل تفاصيل المعاين</p>
 
       <div className="flex gap-[15px]">
-        <div className="w-[264px] h-[316px] bg-[#F4F4FE] rounded-[20px] m-[10px] mt-[20px] relative">
+        <div className="w-[90%] md:w-[264px] h-[316px] bg-[#F4F4FE] rounded-[20px] m-[10px] mt-[20px] relative">
           <label className="flex relative translate-x-[-1rem] translate-y-[1rem] z-10 justify-center items-center gap-[8px] bg-[#fff] w-[89px] h-[36px] rounded-[8px] shadow-[0_1px_1px_rgba(0,0,0,0.25)] cursor-pointer">
             <img src="/img/نمالمخهناه.svg" width="14px" height="14px" />
             <p>تعديل</p>
@@ -160,7 +167,7 @@ export default function Portfolio() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 w-[80%] gap-[10px] mt-[10px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 w-[80%] gap-[10px] mt-[10px]">
           <div className="flex flex-col gap-[6px] relative">
             <label className="text-[14px] font-[400] text-[#131313]">اسم المكان التجارى</label>
             <input
@@ -172,7 +179,7 @@ export default function Portfolio() {
             />
             <img
               src="/img/نمالمخهناه.svg"
-              className="w-[16px] h-[16px] absolute top-[50px] right-[90%] -translate-y-1/2 cursor-pointer z-30"
+              className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("placeName")}
             />
@@ -189,7 +196,7 @@ export default function Portfolio() {
             />
             <img
               src="/img/نمالمخهناه.svg"
-              className="w-[16px] h-[16px] absolute top-[50px] right-[90%] -translate-y-1/2 cursor-pointer z-30"
+              className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("site")}
             />
@@ -224,7 +231,7 @@ export default function Portfolio() {
             />
             <img
               src="/img/نمالمخهناه.svg"
-              className="w-[16px] h-[16px] absolute top-[50px] right-[90%] -translate-y-1/2 cursor-pointer z-30"
+              className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("numPon")}
             />
@@ -241,7 +248,7 @@ export default function Portfolio() {
             />
             <img
               src="/img/نمالمخهناه.svg"
-              className="w-[16px] h-[16px] absolute top-[50px] right-[90%] -translate-y-1/2 cursor-pointer z-30"
+              className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("TypeOfTrade")}
             />
@@ -258,7 +265,7 @@ export default function Portfolio() {
             />
             <img
               src="/img/نمالمخهناه.svg"
-              className="w-[16px] h-[16px] absolute top-[50px] right-[90%] -translate-y-1/2 cursor-pointer z-30"
+              className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("lastNumPon")}
             />

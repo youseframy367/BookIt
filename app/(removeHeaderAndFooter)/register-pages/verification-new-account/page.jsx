@@ -2,6 +2,8 @@
 import { useState, useRef, useEffect } from "react";
 // import { Oval } from "react-loader-spinner";
 import Image from "next/image";
+import api from "@/utils/axios";
+import { toast } from "react-toastify";
 
 export default function VerificationCodeNewAcount() {
   const [click, setClick] = useState(false);
@@ -46,18 +48,13 @@ export default function VerificationCodeNewAcount() {
     const code = inputsRef.current.map((i) => i.value).join("");
 
     try {
-      const res = await fetch("http://localhost:5000/api/verify-code", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code }),
-      });
-
-      if (!res.ok) throw new Error("Invalid code");
+      // ملاحظة: عدّل مسار التحقق حسب الـ API الخاص بك
+      await api.post("/verify-code", { code });
 
       setTimeout(() => setPop(true), 600);
     } catch (err) {
       console.error(err);
-      alert("Verification failed");
+      toast.error("فشل التحقق من الرمز ❌");
       setClick(false);
     }
   };
@@ -68,7 +65,7 @@ export default function VerificationCodeNewAcount() {
       {/* Popup */}
       {pop && (
         <div className="fixed inset-0 z-[999] flex items-center justify-center bg-black/40">
-          <div className="flex h-[40%] w-[40%] flex-col items-center justify-around gap-4 rounded-xl bg-white p-5 shadow-xl">
+          <div className="flex h-auto w-[90%] sm:w-[50%] md:w-[40%] flex-col items-center justify-around gap-4 rounded-xl bg-white p-5 shadow-xl">
             <img src="/imgBegScren/Group 40861.png" alt="success" />
             <div className="text-center">
               <p className="text-[17px] font-medium text-[#1C1C1C]">
@@ -84,7 +81,7 @@ export default function VerificationCodeNewAcount() {
       )}
 
       {/* Main Card */}
-      <div className="flex h-[637px] w-[781px] flex-col items-center rounded-xl bg-white px-[33px] py-[40px] shadow-lg">
+      <div className="flex h-auto w-[92%] md:w-[781px] flex-col items-center rounded-xl bg-white px-[33px] py-[40px] shadow-lg">
 
         {/* Back */}
         <div className="w-full flex justify-end">

@@ -9,6 +9,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
+import api from "@/utils/axios";
+import { toast } from "react-toastify";
 
 export default function Suppliers() {
     const router = useRouter()
@@ -38,8 +40,23 @@ export default function Suppliers() {
     const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
         usePagnation(filtered, searchTerm);
 
-    const handleDelete = () => {
+    // حذف مورد عبر الـ API
+    const handleDelete = async () => {
+        try {
+            // TODO: عدّل المسار هنا إلى مسار حذف المورد في الـ API الخاص بك
+            const API_DELETE_PATH = "/inventory/supplier";
+            await api.delete(API_DELETE_PATH);
+            toast.success("تم حذف المورد بنجاح ✅");
+        } catch (error) {
+            console.error("Failed to delete:", error);
+            toast.error("حدث خطأ أثناء حذف المورد ❌");
+        }
+    };
 
+    // تطبيق فلتر الموردين
+    const applyFilter = () => {
+        // ملاحظة: يمكنك تطوير هذا الفلتر مستقبلاً ليشمل التاريخ والفلوس
+        console.log("تم تطبيق الفلتر");
     };
 
     return (
@@ -53,7 +70,6 @@ export default function Suppliers() {
             }
             {showFilter && (
                 <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
-                    <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
                         <div className="w-[484px] rounded-[12px] bg-white py-[20px]">
                             <div>
                                 <div className="w-full flex flex-col gap-[25px]">
@@ -98,7 +114,7 @@ export default function Suppliers() {
                                     <button
                                         className="bg-[#183866] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center"
                                         onClick={() => {
-                                            handleDelete()
+                                            applyFilter()
                                             setShowFilter(false)
                                         }}
                                     >
@@ -108,7 +124,6 @@ export default function Suppliers() {
                             </div>
                         </div>
                     </div>
-                </div>
             )
             }
 
@@ -143,7 +158,7 @@ export default function Suppliers() {
                         alt="filter"
                     />
 
-                    <Link href="/inventory/suppliers/add-suppliers" className="cursor-pointer text-center border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
+                    <Link href="/inventory/suppliers/add-suppliers" className="cursor-pointer text-center border-[1px] border-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
                         اضافة
                     </Link>
                 </div>

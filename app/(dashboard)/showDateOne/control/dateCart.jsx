@@ -50,14 +50,14 @@ const cardsData = [
 export default function DateCart() {
   return (
     <div className="w-full overflow-x-hidden font-['Cairo',sans-serif]" dir="rtl">
-      <ul className="flex flex-row flex-nowrap justify-between w-full p-[0.4rem]">
+      <ul className="flex flex-row flex-wrap justify-between gap-[8px] w-full p-[0.4rem]">
 
         {cardsData.map((card, index) => {
           const isPositive = card.changeValue >= 0;
           return (
             <li
-              key={index}
-              className="flex justify-between border border-black/10 px-[10px] py-[12px] rounded-[8px] bg-white w-[24.3%] h-[142px] relative"
+              key={card.title}
+              className="flex justify-between border border-black/10 px-[10px] py-[12px] rounded-[8px] bg-white w-full sm:w-[48%] xl:w-[24.3%] h-[142px] relative"
             >
 
               <div className="flex flex-col gap-[6px]">

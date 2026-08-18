@@ -1,0 +1,12 @@
+1:"$Sreact.fragment"
+2:I[524988,["/_next/static/chunks/5210b1bd8ff31025.js"],"default"]
+3:I[766788,["/_next/static/chunks/5210b1bd8ff31025.js"],"default"]
+4:I[79900,["/_next/static/chunks/5210b1bd8ff31025.js"],"BookingProvider"]
+5:I[385126,["/_next/static/chunks/c41499bb594c2d07.js","/_next/static/chunks/dafbd2047669766c.js"],"default"]
+6:I[195616,["/_next/static/chunks/c41499bb594c2d07.js","/_next/static/chunks/dafbd2047669766c.js"],"default"]
+7:I[147185,["/_next/static/chunks/5210b1bd8ff31025.js","/_next/static/chunks/a0b6ece40cca3ec8.js","/_next/static/chunks/7a61f3c7b9931dea.js","/_next/static/chunks/b1f18ae038800f06.js"],"default"]
+8:I[74711,["/_next/static/chunks/5210b1bd8ff31025.js","/_next/static/chunks/a0b6ece40cca3ec8.js","/_next/static/chunks/7a61f3c7b9931dea.js","/_next/static/chunks/b1f18ae038800f06.js"],"default"]
+9:I[144181,["/_next/static/chunks/5210b1bd8ff31025.js","/_next/static/chunks/a0b6ece40cca3ec8.js","/_next/static/chunks/7a61f3c7b9931dea.js","/_next/static/chunks/b1f18ae038800f06.js"],"default"]
+:HL["/_next/static/chunks/54626e6d6ca1891f.css","style"]
+:HL["/_next/static/chunks/0a6ff56d9459c219.css","style"]
+0:{"buildId":"LmvaKiX7LQ-5fTzvlBQUp","rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/54626e6d6ca1891f.css","precedence":"next"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0a6ff56d9459c219.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/5210b1bd8ff31025.js","async":true}]],["$","html",null,{"lang":"ar","dir":"rtl","children":["$","body",null,{"children":[["$","link",null,{"rel":"icon","type":"image/svg+xml","href":"/assets/icons/logo.svg"}],["$","title",null,{"children":"BOOK IT"}],["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","template":["$","$L6",null,{}],"notFound":[[["$","$L7",null,{}],["$","section",null,{"children":["$","div",null,{"className":"container","children":["$","div",null,{"className":"mt-10","children":["$","video",null,{"className":"w-full h-[573px]","autoPlay":true,"muted":true,"loop":true,"playsInline":true,"children":[["$","source",null,{"src":"/assets/videos/error.mp4","type":"video/mp4"}],"Your browser does not support the video tag."]}]}]}]}],["$","$L8",null,{}],["$","$L9",null,{}]],[]]}]}]]}]}]]}],"loading":null,"isPartial":false}

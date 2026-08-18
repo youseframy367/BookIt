@@ -99,7 +99,7 @@ export default function AddRole() {
                     <Link href="/access-and-roles" className="border border-1 border-[var(--gray)] flex gap-[8px] rounded-[8px] py-[7px] px-[23px]">
                         <span className="font-semibold text-[var(--color-black-50)]">الغاء</span>
                     </Link>
-                    <button className="border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-sm px-[23px] py-[7px] rounded-[12px] font-medium">
+                    <button className="border-[1px] border-[#183866] bg-[#183866] text-[#fff] text-sm px-[23px] py-[7px] rounded-[12px] font-medium">
                         اضافة
                     </button>
                 </div>

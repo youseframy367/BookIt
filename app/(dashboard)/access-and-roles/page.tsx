@@ -49,7 +49,7 @@ export default function AccessAndRoles() {
                         />
                     </div>
 
-                    <Link href="/access-and-roles/add-role" className="text-center border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
+                    <Link href="/access-and-roles/add-role" className="text-center border-[1px] border-[#183866] bg-[#183866] text-[#fff] text-[500] px-1 py-2 rounded-lg text-[10px] font-medium h-[32px] w-[80px] whitespace-nowrap">
                         اضافة
                     </Link>
                 </div>

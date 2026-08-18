@@ -22,6 +22,7 @@
     "aos": "^2.3.4",
     "apexcharts": "^5.10.3",
     "axios": "^1.13.5",
+    "date-fns": "^4.4.0",
     "dayjs": "^1.11.19",
     "framer-motion": "^12.29.2",
     "html-to-image": "^1.11.13",

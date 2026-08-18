@@ -19,7 +19,6 @@ export default function ClientDetailsEmployees({ id }: { id: string }) {
         <section className="flex w-[98%] m-[1%] bg-[#fff] rounded-[11px] flex-col gap-[40px] pb-[15px] px-[15px] ">
             {showFilter && (
                 <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
-                    <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
                         <div className="w-[484px] rounded-[12px] bg-white py-[20px]">
                             <div>
                                 <div className="w-full flex flex-col gap-[25px]">
@@ -63,7 +62,6 @@ export default function ClientDetailsEmployees({ id }: { id: string }) {
                             </div>
                         </div>
                     </div>
-                </div>
             )
             }
             <div className="p-[10px] flex flex-wrap items-center justify-between gap-4 ">
@@ -102,15 +100,15 @@ export default function ClientDetailsEmployees({ id }: { id: string }) {
                     </div>
                     <hr className="opacity-10" />
                     <div className="flex justify-between px-[24px]">
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>اسم موظف المبيعات المسجل لدي هذا النظام</span>
                             <input type="text" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" placeholder="هشام عبد الحميد محمد" />
                         </label>
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>تاريخ العمليات</span>
                             <input type="date" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" />
                         </label>
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>اجمالي مبلغ المبيعات</span>
                             <input type="text" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" placeholder="50,000 جنيه مصري" />
                         </label>
@@ -125,15 +123,15 @@ export default function ClientDetailsEmployees({ id }: { id: string }) {
                     </div>
                     <hr className="opacity-10" />
                     <div className="flex justify-between px-[24px]">
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>اسم موظف المبيعات المسجل لدي هذا النظام</span>
                             <input type="text" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" placeholder="هشام عبد الحميد محمد" />
                         </label>
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>تاريخ العمليات</span>
                             <input type="date" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" />
                         </label>
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>اجمالي مبلغ المبيعات</span>
                             <input type="text" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" placeholder="50,000 جنيه مصري" />
                         </label>
@@ -148,15 +146,15 @@ export default function ClientDetailsEmployees({ id }: { id: string }) {
                     </div>
                     <hr className="opacity-10" />
                     <div className="flex justify-between px-[24px]">
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>اسم موظف المبيعات المسجل لدي هذا النظام</span>
                             <input type="text" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" placeholder="هشام عبد الحميد محمد" />
                         </label>
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>تاريخ العمليات</span>
                             <input type="date" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" />
                         </label>
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>اجمالي مبلغ المبيعات</span>
                             <input type="text" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" placeholder="50,000 جنيه مصري" />
                         </label>
@@ -171,15 +169,15 @@ export default function ClientDetailsEmployees({ id }: { id: string }) {
                     </div>
                     <hr className="opacity-10" />
                     <div className="flex justify-between px-[24px]">
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>اسم موظف المبيعات المسجل لدي هذا النظام</span>
                             <input type="text" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" placeholder="هشام عبد الحميد محمد" />
                         </label>
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>تاريخ العمليات</span>
                             <input type="date" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" />
                         </label>
-                        <label className="text-xs flex flex-col gap-[13px] w-[250px]">
+                        <label className="text-xs flex flex-col gap-[13px] w-full md:w-[250px]">
                             <span>اجمالي مبلغ المبيعات</span>
                             <input type="text" className="border border-[var(--alpha)] py-4 px-2 rounded-[6px]" placeholder="50,000 جنيه مصري" />
                         </label>

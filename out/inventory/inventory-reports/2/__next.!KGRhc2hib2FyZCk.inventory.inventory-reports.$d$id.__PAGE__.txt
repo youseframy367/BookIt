@@ -1,0 +1,5 @@
+1:"$Sreact.fragment"
+2:I[71388,["/_next/static/chunks/c41499bb594c2d07.js","/_next/static/chunks/dafbd2047669766c.js"],"OutletBoundary"]
+3:"$Sreact.suspense"
+0:{"buildId":"LmvaKiX7LQ-5fTzvlBQUp","rsc":["$","$1","c",{"children":[["$","section",null,{"className":"flex flex-col gap-[16px] w-[98%] m-[1%] p-[16px]","children":[["$","h2",null,{"className":"text-[18px] font-semibold text-[#131313] whitespace-nowrap","children":["تقرير المخزون رقم: ","$undefined"]}],["$","div",null,{"className":"flex flex-col gap-[12px]","children":["$","p",null,{"className":"text-[14px] text-[rgba(29,29,29,0.7)]","children":"هذه الصفحة جاهزة لعرض تفاصيل تقرير الجرد. اربطها بالبيانات الفعلية من الـ API."}]}]]}],null,["$","$L2",null,{"children":["$","$3",null,{"name":"Next.MetadataOutlet","children":"$@4"}]}]]}],"loading":null,"isPartial":false}
+4:null

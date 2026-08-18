@@ -15,7 +15,7 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                     <div className="flex flex-col gap-[12px]">
                         <div className="flex justify-between items-center">
                             <span className="font-semibold text-base">عرض تفاصيل الدور ( AR )</span>
-                            <Link href="" className="border border-1 border-[var(--gray)] flex gap-[8px] rounded-[8px] py-[11px] px-[16px]">
+                            <Link href={`/access-and-roles/update/${id}`} className="border border-1 border-[var(--gray)] flex gap-[8px] rounded-[8px] py-[11px] px-[16px]">
                                 <Image src="/assets/icons/update.svg" alt="update" width={14} height={14} />
                                 <span className="font-semibold text-[var(--color-black-50)]">تعديل</span>
                             </Link>
@@ -26,7 +26,7 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                                 <span className="text-[var(--color-gray-medium-tow)] text-sm font-normal">الاسم : <span className="text-[var(--color-black-50)]">مشرف</span></span>
                                 <span className="text-[var(--color-gray-medium-tow)] text-sm font-normal">الحالة : <span className="text-[var(--color-red-bright)]">معلق</span></span>
                             </div>
-                            <span className="text-[var(--color-gray-medium-transparent-tow)] text-sm font-normal">الصلاحيات : <span className="text-[var(--color-black-50)]">يمكن لهذا الدور  اضافه كل مايلي ( اضافة فواتيبر للعملاء - اضافة فواتير للعملاء )</span></span>
+                            <span className="text-[var(--color-gray-medium-transparent-tow)] text-sm font-normal">الصلاحيات : <span className="text-[var(--color-black-50)]">يمكن لهذا الدور  اضافه كل مايلي ( اضافة فواتير للعملاء - اضافة فواتير للعملاء )</span></span>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                     <Link title="الغاء" href="/access-and-roles" className="border border-1 border-[var(--gray)] flex gap-[8px] rounded-[8px] py-[7px] px-[23px]">
                         <span className="font-semibold text-[var(--color-black-50)]">الغاء</span>
                     </Link>
-                    <button title="حفظ" className="cursor-pointer border-[1px] bprder-[#183866] bg-[#183866] text-[#fff] text-sm px-[23px] py-[7px] rounded-[12px] font-medium">
+                    <button title="حفظ" className="cursor-pointer border-[1px] border-[#183866] bg-[#183866] text-[#fff] text-sm px-[23px] py-[7px] rounded-[12px] font-medium">
                         حفظ
                     </button>
                 </div>

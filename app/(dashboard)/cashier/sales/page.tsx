@@ -193,7 +193,7 @@ export default function Sales() {
                         <div className="flex flex-col gap-4.5">
                             <label htmlFor="phone" className="text-[#1D2026] tracking-[-1%] font-normal text-xs">حدد العمله</label>
                             <input
-                                type="numbr"
+                                type="number"
                                 name="phone"
                                 value={formData.phone}
                                 onChange={handleChange}
