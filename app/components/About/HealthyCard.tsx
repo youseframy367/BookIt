@@ -20,7 +20,7 @@ export default function HealthyCard() {
                     </div>
                     <div className="w-full flex flex-col gap-5" data-aos="fade-up">
                         <div className="relative w-full h-[400px] md:h-[566px]">
-                            <Image src="/assets/icons/healthy.svg" alt="healthy" fill className="object-cover md:rounded-[12px]" />
+                            <Image src="/assets/webp/healthy.webp" alt="healthy" fill className="object-cover md:rounded-[12px]" />
                             <div className={`flex flex-col gap-10 rounded-[12px] p-10 md:p-15 bg-[var(--color-dark-overlay)] absolute bottom-[-180px] md:bottom-[-100px] w-[90%] md:w-[unset] ${mounted ? i18n.language === 'ar' ? "right-[20px] md:right-[-40px]" : "left-[20px] md:left-[-40px]" : ""} text-white`}>
                                 <h2 className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-DMSans_24pt" : ""} text-2xl font-bold`}>{mounted ? t('come-and-visit') : '...'}</h2>
                                 <ul className="flex flex-col gap-8">

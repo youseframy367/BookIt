@@ -42,7 +42,7 @@ export default function Hero({ search, setSearch }: isFilter) {
                             </div>
                         </div>
                     </div>
-                    <Image src="/assets/icons/faq.png" alt="faq" fill className="object-cover z-[-1]" />
+                    <Image src="/assets/webp/faq.webp" alt="faq" fill className="object-cover z-[-1]" />
                 </div>
             </div>
         </section>

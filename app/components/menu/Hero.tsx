@@ -27,7 +27,7 @@ export default function Hero() {
                             </Link>
                         </div>
                     </div>
-                    <Image src="/assets/icons/hero-menu.svg" alt="hero menu" fill className="object-cover z-[-1] rounded-[30px] md:rounded-none" />
+                    <Image src="/assets/webp/hero-menu.webp" alt="hero menu" fill className="object-cover z-[-1] rounded-[30px] md:rounded-none" />
                 </div>
             </div>
         </section>

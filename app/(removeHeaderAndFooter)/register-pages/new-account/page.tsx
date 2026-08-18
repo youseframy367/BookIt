@@ -47,7 +47,7 @@ export default function CreateNewAccount() {
 
   return (
     <section>
-      <LayoutLoginAndRegister onSubmit={handleSubmit} bg='bg-login.png'>
+      <LayoutLoginAndRegister onSubmit={handleSubmit} bg='webp/bg-login.webp'>
 
         <p className="text-[#2B2F38] text-xl md:text-2xl font-semibold mt-4">
           {mounted ? t("create-new-account") : '...'}

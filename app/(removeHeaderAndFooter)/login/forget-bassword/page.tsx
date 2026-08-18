@@ -30,7 +30,7 @@ export default function ForgetPassword() {
 
   return (
     <section>
-      <LayoutLoginAndRegister onSubmit={handleSendCode} bg='select.png'>
+      <LayoutLoginAndRegister onSubmit={handleSendCode} bg='webp/select.webp'>
 
         {/* Titles */}
         <p className="text-[#2B2F38] text-xl md:text-2xl font-semibold mt-4 mb-1">

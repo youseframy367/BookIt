@@ -12,7 +12,7 @@ export default function ClientDetailsRestaurant({ id }: { id: string }) {
 
     return (
         <>
-            <Hero image="hero-gallery.svg" title={mounted ? t("gallery") : '...'} />
+            <Hero image="webp/hero-gallery.webp" title={mounted ? t("gallery") : '...'} />
             <Content gallery={gallery} />
         </>
     );

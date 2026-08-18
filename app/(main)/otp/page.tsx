@@ -36,7 +36,7 @@ export default function Otp() {
 
     return (
         <>
-            <Hero image="bg-otp-mobile.png" title={`${mounted ? t('verification-code') : '...'}`} nextPage={true} />
+            <Hero image="webp/bg-otp-mobile.webp" title={`${mounted ? t('verification-code') : '...'}`} nextPage={true} />
             <ContentDetailsCustomer padding="px-10 py-30 md:p-30">
                 <form action="" onSubmit={handleotp} className="relative flex flex-col gap-15">
                     <div className="flex flex-col md:justify-center md:items-center gap-5 text-center md:text-start">

@@ -19,7 +19,7 @@ export default function DetailsCustomer() {
 
     return (
         <>
-            <Hero image="customer-content.svg" title={`${mounted ? t('custom-contact') : '...'}`} nextPage={true} />
+            <Hero image="webp/customer-content.webp" title={`${mounted ? t('custom-contact') : '...'}`} nextPage={true} />
             <ContentDetailsCustomer padding="p-10">
                 <form action="" onSubmit={handleInformation} className="flex flex-col gap-7">
                     <div className="flex flex-col gap-7">

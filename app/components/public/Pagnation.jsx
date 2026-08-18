@@ -8,7 +8,7 @@ export default function Pagnation({ numRow, setNumRow, scroll, numbersRef, numPa
                 <select
                     value={numRow}
                     onChange={(e) => setNumRow(parseInt(e.target.value))}
-                    className="appearance-none bg-white text-[16px] bg-[url('/arrow.svg')] bg-no-repeat bg-[position:right_10px_center] bg-[length:12px] border border-gray-300 rounded-md px-4 py-1 text-[12px] text-[#1D1D1D] focus:outline-none focus:ring-1 focus:ring-[#183866]"
+                    className="appearance-none bg-white text-[16px] bg-[url('/assets/icons/arrow-up.svg')] bg-no-repeat bg-[position:right_10px_center] bg-[length:12px] border border-gray-300 rounded-md px-4 py-1 text-[12px] text-[#1D1D1D] focus:outline-none focus:ring-1 focus:ring-[#183866]"
                 >
                     {[10, 20, 30, 40, 50].map((n) => (
                         <option key={n} value={n}>{n}</option>

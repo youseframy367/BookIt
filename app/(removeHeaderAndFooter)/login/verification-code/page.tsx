@@ -53,7 +53,7 @@ export default function VerificationCode() {
 
   return (
     <section>
-      <LayoutLoginAndRegister onSubmit={handleSendCode} bg='bg-otp.png'>
+      <LayoutLoginAndRegister onSubmit={handleSendCode} bg='webp/bg-otp.webp'>
         {/* Titles */}
         <p className="text-[#2B2F38] text-2xl font-semibold mt-4 mb-1">
           {mounted ? t('verification-code') : '...'}

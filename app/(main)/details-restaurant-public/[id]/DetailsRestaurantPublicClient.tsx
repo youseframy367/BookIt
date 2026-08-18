@@ -35,7 +35,7 @@ export default function DetailsRestaurantPublicClient({ id }: { id: string }) {
     return (
         <>
             <Hero
-                image="hero-gallery.svg"
+                image="webp/hero-gallery.webp"
                 title={mounted ? t('pane-vino') : ""}
                 isShowGallery={true}
             />

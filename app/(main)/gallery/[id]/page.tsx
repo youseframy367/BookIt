@@ -26,7 +26,7 @@ export async function generateStaticParams() {
 
 //     return (
 //         <>
-//             <Hero image="hero-gallery" title="Gallery" />
+//             <Hero image="webp/hero-gallery.webp" title="Gallery" />
 //             <Content gallery={gallery} />
 //         </>
 //     )

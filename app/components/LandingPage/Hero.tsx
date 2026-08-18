@@ -10,7 +10,7 @@ export default function Hero() {
 
     return (
         <main id="paner" className="relative">
-            <div className="py-10 md:py-0 md:h-[800px] bg-[url('/assets/icons/bg.png')]
+            <div className="py-10 md:py-0 md:h-[800px] bg-[url('/assets/webp/bg.webp')]
     bg-cover
     bg-center
     bg-no-repeat">

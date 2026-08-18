@@ -1,6 +1,0 @@
-:HL["/_next/static/chunks/54626e6d6ca1891f.css","style"]
-:HL["/_next/static/chunks/0a6ff56d9459c219.css","style"]
-:HL["/_next/static/chunks/5de4ed8a33b19911.css","style"]
-:HL["/_next/static/chunks/9dc847a5fd9cbd3e.css","style"]
-:HL["/_next/static/chunks/3835f54da2b15a07.css","style"]
-0:{"buildId":"LmvaKiX7LQ-5fTzvlBQUp","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"(main)","paramType":null,"paramKey":"(main)","hasRuntimePrefetch":false,"slots":{"children":{"name":"details-restaurant-public","paramType":null,"paramKey":"details-restaurant-public","hasRuntimePrefetch":false,"slots":{"children":{"name":"id","paramType":"d","paramKey":"2","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

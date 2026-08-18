@@ -30,7 +30,7 @@ export default function ForgetPassword() {
 
   return (
     <section dir="rtl">
-      <LayoutLoginAndRegister isActiveLogo={false} width="md:w-[450px]" onSubmit={handleLogin} bg='bg-otp-mobile.png'>
+      <LayoutLoginAndRegister isActiveLogo={false} width="md:w-[450px]" onSubmit={handleLogin} bg='webp/bg-otp-mobile.webp'>
         <div className="font-cairo mt-10 w-full flex flex-col gap-[20px]">
           <div className="flex flex-col gap-[16px]">
             <h2 className="text-xl font-semibold">نسيت كلمة المرور ؟</h2>

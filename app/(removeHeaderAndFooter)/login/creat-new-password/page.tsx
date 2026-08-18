@@ -43,7 +43,7 @@ export default function NewBassword() {
     <section>
       <div
         className="h-screen flex flex-col justify-center bg-cover bg-center -z-1"
-        style={{ backgroundImage: "url('/assets/icons/bg-new-password.png')" }}
+        style={{ backgroundImage: "url('/assets/webp/bg-new-password.webp')" }}
       >
         <div className="w-full h-full absolute bg-black opacity-[0.5]">
         </div>

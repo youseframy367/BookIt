@@ -46,7 +46,7 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                                     onMouseLeave={() => setShowWarning(false)}>
                                     <div className="shadow-xl rounded-[20px] bg-gradient-to-br to-[var(--strong-red)] from-[var(--color-red-bright-four)] w-full relative">
                                         <div className="relative w-full h-[199px] md:h-[350px]">
-                                            <Image src="/assets/icons/wallet-numbers.svg" alt="user visa" fill className="object-cover rounded-[20px]" />
+                                            <Image src="/assets/webp/wallet-numbers.webp" alt="user visa" fill className="object-cover rounded-[20px]" />
                                         </div>
                                         <div className="py-[24px] px-[19px] flex flex-col justify-center gap-[17px] font-medium">
                                             <p className="text-white text-[8px] md:text-base leading-[18px] md:leading-[unset]">{mounted ? t('text-payment-1') : '...'}</p>
@@ -81,7 +81,7 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                                     onMouseLeave={() => setShowWarning(false)}>
                                     <div className="h-full shadow-xl rounded-[20px] bg-gradient-to-br to-[var(--strong-red)] from-[var(--color-red-bright-four)] w-full relative">
                                         <div className="relative w-full h-[199px] md:h-[350px]">
-                                            <Image src="/assets/icons/face-wallet.svg" alt="user visa" fill className="object-cover rounded-[20px]" />
+                                            <Image src="/assets/webp/face-wallet.webp" alt="user visa" fill className="object-cover rounded-[20px]" />
                                         </div>
                                         <div className="py-[24px] px-[19px] flex flex-col justify-center gap-[17px] font-medium">
                                             <p className="text-white text-[8px] md:text-base leading-[18px] md:leading-[unset]">{mounted ? t('text-payment-2') : '...'}</p>

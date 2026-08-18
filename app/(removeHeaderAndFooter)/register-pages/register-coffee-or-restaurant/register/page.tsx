@@ -33,7 +33,7 @@ export default function Register() {
 
     return (
         <section dir="rtl">
-            <LayoutLoginAndRegister isActiveLogo={false} width="md:w-[450px]" onSubmit={handleLogin} bg='bg-login.svg'>
+            <LayoutLoginAndRegister isActiveLogo={false} width="md:w-[450px]" onSubmit={handleLogin} bg='webp/bg-login.webp'>
                 <div className="font-cairo mt-10 w-full flex flex-col gap-[20px]">
                     <div className="flex flex-col gap-[16px]">
                         <h2 className="text-xl font-semibold">مرحبًا بك <span className="text-2xl movementHasn">👋</span></h2>

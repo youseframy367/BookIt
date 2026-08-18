@@ -26,7 +26,7 @@ export default function LikedRestaurants() {
 
     return (
         <>
-            <Hero image="liked-restaurants.svg" title={mounted ? t("liked-restaurants") : '...'} isActiveButtonHero={false} />
+            <Hero image="webp/liked-restaurants.webp" title={mounted ? t("liked-restaurants") : '...'} isActiveButtonHero={false} />
             <FilterTitle data={tabs} onChange={handleTabChange} />
             {activeTab === "Restaurant" && <TopRated dataRealtiedAndBooked={likedDataRealited} isShowTitle={true} />}
             {activeTab === "Food" && <Products products={likedProducts} marginTop="mt-15 md:mt-25" />}

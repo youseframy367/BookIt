@@ -31,7 +31,7 @@ export default function LogAcount() {
 
   return (
     <section>
-      <LayoutLoginAndRegister onSubmit={handleLogin} bg='bg-login.png'>
+      <LayoutLoginAndRegister onSubmit={handleLogin} bg='webp/bg-login.webp'>
 
         {/* Titles */}
         <p className="text-[#2B2F38] text-xl md:text-2xl font-semibold mt-4">

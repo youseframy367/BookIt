@@ -20,7 +20,7 @@ export default function SelectPaymentMethod() {
 
     return (
         <>
-            <Hero image="customer-content.svg" nextPage={true} isActiveButtonHero={false} />
+            <Hero image="webp/customer-content.webp" nextPage={true} isActiveButtonHero={false} />
             <IsSelectPaymentMethod allChecked={allChecked} />
             <BookitConditions notes={notes} handleChange={handleChange} />
         </>

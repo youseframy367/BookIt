@@ -60,7 +60,7 @@ export default function VerificationCodeNewAcount() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[url('/assets/icons/bg-otp.png')] bg-cover bg-center">
+    <div className="fixed inset-0 flex items-center justify-center bg-[url('/assets/webp/bg-otp.webp')] bg-cover bg-center">
 
       {/* Popup */}
       {pop && (

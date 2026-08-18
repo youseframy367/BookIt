@@ -48,7 +48,7 @@ export default function LittleInformation() {
                         </div>
                     </div>
                     <div className="relative w-full h-[469px] md:h-full" data-aos="fade-up">
-                        <Image src="/assets/icons/little-infromation.svg" alt="little-infromation" fill className="object-cover md:rounded-[12px]" />
+                        <Image src="/assets/webp/little-infromation.webp" alt="little-infromation" fill className="object-cover md:rounded-[12px]" />
                     </div>
                 </div>
             </div>

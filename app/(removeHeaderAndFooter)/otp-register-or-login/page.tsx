@@ -91,7 +91,7 @@ export default function Otp() {
         isActiveLogo={false}
         width="w-full md:w-[450px]"
         onSubmit={handleLogin}
-        bg='bg-otp-mobile.png'
+        bg='webp/bg-otp-mobile.webp'
       >
         <div className="font-cairo mt-10 w-full flex flex-col gap-[10px]">
           <div className="flex flex-col gap-[12px] md:gap-[16px]">

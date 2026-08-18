@@ -45,7 +45,7 @@ export default function RegisterYourProduct() {
 
     return (
         <section dir="rtl">
-            <LayoutLoginAndRegister isActiveLogo={false} width="md:w-[1132px]" onSubmit={handleLogin} bg='bg-login.png'>
+            <LayoutLoginAndRegister isActiveLogo={false} width="md:w-[1132px]" onSubmit={handleLogin} bg='webp/bg-login.webp'>
                 <div className="font-cairo w-full flex flex-col gap-[20px]">
                     <p className="text-xl font-semibold ms-8">أدخل البيانات الخاصه بمكانك التجاري</p>
                     <div className="flex flex-col md:flex-row gap-[20px] shadow-[0_0px_2px_rgba(0,0,0,0.25)] p-[16px] bg-[#FEFEFE] rounded-[16px]">
