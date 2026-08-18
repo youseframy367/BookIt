@@ -36,10 +36,22 @@ export default function CreateNewAccount() {
 
     setLoading(true);
     try {
-      await api.post("/register-pages", { email, password });
-      router.push("/login/verification-code");
+      /* --- الباك ينشئ الحساب ويرسل كود OTP للتحقق من الإيميل فوراً ---
+         ملاحظة: الباك يتوقع nameAr — نستخدم الإيميل كاسم مؤقت حتى يضيف
+         العميل اسمه من الملف الشخصي لاحقاً === */
+      await api.post("/auth/register/customer", {
+        nameAr: email.split("@")[0],
+        email,
+        password,
+      });
+      /* نحفظ الإيميل وكلمة المرور مؤقتاً لصفحة التحقق والتسجيل التلقائي */
+      sessionStorage.setItem("reset_email", email);
+      sessionStorage.setItem("tmp_password", password);
+      router.push("/register-pages/verification-new-account");
+      toast.success("تم إنشاء الحساب — تحقق من بريدك 📩");
     } catch (err: any) {
-      toast.error(err.response.data.data);
+      const msg = err?.response?.data?.message || "تعذر إنشاء الحساب — ربما الإيميل مسجل بالفعل";
+      toast.error(Array.isArray(msg) ? msg[0] : msg);
     } finally {
       setLoading(false);
     }

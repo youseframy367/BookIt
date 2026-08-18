@@ -1,7 +1,11 @@
 
 "use client";
 
-import { useState, useMemo, useRef, } from "react";
+/* ============================== المخزون — داتا حقيقية من GET /api/inventory ==============================
+   كل صف يحفظ الـ id الحقيقي عشان الحذف والتعديل يعملوا على الباك إند
+   الحالة: active → "متوفر" (أخضر) / suspended → "حساب معطل" (أحمر)
+   ============================================================================ */
+import { useState, useMemo, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { usePagnation } from "../../hooks/usePagnation";
 import { useInventoryData } from "../../data/dataInventory";
@@ -9,8 +13,21 @@ import Pagnation from "../../components/public/Pagnation";
 import Image from "next/image";
 import Export from "@/app/components/Dashborad/Inventory/Export";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
-import api from "@/utils/axios";
 import { toast } from "react-toastify";
+import { inventoryApi } from "@/utils/api";
+
+/* تحويل عنصر المخزون من الباك إند إلى شكل الجدول مع الحفاظ على الـ id الحقيقي */
+const toRow = (item: any) => ({
+    ...item,
+    _id: item.id,
+    img: item.image || "/img/trrruyeryer.svg",
+    name: item.nameAr,
+    kPrice: item.price ?? "-", // الباك إند لا يخزن سعراً للمكوّن حالياً
+    kAmount: `${item.quantity} كيلو`,
+    kLimitAmount: item.minQuantity ?? "-",
+    date: item.lastInventoryDate || item.createdAt,
+    status: item.status === "active" ? "متوفر" : "معطل",
+});
 
 export default function Inventory() {
     const router = useRouter()
@@ -24,7 +41,40 @@ export default function Inventory() {
 
     const tableRef = useRef<HTMLDivElement>(null);
 
-    const dataMoerators = useInventoryData()
+    /* داتا حقيقية من الباك إند مع fallback على الداتا الوهمية عند الفشل */
+    const dummyData = useInventoryData();
+    const [dataMoerators, setDataMoerators] = useState<any[]>(dummyData);
+    const [selectedId, setSelectedId] = useState<string | null>(null);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await inventoryApi.list();
+                if (Array.isArray(data)) setDataMoerators(data.map(toRow));
+            } catch (e) {
+                console.error("فشل تحميل المخزون — باستخدام الداتا الوهمية:", e);
+                toast.warn("تعذر الاتصال بالخادم — عرض بيانات مؤقتة");
+            }
+        })();
+    }, []);
+
+    /* حذف منتج حقيقي عبر DELETE /inventory/:id */
+    const handleDelete = async () => {
+        if (!selectedId) return;
+        try {
+            await inventoryApi.remove(selectedId);
+            toast.success("تم حذف المنتج من المخزون بنجاح ✅");
+            /* إعادة تحميل القائمة بعد الحذف */
+            const { data } = await inventoryApi.list();
+            if (Array.isArray(data)) setDataMoerators(data.map(toRow));
+        } catch (e) {
+            console.error("فشل حذف المنتج:", e);
+            toast.error("حدث خطأ أثناء حذف المنتج ❌");
+        } finally {
+            setRemovRoles(false);
+            setSelectedId(null);
+        }
+    };
 
     const filtered = useMemo(() => {
         if (!searchTerm) return dataMoerators;
@@ -42,19 +92,6 @@ export default function Inventory() {
 
     const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
         usePagnation(filtered, searchTerm);
-
-    // حذف منتج من المخزون عبر الـ API
-    const handleDelete = async () => {
-        try {
-            // TODO: عدّل المسار هنا إلى مسار حذف المنتج في الـ API الخاص بك
-            const API_DELETE_PATH = "/inventory/product";
-            await api.delete(API_DELETE_PATH);
-            toast.success("تم حذف المنتج من المخزون بنجاح ✅");
-        } catch (error) {
-            console.error("Failed to delete:", error);
-            toast.error("حدث خطأ أثناء حذف المنتج ❌");
-        }
-    };
 
     // تطبيق فلتر المخزون
     const applyFilter = () => {
@@ -225,16 +262,19 @@ export default function Inventory() {
                                             ? "#23BD33"
                                             : m.status == "كميه قليله" ? "#FFAE00" : "#FF3A3A"
                                     }}
-                                    >{m.status}</td>
+                                    >{m.status == "معطل" ? "معطل" : m.status}</td>
                                     <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                                         <div className="flex items-center justify-center gap-[10px]">
-
+                                            {/* تعديل المنتج — ننتقل لصفحة التعديل مع تمرير الـ id الحقيقي */}
                                             <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
-                                                router.push("/inventory/1");
+                                                window.sessionStorage.setItem("inventoryEditId", m._id);
+                                                router.push("/inventory/" + m._id);
                                             }} />
 
+                                            {/* حذف المنتج — فتح تأكيد ثم DELETE /inventory/:id */}
                                             <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
-                                                setRemovRoles(true)
+                                                setSelectedId(m._id);
+                                                setRemovRoles(true);
                                             }} />
                                         </div>
                                     </td>

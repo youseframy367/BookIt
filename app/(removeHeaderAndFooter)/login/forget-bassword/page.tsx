@@ -15,14 +15,19 @@ export default function ForgetPassword() {
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
 
+  /* === إرسال كود OTP لإعادة التعيين (الباك يبعث كود صالح 10 دقائق) === */
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.post("/forgot-password", { email });
+      /* نحفظ الإيميل للخطوة التالية (verification-code + creat-new-password) */
+      sessionStorage.setItem("reset_email", email);
+      await api.post("/auth/password/forgot", { email });
       router.push("/login/verification-code");
+      toast.success("تم إرسال كود التحقق إلى بريدك ✅");
     } catch (err: any) {
-      toast.error(err.response.data.data);
+      /* ملاحظة: الباك بيرد رسالة موحدة حتى لا يكشف وجود الإيميل */
+      toast.error("تعذر إرسال الكود — تأكد من البريد الإلكتروني");
     } finally {
       setLoading(false);
     }

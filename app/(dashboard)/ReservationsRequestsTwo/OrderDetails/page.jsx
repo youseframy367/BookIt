@@ -1,13 +1,24 @@
 "use client";
 
+/* ============================== تفاصيل طلب الحجز — داتا حقيقية ==============================
+   المصدر: GET /api/reservations/:id → بيانات الحجز الكاملة
+   + PATCH /api/reservations/:id/status → تأكيد (confirmed) / إلغاء (cancelled)
+   ============================================================================ */
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import ChackApproved from "../checkApproved";
+import api from "@/utils/api";
+import { reservationsApi } from "@/utils/api";
+
 export default function OrderDetails() {
+  const router = useRouter();
   const [orderData, setOrderData] = useState(null);
   // type Approved true or false
   const [chekApproved, setchekApproved] = useState(false)
   // type requst
   const [type, setType] = useState()
+  const [confirming, setConfirming] = useState(false);
 
   function getStateColor(state) {
     switch (state) {
@@ -35,8 +46,38 @@ export default function OrderDetails() {
   ];
 
   useEffect(() => {
-    const data = window.sessionStorage.getItem("bookingEditData");
-    if (data) setOrderData(JSON.parse(data));
+    const raw = window.sessionStorage.getItem("bookingEditData");
+    const cached = raw ? JSON.parse(raw) : null;
+    /* نمزج الكاش مع أحدث داتا من الباك إند إن توفّر الـ id */
+    (async () => {
+      if (cached?.id) {
+        try {
+          const { data } = await reservationsApi.get(cached.id);
+          if (data) {
+            setOrderData({
+              ...cached,
+              id: data.id,
+              CustomerName: data.customerName,
+              mail: data.customerEmail,
+              MobileNumber: data.customerPhone,
+              numBerson: data.numberOfPeople,
+              time: data.startTime,
+              Date: new Date(data.dateFrom).toLocaleDateString("ar-EG"),
+              PreferenceForSitting: data.seatingPreference,
+              AmountBaid: data.depositAmount,
+              note: data.notes || data.specialRequests,
+              occasion: data.specialOccasion,
+              state: data.status === "confirmed" ? "مستكمل" : data.status === "cancelled" ? "ملغى" : "لم يتم التأكيد",
+              status: data.status,
+            });
+            return;
+          }
+        } catch (e) {
+          console.error("فشل تحميل تفاصيل الحجز من الباك:", e);
+        }
+      }
+      setOrderData(cached);
+    })();
   }, []);
   if (!orderData) {
     return (
@@ -52,6 +93,52 @@ export default function OrderDetails() {
       {chekApproved && (
         <ChackApproved typeChack={type} onclose={() => setchekApproved(false)} />)}
       <p className="text-[18px] font-[600] mt-[20px]">تفاصيل طلب الحجز</p>
+
+      {/* أزرار تأكيد / رفض الحجز (تحدّث الحالة في الباك إند مباشرة) */}
+      {orderData?.id && (
+        <div className="flex items-center gap-[12px] mt-[10px]">
+          <button
+            disabled={confirming}
+            className="bg-[#183866] text-[#fff] text-[13px] font-medium px-6 py-2 rounded-lg disabled:opacity-50"
+            onClick={async () => {
+              setConfirming(true);
+              try {
+                /* تأكيد الحجز: pending -> confirmed */
+                await reservationsApi.updateStatus(orderData.id, "confirmed");
+                toast.success("تم تأكيد الحجز بنجاح ✅");
+                setOrderData((d) => ({ ...d, state: "مستكمل", status: "confirmed" }));
+              } catch (e) {
+                console.error("فشل التأكيد:", e);
+                toast.error("حدث خطأ أثناء تأكيد الحجز ❌");
+              } finally {
+                setConfirming(false);
+              }
+            }}
+          >
+            {confirming ? "جارٍ التأكيد..." : "تأكيد الحجز"}
+          </button>
+          <button
+            disabled={confirming}
+            className="bg-[#FF3A3A] text-[#fff] text-[13px] font-medium px-6 py-2 rounded-lg disabled:opacity-50"
+            onClick={async () => {
+              setConfirming(true);
+              try {
+                /* إلغاء الحجز: أي حالة -> cancelled */
+                await reservationsApi.updateStatus(orderData.id, "cancelled");
+                toast.success("تم إلغاء الحجز ✅");
+                setOrderData((d) => ({ ...d, state: "ملغى", status: "cancelled" }));
+              } catch (e) {
+                console.error("فشل الإلغاء:", e);
+                toast.error("حدث خطأ أثناء إلغاء الحجز ❌");
+              } finally {
+                setConfirming(false);
+              }
+            }}
+          >
+            {confirming ? "جارٍ الإلغاء..." : "رفض الحجز"}
+          </button>
+        </div>
+      )}
 
       <div className="grid grid-cols-2 gap-[10px] mt-[10px]">
         {dateOrder.map((field, index) => (

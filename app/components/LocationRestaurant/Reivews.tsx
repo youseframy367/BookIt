@@ -1,5 +1,8 @@
 "use client";
 
+/* ============================== آراء العملاء (Carousel) — داتا حقيقية ==============================
+   ملاحظة: التقييمات في الباك إند من 1 إلى 5، بينما Card يعرض نجوم من 1 إلى 5 مباشرة
+   ============================================================================ */
 import CardsReviews from "./CardsReviews";
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -9,11 +12,12 @@ import 'swiper/css/navigation';
 
 import { Navigation } from 'swiper/modules';
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
-import { useDataReviews } from "@/app/data/dataReviews";
+import { useReviewsData } from "@/app/hooks/useReviewsData";
 
-export default function Reivews() {
+export default function Reivews({ businessId }: { businessId?: string }) {
     const { i18n, t, mounted } = useTranslationSetup();
-    const reviews = useDataReviews();
+    /* يجلب الآراء الحقيقية من GET /public/businesses/:id/reviews — مع fallback على الداتا الوهمية */
+    const reviews = useReviewsData(businessId || "");
 
     return (
         <div className="mt-[66px] md:mt-[96px] flex flex-col gap-5 md:gap-[73px]">

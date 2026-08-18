@@ -37,6 +37,9 @@ export interface RestaurantItem {
     des: string;
     like: boolean;
     area: string;
+    /* حقول اختيارية تُملأ من الداتا الحقيقية (الباك إند) */
+    id?: string;
+    href?: string;
 }
 
 export interface Header {

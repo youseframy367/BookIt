@@ -46,15 +46,36 @@ export default function VerificationCodeNewAcount() {
     setClick(true);
 
     const code = inputsRef.current.map((i) => i.value).join("");
+    /* الإيميل محفوظ من صفحة إنشاء الحساب السابقة */
+    const email = sessionStorage.getItem("reset_email") || "";
 
     try {
-      // ملاحظة: عدّل مسار التحقق حسب الـ API الخاص بك
-      await api.post("/verify-code", { code });
+      /* === التحقق من كود OTP (الغرض: email_verification) === */
+      await api.post("/auth/otp/verify", {
+        email,
+        code,
+        purpose: "email_verification",
+      });
 
+      toast.success("تم التحقق من الإيميل بنجاح ✅");
       setTimeout(() => setPop(true), 600);
+      /* بعد التحقق: تسجيل دخول تلقائي والتوجه للصفحة الرئيسية
+         (كلمة المرور محفوظة مؤقتاً في sessionStorage من صفحة إنشاء الحساب) */
+      const tmpPassword = sessionStorage.getItem("tmp_password") || "";
+      if (tmpPassword) {
+        const { data } = await api.post("/auth/login", { email, password: tmpPassword });
+        const { accessToken, refreshToken, user } = data;
+        localStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("user", JSON.stringify(user));
+      }
+      /* تنظيف البيانات المؤقتة */
+      sessionStorage.removeItem("reset_email");
+      sessionStorage.removeItem("tmp_password");
+      setTimeout(() => (window.location.href = "/home"), 3500);
     } catch (err) {
       console.error(err);
-      toast.error("فشل التحقق من الرمز ❌");
+      toast.error("الكود غير صحيح أو انتهت صلاحيته ❌");
       setClick(false);
     }
   };
@@ -69,10 +90,10 @@ export default function VerificationCodeNewAcount() {
             <img src="/imgBegScren/Group 40861.png" alt="success" />
             <div className="text-center">
               <p className="text-[17px] font-medium text-[#1C1C1C]">
-                Your account has been created successfully
+                تم إنشاء حسابك بنجاح وتم التحقق من بريدك ✅
               </p>
               <p className="mt-1 text-[15px] text-[#74727280]">
-                Please wait a few minutes, your account is being activated.
+                جارٍ تسجيل الدخول تلقائياً والانتقال للصفحة الرئيسية...
               </p>
             </div>            
             {/* <Oval height={40} width={40} color="#E22023" /> */}

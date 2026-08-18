@@ -7,6 +7,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LayoutLoginAndRegister from "@/app/components/layoutLoginAndRegister/LayoutLoginAndRegister";
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
+/* === ربط تسجيل الدخول بالباك إند: حفظ التوكنات والتوجيه حسب الدور === */
+import { setTokens, saveUser, getErrorMessages } from "@/utils/api";
 
 export default function LogAcount() {
   const { t, mounted, i18n } = useTranslationSetup();
@@ -16,14 +18,28 @@ export default function LogAcount() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+  /* === تسجيل الدخول عبر الباك إند: نحفظ التوكنات ونتجه حسب الدور ===
+     - OWNER/SALES/MANAGER → داشبورد الأونر (showDateOne)
+     - CUSTOMER → الصفحة الرئيسية للعميل (home) === */
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      await api.post("/login", { email, password });
-      router.push("/home");
+      const { data } = await api.post("/auth/login", { email, password });
+      const { accessToken, refreshToken, user } = data;
+      setTokens(accessToken, refreshToken);
+      saveUser(user);
+      /* التوجيه حسب دور المستخدم */
+      const role = (user?.role || "").toString().toUpperCase();
+      if (["OWNER", "SALES", "MANAGER"].includes(role)) {
+        router.push("/showDateOne");
+      } else {
+        router.push("/home");
+      }
+      toast.success("تم تسجيل الدخول بنجاح ✅");
     } catch (err: any) {
-      toast.error(err.response.data.data);
+      const msgs = getErrorMessages(err);
+      toast.error(msgs[0] || "البريد أو كلمة المرور غير صحيحة");
     } finally {
       setLoading(false);
     }

@@ -1,13 +1,23 @@
+"use client";
+
+/* ============================== نافذة إضافة/تعديل — تدعم الحفظ الفعلي ==============================
+   onSave(value): يُستدعى عند الضغط على "حفظ" مع قيمة الحقل
+   ============================================================================ */
 import Image from "next/image"
+import { useState } from "react"
 
 interface typeData {
     title: string;
     text: string;
     input: string;
+    defaultText?: string;
+    onSave?: (value: string) => void | Promise<void>;
     setShowCustomer: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export default function AddOrUpdatePopUp({ title, text, input, setShowCustomer }: typeData) {
+export default function AddOrUpdatePopUp({ title, text, input, defaultText, onSave, setShowCustomer }: typeData) {
+    const [value, setValue] = useState(defaultText || "");
+    const [saving, setSaving] = useState(false);
     return (
     <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center z-[99]">
         <div className="w-[448px] rounded-[12px] bg-white py-[20px]">
@@ -28,7 +38,13 @@ export default function AddOrUpdatePopUp({ title, text, input, setShowCustomer }
                         <p className="text-[var(--color-dark-bg-tow)] text-xs font-normal">
                             {text}
                         </p>
-                        <input type="text" placeholder={input} className="text-xs border border-[var(--color-grayish-blue)] rounded-[8px] py-[12px] px-[12px]" />
+                        <input
+                            type="text"
+                            value={value}
+                            onChange={(e) => setValue(e.target.value)}
+                            placeholder={input}
+                            className="text-xs border border-[var(--color-grayish-blue)] rounded-[8px] py-[12px] px-[12px]"
+                        />
                     </div>
                 </div>
                 <div className="px-[20px] flex justify-between gap-[16px] direction-ltr mt-[20px]">
@@ -38,10 +54,22 @@ export default function AddOrUpdatePopUp({ title, text, input, setShowCustomer }
                         إلغاء
                     </button>
 
-                    <button onClick={() => setShowCustomer(false)}
-                        className="bg-[#183866] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center"
+                    <button
+                        disabled={saving}
+                        onClick={async () => {
+                            if (onSave) {
+                                setSaving(true);
+                                try {
+                                    await onSave(value);
+                                } finally {
+                                    setSaving(false);
+                                }
+                            }
+                            setShowCustomer(false);
+                        }}
+                        className="bg-[#183866] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center disabled:opacity-50"
                     >
-                        حفظ
+                        {saving ? "جارٍ..." : "حفظ"}
                     </button>
                 </div>
             </div>

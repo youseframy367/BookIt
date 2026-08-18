@@ -1,7 +1,38 @@
+"use client";
+
+/* ============================== أكثر العملاء استمراراً — داتا حقيقية ==============================
+   المصدر: GET /api/business/persistent-customers → [{customerId, customerName, bookingCount}]
+   (الباك لا يرجع رقم الجوال/الإيميل/آخر حجز، نعرض المتاح فقط ونستخدم الداتا الوهمية fallback)
+   ============================================================================ */
+import { useState, useEffect } from "react";
 import { useCustomersData } from "@/app/data/dataCustomers";
+import api from "@/utils/api";
 
 export default function MostPersistentCustomers() {
   const DataCustomers = useCustomersData();
+  const [customers, setCustomers] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    /* نجلب قائمة أكثر العملاء تكراراً من الباك إند */
+    (async () => {
+      try {
+        const { data } = await api.get("/business/persistent-customers", { params: { limit: 15 } });
+        setCustomers(Array.isArray(data) ? data : []);
+      } catch (e) {
+        console.error("فشل تحميل أكثر العملاء استمراراً:", e);
+      }
+    })();
+  }, []);
+
+  /* داتا حقيقية إن نجح التحميل، وإلا الداتا الوهمية */
+  const rows = customers
+    ? customers.map((c: any) => ({
+        CustomerName: c.customerName,
+        LastReservationDate: `حجوزات: ${c.bookingCount ?? 0}`,
+        MobileNumber: "—",
+        mail: c.customerId ? `${c.customerId.slice(0, 8)}...` : "—",
+      }))
+    : DataCustomers;
 
   const title = [
     "اسم العميل", "اخر تاريخ حجز",
@@ -37,7 +68,7 @@ export default function MostPersistentCustomers() {
             </tr>
           </thead>
           <tbody>
-            {DataCustomers.map((customer, idx) => (
+            {rows.map((customer, idx) => (
               <tr key={idx} className="hover:bg-gray-50 transition-colors" style={{
 
               }}>

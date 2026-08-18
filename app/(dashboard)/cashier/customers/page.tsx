@@ -1,13 +1,19 @@
 "use client";
 
+/* ============================== فروع نقاط البيع — داتا حقيقية ==============================
+   المصدر: GET /api/business/branches → [{id, titleAr, address, phone, isActive, ...}]
+   + POST /business/branches — PATCH /business/branches/:id — DELETE /business/branches/:id — toggle
+   ============================================================================ */
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { toast } from "react-toastify";
 import AddOrUpdatePopUp from "@/app/components/Dashborad/Cashier/AddOrUpdatePopUp";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
 import Pagnation from "@/app/components/public/Pagnation";
 import { usePagnation } from "@/app/hooks/usePagnation";
 import { useSelectCustomersData } from "@/app/data/dataSelectCusomers";
+import { businessApi } from "@/utils/api";
 
 export default function Customers() {
     const [selectedAddRole, setSelectedAddRole] = useState<string | null>("");
@@ -16,12 +22,51 @@ export default function Customers() {
     const [removeRoles, setRemovRoles] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const [selectedAddRoles, setSelectedAddRoles] = useState<string[]>([]);
+    const [editTarget, setEditTarget] = useState<string | null>(null);
 
-    const handleDelete = () => {
+    const dummyData = useSelectCustomersData();
 
+    /* === داتا حقيقية من الباك إند (fallback على الوهمية عند الفشل) === */
+    const [branches, setBranches] = useState<any[] | null>(null);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await businessApi.branches();
+                setBranches(Array.isArray(data) ? data : []);
+            } catch (e) {
+                console.error("فشل تحميل الفروع:", e);
+                setBranches(null);
+            }
+        })();
+    }, []);
+
+    /* نمطط الفروع الحقيقية إلى شكل {key, title} الذي يعتمد عليه التصميم */
+    const realRows = useMemo(() => {
+        if (!Array.isArray(branches)) return null;
+        return branches.map((b: any) => ({
+            key: b.id,
+            title: b.titleAr || b.nameAr || b.address || b.title,
+            branch: b,
+        }));
+    }, [branches]);
+
+    const DataCustomers = realRows ?? dummyData;
+
+    const handleDelete = async () => {
+        if (!editTarget) return;
+        try {
+            await businessApi.removeBranch(editTarget);
+            setBranches((prev) => (prev ? prev.filter((b) => b.id !== editTarget) : prev));
+            toast.success("تم حذف الفرع بنجاح ✅");
+        } catch (e) {
+            console.error("فشل حذف الفرع:", e);
+            toast.error("حدث خطأ أثناء حذف الفرع ❌");
+        } finally {
+            setRemovRoles(false);
+            setEditTarget(null);
+        }
     };
-
-    const DataCustomers = useSelectCustomersData();
 
     const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
         usePagnation(DataCustomers, searchTerm)
@@ -57,11 +102,49 @@ export default function Customers() {
                 </div>
 
                 {
-                    showAddCustomer && <AddOrUpdatePopUp setShowCustomer={setShowAddCustomer} title="اضافة فرع" text="من فضلك اضف الفرع الخاص بك" input="أدخل الفرع" />
+                    showAddCustomer && (
+                        <AddOrUpdatePopUp
+                            setShowCustomer={setShowAddCustomer}
+                            title="اضافة فرع"
+                            text="من فضلك اضف الفرع الخاص بك"
+                            input="أدخل الفرع"
+                            /* عند الحفظ الفعلي ننشئ الفرع في الباك إند */
+                            onSave={async (value) => {
+                                if (!value?.trim()) { toast.error("يرجى إدخال عنوان الفرع"); return; }
+                                try {
+                                    await businessApi.createBranch({ titleAr: value, address: value });
+                                    setBranches((prev) => (prev ? [...prev, { id: "new", titleAr: value, address: value }] : prev));
+                                    toast.success("تم إضافة الفرع بنجاح ✅");
+                                } catch (e) {
+                                    console.error("فشل إضافة الفرع:", e);
+                                    toast.error("حدث خطأ أثناء إضافة الفرع ❌");
+                                }
+                            }}
+                        />
+                    )
                 }
 
                 {
-                    showUpdateCustomer && <AddOrUpdatePopUp setShowCustomer={setShowUpdateCustomer} title="تعديل فرع" text="من فضلك قم بالتعديل" input="المنصوره , حي الجامعه" />
+                    showUpdateCustomer && (
+                        <AddOrUpdatePopUp
+                            setShowCustomer={setShowUpdateCustomer}
+                            title="تعديل فرع"
+                            text="من فضلك قم بالتعديل"
+                            input="المنصوره , حي الجامعه"
+                            /* عند الحفظ الفعل نحدّث الفرع في الباك إند */
+                            onSave={async (value) => {
+                                if (!editTarget || !value?.trim()) { toast.error("يرجى إدخال عنوان الفرع"); return; }
+                                try {
+                                    await businessApi.updateBranch(editTarget, { titleAr: value, address: value });
+                                    setBranches((prev) => (prev ? prev.map((b) => (b.id === editTarget ? { ...b, titleAr: value, address: value } : b)) : prev));
+                                    toast.success("تم تعديل الفرع بنجاح ✅");
+                                } catch (e) {
+                                    console.error("فشل تعديل الفرع:", e);
+                                    toast.error("حدث خطأ أثناء تعديل الفرع ❌");
+                                }
+                            }}
+                        />
+                    )
                 }
 
                 {removeRoles && (
@@ -102,11 +185,12 @@ export default function Customers() {
                                                 <div className="absolute left-2">
                                                     <div className="flex items-center justify-center gap-[10px]">
                                                         <div onClick={() => {
-                                                            setRemovRoles(true)
+                                                            setEditTarget(item.key);
+                                                            setRemovRoles(true);
                                                         }} >
                                                             <img className="cursor-pointer" title="حذف" src="/assets/icons/remove.svg" width="24px" height="24px" alt="حذف" />
                                                         </div>
-                                                        <div onClick={() => setShowUpdateCustomer(true)}>
+                                                        <div onClick={() => { setEditTarget(item.key); setShowUpdateCustomer(true); }}>
                                                             <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" />
                                                         </div>
                                                     </div>

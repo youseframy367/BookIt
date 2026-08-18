@@ -1,8 +1,15 @@
 "use client";
 
+/* ============================== إضافة منتج مخزون — داتا حقيقية ==============================
+   المصدر: رفع الصورة عبر POST /uploads/image → POST /api/inventory
+   الحقول: {nameAr, titleAr, quantity, price(عبر email), minQuantity, image, status}
+   ============================================================================ */
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import Image from "next/image";
+import { inventoryApi, uploadsApi } from "@/utils/api";
+import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
 
 export default function AddInventory() {
     const router = useRouter();
@@ -15,6 +22,7 @@ export default function AddInventory() {
         phone: '',
         email: '',
         id: "",
+        price: '',
         stateAcunt: false
     });
 
@@ -29,6 +37,40 @@ export default function AddInventory() {
     const [textlastAmount, setTextlastAmount] = useState("");
 
     const [removeRoles, setRemovRoles] = useState(false);
+    const [saving, setSaving] = useState(false);
+
+    /* حفظ المنتج الجديد في الباك إند */
+    const handleSave = async () => {
+        setSaving(true);
+        try {
+            let imageUrl: string | undefined;
+            if (imageFile) {
+                try {
+                    const { data: uploaded } = await uploadsApi.image(imageFile);
+                    imageUrl = uploaded?.url || uploaded?.path;
+                } catch (upErr) {
+                    console.error("فشل رفع صورة المنتج:", upErr);
+                }
+            }
+            /* الباك إند يقبل: nameAr, titleAr, quantity, minQuantity, image, menuItemId (بدون price) */
+            await inventoryApi.create({
+                nameAr: formData.nameAr,
+                titleAr: formData.titleAr || undefined,
+                quantity: Number(formData.idNumber) || 0,
+                minQuantity: Number(formData.phone) || 0,
+                ...(imageUrl ? { image: imageUrl } : {}),
+            });
+            toast.success("تم إضافة المنتج إلى المخزون بنجاح ✅");
+            router.push("/inventory");
+        } catch (e: any) {
+            console.error("فشل إضافة المنتج:", e);
+            const msg = e?.response?.data?.message;
+            toast.error(Array.isArray(msg) ? msg.join("، ") : (msg || "حدث خطأ أثناء الإضافة ❌"));
+        } finally {
+            setSaving(false);
+            setRemovRoles(false);
+        }
+    };
 
     useEffect(() => {
         const data = window.sessionStorage.getItem("dateAcuntModetor");
@@ -39,6 +81,7 @@ export default function AddInventory() {
                 nameAr: parsed.name || '',
                 titleAr: parsed.title || '',
                 idNumber: parsed.idNumber || '',
+                price: '',
                 role: parsed.nameGop || '',
                 phone: parsed.numperPone || '',
                 email: parsed.email || '',
@@ -213,17 +256,28 @@ export default function AddInventory() {
                         }}>
                         إلغاء
                     </button>
-                    <button
+                                        <button
+                        disabled={saving}
                         onClick={() => setRemovRoles(true)}
                         style={{
                             background: "#183866"
                         }}
-                        className=" text-[#fff] w-[100px] h-12 rounded-xl flex justify-center items-center text-base font-medium tracking-[-1%]"
+
+                        className=" text-[#fff] w-[100px] h-12 rounded-xl flex justify-center items-center text-base font-medium tracking-[-1%] disabled:opacity-50"
                     >
-                        حفظ
+                        {saving ? "جارٍ..." : "حفظ"}
                     </button>
                 </div>
             </div>
+
+            {removeRoles && (
+                /* تأكيد وحفظ المنتج الجديد في الباك إند */
+                <RemoveRoles
+                    text="هل أنت متأكد أنك تريد إضافة هذا المنتج إلى المخزون ؟"
+                    handleDelete={handleSave}
+                    onClose={() => setRemovRoles(false)}
+                />
+            )}
         </section>
-    );
+    )
 }

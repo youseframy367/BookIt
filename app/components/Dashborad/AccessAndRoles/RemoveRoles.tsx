@@ -4,9 +4,10 @@ interface typeData {
     text: string;
     onClose: () => void;
     handleDelete: () => void;
+    onDeleted?: (id?: string) => void;
 }
 
-export default function RemoveRoles({ text, handleDelete, onClose }: typeData) {
+export default function RemoveRoles({ text, handleDelete, onClose, onDeleted }: typeData) {
     return (
         <div className="fixed top-[70px] left-0 w-full h-full bg-[rgba(29,29,29,0.25)] flex justify-center items-center ">
             <div className="w-[min(684px,92%)] h-auto rounded-[12px] bg-white p-[20px]">
@@ -25,6 +26,7 @@ export default function RemoveRoles({ text, handleDelete, onClose }: typeData) {
                             className="bg-[#183866] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[38px] flex justify-center items-center"
                             onClick={() => {
                                 handleDelete()
+                                onDeleted && onDeleted()
                                 onClose()
                             }}
                         >

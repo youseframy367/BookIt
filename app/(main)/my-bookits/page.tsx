@@ -1,14 +1,63 @@
 "use client";
 
+/* ============================== حجوزاتي — داتا حقيقية ==============================
+   GET /api/reservations/my → حجوزات العميل الحالية
+   إلغاء الحجز: DELETE /api/public/reservations/:id (للعميل)
+   مع fallback على الداتا الوهمية عند فشل الاتصال
+   ============================================================================ */
 import { useBookitsData } from "@/app/data/dataBookits";
-import { useState } from "react";
+import api, { reservationsApi } from "@/utils/api";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 
 export default function MyBookits() {
-    const bookits = useBookitsData();
+    const dummyBookits = useBookitsData();
     const { t, mounted } = useTranslationSetup();
-    const [removeRoles, setRemovRoles] = useState(false)
+    const [bookits, setBookits] = useState(dummyBookits);
+    const [removeRoles, setRemovRoles] = useState(false);
+    const [cancelTarget, setCancelTarget] = useState<any>(null);
+
+    /* تحميل حجوزات العميل الحقيقية */
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await reservationsApi.myReservations();
+                if (Array.isArray(data) && data.length > 0) {
+                    setBookits(
+                        data.map((r: any) => ({
+                            id: r.id,
+                            name: r.customerName || "",
+                            numberOfPepole: r.numberOfPeople || 0,
+                            reservationTime: r.startTime || "",
+                            reservationDate: r.dateFrom ? new Date(r.dateFrom).toLocaleDateString("ar-EG") : "",
+                            branchLocation: r.business?.name || "",
+                            status: r.status,
+                            /* زر الإلغاء يظهر للحجوزات المنتظرة فقط */
+                            action: r.status === "PENDING" ? "الغاء الحجز" : r.status === "CONFIRMED" ? "تاكيد" : r.status === "CANCELLED" ? "ملغية" : "الأنتظار",
+                        }))
+                    );
+                }
+            } catch (e) {
+                console.error("فشل تحميل حجوزاتي — باستخدام الداتا الوهمية:", e);
+            }
+        })();
+    }, []);
+
+    /* إلغاء الحجز عبر الباك إند: PATCH /reservations/:id/cancel */
+    const handleCancel = async () => {
+        const target = cancelTarget as any;
+        if (!target?.id) return;
+        try {
+            await api.patch(`/reservations/${target.id}/cancel`);
+            setBookits(prev => prev.map((b: any) => (b.id === target.id ? { ...b, action: "ملغية", status: "CANCELLED" } : b)));
+        } catch (e) {
+            console.error("فشل إلغاء الحجز:", e);
+        } finally {
+            setRemovRoles(false);
+            setCancelTarget(null);
+        }
+    };
 
     return (
         <section>
@@ -45,9 +94,7 @@ export default function MyBookits() {
                                     </button>
                                     <button
                                         className="bg-[var(--strong-red)] border border-[rgba(12,10,52,0.2)] text-white text-[14px] font-medium py-[13px] px-[31px] rounded-[8px] w-[90px] h-[40px] flex justify-center items-center"
-                                        onClick={() => {
-                                            setRemovRoles(false)
-                                        }}
+                                        onClick={handleCancel}
                                     >
                                         Confirm
                                     </button>
@@ -106,7 +153,7 @@ export default function MyBookits() {
                                                 </div>
                                                 <div className="flex justify-center">
                                                     <div onClick={() => {
-                                                        item.action == "الغاء الحجز" && setRemovRoles(true)
+                                                        item.action == "الغاء الحجز" && (setCancelTarget(item), setRemovRoles(true))
                                                     }} className={`relative bottom-[6px] rounded-[4px] ${item.action == "الغاء الحجز" ? 'cursor-pointer text-[var(--strong-red)] bg-[var(--color-danger-light)]' : 'text-[var(--color-green-1)] bg-[var(--color-black-seven)]'} p-[7.5px]`}>
                                                         <span>{item.action}</span>
                                                     </div>

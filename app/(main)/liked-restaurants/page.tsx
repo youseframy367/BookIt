@@ -4,14 +4,19 @@ import TopRated from "../../components/LandingPage/TopRatedOrMostBooked";
 import { useState } from "react";
 import FilterTitle from "../../components/LocationRestaurant/FilterTitle";
 import Products from "../../components/menu/Products";
+/* ============================== المطاعم المفضلة — داتا حقيقية ==============================
+   Tab Restaurant: GET /api/public/favorites → أقسام مفضلة العميل
+   Tab Food: أطباق مفضلة (حالياً الداتا الوهمية، الباك لا يحفظ أطباقاً مفضلة)
+   ============================================================================ */
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
-import { useDataRelatied } from "@/app/data/dataRelatied";
+import { useFavoritesData } from "@/app/hooks/useFavoritesData";
 import { useDataProducts } from "@/app/data/dataPopularDishes";
 
 export default function LikedRestaurants() {
     const { t, mounted } = useTranslationSetup();
 
-    const { likedDataRealited } = useDataRelatied();
+    /* يجلب المطاعم المفضلة الحقيقية — مع fallback على الداتا الوهمية */
+    const likedDataRealited = useFavoritesData();
     const { likedProducts } = useDataProducts();
 
     const [tabs, setTabs] = useState([

@@ -10,31 +10,43 @@ export default function NewBassword() {
   const { t, mounted } = useTranslationSetup();
 
   const [click, setClick] = useState(false);
+  /* === الإيميل والكود من خطوة التحقق السابقة (حُفظا في sessionStorage) === */
   const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
   const [activ, setActive] = useState(false);
 
   useEffect(() => {
-    if (email !== "" && password !== "") {
+    /* نجلب الإيميل والكود اللذين تحققت منهما صفحة verification-code */
+    const savedEmail = sessionStorage.getItem("reset_email") || "";
+    const savedCode = sessionStorage.getItem("reset_code") || "";
+    setEmail(savedEmail);
+    setCode(savedCode);
+  }, []);
+
+  useEffect(() => {
+    if (email !== "" && code !== "" && password !== "") {
       setActive(true);
     } else {
       setActive(false);
     }
-  }, [email, password]);
+  }, [email, code, password]);
 
+  /* === إعادة تعيين كلمة المرور: الباك يعيد التحقق من الكود ثم يحدّثها === */
   const handleSubmit = async () => {
     setClick(true);
-
-    const data = { email, password };
+    const data = { email, code, password };
 
     try {
-      // ملاحظة: عدّل مسار إعادة تعيين كلمة المرور حسب الـ API الخاص بك
-      const result = await api.post("/reset-password", data);
-      console.log("Server response:", result.data);
+      await api.post("/auth/password/reset", data);
       toast.success("تم تغيير كلمة المرور بنجاح ✅");
+      /* مسح البيانات المؤقتة والعودة لتسجيل الدخول */
+      sessionStorage.removeItem("reset_email");
+      sessionStorage.removeItem("reset_code");
+      window.location.href = "/login/logIn-your-account";
     } catch (error: any) {
       console.error(error);
-      toast.error(error?.response?.data?.data || "خطأ أثناء إعادة تعيين كلمة المرور ❌");
+      toast.error("خطأ أثناء إعادة تعيين كلمة المرور ❌");
       setClick(false);
     }
   };
@@ -77,6 +89,27 @@ export default function NewBassword() {
               {mounted ? t('change-your-passowrd') : '...'}
             </p>
 
+            {/* كود التحقق (يظهر فقط إذا لم يكن محفوظاً بعد — حالة التنقل المباشر) */}
+            {code === "" && (
+              <div className="flex flex-col w-full md:w-[90%] gap-2 mt-4 text-xs md:text-sm">
+                <label
+                  htmlFor="Code"
+                  className="text-[#48505E] font-medium"
+                >
+                  {mounted ? t('verification-code') : '...'}
+                </label>
+                <input
+                  type="text"
+                  placeholder={mounted ? t('enter-otp-code') : 'Enter OTP code'}
+                  required
+                  id="Code"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  className="font-cairo p-2 border border-[#D0D5DD] rounded-lg shadow-sm outline-none"
+                />
+              </div>
+            )}
+
             {/* Email */}
             <div className="flex flex-col w-full md:w-[90%] gap-2 mt-4 text-xs md:text-sm">
               <label
@@ -115,7 +148,7 @@ export default function NewBassword() {
             </div>
 
             <div className="my-4 w-full md:w-[90%]">
-              <Submit title={mounted ? t('confirm') : '...'} width="w-full" />
+              <Submit title={mounted ? t('confirm') : '...'} width="w-full" loading={click} />
             </div>
 
           </form>

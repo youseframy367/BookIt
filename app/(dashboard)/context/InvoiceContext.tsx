@@ -1,6 +1,7 @@
 "use client";
 
-import { Category, useProductsData } from "@/app/data/dataProducts";
+import { useMenuData } from "@/app/hooks/useMenuData";
+import type { Category } from "@/app/data/dataProducts";
 import { createContext, useContext, useState, ReactNode } from "react";
 
 type CustomerData = {
@@ -44,7 +45,8 @@ type Props = {
 };
 
 export const InvoiceProvider = ({ children }: Props) => {
-    const { data, setData } = useProductsData();
+    /* الداتا الحقيقية من الباك إند (مع fallback على dataProducts الوهمية عند الفشل) */
+    const { data, setData } = useMenuData();
     const [takeawayOrSala, setTakeawayOrSala] = useState<number>(0);
     const [showQr, setShowQr] = useState(false);
 

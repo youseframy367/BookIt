@@ -1,7 +1,11 @@
 
 "use client";
 
-import { useState, useMemo, useRef, } from "react";
+/* ============================== الموردين — داتا حقيقية من GET /api/suppliers ==============================
+   الحقول: name, address, phone, nationalId, email, companyName, amountDue, amountPaid, isActive
+   الحذف: DELETE /suppliers/:id → إعادة تحميل القائمة
+   ============================================================================ */
+import { useState, useMemo, useRef, useEffect } from "react";
 import { usePagnation } from "../../../hooks/usePagnation";
 import { useSuppliersData } from "../../../data/dataSuppliers";
 import Pagnation from "../../../components/public/Pagnation";
@@ -9,8 +13,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
-import api from "@/utils/axios";
 import { toast } from "react-toastify";
+import { suppliersApi } from "@/utils/api";
 
 export default function Suppliers() {
     const router = useRouter()
@@ -19,9 +23,23 @@ export default function Suppliers() {
 
     const tableRef = useRef<HTMLDivElement>(null);
 
-    const dataMoerators = useSuppliersData();
-
+    /* داتا حقيقية من الباك إند مع fallback على الداتا الوهمية */
+    const dummyData = useSuppliersData();
+    const [dataMoerators, setDataMoerators] = useState<any[]>(dummyData);
     const [removeRoles, setRemovRoles] = useState(false);
+    const [selectedId, setSelectedId] = useState<string | null>(null);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await suppliersApi.list();
+                if (Array.isArray(data)) setDataMoerators(data);
+            } catch (e) {
+                console.error("فشل تحميل الموردين — باستخدام الداتا الوهمية:", e);
+                toast.warn("تعذر الاتصال بالخادم — عرض بيانات مؤقتة");
+            }
+        })();
+    }, []);
 
     const filtered = useMemo(() => {
         if (!searchTerm) return dataMoerators;
@@ -40,16 +58,20 @@ export default function Suppliers() {
     const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
         usePagnation(filtered, searchTerm);
 
-    // حذف مورد عبر الـ API
+    /* حذف مورد حقيقي عبر DELETE /suppliers/:id */
     const handleDelete = async () => {
+        if (!selectedId) return;
         try {
-            // TODO: عدّل المسار هنا إلى مسار حذف المورد في الـ API الخاص بك
-            const API_DELETE_PATH = "/inventory/supplier";
-            await api.delete(API_DELETE_PATH);
+            await suppliersApi.remove(selectedId);
             toast.success("تم حذف المورد بنجاح ✅");
+            const { data } = await suppliersApi.list();
+            if (Array.isArray(data)) setDataMoerators(data);
         } catch (error) {
-            console.error("Failed to delete:", error);
+            console.error("فشل حذف المورد:", error);
             toast.error("حدث خطأ أثناء حذف المورد ❌");
+        } finally {
+            setRemovRoles(false);
+            setSelectedId(null);
         }
     };
 
@@ -186,33 +208,35 @@ export default function Suppliers() {
                             displayedCustomers.map((m: any, i: any) => (
                                 <tr key={i} className="hover:bg-[#F9FAFB]/50 transition-colors">
                                     <td className="flex justify-center items-center px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)] px-[8px] py-[12px]">
-                                        {m.name}
+                                        {m.name || "-"}
                                     </td>
                                     <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
-                                    >{m.date}</td>
+                                    >{m.date || m.createdAt || "-"}</td>
                                     <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
-                                    >{m.number}</td>
+                                    >{m.number || m.phone || "-"}</td>
                                     <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
-                                    >{m.mail}</td>
+                                    >{m.mail || m.email || "-"}</td>
                                     <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[var(--color-dark-blue-gray)]"
-                                    >{m.id}</td>
+                                    >{m.nationalId || "-"}</td>
                                     <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
-                                    >{m.address}</td>
+                                    >{m.address || "-"}</td>
                                     <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[rgba(29, 29, 29, 0.7)]"
-                                    >{m.namecompany}</td>
+                                    >{m.namecompany || m.companyName || "-"}</td>
                                     <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[var(--color-green-bright)]"
-                                    >{m.fromMonay}</td>
+                                    >{m.fromMonay ?? m.amountDue ?? "-"}</td>
                                     <td className="px-[8px] py-[16px] text-center text-[10px] text-[400] text-[var(--color-red-bright-tow)]"
-                                    >{m.toMonay}</td>
+                                    >{m.toMonay ?? m.amountPaid ?? "-"}</td>
                                     <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                                         <div className="flex items-center justify-center gap-[10px]">
 
                                             <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
-                                                router.push("/inventory/1");
+                                                window.sessionStorage.setItem("supplierEditId", m.id);
+                                                router.push("/inventory/suppliers/update-suppliers");
                                             }} />
 
                                             <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
-                                                setRemovRoles(true)
+                                                setSelectedId(m.id);
+                                                setRemovRoles(true);
                                             }} />
                                         </div>
                                     </td>

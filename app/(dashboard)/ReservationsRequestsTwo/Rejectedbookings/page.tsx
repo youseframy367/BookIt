@@ -8,6 +8,15 @@ import RemoveBooking from "../removeBooking";
 import Filter from "../filter";
 import AddBookingDays from "../../../components/Dashborad/Reservations/AddBookingDays";
 import { useAllReservationsData } from "../../../data/dataAllReservations";
+import api from "@/utils/api";
+import { reservationsApi } from "@/utils/api";
+
+/* خريطة حالة الحجز إلى نص عربي معتمد على التصميم */
+const stateMap: Record<string, string> = {
+  pending: "لم يتم التأكيد",
+  confirmed: "مستكمل",
+  cancelled: "ملغى",
+};
 
 type BookingEdit = {
   numPersons: number;
@@ -33,7 +42,49 @@ export default function Rejectedbookings() {
 
   const [typeApproved, setTypeApproved] = useState(false);
 
-  const allData = useAllReservationsData();
+  const dummyData = useAllReservationsData();
+
+  /* === داتا حقيقية من الباك إند (مع fallback على الداتا الوهمية إن فشل الاتصال) === */
+  const [reservations, setReservations] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    /* نجلب قائمة الحجوزات الحقيقية (لا نفلتر بالحالة؛ الفلترة بالواجهة) */
+    (async () => {
+      try {
+        const { data } = await reservationsApi.list();
+        setReservations(Array.isArray(data) ? data : []);
+      } catch (e) {
+        console.error("فشل تحميل الحجوزات:", e);
+        setReservations(null);
+      }
+    })();
+  }, []);
+
+  /* نطابق شكل الداتا الوهمية لكي لا ينكسر التصميم */
+  const realRows = useMemo(() => {
+    if (!Array.isArray(reservations)) return null;
+    return reservations.map((r: any) => ({
+      id: r.id,
+      numPerson: r.numberOfPeople,
+      SinceDay: new Date(r.dateFrom).toLocaleDateString("ar-EG"),
+      today: r.dateTo ? new Date(r.dateTo).toLocaleDateString("ar-EG") : new Date(r.dateFrom).toLocaleDateString("ar-EG"),
+      ClosedFrom: r.startTime,
+      openFrom: r.endTime || r.startTime,
+      CustomerName: r.customerName,
+      numBerson: r.numberOfPeople,
+      Date: new Date(r.dateFrom).toLocaleDateString("ar-EG"),
+      time: r.startTime,
+      MobileNumber: r.customerPhone,
+      mail: r.customerEmail,
+      state: stateMap[r.status] || r.status,
+      AmountBaid: r.depositAmount || 0,
+      approved: r.status === "confirmed",
+      RequestStatus: r.status === "confirmed",
+    }));
+  }, [reservations]);
+
+  /* إن نجح التحميل نستخدم الداتا الحقيقية، وإلا الداتا الوهمية */
+  const allData = realRows ?? dummyData;
 
   const Rejectedbooking = [
 
@@ -105,7 +156,7 @@ export default function Rejectedbookings() {
 
       return searchMatch
     });
-  }, [allDataTrue, allDataFalse, searchTerm, filterData, typeApproved, typeTable]);
+  }, [allDataTrue, allDataFalse, searchTerm, filterData, typeApproved, typeTable, allData]);
 
   // استدعاء الباجنيشن
   const {
@@ -127,6 +178,10 @@ export default function Rejectedbookings() {
         <RemoveBooking
           id={numperOfId}
           onClose={() => setRemovBooKing(false)}
+          /* عند نجاح الحذف نحذف الصف من القائمة مباشرة (لو داتا حقيقية) */
+          onDeleted={(deletedId: string) =>
+            setReservations((prev) => (prev ? prev.filter((r) => r.id !== deletedId) : prev))
+          }
         />
       )}
 

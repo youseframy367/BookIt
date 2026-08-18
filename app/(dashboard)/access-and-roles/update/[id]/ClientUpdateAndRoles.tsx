@@ -1,19 +1,51 @@
 "use client";
 
+/* ============================== تعديل دور — داتا حقيقية ==============================
+   المصدر: GET /api/roles/:id (تعبئة النموذج) → PATCH /api/roles/:id → {name?, permissions?}
+   ============================================================================ */
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import { useColumnsData } from "@/app/data/dataColumns";
+import api from "@/utils/api";
+import { rolesApi } from "@/utils/api";
 
 export default function UpdateAccessAndRoles({ id }: { id: string }) {
+    const router = useRouter();
     const [selectedAddRole, setSelectedAddRole] = useState<string | null>("");
     const [selectedAccess, setSelectedAccess] = useState<string | null>("");
+    const [roleName, setRoleName] = useState("");
 
     const columns = useColumnsData();
 
     const [checked, setChecked] = useState(
         columns.map(col => col.map(() => false))
     );
+    const [saving, setSaving] = useState(false);
+
+    /* جلب بيانات الدور الحالية لملء النموذج */
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await api.get(`/roles/${id}`);
+                if (data) {
+                    setRoleName(data.name || "");
+                    /* نُعلّم الـ checkboxes المطابقة للصلاحيات المحفوظة */
+                    setChecked(
+                        columns.map((col) =>
+                            col.map((label) =>
+                                typeof label === "string" && (data.permissions || []).includes(label)
+                            )
+                        )
+                    );
+                }
+            } catch (e) {
+                console.error("فشل تحميل بيانات الدور:", e);
+            }
+        })();
+    }, [id]);
 
     const toggleCheckbox = (colIndex: any, idx: any) => {
         const newChecked = [...checked];
@@ -45,7 +77,13 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                             >
                                 <div className="flex flex-col gap-[12px]">
                                     <h3 className="text-xs text-[var(--color-dark-bg-tow)]">الاسم الدور ( AR )</h3>
-                                    <input type="text" placeholder="ادخل الاسم" className="text-xs py-[9px] px-[12px] border border-1 border-[var(--gray)] rounded-[8px] text-[var(--color-grayish-blue)]" />
+                                    <input
+                                        type="text"
+                                        value={roleName}
+                                        onChange={(e) => setRoleName(e.target.value)}
+                                        placeholder="ادخل الاسم"
+                                        className="text-xs py-[9px] px-[12px] border border-1 border-[var(--gray)] rounded-[8px] text-[var(--color-grayish-blue)]"
+                                    />
                                 </div>
                             </div>
                         }
@@ -99,8 +137,40 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                     <Link href="/access-and-roles" className="border border-1 border-[var(--gray)] flex gap-[8px] rounded-[8px] py-[7px] px-[23px]">
                         <span className="font-semibold text-[var(--color-black-50)]">الغاء</span>
                     </Link>
-                    <button className="border-[1px] border-[#183866] bg-[#183866] text-[#fff] text-sm px-[23px] py-[7px] rounded-[12px] font-medium">
-                        اضافة
+                    <button
+                        disabled={saving}
+                        className="border-[1px] border-[#183866] bg-[#183866] text-[#fff] text-sm px-[23px] py-[7px] rounded-[12px] font-medium disabled:opacity-50"
+                        onClick={async () => {
+                            const selectedPermissions: string[] = [];
+                            checked.forEach((col) =>
+                                col.forEach((isChecked, idx) => {
+                                    if (isChecked) {
+                                        const label = col[idx];
+                                        if (label && typeof label === "string") selectedPermissions.push(label);
+                                    }
+                                })
+                            );
+                            if (!roleName.trim()) {
+                                return toast.error("يرجى إدخال اسم الدور");
+                            }
+                            if (selectedPermissions.length === 0) {
+                                return toast.error("يرجى اختيار صلاحية واحدة على الأقل");
+                            }
+                            setSaving(true);
+                            try {
+                                await rolesApi.update(id, { name: roleName, permissions: selectedPermissions });
+                                toast.success("تم تعديل الدور بنجاح ✅");
+                                router.push("/access-and-roles");
+                            } catch (e: any) {
+                                console.error("فشل تعديل الدور:", e);
+                                const msg = e?.response?.data?.message;
+                                toast.error(Array.isArray(msg) ? msg.join("، ") : (msg || "حدث خطأ أثناء التعديل ❌"));
+                            } finally {
+                                setSaving(false);
+                            }
+                        }}
+                    >
+                        {saving ? "جارٍ الحفظ..." : "حفظ التعديلات"}
                     </button>
                 </div>
             </div>

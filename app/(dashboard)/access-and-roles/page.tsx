@@ -1,26 +1,87 @@
 "use client";
 
-import { useState } from "react";
+/* ============================== كل الأدوار — داتا حقيقية ==============================
+   المصدر: GET /api/roles → [{id, nameAr, permissions, isActive, createdAt, ...}]
+   + DELETE /roles/:id — PATCH /roles/:id/toggle
+   ============================================================================ */
+import { useState, useMemo, useEffect } from "react";
+import { toast } from "react-toastify";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Pagnation from "../../components/public/Pagnation";
 import { usePagnation } from "../../hooks/usePagnation";
 import { useAccessAndRolesData } from "../../data/dataAccessAndRoles";
+import api from "@/utils/api";
+import { rolesApi } from "@/utils/api";
 
 export default function AccessAndRoles() {
     const router = useRouter()
     const [searchTerm, setSearchTerm] = useState("");
-    const [numperOfId, setId] = useState()
+    const [numperOfId, setId] = useState<string | null>(null);
     const [removeRoles, setRemovRoles] = useState(false)
 
-    const DataCustomers = useAccessAndRolesData();
+    const dummyData = useAccessAndRolesData();
+
+    /* === داتا حقيقية من الباك إند (fallback على الوهمية عند الفشل) === */
+    const [roles, setRoles] = useState<any[] | null>(null);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await rolesApi.list();
+                setRoles(Array.isArray(data) ? data : []);
+            } catch (e) {
+                console.error("فشل تحميل الأدوار:", e);
+                setRoles(null);
+            }
+        })();
+    }, []);
+
+    /* نطابق شكل الداتا الوهمية: roles / access / status / time / statusNow */
+    const realRows = useMemo(() => {
+        if (!Array.isArray(roles)) return null;
+        return roles.map((r: any) => ({
+            id: r.id,
+            roles: r.nameAr || r.name,
+            access: (r.permissions || []).length + " صلاحيات",
+            status: r.isActive ? "مفعّل" : "معلق",
+            time: new Date(r.createdAt).toLocaleDateString("ar-EG"),
+            statusNow: r.isActive ? "مفعّل" : "اعاده التفعيل",
+            permissions: r.permissions,
+        }));
+    }, [roles]);
+
+    const DataCustomers = realRows ?? dummyData;
 
     const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
         usePagnation(DataCustomers, searchTerm)
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
+        if (!numperOfId) return;
+        try {
+            await api.delete(`/roles/${numperOfId}`);
+            setRoles((prev) => (prev ? prev.filter((r) => r.id !== numperOfId) : prev));
+            toast.success("تم حذف الدور بنجاح ✅");
+        } catch (error) {
+            console.error("Failed to delete:", error);
+            toast.error("حدث خطأ أثناء حذف الدور ❌");
+        } finally {
+            setRemovRoles(false);
+            setId(null);
+        }
+    };
 
+    /* تفعيل/إيقاف دور عبر PATCH /roles/:id/toggle */
+    const handleToggle = async (r: any) => {
+        try {
+            await api.patch(`/roles/${r.id}/toggle`);
+            setRoles((prev) => (prev ? prev.map((x) => (x.id === r.id ? { ...x, isActive: !x.isActive } : x)) : prev));
+            toast.success("تم تحديث حالة الدور ✅");
+        } catch (error) {
+            console.error("Failed to toggle:", error);
+            toast.error("حدث خطأ أثناء تغيير حالة الدور ❌");
+        }
     };
 
     return (
@@ -102,7 +163,11 @@ export default function AccessAndRoles() {
                                     <td className={`px-[8px] py-[15px] text-[10px] font-[400]  text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.status === "معلق" ? 'text-[var(--color-red-bright)]' : 'text-green-500'}`}>{customer.status}</td>
                                     <td className="px-[8px] py-[15px] text-[8px] font-[500] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">{customer.time}</td>
                                     <td className={`px-[8px] py-[15px] text-[10px] font-[400] text-[var(--color-dark-blue-gray)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center ${customer.statusNow === "اعاده التفعيل" && 'text-[var(--color-red-bright)]'}`}>
-                                        <span className={`${customer.statusNow === "اعاده التفعيل" ? 'bg-[var(--color-red-dark-transparent)]' : 'bg-[var(--color-dark-blue-overlay)]'} rounded-[4px] px-[11px] py-[5px]`}>{customer.statusNow}</span>
+                                        <span
+                                            className={`${customer.statusNow === "اعاده التفعيل" ? 'bg-[var(--color-red-dark-transparent)]' : 'bg-[var(--color-dark-blue-overlay)]'} rounded-[4px] px-[11px] py-[5px] cursor-pointer`}
+                                            title="اضغط لتغيير حالة الدور"
+                                            onClick={() => handleToggle(customer)}
+                                        >{customer.statusNow}</span>
                                     </td>
 
                                     <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">

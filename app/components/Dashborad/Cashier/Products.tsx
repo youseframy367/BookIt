@@ -13,7 +13,9 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
     const { products, setProducts } = useInvoice();
     const [search, setSearch] = useState("");
 
-    const filteredProducts = products.filter(product =>
+    /* عند التصدير الثابت قد لا تكون الداتا مُهيأة بعد — نتعامل مع null بأمان */
+    const list = products ?? [];
+    const filteredProducts = list.filter(product =>
         product.title.toLowerCase().includes(search.toLowerCase())
     )
 
@@ -78,7 +80,7 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
                             <div className="flex-1 text-center">
                                 <span className="font-semibold text-[11px] whitespace-nowrap ">{item.title}</span>
                             </div>
-                            <Image src={`/assets/icons/${item.icon}`} alt="products" width={30} height={30} />
+                            <Image src={`/assets/icons/${(item as any).icon || "products.svg"}`} alt="products" width={30} height={30} />
                         </li>
                     })
                 }

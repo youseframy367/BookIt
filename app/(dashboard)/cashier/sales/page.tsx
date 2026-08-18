@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from "react";
+/* ============================== إعدادات الكاشير — داتا حقيقية ==============================
+   المصدر: GET /api/cashier/settings → إعدادات الفاتورة المحفوظة
+   + PATCH /api/cashier/settings → حفظ الإعدادات
+   ============================================================================ */
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import Image from "next/image";
 import { useInvoice } from "../../context/InvoiceContext";
+import { cashierApi, uploadsApi } from "@/utils/api";
 
 export default function Sales() {
     const router = useRouter()
@@ -53,8 +59,68 @@ export default function Sales() {
         }
     };
 
+    const [loading, setLoading] = useState(false);
+
+    /* تحميل إعدادات الكاشير المحفوظة من الباك إند */
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await cashierApi.settings();
+                if (data) {
+                    setFormData((prev) => ({
+                        ...prev,
+                        nameAr: data.storeName || data.nameAr || "",
+                        titleAr: data.supportPhone || data.titleAr || "",
+                        idNumber: data.vatRate != null ? String(data.vatRate) : "",
+                        titleEn: data.taxRecord || data.titleEn || "",
+                        email: data.taxNumber != null ? String(data.taxNumber) : "",
+                    }));
+                    setTextSizePaper(data.paperSize || "");
+                    setTextdate(data.timeFormat || "");
+                    if (data.qrEnabled != null) setShowQr(Boolean(data.qrEnabled));
+                    if (data.deliveryFee != null) setFormData((p) => ({ ...p, password: String(data.deliveryFee) }));
+                    if (data.logo) setImageSrc(data.logo);
+                }
+            } catch (e) {
+                console.error("فشل تحميل إعدادات الكاشير:", e);
+            }
+        })();
+    }, []);
+
     const handleSubmit = async (e: any) => {
-        e.preventDefault();
+        if (e) e.preventDefault();
+        setLoading(true);
+        try {
+            /* إن رُفعت صورة جديدة نرفعها أولاً */
+            let logoUrl: string | undefined;
+            if (imageFile) {
+                try {
+                    const { data: uploaded } = await uploadsApi.image(imageFile);
+                    logoUrl = uploaded?.url || uploaded?.path;
+                } catch (upErr) {
+                    console.error("فشل رفع اللوجو:", upErr);
+                }
+            }
+            await cashierApi.updateSettings({
+                storeName: formData.nameAr,
+                supportPhone: formData.titleAr,
+                vatRate: formData.idNumber ? Number(formData.idNumber) : 0,
+                taxRecord: formData.titleEn,
+                taxNumber: formData.email ? Number(formData.email) : undefined,
+                paperSize: textSizePaper,
+                timeFormat: textdate,
+                qrEnabled: showQr,
+                deliveryFee: formData.password ? Number(formData.password) : 0,
+                ...(logoUrl ? { logo: logoUrl } : {}),
+            });
+            toast.success("تم حفظ إعدادات الكاشير ✅");
+        } catch (error: any) {
+            console.error("Failed to save:", error);
+            const msg = error?.response?.data?.message;
+            toast.error(Array.isArray(msg) ? msg.join("، ") : (msg || "حدث خطأ أثناء الحفظ ❌"));
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -245,7 +311,7 @@ export default function Sales() {
 
                     className="text-white w-[100px] h-12 rounded-xl flex justify-center items-center text-base font-medium tracking-[-1%]"
                 >
-                    حفظ
+                    {loading ? "جارٍ..." : "حفظ"}
                 </button>
             </div>
         </div>

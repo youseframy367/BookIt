@@ -1,3 +1,11 @@
+"use client";
+
+/* ============================== الرسم البياني — داتا حقيقية ==============================
+   المصدر: GET /api/reports/graph →
+   { dailyRevenue: [{bucket,orderCount,revenue}], dailyReservations: [...], topItems, paymentBreakdown }
+   ============================================================================ */
+import { useState, useEffect } from "react";
+import api from "@/utils/api";
 import { useDaysData } from "@/app/data/dataDays";
 
 import {
@@ -20,6 +28,8 @@ interface CustomLegendProps {
 }
 
 const { Data, Earnings } = useDaysData();
+
+/* === داتا حقيقية من الباك إند (مع fallback على الداتا الوهمية إن فشل الاتصال) === */
 
 const formatNumber = (num: number): string => {
   return new Intl.NumberFormat("ar", {
@@ -54,6 +64,37 @@ const CustomLegend = ({ payload }: CustomLegendProps) => {
 };
 
 export default function Graph() {
+  const [graph, setGraph] = useState<any>(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    /* نجلب بيانات الرسم البياني (هذا الشهر) من الباك إند */
+    (async () => {
+      try {
+        const { data } = await api.get("/reports/graph", { params: { group: "day" } });
+        setGraph(data);
+      } catch (e) {
+        console.error("فشل تحميل بيانات الرسم البياني:", e);
+        setError(true);
+      }
+    })();
+  }, []);
+
+  /* نحول dailyReservations إلى صيغة recharts: [{name, الطلبات, لم_يتجددوا}] */
+  const reservationData =
+    graph?.dailyReservations?.map((r: any) => ({
+      name: new Date(r.bucket).toLocaleDateString("ar-EG", { day: "2-digit", month: "short" }),
+      "الطلبات": r.reservationCount,
+      "لم_يتجددوا": r.cancelledCount,
+    })) ?? Data;
+
+  /* نحول dailyRevenue إلى صيغة recharts: [{name, الأرباح}] */
+  const earningsData =
+    graph?.dailyRevenue?.map((r: any) => ({
+      name: new Date(r.bucket).toLocaleDateString("ar-EG", { day: "2-digit", month: "short" }),
+      "الأرباح": Math.round(r.revenue),
+    })) ?? Earnings;
+
   return (
     <div className="flex justify-between w-[100%] m-0 p-0">
       {/*------------------------------------ Graph col ----------------------------------------- */}
@@ -76,7 +117,7 @@ export default function Graph() {
         {/* Graph */}
         <ResponsiveContainer width="110%" height={350}>
           <ComposedChart
-            data={Data}
+            data={error ? Data : reservationData}
             margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
           >
             <CartesianGrid strokeDasharray="3 3" stroke="#b9b7b7" />
@@ -131,7 +172,7 @@ export default function Graph() {
         {/* Graph */}
         <ResponsiveContainer width="100%" height={300} style={{ direction: "ltr" }}>
           <AreaChart
-            data={Earnings}
+            data={error ? Earnings : earningsData}
             margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
           >
             <defs>

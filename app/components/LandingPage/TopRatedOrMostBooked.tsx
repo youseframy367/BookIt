@@ -1,13 +1,18 @@
 "use client";
 
-import { useState } from "react";
+/* ============================== أعلى تقييماً/الأكثر حجزاً — زر القلب حقيقي ==============================
+   القلب الآن تفاعلي: POST /public/favorites/:businessId لإضافة المفضل (توكن مطلوب)
+   عند النجاح: قلب ممتلئ + toast، عند الفشل: رسالة يطلب تسجيل الدخول
+   ============================================================================ */
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Card from "./restaurant-cards/card";
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 import { RestaurantItem } from "@/app/TypeScript/TypeScript";
-
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { publicApi } from "@/utils/api";
+import { toast } from "react-toastify";
 
 interface HeaderItem {
   title: string;
@@ -29,8 +34,32 @@ interface Props {
 
 export default function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitle }: Props) {
   const { t, i18n, mounted } = useTranslationSetup();
-
   const [expandedIndexes, setExpandedIndexes] = useState<number[]>([]);
+
+  /* المفضلة الحقيقية: id البزنس مضاف → قلب ممتلئ + يمكن الإضافة بالضغط */
+  const [liked, setLiked] = useState<string[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await publicApi.favorites();
+        if (Array.isArray(data)) {
+          setLiked(data.map((f: any) => String((f.business || f)?.id || f.id)));
+        }
+      } catch (e) {
+        /* بدون توكن — القلب يتلون محلياً فقط */
+      }
+    })();
+  }, []);
+
+  const handleLike = (bizId: string, isCurrentlyLiked: boolean) => {
+    const removing = isCurrentlyLiked;
+    setLiked(prev => (removing ? prev.filter(i => i !== bizId) : [...prev, bizId]));
+    publicApi[removing ? "removeFavorite" : "addFavorite"](bizId)
+      .catch(() => {
+        toast.error(mounted ? "يرجى تسجيل الدخول لحفظ المفضلة" : "Please sign in to save favorites");
+      });
+  };
 
   const toggleExpand = (index: any) => {
     setExpandedIndexes((prev: any) =>
@@ -88,8 +117,8 @@ export default function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitl
                           <div key={index}
                             className="transition-all duration-300 hover:scale-[1.03] relative z-10 bg-[rgba(255,119,87,0.1)] rounded-[15px]"
                           >
-                            <div className={`absolute z-1 top-0 ${mounted ? i18n.language === 'ar' ? "rounded-tr-[14px] rounded-bl-[14px]" : "rounded-tl-[14px] rounded-br-[14px]" : ""} bg-[var(--strong-red)] p-2 md:p-8`}>
-                              <Image src={`/assets/icons/${item.like ? "full-heart" : "heart"}.svg`} alt="hert" width={24} height={24} />
+                            <div onClick={() => item.id && handleLike(String(item.id), liked.includes(String(item.id)))} className={`absolute z-1 top-0 cursor-pointer ${mounted ? i18n.language === 'ar' ? "rounded-tr-[14px] rounded-bl-[14px]" : "rounded-tl-[14px] rounded-br-[14px]" : ""} bg-[var(--strong-red)] p-2 md:p-8`}>
+                              <Image src={`/assets/icons/${(liked.includes(String(item.id)) || item.like) ? "full-heart" : "heart"}.svg`} alt="hert" width={24} height={24} />
                             </div>
                             <Card item={item} index={index} toggleExpand={() => toggleExpand(index)} />
                           </div>

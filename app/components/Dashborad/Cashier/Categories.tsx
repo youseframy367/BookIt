@@ -14,7 +14,9 @@ export default function Categories({ isScrolled, setIsScrolled, setCart }: categ
     const { products, setProducts } = useInvoice();
     const listRef = useRef<HTMLDivElement>(null);
     const [searchCategory, setSearchCategory] = useState("");
-    const activeCategory = products.find(cat => cat.active);
+    /* عند التصدير الثابت قد لا تكون الداتا مُهيأة بعد — نتعامل مع null بأمان */
+    const list = products ?? [];
+    const activeCategory = list.find(cat => cat.active);
     const filteredItems = activeCategory?.items.filter(item =>
         item.name.toLowerCase().includes(searchCategory.toLowerCase())
     );

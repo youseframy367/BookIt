@@ -1,7 +1,11 @@
 
 "use client";
 
+/* ============================== تفاصيل المشرف — داتا حقيقية ==============================
+   المصدر: GET /api/users/:id → {id, nameAr, email, phone, nationalId, titleAr, role, status, avatar, ...}
+   ============================================================================ */
 import { useEffect, useState } from "react";
+import api from "@/utils/api";
 
 export default function DetilsMoeratore() {
   const [initialData, setInitialData] = useState(null);
@@ -12,6 +16,44 @@ export default function DetilsMoeratore() {
       setInitialData(JSON.parse(data));
     }
   }, []);
+
+  /* إن كان لدينا id حقيقي، نجلب أحدث بيانات من الباك إند (نتجاهل أي خطأ ونحتفظ بالكاش) */
+  useEffect(() => {
+    const id = initialData?.id;
+    if (!id) return;
+    (async () => {
+      try {
+        const { data } = await api.get(`/users/${id}`);
+        if (data) {
+          /* نمزج البيانات الحقيقية مع الشكل الذي يعتمد عليه التصميم */
+          setInitialData((prev) => ({
+            ...prev,
+            nameAr: data.nameAr,
+            nameEn: data.nameEn,
+            email: data.email,
+            phone: data.phone,
+            nationalId: data.nationalId,
+            titleAr: data.titleAr,
+            role: data.role,
+            status: data.status,
+            avatar: data.avatar,
+            name: data.nameAr || data.nameEn || prev.name,
+            nameGop: data.role || prev.nameGop,
+            numperPone: data.phone || prev.numperPone,
+            idNumber: data.nationalId || prev.idNumber,
+            title: data.titleAr || data.site || prev.title,
+            Powers: data.roleId ? "مُعيّن" : prev.Powers,
+            acount: data.status === "ACTIVE",
+            stat: data.status === "ACTIVE",
+            img: data.avatar || prev.img,
+            date: new Date(data.createdAt).toLocaleDateString("ar-EG"),
+          }));
+        }
+      } catch (e) {
+        console.error("فشل تحميل تفاصيل المشرف من الباك:", e);
+      }
+    })();
+  }, [initialData?.id]);
 
   if (!initialData) {
     return (

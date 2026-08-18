@@ -1,18 +1,56 @@
 "use client";
+/* ============================== منتجات المنيو — زر القلب (المفضلة) حقيقي ==============================
+   GET /public/favorites → قائمة المفضلة → القلب الممتلئ للأصناف المفضلة
+   POST/DELETE /public/favorites/:businessId → إضافة/إزالة المفضل (يتطلب توكن عميل)
+   بدون توكن: يبقى السلوك المحلي فقط (قلب ملون) مع رسالة تحذيرية
+   ============================================================================ */
 import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 import { isProducts } from "@/app/TypeScript/TypeScript";
+import { publicApi } from "@/utils/api";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function Products({ products, marginTop }: isProducts) {
     const { mounted, i18n, t } = useTranslationSetup();
 
+    /* أصناف مفضلة محلية (fallback) + مفضلة حقيقية من الباك إند */
     const [favorites, setFavorites] = useState<number[]>([]);
+    const [serverFavorites, setServerFavorites] = useState<string[]>([]);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await publicApi.favorites();
+                if (Array.isArray(data)) {
+                    setServerFavorites(
+                        data.map((f: any) => String((f.business || f)?.id || f.id))
+                    );
+                }
+            } catch (e) {
+                /* لا يوجد توكن أو فشل الاتصال — يبقى القلب محلي فقط */
+            }
+        })();
+    }, []);
+
+    /* حالة القلب: ممتلئ لو كان في المفضلة الحقيقية أو المحلية */
+    const isFavorite = (id: number) => serverFavorites.includes(String(id)) || favorites.includes(id);
 
     const toggleFavorite = (id: number) => {
-        setFavorites((prev) =>
-            prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-        );
+        const idStr = String(id);
+        if (serverFavorites.length > 0 || favorites.length > 0) {
+            /* يوجد مفضلة حقيقية من الباك إند → حدّث عبر الـ API */
+            const removing = isFavorite(id);
+            setServerFavorites(prev => (removing ? prev.filter(i => i !== idStr) : [...prev, idStr]));
+            publicApi[removing ? "removeFavorite" : "addFavorite"](idStr)
+                .catch((e: any) => {
+                    console.error(e);
+                    toast.error(mounted ? "فشل تحديث المفضلة — يرجى تسجيل الدخول" : "Please sign in to save favorites");
+                });
+        } else {
+            /* بدون توكن: تحديث محلي فقط */
+            setFavorites(prev => (prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]));
+        }
     };
 
     return (
@@ -26,7 +64,7 @@ export default function Products({ products, marginTop }: isProducts) {
                                     <div className={`${mounted ? i18n.language === 'ar' ? "rounded-tl-[25px] rounded-br-[25px]" : "rounded-tr-[25px] rounded-bl-[25px]" : ""} bg-[var(--strong-red)] p-3 cursor-pointer`} onClick={() => toggleFavorite(item.id)}>
                                         <div className="relative w-[15px] h-[15px] md:w-[24px] md:h-[24px]">
                                             <Image
-                                                src={`/assets/icons/${item.active ? "full-heart" : "heart"}.svg`}
+                                                src={`/assets/icons/${isFavorite(item.id) ? "full-heart" : "heart"}.svg`}
                                                 alt="heart"
                                                 fill
                                             />

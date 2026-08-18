@@ -8,6 +8,8 @@ export default function CoffeOrRestaurant() {
     const [role, setRole] = useState<"Coffee" | "Restaurant">("Coffee");
 
     function handlePageLoginOrRegister() {
+        /* نحفظ نوع الحساب المختار (Coffee/Restaurant) ليرسله الفرونت للباك كـ businessType */
+        localStorage.setItem("businessRole", role);
         window.location.href = "/register-pages/register-coffee-or-restaurant/register";
     }
 

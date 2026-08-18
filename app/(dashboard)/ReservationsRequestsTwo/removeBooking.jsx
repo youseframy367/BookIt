@@ -1,23 +1,23 @@
 "use client";
 
-import api from "@/utils/axios";
+/* ============================== حذف حجز — داتا حقيقية ==============================
+   المصدر: DELETE /api/reservations/:id
+   ============================================================================ */
+import api from "@/utils/api";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function RemoveBooking({ id, onClose }) {
+export default function RemoveBooking({ id, onClose, onDeleted }) {
   const handleDelete = async (id) => {
     try {
-      // TODO: قم بتغيير المسار هنا إلى مسار حذف اليوم في الـ API الخاص بك
-      const API_DELETE_PATH = "/Bookit/" + id;
-      const response = await api.delete(API_DELETE_PATH);
-      console.log("Deleted successfully:", response.data);
-
-      toast.success("تم حذف اليوم بنجاح ✅");
-
+      await api.delete(`/reservations/${id}`);
+      toast.success("تم حذف الحجز بنجاح ✅");
+      /* نُخبر الصفحة الأم بحذف الصف من الجدول مباشرة */
+      if (onDeleted) onDeleted(id);
       if (onClose) onClose();
     } catch (error) {
       console.error("Failed to delete:", error);
-      toast.error("حدث خطأ أثناء حذف اليوم ❌");
+      toast.error("حدث خطأ أثناء حذف الحجز ❌");
     }
   };
 

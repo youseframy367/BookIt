@@ -1,19 +1,23 @@
 "use client";
-import { useState, useRef } from "react";
+/* ============================== تعديل تفاصيل المحل (Portfolio) — داتا حقيقية ==============================
+   تحميل: GET /api/business/portfolio → {name, location, email, phone, altPhone, type, logo}
+   حفظ:   PATCH /api/business/portfolio {name, location, email, phone, altPhone, description} + رفع اللوجو /uploads/image
+   رابط الموقع + QR يتولدوا تلقائياً من رابط البزنس العام (لا حاجة لرابط ثابت)
+   ============================================================================ */
+import { useState, useRef, useEffect } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { QRCodeCanvas } from "qrcode.react";
+import { businessApi, uploadsApi } from "@/utils/api";
+
+/* الرابط العام لموقع المحل — يتولد من الـ businessId الحقيقي */
+function publicLink(businessId) {
+  if (!businessId) return "#";
+  return `${window.location.origin}/details-restaurant-public/${businessId}`;
+}
+
 export default function Portfolio() {
-  //////////////////////////////////////////////////
-  //////link of site
-  //////////////////////////////////////////////
-  const link = `
-  https://www.restaurant-management-system-t...
-`
-
-  /////////////////////////////////////////////////////
-
   // downlod qr code
   ////////////////////////////////////////////////////////
 
@@ -48,13 +52,14 @@ export default function Portfolio() {
 
 
 
+  const [businessId, setBusinessId] = useState(null);
   const [dataPortfolio, setDataPortfolio] = useState({
-    placeName: "قصر الكبابجى",
-    site: "القاهره",
-    email: "youssefRamy@gmail.com",
-    numPon: "010 2352 2063",
-    lastNumPon: "0102358890",
-    TypeOfTrade: "حساب خاص بمطعم",
+    placeName: "",
+    site: "",
+    email: "",
+    numPon: "",
+    lastNumPon: "",
+    TypeOfTrade: "",
     image: "/img/lkhgkjggujk.svg",
   });
 
@@ -69,8 +74,49 @@ export default function Portfolio() {
 
   const [newImageFile, setNewImageFile] = useState(null);
 
+  /* تحميل بيانات المحل الحقيقية عند فتح الصفحة */
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await businessApi.portfolio();
+        if (data) {
+          setBusinessId(data.id);
+          setDataPortfolio({
+            placeName: data.name || "",
+            site: data.location || "",
+            email: data.email || "",
+            numPon: data.phone || "",
+            lastNumPon: data.altPhone || "",
+            TypeOfTrade: data.type === "CAFE" ? "حساب خاص بكافيه" : "حساب خاص بمطعم",
+            image: data.logo || "/img/lkhgkjggujk.svg",
+          });
+        }
+      } catch (e) {
+        console.error("فشل تحميل بيانات المحل — باستخدام القيم الافتراضية:", e);
+      }
+    })();
+  }, []);
+
   // إندفاع (debounce) لتجنب إرسال طلب API مع كل ضغطة مفتاح
   const debounceTimer = useRef(null);
+
+  /* حفظ حقل واحد في الباك إند بعد توقف المستخدم عن الكتابة */
+  const savePortfolio = async (updatedData) => {
+    try {
+      await businessApi.updatePortfolio({
+        name: updatedData.placeName || undefined,
+        location: updatedData.site || undefined,
+        email: updatedData.email || undefined,
+        phone: updatedData.numPon || undefined,
+        altPhone: updatedData.lastNumPon || undefined,
+        description: updatedData.TypeOfTrade?.includes("كافيه") ? "كافيه" : undefined,
+      });
+      console.log("portfolio updated");
+    } catch (e) {
+      console.error("فشل حفظ بيانات المحل:", e);
+      toast.error("تعذر حفظ التعديلات — تأكد من الاتصال بالخادم ❌");
+    }
+  };
 
   // فتح input معين عند الضغط على صورته
   const handleEditClick = (key) => {
@@ -84,16 +130,7 @@ export default function Portfolio() {
 
     if (debounceTimer.current) clearTimeout(debounceTimer.current);
     debounceTimer.current = setTimeout(async () => {
-      try {
-        await fetch("/api/update-portfolio", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedData),
-        });
-        console.log(`${key} updated`);
-      } catch (err) {
-        console.error(err);
-      }
+      await savePortfolio(updatedData);
     }, 500);
   };
 
@@ -121,18 +158,18 @@ export default function Portfolio() {
         setDataPortfolio(updatedData);
         setNewImageFile(file);
 
-        const formData = new FormData();
-        formData.append("image", file);
-        formData.append("data", JSON.stringify(updatedData));
-
         try {
-          await fetch("/api/update-portfolio", {
-            method: "POST",
-            body: formData,
-          });
+          /* رفع اللوجو الجديد للخادم ثم حفظ رابط الصورة في بيانات المحل */
+          const { data: uploaded } = await uploadsApi.image(file);
+          const logoUrl = uploaded?.url || uploaded?.path;
+          if (logoUrl) {
+            await businessApi.updatePortfolio({ logo: logoUrl });
+            toast.success("تم تحديث صورة المحل ✅");
+          }
           console.log("Image updated");
         } catch (err) {
-          console.error(err);
+          console.error("فشل تحديث الصورة:", err);
+          toast.error("تعذر رفع الصورة ❌");
         }
       };
       reader.readAsDataURL(file);
@@ -290,7 +327,7 @@ export default function Portfolio() {
         <div className="w-[215px] h-[31px] rounded-[30px] border-[0.3px] border-[rgba(0,0,0,0.7)] mx-auto my-[15px] flex items-center overflow-hidden">
           <div className="flex justify-center items-center w-[24px] h-[24px] rounded-full bg-[#fff] my-auto mx-[5px]"
             onClick={() => {
-              navigator.clipboard.writeText(link).then(() => {
+              navigator.clipboard.writeText(publicLink(businessId)).then(() => {
               });
             }}
           >
@@ -301,16 +338,16 @@ export default function Portfolio() {
             className="flex-1 overflow-hidden whitespace-nowrap text-[8px] font-[600] px-[8px]"
             ref={qrRef}
             dir="ltr"
-            href={link}
+            href={publicLink(businessId)}
           >
-            {link}
+            {publicLink(businessId)}
           </a>
 
         </div>
         <div
           ref={qrRef}
           className="mt-[-4px] p-[10px] bg-white rounded-lg shadow-lg w-[187px] h-[207px] mx-auto rounded-[17px] flex justify-center items-center">
-          <QRCodeCanvas value={link} size={170} />
+          <QRCodeCanvas value={publicLink(businessId)} size={170} />
         </div>
 
         <button

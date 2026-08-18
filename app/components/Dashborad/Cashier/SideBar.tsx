@@ -1,18 +1,25 @@
 "use client"
 
+/* ============================== Sidebar الكاشير — حفظ الطلبات في الباك إند ==============================
+   عند "طباعة وتأكيد العملية": POST /api/orders مع بيانات الفاتورة + السلة
+   الفشل لا يمنع الطباعة — نطبع محلياً ونسجل التحذير فقط
+   ============================================================================ */
 import React, { useRef, useState , useEffect } from "react";
+import { toast } from "react-toastify";
 import Image from "next/image"
 import { usePaymentGetwayData } from "@/app/data/dataPaymentGetway";
 import RemoveRoles from "../AccessAndRoles/RemoveRoles";
 import WarningProducts from "./Warning";
 import { useInvoice } from "@/app/(dashboard)/context/InvoiceContext";
 import PrintTheInvoice from "./PrintTheInvoice";
+import { ordersApi } from "@/utils/api";
 
 interface items {
     title: string;
     price: number;
     amount: number;
     singlePrice: number;
+    id?: string;
 }
 
 interface typeProducts {
@@ -41,6 +48,34 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
     const [activePaymentIndex, setActivePaymentIndex] = useState(0);
 
   const [smoleScreen, setSmoleScreen] = useState(false);
+  const [savingOrder, setSavingOrder] = useState(false);
+
+  /* حفظ الطلب في الباك إند بعد الطباعة */
+  const saveOrderToBackend = async () => {
+    if (isCart.length === 0) return;
+    setSavingOrder(true);
+    try {
+      await ordersApi.create({
+        items: isCart.map((item) => ({
+          name: item.title,
+          quantity: item.amount,
+          price: item.singlePrice,
+        })),
+        customerName: takeawayOrSala === 1 ? customerData.name : undefined,
+        customerCode: takeawayOrSala === 1 ? customerData.code : undefined,
+        employeeName: customerData.name || undefined,
+        cashierId: customerData.code || undefined,
+        /* "نقدي" → cash ، "فيزا" → visa ، "محفظه" تُسجل visa كافتراضي لأن الباك يدعم cash/visa فقط */
+        paymentMethod: activePaymentIndex === 0 ? "cash" : "visa",
+      });
+      toast.success("تم تسجيل الطلب بنجاح ✅");
+    } catch (e) {
+      console.error("فشل حفظ الطلب في الباك إند:", e);
+      toast.warn("تمت الطباعة لكن فشل تسجيل الطلب في النظام — راجع السجل");
+    } finally {
+      setSavingOrder(false);
+    }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -199,7 +234,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                         كود العميل
                                     </span>
                                     {
-                                        products.length == 0 ?
+                                        isCart.length == 0 ?
                                             <span className="text-[var(--color-dark-gray-translucent)]">
                                                 #
                                             </span>
@@ -336,7 +371,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                             <div className="flex justify-between items-center">
                                 <span className="text-[10px] text-[var(--color-dark-gray-translucent)]">الاجمالي</span>
                                 {
-                                    products.length == 0 ?
+                                    isCart.length == 0 ?
                                         <span className="text-[var(--color-dark-gray-light-translucent)]">-------</span> : <span className="text-[10px] text-[var(--color-dark-gray)]">{totalWithVat.toFixed(2)}</span>
                                 }
                             </div>
@@ -356,8 +391,16 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                 </div>
                             </div>
                             <div className="flex gap-[12px]">
-                                <button onClick={handlePrint} title="طباعه ، وتأكيد العمليه" className={`${products.length == 0 ? 'opacity-[0.5]' : 'cursor-pointer transition-all duration-300 hover:text-[var(--color-light-blue)] hover:bg-white'} w-full text-sm text-white font-semibold py-[12px] border border-2 border-[var(--color-light-blue)] bg-[var(--color-light-blue)] rounded-[13px]`}>
-                                    طباعه ، وتأكيد العمليه
+                                <button
+                                    disabled={savingOrder}
+                                    onClick={async () => {
+                                        handlePrint();
+                                        await saveOrderToBackend();
+                                    }}
+                                    title="طباعه ، وتأكيد العمليه"
+                                    className={`${isCart.length == 0 ? 'opacity-[0.5]' : 'cursor-pointer transition-all duration-300 hover:text-[var(--color-light-blue)] hover:bg-white'} w-full text-sm text-white font-semibold py-[12px] border border-2 border-[var(--color-light-blue)] bg-[var(--color-light-blue)] rounded-[13px] disabled:opacity-50`}
+                                >
+                                    {savingOrder ? "جارٍ..." : "طباعه ، وتأكيد العمليه"}
                                 </button>
                                 <Image src="/assets/icons/remove.svg" alt="critical" width={31} height={31} className="cursor-pointer" title="Remove" onClick={() => {
                                     setRemovRoles(true)

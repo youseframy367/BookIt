@@ -1,49 +1,103 @@
 
 "use client";
 
-import { useState, useMemo, } from "react";
+/* ============================== كل المشرفين — داتا حقيقية ==============================
+   المصدر: GET /api/users → قائمة مستخدمي الأونر (مشرفين/سيلز/مديرين)
+   الحقول: {id, nameAr, email, phone, nationalId, titleAr, role, status, roleId, ...}
+   ============================================================================ */
+import { useState, useMemo, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { usePagnation } from "../../../hooks/usePagnation";
 import { useMsgModetor } from "../../../data/dataModetor";
 import Pagnation from "../../../components/public/Pagnation";
 import RemoveRoles from "@/app/components/Dashborad/AccessAndRoles/RemoveRoles";
-import api from "@/utils/axios";
+import api from "@/utils/api";
+import { usersApi } from "@/utils/api";
 import { toast } from "react-toastify";
 
 export default function AllMoerators() {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState("");
   const [removeRoles, setRemovRoles] = useState(false)
-
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [users, setUsers] = useState<any[] | null>(null); // null = لم يُحمّل بعد
   const dataMoerators = useMsgModetor()
 
+  /* نجلب قائمة المستخدمين الحقيقية من الباك إند */
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data } = await usersApi.list();
+        setUsers(Array.isArray(data) ? data : []);
+      } catch (e) {
+        console.error("فشل تحميل المشرفين:", e);
+        setUsers(null); // null = فشل التحميل، نرجع للداتا الوهمية
+      }
+    })();
+  }, []);
+
+  /* إن نجح التحميل نعرض الداتا الحقيقية (مع تحويل الحقول)، وإلا الداتا الوهمية */
+  const realRows = useMemo(() => {
+    if (!Array.isArray(users)) return null;
+    return users.map((u: any) => ({
+      id: u.id,
+      code: u.id ? u.id.slice(0, 8) : "",
+      name: u.nameAr || u.nameEn || "—",
+      numperPone: u.phone || "—",
+      email: u.email || "—",
+      idNumber: u.nationalId || "—",
+      title: u.titleAr || u.titleEn || u.role || "—",
+      nameGop: u.role || "—",
+      Powers: u.roleId ? "مُعيّن" : "غير معيّن",
+      stat: u.status === "ACTIVE",
+      acount: u.status === "ACTIVE",
+      img: u.avatar || "/img/profile.jpg",
+    }));
+  }, [users]);
+
   const filtered = useMemo(() => {
-    if (!searchTerm) return dataMoerators;
+    const source = realRows ?? dataMoerators;
+    if (!searchTerm) return source;
 
     const lowerSearch = searchTerm.toLowerCase();
 
-    return dataMoerators.filter((item) =>
+    return source.filter((item) =>
       Object.values(item).some(
         (val) =>
           val &&
           val.toString().toLowerCase().includes(lowerSearch)
       )
     );
-  }, [searchTerm, dataMoerators]);
+  }, [searchTerm, realRows, dataMoerators]);
 
   const { currentPage, setCurrentPage, numPages, setNumRow, displayedCustomers, scroll, numRow, numbersRef } =
     usePagnation(filtered, searchTerm);
 
-  // حذف مشرف عبر الـ API
+  // حذف مشرف عبر الـ API (DELETE /users/:id)
   const handleDelete = async () => {
+    if (!selectedId) return;
     try {
-      // TODO: عدّل المسار هنا إلى مسار حذف المشرف في الـ API الخاص بك
-      const API_DELETE_PATH = "/moderators";
-      await api.delete(API_DELETE_PATH);
+      await api.delete(`/users/${selectedId}`);
+      setUsers((prev) => (prev ? prev.filter((u) => u.id !== selectedId) : prev));
       toast.success("تم حذف المدير بنجاح ✅");
     } catch (error) {
       console.error("Failed to delete:", error);
       toast.error("حدث خطأ أثناء حذف المدير ❌");
+    } finally {
+      setRemovRoles(false);
+      setSelectedId(null);
+    }
+  };
+
+  // تفعيل/إيقاف حساب مشرف عبر الـ API (PATCH /users/:id/status)
+  const handleToggleStatus = async (u: any) => {
+    try {
+      const { data } = await api.patch(`/users/${u.id}/status`);
+      setUsers((prev) => (prev ? prev.map((x) => (x.id === u.id ? { ...x, ...data } : x)) : prev));
+      toast.success("تم تحديث حالة الحساب ✅");
+    } catch (error) {
+      console.error("Failed to toggle status:", error);
+      toast.error("حدث خطأ أثناء تحديث الحالة ❌");
     }
   };
 
@@ -142,8 +196,10 @@ export default function AllMoerators() {
                   }}
 
                     onClick={() => {
-                      window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(m));
-                      router.push("/ModeratorsFor/updateMoerators");
+                      if (realRows) handleToggleStatus(m); else {
+                        window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(m));
+                        router.push("/ModeratorsFor/updateMoerators");
+                      }
                     }}
 
                   >{m.stat ? "نشط" : "معطل"}</td>
@@ -176,6 +232,8 @@ export default function AllMoerators() {
                       }} />
 
                       <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                        /* حفظ الـ id الحقيقي للمستخدم ثم فتح نافذة تأكيد الحذف */
+                        setSelectedId(m.id ?? null);
                         setRemovRoles(true)
                       }} />
                     </div>

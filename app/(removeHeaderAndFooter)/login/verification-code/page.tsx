@@ -37,15 +37,25 @@ export default function VerificationCode() {
     }
   };
 
+  /* === التحقق من كود OTP المكون من 6 أرقام (الباك يتحقق من الصلاحية — 10 دقائق) === */
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();
     const code = inputsRef.current.map((input) => input?.value || "").join("");
+    const email = sessionStorage.getItem("reset_email") || "";
     setLoading(true);
     try {
-      await api.post("/verify-reset-code", { code });
-      // router.push("/login/verification-code");
+      await api.post("/auth/otp/verify", {
+        email,
+        code,
+        purpose: "reset_password",
+      });
+      /* نحفظ الكود نفسه للخطوة التالية (الباك يعيد التحقق منه عند reset) */
+      sessionStorage.setItem("reset_code", code);
+      toast.success("تم التحقق من الكود ✅");
+      /* الكود صحيح → ننتقل لتعيين كلمة المرور الجديدة */
+      window.location.href = "/login/creat-new-password";
     } catch (err: any) {
-      toast.error(err.response.data.data);
+      toast.error("الكود غير صحيح أو انتهت صلاحيته");
     } finally {
       setLoading(false);
     }

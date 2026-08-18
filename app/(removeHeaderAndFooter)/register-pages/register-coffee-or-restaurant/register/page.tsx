@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-// import api from "@/utils/axios";
+import api from "@/utils/axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LayoutLoginAndRegister from "@/app/components/layoutLoginAndRegister/LayoutLoginAndRegister";
@@ -20,12 +20,31 @@ export default function Register() {
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (password !== confirmPassword) {
+            toast.error("كلمة المرور وتأكيدها غير متطابقتين");
+            return;
+        }
         setLoading(true);
         try {
+            /* === إنشاء حساب بزنس (أونر) — type من localStorage (Coffee/Restaurant)
+               الباك يتوقع: { nameAr, email, password, businessType: 'CAFE'|'RESTAURANT' } === */
+            const savedRole = localStorage.getItem("businessRole") || "Coffee";
+            const businessType = savedRole === "Restaurant" ? "RESTAURANT" : "CAFE";
+            const { data } = await api.post("/auth/register/business", {
+                nameAr: email.split("@")[0],
+                email,
+                password,
+                businessType,
+            });
+            /* نحفظ البيانات مؤقتاً للتحقق من OTP ثم نوجه */
+            sessionStorage.setItem("reset_email", email);
+            sessionStorage.setItem("tmp_password", password);
             setFromPage("register");
-            router.push("/otp-register-or-login");
+            router.push("/register-pages/verification-new-account");
+            toast.success("تم إنشاء حساب الأونر — تحقق من بريدك 📩");
         } catch (err: any) {
-            toast.error(err.response.data.data);
+            const msg = err?.response?.data?.message || "تعذر إنشاء الحساب";
+            toast.error(Array.isArray(msg) ? msg[0] : msg);
         } finally {
             setLoading(false);
         }

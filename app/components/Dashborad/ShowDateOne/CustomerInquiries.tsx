@@ -1,7 +1,41 @@
+"use client";
+
+/* ============================== استفسارات العملاء — داتا حقيقية ==============================
+   المصدر: GET /api/business/inquiries → [{id, name, email, message, status, createdAt, ...}]
+   ============================================================================ */
+import { useState, useEffect } from "react";
 import { useMsgData } from "@/app/data/dataMsg";
+import api from "@/utils/api";
 
 export default function CustomerInquiries() {
   const Masg = useMsgData();
+  const [inquiries, setInquiries] = useState<any[] | null>(null);
+
+  useEffect(() => {
+    /* نجلب استفسارات العملاء الحقيقية (آخر 20 استفسار) */
+    (async () => {
+      try {
+        const { data } = await api.get("/business/inquiries", { params: { limit: 20 } });
+        setInquiries(Array.isArray(data) ? data : []);
+      } catch (e) {
+        console.error("فشل تحميل الاستفسارات:", e);
+      }
+    })();
+  }, []);
+
+  /* إن نجح التحميل نعرض الداتا الحقيقية، وإلا نعود للداتا الوهمية */
+  const items = inquiries
+    ? inquiries.map((inq: any) => ({
+        maseg: `[استفسار] ${inq.name || "زائر"}: ${inq.message || ""}`.slice(0, 120),
+        time: new Date(inq.createdAt).toLocaleString("ar-EG", {
+          day: "2-digit",
+          month: "short",
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        icon: "/img/msg.svg",
+      }))
+    : Masg;
 
   return (
     <div dir="rtl" className="border border-1 border-[rgba(0,0,0,0.1)] w-[37%] bg-[#fff] rounded-[12px] overflow-hidden h-[300px]">
@@ -23,7 +57,7 @@ export default function CustomerInquiries() {
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
 
       >
-        {Masg.map((item, index) => (
+        {items.map((item, index) => (
           <div
             key={index}
             className="flex gap-[10px] p-[10px] hover:bg-gray-50 rounded-lg transition-colors items-start "
