@@ -282,6 +282,33 @@ export const settingsApi = {
   updateKey: (key: string, value: any) => api.patch(`/settings/${key}`, { value }),
 };
 
+/* ========== الموارد البشرية: كل الطلبات تمر بمصادقة axios الموحدة ========== */
+export const hrApi = {
+  dashboard: () => api.get<any>("/hr/dashboard"),
+  departments: () => api.get<any[]>("/hr/departments"),
+  createDepartment: (data: Record<string, any>) => api.post("/hr/departments", data),
+  updateDepartment: (id: string, data: Record<string, any>) => api.patch(`/hr/departments/${id}`, data),
+  employees: (params?: { status?: string; branchId?: string }) => api.get<any[]>("/hr/employees", { params }),
+  createEmployee: (data: Record<string, any>) => api.post("/hr/employees", data),
+  updateEmployee: (id: string, data: Record<string, any>) => api.patch(`/hr/employees/${id}`, data),
+  shifts: () => api.get<any[]>("/hr/shifts"),
+  createShift: (data: Record<string, any>) => api.post("/hr/shifts", data),
+  assignments: (date?: string) => api.get<any[]>("/hr/shift-assignments", { params: date ? { date } : {} }),
+  assignShift: (data: Record<string, any>) => api.post("/hr/shift-assignments", data),
+  updateAssignmentStatus: (id: string, status: string) => api.patch(`/hr/shift-assignments/${id}/status`, { status }),
+  attendance: (date?: string) => api.get<any[]>("/hr/attendance", { params: date ? { date } : {} }),
+  recordAttendance: (data: Record<string, any>) => api.post("/hr/attendance", data),
+  leaves: (status?: string) => api.get<any[]>("/hr/leaves", { params: status ? { status } : {} }),
+  requestLeave: (data: Record<string, any>) => api.post("/hr/leaves/request", data),
+  reviewLeave: (id: string, data: { status: "approved" | "rejected"; reviewNote?: string }) => api.patch(`/hr/leaves/${id}/review`, data),
+  payrollPeriods: () => api.get<any[]>("/hr/payroll-periods"),
+  createPayrollPeriod: (data: Record<string, any>) => api.post("/hr/payroll-periods", data),
+  upsertPayrollEntry: (periodId: string, data: Record<string, any>) => api.post(`/hr/payroll-periods/${periodId}/entries`, data),
+  updatePayrollStatus: (periodId: string, status: "approved" | "paid") => api.patch(`/hr/payroll-periods/${periodId}/status`, { status }),
+  employeeDocuments: (employeeProfileId: string) => api.get<any[]>(`/hr/employees/${employeeProfileId}/documents`),
+  createDocument: (data: Record<string, any>) => api.post("/hr/documents", data),
+};
+
 export const publicApi = {
   businesses: () => api.get<any[]>("/public/businesses"),
   business: (id: string) => api.get<any>(`/public/businesses/${id}`),

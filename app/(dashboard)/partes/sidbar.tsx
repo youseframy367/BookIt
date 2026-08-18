@@ -39,6 +39,16 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
     { name: 'المشرفين', navigate: "/ModeratorsFor/AllMoerators", title: 'المشرفين', icon: "/img/modetorIcon.svg", iconActiv: "/img/modetorIconActiv.svg" },
     { name: "التقارير", navigate: "/Reports/AllReports", title: " التقارير ", icon: "/img/Vector-10888.svg", iconActiv: "/img/Vector-145455.svg" },
     {
+      name: "الموارد البشرية",
+      navigate: "/hr",
+      title: "نظام الموارد البشرية",
+      icon: "/assets/icons/roles.svg",
+      iconActiv: "/assets/icons/white-roles.svg",
+      list: [
+        { title: "لوحة موارد بشرية", navigate: "/hr" },
+      ]
+    },
+    {
       name: "المخزون",
       navigate: '/inventory',
       title: "المخزون",
