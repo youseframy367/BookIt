@@ -309,6 +309,20 @@ export const hrApi = {
   createDocument: (data: Record<string, any>) => api.post("/hr/documents", data),
 };
 
+/* إدارة الباقات: لا تُستدعى بيانات الباقات قبل نجاح بوابة الموافقة الداخلية. */
+export const subscriptionsApi = {
+  access: () => api.get<any>("/subscriptions/access"),
+  requestAccess: (data: { requestNote?: string }) => api.post<any>("/subscriptions/access-requests", data),
+  accessRequests: () => api.get<any[]>("/subscriptions/access-requests"),
+  decideAccess: (id: string, data: { status: "approved" | "rejected"; decisionNote?: string }) => api.patch<any>(`/subscriptions/access-requests/${id}/decision`, data),
+  plans: () => api.get<any[]>("/subscriptions/plans"),
+  createPlan: (data: Record<string, any>) => api.post<any>("/subscriptions/plans", data),
+  updatePlan: (id: string, data: Record<string, any>) => api.patch<any>(`/subscriptions/plans/${id}`, data),
+  deletePlan: (id: string) => api.delete(`/subscriptions/plans/${id}`),
+  current: () => api.get<any>("/subscriptions/current"),
+  select: (data: { planId: string; status?: "active" | "paused" | "expired"; startsAt?: string; expiresAt?: string }) => api.post<any>("/subscriptions/select", data),
+};
+
 export const publicApi = {
   businesses: () => api.get<any[]>("/public/businesses"),
   business: (id: string) => api.get<any>(`/public/businesses/${id}`),

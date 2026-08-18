@@ -49,6 +49,16 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
       ]
     },
     {
+      name: "الباقات والمزايا",
+      navigate: "/subscriptions",
+      title: "إدارة الباقات والمزايا",
+      icon: "/assets/icons/roles.svg",
+      iconActiv: "/assets/icons/white-roles.svg",
+      list: [
+        { title: "الباقات وطلبات الوصول", navigate: "/subscriptions" },
+      ]
+    },
+    {
       name: "المخزون",
       navigate: '/inventory',
       title: "المخزون",
