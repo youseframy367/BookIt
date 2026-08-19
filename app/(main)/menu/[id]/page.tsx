@@ -3,8 +3,9 @@
    ============================================================================ */
 import MenuClient from "./MenuClient";
 
-export default function MenuPage({ params }: { params: { id: string } }) {
-  return <MenuClient id={params.id} />;
+export default async function MenuPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return <MenuClient id={id} />;
 }
 
 export async function generateStaticParams() {

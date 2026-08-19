@@ -1,7 +1,12 @@
-import { BookingProvider } from "./(main)/context/BookingContext";
 import "./assets/css/globals.css";
-import AOSWrapper from "./components/AOSWrapper";
-import DirSetter from "./components/DirSetter";
+import type { Metadata } from "next";
+
+export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "BOOK IT",
+  icons: { icon: "/assets/icons/logo.svg" },
+};
 
 export default function RootLayout({
   children,
@@ -10,15 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ar" dir="rtl">
-      <body>
-        <link rel="icon" type="image/svg+xml" href="/assets/icons/logo.svg" />
-        <title>BOOK IT</title>
-        <DirSetter />
-        <AOSWrapper />
-        <BookingProvider>
-          {children}
-        </BookingProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

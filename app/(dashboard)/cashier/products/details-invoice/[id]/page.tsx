@@ -1,7 +1,7 @@
 import ClientDetailsInvoice from "./ClientDetailsInvoice";
-
-export default function DetailsEmployees({ params }: { params: { id: string } }) {
-    return <ClientDetailsInvoice id={params.id} />;
+export default async function DetailsEmployees({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    return <ClientDetailsInvoice id={id} />;
 }
 
 export async function generateStaticParams() {

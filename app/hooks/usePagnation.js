@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useMemo, useRef } from "react";
 
 export function usePagnation(data, searchTerm) {

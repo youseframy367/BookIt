@@ -1,7 +1,7 @@
 import EditInventoryClient from "./EditInventoryClient";
-
-export default function Page({ params }: { params: { id: string } }) {
-    return <EditInventoryClient id={params.id} />;
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    return <EditInventoryClient id={id} />;
 }
 
 export async function generateStaticParams() {

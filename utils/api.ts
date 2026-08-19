@@ -26,6 +26,14 @@ const TOKEN_KEY = "bookit_access_token";
 const REFRESH_KEY = "bookit_refresh_token";
 const USER_KEY = "bookit_user";
 
+/* مسارات الجلسة العامة لا تحتاج Bearer منتهي الصلاحية ولا تدخل دورة إعادة المحاولة. */
+export const isSessionEndpoint = (url?: string) => (url || "").startsWith("/auth/");
+export const isRefreshEndpoint = (url?: string) => (url || "").startsWith("/auth/refresh");
+export const shouldAttachAuthHeader = (url?: string) =>
+  !(url || "").startsWith("/public/") && !isSessionEndpoint(url);
+export const shouldRefreshAfterUnauthorized = (status?: number, url?: string, hasAccessToken = false) =>
+  status === 401 && !isRefreshEndpoint(url) && hasAccessToken;
+
 /* ========== دوال مساعدة للتوكن ========== */
 export const getAccessToken = (): string | null =>
   typeof window !== "undefined" ? localStorage.getItem(TOKEN_KEY) : null;
@@ -62,6 +70,7 @@ export const getUser = (): any | null => {
 let refreshPromise: Promise<string | null> | null = null;
 
 async function refreshTokenIfNeeded(): Promise<string | null> {
+  if (typeof window === "undefined") return null;
   const refreshToken = localStorage.getItem(REFRESH_KEY);
   if (!refreshToken) return null;
   if (!refreshPromise) {
@@ -85,9 +94,8 @@ async function refreshTokenIfNeeded(): Promise<string | null> {
 
 /* --- انضمام Authorization header لكل طلب (ماعدا endpoints العامة) --- */
 api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
-  const isPublic = (config.url || "").startsWith("/public/");
   const token = getAccessToken();
-  if (token && !isPublic && config.headers) {
+  if (token && shouldAttachAuthHeader(config.url) && config.headers) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
@@ -98,7 +106,11 @@ api.interceptors.response.use(
   (res) => res,
   async (error: AxiosError) => {
     const original = error.config as InternalAxiosRequestConfig & { _retry?: boolean };
-    if (error.response?.status === 401 && original && !original._retry) {
+    if (error.response?.status === 401 && original && isRefreshEndpoint(original.url)) {
+      clearTokens();
+      return Promise.reject(error);
+    }
+    if (original && !original._retry && shouldRefreshAfterUnauthorized(error.response?.status, original.url, Boolean(getAccessToken()))) {
       original._retry = true;
       const newToken = await refreshTokenIfNeeded();
       if (newToken && original.headers) {

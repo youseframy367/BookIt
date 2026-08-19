@@ -1,7 +1,8 @@
 import PaymentMethodClient from "./PaymentMethodClient";
 
-export default function Page({ params }: { params: { id: string } }) {
-    return <PaymentMethodClient id={params.id} />;
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    return <PaymentMethodClient id={id} />;
 }
 
 export async function generateStaticParams() {

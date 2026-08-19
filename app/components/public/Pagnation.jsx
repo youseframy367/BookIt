@@ -1,3 +1,6 @@
+"use client";
+
+/* مكوّن تفاعلي يستقبل setters وrefs من صفحة الكاشير العميلة. */
 export default function Pagnation({ numRow, setNumRow, scroll, numbersRef, numPages, currentPage, setCurrentPage }) {
     return (
         <div className="flex w-full justify-between items-center py-[10px] px-[20px]">

@@ -86,7 +86,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                     <>
                                         <MobileTimePicker
                                             value={selectedTime}
-                                            onChange={(newValue) => setSelectedTime(newValue)}
+                                            onChange={(newValue) => setSelectedTime(newValue ? dayjs(newValue) : null)}
                                             shouldDisableTime={(timeValue, view) => {
                                                 const time = dayjs(timeValue);
 

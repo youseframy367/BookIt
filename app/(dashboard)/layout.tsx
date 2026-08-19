@@ -1,15 +1,6 @@
-import "../assets/css/globals.css";
-import MainLayout from "../SidebarWrapper";
-import { InvoiceProvider } from "./context/InvoiceContext";
+import DashboardClientShell from "./DashboardClientShell";
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
-    return (
-        <InvoiceProvider>
-            <MainLayout>{children}</MainLayout>
-        </InvoiceProvider>
-    );
+/** يبقى المحتوى قابلاً للتمرير إلى العميل، بينما لا تُنفّذ واجهة الداشبورد التفاعلية عند البناء. */
+export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  return <DashboardClientShell>{children}</DashboardClientShell>;
 }

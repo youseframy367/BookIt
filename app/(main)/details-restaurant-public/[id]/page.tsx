@@ -1,7 +1,7 @@
 import DetailsRestaurantPublicClient from "./DetailsRestaurantPublicClient";
-
-export default function Page({ params }: { params: { id: string } }) {
-    return <DetailsRestaurantPublicClient id={params.id} />;
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    return <DetailsRestaurantPublicClient id={id} />;
 }
 
 export async function generateStaticParams() {

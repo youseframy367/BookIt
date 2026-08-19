@@ -1,7 +1,9 @@
-import ClientDetailsEmployees from "./ClientDetailsEmployees";
+import EmployeeDetailsClientShell from "./EmployeeDetailsClientShell";
 
-export default function DetailsEmployees({ params }: { params: { id: string } }) {
-    return <ClientDetailsEmployees id={params.id} />;
+export default async function DetailsEmployees({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = await params;
+    // يحتفظ المسار بمعرّف الموظف، بينما يُحمَّل المحتوى التفاعلي على المتصفح فقط.
+    return <EmployeeDetailsClientShell id={id} />;
 }
 
 export async function generateStaticParams() {
