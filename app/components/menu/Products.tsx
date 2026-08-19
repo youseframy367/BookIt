@@ -64,7 +64,7 @@ export default function Products({ products, marginTop }: isProducts) {
                                     <div className={`${mounted ? i18n.language === 'ar' ? "rounded-tl-[25px] rounded-br-[25px]" : "rounded-tr-[25px] rounded-bl-[25px]" : ""} bg-[var(--strong-red)] p-3 cursor-pointer`} onClick={() => toggleFavorite(item.id)}>
                                         <div className="relative w-[15px] h-[15px] md:w-[24px] md:h-[24px]">
                                             <Image
-                                                src={`/assets/icons/${isFavorite(item.id) ? "full-heart" : "heart"}.svg`}
+                                                src={`/media/shared/icons/${isFavorite(item.id) ? "full-heart" : "heart"}.svg`}
                                                 alt="heart"
                                                 fill
                                             />
@@ -74,7 +74,7 @@ export default function Products({ products, marginTop }: isProducts) {
                                 <div className="h-full flex flex-col md:gap-3">
                                     <div className="flex justify-center items-center">
                                         <div className="relative w-[105px] md:w-[250px] h-[95px] md:h-[250px]">
-                                            <Image src={`/assets/icons/${item.icon}.svg`} alt="fattoush salad" fill className="object-cover" />
+                                            <Image src={`/media/shared/icons/${item.icon}.svg`} alt="fattoush salad" fill className="object-cover" />
                                         </div>
                                     </div>
                                     <div className="h-full p-5 flex flex-col justify-between gap-3">
@@ -83,7 +83,7 @@ export default function Products({ products, marginTop }: isProducts) {
                                         <div className="flex justify-between">
                                             <span className="font-semibold text-lg md:text-3xl"><span className={`${mounted ? i18n.language === 'ar' && "font-ArefRuqaa" : ""} text-2xl text-[var(--strong-red)]`}>{mounted ? t("currency") : '...'}</span> {item.amount} </span>
                                             <div className="flex items-center gap-2">
-                                                <Image src="/assets/icons/star.svg" alt="star" width={24} height={24} />
+                                                <Image src="/media/shared/icons/star.svg" alt="star" width={24} height={24} />
                                                 <span className="font-semibold text-base md:text-[22px] text-[var(--dark-charcoal)]">{item.rating}</span>
                                             </div>
                                         </div>

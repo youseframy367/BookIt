@@ -8,17 +8,17 @@ export default function Sidebar({ title, setTitle, setActiveComponent }: dataSid
     // const navigate = useNavigate();
 
     const navigat = [
-        { component: "control", name: "لوحه التحكم", navigat: "/dashbord", title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/assets/icons/category-2.svg", iconActiv: "/assets/icons/qwqwwqq.svg" },
-        { component: "customers", name: "اجمالي عدد الاشتراكات والعملاء", navigat: "/dashbord/AllCustumer", title: "اجمالي عدد الاشتراكات والعملاء", icon: "/assets/icons/trackkkk 1.svg", iconActiv: "/assets/icons/ewew.svg" },
-        { component: "AllMoerators", name: "المشرفين", navigat: "/dashbord/AllMoerators", title: "المشرفين", icon: "/assets/icons/weew.svg", iconActiv: "/assets/icons/Users-1.svg" },
-        { component: "Inquiries", name: "استفسارات العملاء", navigat: "/dashbord/Inquiries", title: "استفسارات العملاء", icon: "/assets/icons/Stack.svg", iconActiv: "/assets/icons/fgjkgjkyj.svg" },
+        { component: "control", name: "لوحه التحكم", navigat: "/dashbord", title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/media/dashboard/overview/grid.svg", iconActiv: "/media/dashboard/overview/grid-white.svg" },
+        { component: "customers", name: "اجمالي عدد الاشتراكات والعملاء", navigat: "/dashbord/AllCustumer", title: "اجمالي عدد الاشتراكات والعملاء", icon: "/media/dashboard/overview/checklist.svg", iconActiv: "/media/dashboard/overview/filter-active.svg" },
+        { component: "AllMoerators", name: "المشرفين", navigat: "/dashbord/AllMoerators", title: "المشرفين", icon: "/media/dashboard/team/moderators.svg", iconActiv: "/media/dashboard/team/moderators-white.svg" },
+        { component: "Inquiries", name: "استفسارات العملاء", navigat: "/dashbord/Inquiries", title: "استفسارات العملاء", icon: "/media/shared/chat/message.svg", iconActiv: "/media/dashboard/reservations/search-document-white.svg" },
         {
             name: "اعدادات الموقع الالكتروني",
             title: "اعدادات الموقع الالكتروني",
-            icon: "/assets/icons/Group-1261154400.svg",
-            listIcon: "/assets/icons/jegkjketl.svg",
-            iconActiv: "/assets/icons/mapDashbord.svg",
-            sliderIcon: "/assets/icons/ftjrfjjy.svg",
+            icon: "/media/shared/icons/site.svg",
+            listIcon: "/media/shared/ui/chevron-down.svg",
+            iconActiv: "/media/shared/icons/mapDashbord.svg",
+            sliderIcon: "/media/shared/icons/ChevronDown.svg",
             list: [
                 { title: "الصفحه الرئيسيه", navigat: "/HomeBage" },
                 { title: "تعليقات العملاء", navigat: "/AllComent" },
@@ -30,7 +30,7 @@ export default function Sidebar({ title, setTitle, setActiveComponent }: dataSid
                 { title: "الفوتر", navigat: "" },
             ],
         },
-        { name: "تسجيل الخروج", navigat: "/LogOut", title: "تسجيل الخروج", icon: "/assets/icons/SignOut.svg" },
+        { name: "تسجيل الخروج", navigat: "/LogOut", title: "تسجيل الخروج", icon: "/media/shared/icons/SignOut.svg" },
     ];
 
     return (
@@ -53,7 +53,7 @@ export default function Sidebar({ title, setTitle, setActiveComponent }: dataSid
         >
             {/* الشعار */}
             <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                <img src="/assets/icons/logo.png" width="139" height="54" alt="Logo" />
+                <img src="/media/shared/icons/logo.png" width="139" height="54" alt="Logo" />
             </div>
 
             <div style={{ border: "1px solid rgba(153, 150, 150, 0.1)", width: "100%", margin: "10px 0 50px" }}></div>

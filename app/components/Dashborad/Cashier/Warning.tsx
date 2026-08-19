@@ -13,7 +13,7 @@ export default function WarningProducts({ isColor, onClose }: typeData) {
                 <div>
                     <div className="w-full flex flex-col gap-[25px]">
                         <div className="flex gap-[8px]">
-                            <Image src="/assets/icons/warning.svg" alt="تحذير" width={19} height={17} className={`${isColor == 'color-red-bright-tow' && 'red-icon'}`} />
+                            <Image src="/media/shared/icons/warning.svg" alt="تحذير" width={19} height={17} className={`${isColor == 'color-red-bright-tow' && 'red-icon'}`} />
                             <span className="font-semibold text-xl" style={{ color: `var(--${isColor})` }}>تحذير</span>
                         </div>
                         <p className="text-[rgba(19,19,19,0.5)] text-lg font-normal">

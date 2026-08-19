@@ -12,7 +12,7 @@ import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 function toLikedItem(biz: any) {
   const b = biz.business || biz;
   return {
-    img: b?.logo || "/assets/icons/top-rated-1.png",
+    img: b?.logo || "/media/shared/icons/top-rated-1.png",
     name: b?.name || "",
     rating: Number(b?.avgRating ?? 0),
     des: b?.description || "",

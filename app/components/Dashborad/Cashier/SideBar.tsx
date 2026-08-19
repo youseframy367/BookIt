@@ -213,7 +213,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                 )
                             }>
                                 <h2 className="font-semibold text-sm">بيانات الموظف</h2>
-                                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? 'rotate-0' : 'rotate-180'}`} />
+                                <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
                             <span className={`text-xs text-[var(--color-dark-gray-translucent)] overflow-hidden transition-all duration-300 ${selectedDetailsEmployees === "Details Employees" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
                                 {customerData.name}
@@ -226,7 +226,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                 )
                             }>
                                 <h2 className="font-semibold text-sm">بيانات العميل</h2>
-                                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedDetailsClients === "Details Clients" ? 'rotate-0' : 'rotate-180'}`} />
+                                <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedDetailsClients === "Details Clients" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
                             <div className="text-xs flex flex-col gap-[12px] overflow-auto transition-all duration-300">
                                 <div className="flex justify-between">
@@ -272,7 +272,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                 )
                             }>
                                 <h2 className="font-semibold text-sm">المنتجات</h2>
-                                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedProducts === "products" ? 'rotate-0' : 'rotate-180'}`} />
+                                <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedProducts === "products" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
                             <div className="flex flex-col gap-[18px] min-h-[20px]">
                                 {
@@ -286,7 +286,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                                 <div className="flex items-center justify-between">
                                                     <h2 className="text-[10px] font-semibold">{item.title}</h2>
                                                     <button title="حذف" className="cursor-pointer" onClick={() => handleDelete(index)}>
-                                                        <Image src="/assets/icons/delete.png" alt="delete" width={10} height={12} />
+                                                        <Image src="/media/shared/icons/delete.png" alt="delete" width={10} height={12} />
                                                     </button>
                                                 </div>
                                                 <ul className="flex flex-col gap-[12px]">
@@ -321,7 +321,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                 )
                             }>
                                 <h2 className="font-semibold text-sm">تفاصيل الفاتوره</h2>
-                                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedInvoice === "Invoice Details" ? 'rotate-0' : 'rotate-180'}`} />
+                                <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedInvoice === "Invoice Details" ? 'rotate-0' : 'rotate-180'}`} />
                             </div>
                             <div className={`transition-all duration-300 ${selectedInvoice === "Invoice Details" ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
                                 <ul className="flex flex-col gap-[12px]">
@@ -383,7 +383,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                     {
                                         paymentGetway.map((item, index) => {
                                             return <button key={index} onClick={() => setActivePaymentIndex(index)} title={item.title} className={`${activePaymentIndex == index ? 'bg-[var(--color-light-blue)] text-white hover:bg-white hover:text-[var(--color-light-blue)]' : 'hover:text-white hover:bg-[var(--color-light-blue)]'} group text-[var(--color-light-blue)] transition-all duration-300 cursor-pointer w-full py-[8px] flex gap-[6px] justify-center border border-[var(--color-light-blue)] rounded-[8px]`}>
-                                                <Image src={`/assets/icons/${item.icon}`} alt="critical" width={20} height={15} className={`${activePaymentIndex == index ? 'brightness-0 invert group-hover:brightness-[unset] group-hover:invert-[unset]' : 'group-hover:brightness-0 group-hover:invert'} transition-all duration-300`} />
+                                                <Image src={`/media/shared/icons/${item.icon}`} alt="critical" width={20} height={15} className={`${activePaymentIndex == index ? 'brightness-0 invert group-hover:brightness-[unset] group-hover:invert-[unset]' : 'group-hover:brightness-0 group-hover:invert'} transition-all duration-300`} />
                                                 <span className="text-[14px]">{item.title}</span>
                                             </button>
                                         })
@@ -402,7 +402,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                                 >
                                     {savingOrder ? "جارٍ..." : "طباعه ، وتأكيد العمليه"}
                                 </button>
-                                <Image src="/assets/icons/remove.svg" alt="critical" width={31} height={31} className="cursor-pointer" title="Remove" onClick={() => {
+                                <Image src="/media/shared/icons/remove.svg" alt="critical" width={31} height={31} className="cursor-pointer" title="Remove" onClick={() => {
                                     setRemovRoles(true)
                                 }} />
                             </div>
@@ -411,7 +411,7 @@ export default function SideBar({ isCart, setCart }: typeProducts) {
                 </div>
                 {activePaymentIndex != 0 && (
                     <div className="shadow-[0_0_10px_rgba(0,0,0,0.10)] bg-[#fff] rounded-[16px] py-[24px] px-[15px] flex items-center gap-[13px]">
-                        <Image src="/assets/icons/pin.svg" alt="pin" width={15} height={15} />
+                        <Image src="/media/shared/icons/pin.svg" alt="pin" width={15} height={15} />
                         <span className="font-semibold text-xs text-[var(--color-dark-gray-50)]">سيتم تسجيل العمليه عند مشرف المطعم بأنها قد تمت من خلال البطاقه البنكيه وليس دفع نقدي .</span>
                     </div>
                 )}

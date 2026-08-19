@@ -13,7 +13,7 @@ import { cashierApi, uploadsApi } from "@/utils/api";
 
 export default function Sales() {
     const router = useRouter()
-    const [imageSrc, setImageSrc] = useState('/img/trrruyeryer.svg');
+    const [imageSrc, setImageSrc] = useState('/media/shared/ui/image-placeholder.svg');
     const [imageFile, setImageFile] = useState<File | null>(null);
 
     const { showQr, setShowQr } = useInvoice();
@@ -130,7 +130,7 @@ export default function Sales() {
                 <div className="flex flex-col gap-[24px]">
                     <div className="px-4 w-full flex justify-between">
                         <p className="text-[#131313] font-semibold">بيانات الكاشير ( معلومات الفاتوره )</p>
-                        <img src="/img/ewewewew.svg" width="16" height="16" alt="icon" />
+                        <img src="/media/shared/ui/chevron-up.svg" width="16" height="16" alt="icon" />
                     </div>
                     <hr className="text-[var(--color-black-05)]" />
                 </div>
@@ -149,7 +149,7 @@ export default function Sales() {
                                 htmlFor="image-upload"
                                 className="flex justify-center items-center bg-[rgba(19,19,19,0.5)] text-white text-xs font-medium gap-2.5 w-[163px] h-8 rounded-lg -mt-7.5 relative z-[99] cursor-pointer"
                             >
-                                <img src="/img/UploadSimple.svg" alt="أيقونة تحميل" />
+                                <img src="/media/shared/ui/upload-white.svg" alt="أيقونة تحميل" />
                                 تحميل الصورة
                             </label>
                         </div>
@@ -206,7 +206,7 @@ export default function Sales() {
                             <div className="relative flex flex-col gap-[5px]">
                                 <div onClick={() => setShowSizePaper(prev => !prev)} className={`${showSizePaper && 'bg-gray-300'} border border-gray-300 py-[12px] px-2 rounded-[10px] flex justify-between`}>
                                     <span className={`${showSizePaper ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>حدد حجم الورقه</span>
-                                    <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${showSizePaper && 'rotate-180'}`} />
+                                    <Image src="/media/shared/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${showSizePaper && 'rotate-180'}`} />
                                 </div>
                                 {
                                     showSizePaper && <ul className="bg-white w-full border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-13 p-[8px] flex flex-col gap-2">
@@ -238,7 +238,7 @@ export default function Sales() {
                             <div className="relative flex flex-col gap-[5px]">
                                 <div onClick={() => setdate(prev => !prev)} className={`${date && 'bg-gray-300'} border border-gray-300 py-[12px] px-2 rounded-[10px] flex justify-between`}>
                                     <span className={`${date ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>حدد تنسيق الوقت</span>
-                                    <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${date && 'rotate-180'}`} />
+                                    <Image src="/media/shared/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${date && 'rotate-180'}`} />
                                 </div>
                                 {
                                     date && <ul className="bg-white w-full border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-13 p-[8px] flex flex-col gap-2">

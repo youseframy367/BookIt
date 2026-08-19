@@ -51,7 +51,7 @@ export default function Content({ items }: questionsAndAnswaer) {
                                     </span>
 
                                     <div className="hidden md:flex items-center gap-2">
-                                        <Image src="/assets/icons/arraw.png" alt="arraw" width={10} height={13} className={`transition-all duration-300 ${isOpen ? "rotate-[-90deg]" : "rotate-90"}`} />
+                                        <Image src="/media/shared/icons/arraw.png" alt="arraw" width={10} height={13} className={`transition-all duration-300 ${isOpen ? "rotate-[-90deg]" : "rotate-90"}`} />
                                     </div>
                                 </button>
 

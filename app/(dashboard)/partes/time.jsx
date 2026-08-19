@@ -7,9 +7,9 @@ export default function TimeSupscribtion({ typeScren = "big" }) {
   const [currentSponsor, setCurrentSponsor] = useState(0);
 
   const sponsors = [
-    "/img/result 1.png",
-    "/img/FAxacBciPwmGGziG44usNqMrhpSsBJqVGg6QXn0Q 1.png",
-    "/img/e6b08986e699dd21b87627e3b0a86a309ee36f03.png",
+    "/media/dashboard/branding/devmaster-logo.png",
+    "/media/dashboard/branding/obayah-logo.png",
+    "/media/dashboard/branding/cloud-boutique-logo.png",
   ];
 
   // تبديل العرض بين الوقت والصور كل 5 ثوانٍ

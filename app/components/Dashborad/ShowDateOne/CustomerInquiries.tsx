@@ -33,7 +33,7 @@ export default function CustomerInquiries() {
           hour: "2-digit",
           minute: "2-digit",
         }),
-        icon: "/img/msg.svg",
+        icon: "/media/shared/chat/message.svg",
       }))
     : Masg;
 
@@ -46,7 +46,7 @@ export default function CustomerInquiries() {
         <p className="text-[14px] font-semibold text-[#1D2026]">الاشعارات</p>
         <div className="flex items-center gap-[10px] text-[#6E7485] text-[12px] font-normal cursor-pointer ml-[10px]">
           <span>هذا الأسبوع</span>
-          <img src="/img/ChevronDown.svg" alt="icon" />
+          <img src="/media/shared/ui/chevron-down.svg" alt="icon" />
         </div>
       </div>
       <hr className="w-[100%] h-[1px] bg-[#E9EAF0] border-none" ></hr>

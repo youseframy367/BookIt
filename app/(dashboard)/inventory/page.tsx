@@ -20,7 +20,7 @@ import { inventoryApi } from "@/utils/api";
 const toRow = (item: any) => ({
     ...item,
     _id: item.id,
-    img: item.image || "/img/trrruyeryer.svg",
+    img: item.image || "/media/shared/ui/image-placeholder.svg",
     name: item.nameAr,
     kPrice: item.price ?? "-", // الباك إند لا يخزن سعراً للمكوّن حالياً
     kAmount: `${item.quantity} كيلو`,
@@ -119,7 +119,7 @@ export default function Inventory() {
                                         <p className="text-[#131313] font-semibold text-[20px]">
                                             فلتر المخزون
                                         </p>
-                                        <Image src="/assets/icons/close.png" alt="close" width={18} height={18} onClick={() => setShowFilter(false)} className="cursor-pointer" title="اغلاق" />
+                                        <Image src="/media/shared/icons/close.png" alt="close" width={18} height={18} onClick={() => setShowFilter(false)} className="cursor-pointer" title="اغلاق" />
                                     </div>
                                     <hr className="text-[var(--color-gray-six)]" />
 
@@ -133,7 +133,7 @@ export default function Inventory() {
                                                 <label htmlFor="" className="text-xs text-[var(--color-dark-bg-tow)]">الحاله</label>
                                                 <div onClick={() => setShowStatus(prev => !prev)} className={`${showStatus && 'bg-gray-300'} border border-gray-300 py-[12px] px-2 rounded-[10px] flex justify-between`}>
                                                     <span className={`${showStatus ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>حدد الحاله</span>
-                                                    <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${showStatus && 'rotate-180'}`} />
+                                                    <Image src="/media/shared/icons/arraw-down.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${showStatus && 'rotate-180'}`} />
                                                 </div>
                                                 {
                                                     showStatus && <ul className="bg-white w-full border border-1 border-[var(--color-gray-four)] rounded-lg absolute top-20 p-[8px] flex flex-col gap-2">
@@ -192,7 +192,7 @@ export default function Inventory() {
                 <div className="flex items-center gap-[15px] flex-1 justify-end">
                     <div className="relative w-[300px]">
                         <span className="absolute top-[10px] mr-[10px]">
-                            <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
+                            <img src="/media/shared/ui/search.svg" className="w-4 h-4" />
                         </span>
                         <input
                             type="search"
@@ -208,7 +208,7 @@ export default function Inventory() {
                         onClick={() => {
                             setShowFilter(true)
                         }}
-                        src="/img/Frame 1686553878.svg"
+                        src="/media/dashboard/overview/filter.svg"
                         className="w-[32px] h-[32px] cursor-pointer"
                         alt="filter"
                     />
@@ -266,13 +266,13 @@ export default function Inventory() {
                                     <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                                         <div className="flex items-center justify-center gap-[10px]">
                                             {/* تعديل المنتج — ننتقل لصفحة التعديل مع تمرير الـ id الحقيقي */}
-                                            <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
+                                            <img className="cursor-pointer" title="تعديل" src="/media/dashboard/actions/edit.svg" width="24px" height="24px" onClick={() => {
                                                 window.sessionStorage.setItem("inventoryEditId", m._id);
                                                 router.push("/inventory/" + m._id);
                                             }} />
 
                                             {/* حذف المنتج — فتح تأكيد ثم DELETE /inventory/:id */}
-                                            <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                                            <img className="cursor-pointer" title="حذف" src="/media/dashboard/actions/delete.svg" width="24px" height="24px" alt="حذف" onClick={() => {
                                                 setSelectedId(m._id);
                                                 setRemovRoles(true);
                                             }} />

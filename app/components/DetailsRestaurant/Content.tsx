@@ -10,13 +10,13 @@ import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 
 /* ============================== تبويب المنيو في تفاصيل المحل ==============================
    دعم روابط المعرض الحقيقية: لو icon يبدأ بـ http → نستخدمه مباشرة (رابط مرفوع)
-   وإلا: المسار القديم /assets/icons/{icon}.svg (أيقونات وهمية)
+   وإلا: المسار القديم /media/shared/icons/{icon}.svg (أيقونات وهمية)
    ============================================================================ */
 export default function Content({ gallery, businessId }: GalleryProps & { businessId?: string }) {
     const { mounted, i18n } = useTranslationSetup();
 
     /* تحويل اسم الأيقونة أو رابط URL إلى مسار صورة صالح */
-    const resolveSrc = (icon: string) => (icon.startsWith("http") ? icon : `/assets/icons/${icon}.svg`);
+    const resolveSrc = (icon: string) => (icon.startsWith("http") ? icon : `/media/shared/icons/${icon}.svg`);
 
     useEffect(() => {
         Fancybox.bind('[data-fancybox="gallery"]', {});
@@ -30,9 +30,9 @@ export default function Content({ gallery, businessId }: GalleryProps & { busine
                     {
                         Array.isArray(gallery) && typeof gallery[0] === "string" ? (
                             gallery.map((item, index) => {
-                                return <a data-fancybox="gallery" href={`/assets/icons/${item}.svg`} key={index} data-aos="fade-up" className="rounded-xl relative w-full h-[211px] md:h-[500px] overflow-hidden group">
+                                return <a data-fancybox="gallery" href={`/media/shared/icons/${item}.svg`} key={index} data-aos="fade-up" className="rounded-xl relative w-full h-[211px] md:h-[500px] overflow-hidden group">
                                     <div className="rounded-xl absolute bg-[var(--alpha)] w-full h-full"></div>
-                                    <Image src={`/assets/icons/${item}.svg`} alt="gallery" fill className="rounded-xl z-[-1] object-cover transition-all duration-300 group-hover:scale-[1.1] group-hover:rotate-[2deg]" />
+                                    <Image src={`/media/shared/icons/${item}.svg`} alt="gallery" fill className="rounded-xl z-[-1] object-cover transition-all duration-300 group-hover:scale-[1.1] group-hover:rotate-[2deg]" />
                                 </a>
                             })
                         ) : (

@@ -2,7 +2,7 @@ export const useInventoryData = () => {
     return [
         {
             id: "1",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "150 جنيه مصري",
             name: "هشام عبد الحميد",
             idNumber: "1020304050",
@@ -13,7 +13,7 @@ export const useInventoryData = () => {
         },
         {
             id: "2",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "200 جنيه مصري",
             name: "أحمد محمد",
             idNumber: "2030405060",
@@ -24,7 +24,7 @@ export const useInventoryData = () => {
         },
         {
             id: "3",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "120 جنيه مصري",
             name: "محمد علي",
             idNumber: "3040506070",
@@ -35,7 +35,7 @@ export const useInventoryData = () => {
         },
         {
             id: "4",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "175 جنيه مصري",
             name: "محمود خالد",
             idNumber: "4050607080",
@@ -46,7 +46,7 @@ export const useInventoryData = () => {
         },
         {
             id: "5",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "90 جنيه مصري",
             name: "خالد يوسف",
             idNumber: "5060708090",

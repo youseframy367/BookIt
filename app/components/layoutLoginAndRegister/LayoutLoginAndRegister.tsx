@@ -12,7 +12,7 @@ export default function LayoutLoginAndRegister({ isActiveLogo = true, width = "w
             <div className="w-full h-full absolute bg-black opacity-[0.7]">
             </div>
             <div className="w-full h-full absolute">
-                <Image src={`/assets/icons/${bg}`} alt="background image" fill className="-z-1 object-cover" />
+                <Image src={`/media/shared/icons/${bg}`} alt="background image" fill className="-z-1 object-cover" />
             </div>
             <div className="container flex flex-col justify-center items-center">
                 <form action=""
@@ -24,12 +24,12 @@ export default function LayoutLoginAndRegister({ isActiveLogo = true, width = "w
                         onClick={() => router.back()}
                     >
                         <div className="w-[20px] h-[20px] relative">
-                            <Image src="/assets/icons/close.png" alt="back" fill />
+                            <Image src="/media/shared/icons/close.png" alt="back" fill />
                         </div>
                     </div>
                     {
                         isActiveLogo && <img
-                            src="/assets/icons/logo-navbar.png"
+                            src="/media/shared/icons/logo-navbar.png"
                             width={80}
                             height={70}
                             className="-mt-2"

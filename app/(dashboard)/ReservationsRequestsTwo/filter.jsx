@@ -24,7 +24,7 @@ export default function Filter({ setFilter, onSearch }) {
             فلتر الحجوزات
           </h2>
           <img
-            src="/img/X.svg"
+            src="/media/shared/ui/close-muted.svg"
             width="18px"
             height="18px"
             className="cursor-pointer"

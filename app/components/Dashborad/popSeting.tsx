@@ -89,7 +89,7 @@ export default function PopSeting({ data, onClose }: isData) {
                 onClose()
                 router.push("/showDateOne/Portfolio")
               }}>
-              <img src="/img/ollll.svg" />
+              <img src="/media/dashboard/profile/user.svg" />
               عرض الملف الشخصى
             </p>
 
@@ -97,7 +97,7 @@ export default function PopSeting({ data, onClose }: isData) {
               className="font-[400] text-[10px] text-[#3D3D3D] flex gap-[8px] mx-[10px] p-[12px] rounded-[4px]"
               onClick={() => setTypePop("changePassword")}
             >
-              <img src="/img/gggg.svg" />
+              <img src="/media/dashboard/access/access-key.svg" />
               تغيير كلمة المرور
             </p>
 
@@ -105,14 +105,14 @@ export default function PopSeting({ data, onClose }: isData) {
               className="font-[400] text-[10px] text-[#3D3D3D] flex gap-[8px] mx-[10px] p-[12px] rounded-[4px]"
               onClick={() => setTypePop("technicalSupport")}
             >
-              <img src="/img/ChatCircleDots.svg" />
+              <img src="/media/shared/chat/message.svg" />
               الدعم الفنى
             </p>
 
             <hr className="w-[100%] h-[1px] bg-[#f5f1f1] border-none m-[0px]"></hr>
 
             <p className="font-[600]  text-[10px] text-[#2A50BB] flex gap-[8px] mx-[10px] p-[12px] rounded-[0px] m-[-7px] w-[100%]  ">
-              <img src="/img/حطتنح.svg" />
+              <img src="/media/dashboard/actions/logout.svg" />
               تسجيل الخروج
             </p>
           </div>
@@ -130,7 +130,7 @@ export default function PopSeting({ data, onClose }: isData) {
           {/* Header */}
           <div className="flex justify-between items-center">
             <p className="font-[600] text-[#131313]">تغير كلمة المرور</p>
-            <img src="/img/;;.svg" className="cursor-pointer ml-[20px]" onClick={onClose} />
+            <img src="/media/shared/ui/close.svg" className="cursor-pointer ml-[20px]" onClick={onClose} />
           </div>
 
           {/* Password Input */}
@@ -217,7 +217,7 @@ export default function PopSeting({ data, onClose }: isData) {
           {/* Header */}
           <div className="flex justify-between items-center mt-[15px]">
             <p className="font-[600] text-[#131313]">استفسار لخدمه العملا </p>
-            <img src="/img/;;.svg" className="cursor-pointer ml-[20px]" onClick={onClose} />
+            <img src="/media/shared/ui/close.svg" className="cursor-pointer ml-[20px]" onClick={onClose} />
           </div>
           <div className=" flex flex-col gap-[32px]">
 
@@ -235,7 +235,7 @@ export default function PopSeting({ data, onClose }: isData) {
               <textarea id="inq" rows={10} className="w-[400px] h-[160px]   bg-[#fff]  border-[1px] border-[#f0eeee] rounded-[10px] p-[10px]" ></textarea>
             </div>
           </div>
-          <button className="w-[400px] h-[48px] mt-[10px] bg-[#183866] text-[#fff] rounded-[12px] flex justify-center items-center gap-3">ارسال <img src="/img/paper-plane 1.png"></img></button>
+          <button className="w-[400px] h-[48px] mt-[10px] bg-[#183866] text-[#fff] rounded-[12px] flex justify-center items-center gap-3">ارسال <img src="/media/shared/chat/send.png"></img></button>
         </form>
       )}
     </div>

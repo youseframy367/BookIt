@@ -45,7 +45,7 @@ export default function PaymentMethod() {
           transition-all duration-300 absolute -top-1 left-[34%] h-[15px]
           ${isActive ? 'w-[136px]' : 'w-0'}
         `}>
-                                        <Image src="/assets/icons/line.svg" alt="line" fill />
+                                        <Image src="/media/shared/icons/line.svg" alt="line" fill />
                                     </div>
                                     <div className="w-full flex flex-col gap-[10px] md:gap-[20px]">
                                         <div className="flex flex-col gap-[20px]">
@@ -89,7 +89,7 @@ export default function PaymentMethod() {
                                                         className="flex gap-[10px] items-center"
                                                     >
                                                         <Image
-                                                            src="/assets/icons/like.svg"
+                                                            src="/media/shared/icons/like.svg"
                                                             alt="صح"
                                                             width={16}
                                                             height={16}

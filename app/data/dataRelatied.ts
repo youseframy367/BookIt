@@ -11,7 +11,7 @@ import { useTranslationSetup } from "@/app/hooks/useTranslationSetup";
 /* داتا وهمية احتياطية (نفس البيانات القديمة) */
 const dummyItems = [
   {
-    img: "/assets/icons/top-rated-1.png",
+    img: "/media/shared/icons/top-rated-1.png",
     name: "قصر الكبابجى",
     rating: 0.9,
     des: "مطعم يقدم أشهى المأكولات الشرقية",
@@ -19,7 +19,7 @@ const dummyItems = [
     area: "القاهرة",
   },
   {
-    img: "/assets/icons/top-rated-2.png",
+    img: "/media/shared/icons/top-rated-2.png",
     name: "كافيه النورس",
     rating: 0.6,
     des: "أجواء هادئة ومشروبات متنوعة",
@@ -27,7 +27,7 @@ const dummyItems = [
     area: "الجيزة",
   },
   {
-    img: "/assets/icons/top-rated-3.png",
+    img: "/media/shared/icons/top-rated-3.png",
     name: "مطعم الأصيل",
     rating: 0.8,
     des: "أطباق تراثية بلمسة عصرية",
@@ -39,7 +39,7 @@ const dummyItems = [
 /* تحويل بزنس من الباك إند إلى شكل RestaurantItem */
 function toRestaurantItem(biz: any, liked: boolean) {
   return {
-    img: biz.logo || "/assets/icons/top-rated-1.png",
+    img: biz.logo || "/media/shared/icons/top-rated-1.png",
     name: biz.name || "",
     rating: Number(biz.avgRating ?? 0),
     des: biz.description || "",

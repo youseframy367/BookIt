@@ -14,7 +14,7 @@ export default function Hero({ title, backgroundImage, paddingMobile }: dataHero
                     <div className="container flex items-center justify-center w-full h-full">
                         <h2 className={`${mounted ? i18n.language === 'ar' && "font-ArefRuqaa" : ""} text-white text-xl md:text-[89px] font-semibold`} dangerouslySetInnerHTML={{ __html: title || '' }}></h2>
                     </div>
-                    <Image src={`/assets/icons/${backgroundImage}.svg`} alt={backgroundImage} fill className="object-cover z-[-1]" />
+                    <Image src={`/media/shared/icons/${backgroundImage}.svg`} alt={backgroundImage} fill className="object-cover z-[-1]" />
                 </div>
             </div>
         </section>

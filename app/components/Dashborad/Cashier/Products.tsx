@@ -48,13 +48,13 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
                 <h2 className={`font-semibold text-base ${isScrolled && 'text-[var(--color-dark-blue-gray)] group-hover:text-white'}`}>{isScrolled ? 'العوده الي الأصناف' : 'أقسام المنتجات'}</h2>
                 {
                     isScrolled && <div className="transition-all duration-300 rotate-0 group-hover:-rotate-90 bg-white border border-[var(--color-dark-blue-gray)] p-2 rounded-full ">
-                        <Image src="/assets/icons/forward.svg" alt="forward" width={19} height={19} />
+                        <Image src="/media/shared/icons/forward.svg" alt="forward" width={19} height={19} />
                     </div>
                 }
                 <div className={`${isScrolled ? 'hidden' : 'flex'} items-center gap-[10px] flex-1 justify-end`}>
                     <div className="relative w-full max-w-[333px]">
                         <div className="absolute top-[10px] mr-[10px]">
-                            <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
+                            <img src="/media/shared/ui/search.svg" className="w-4 h-4" />
                         </div>
                         <input
                             value={search}
@@ -80,7 +80,7 @@ export default function Products({ isScrolled, setIsScrolled }: ProductsProps) {
                             <div className="flex-1 text-center">
                                 <span className="font-semibold text-[11px] whitespace-nowrap ">{item.title}</span>
                             </div>
-                            <Image src={`/assets/icons/${(item as any).icon || "products.svg"}`} alt="products" width={30} height={30} />
+                            <Image src={`/media/shared/icons/${(item as any).icon || "products.svg"}`} alt="products" width={30} height={30} />
                         </li>
                     })
                 }

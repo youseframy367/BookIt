@@ -22,8 +22,8 @@ export default function FooterBottom() {
                 <div className="flex gap-3 items-center">
                     <Link href="">
                         <div className="relative w-[26px] h-[25px] md:w-[87px] md:h-[87px]">
-                            <Image src="/assets/icons/logo-company.svg" alt="logo company" fill className="hidden md:block object-cover" />
-                            <Image src="/assets/icons/logo-company-mobile.svg" alt="logo company" fill className="md:hidden object-cover" />
+                            <Image src="/media/shared/icons/logo-company.svg" alt="logo company" fill className="hidden md:block object-cover" />
+                            <Image src="/media/shared/icons/logo-company-mobile.svg" alt="logo company" fill className="md:hidden object-cover" />
                         </div>
                     </Link>
                     <span className={`hidden md:block ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} font-normal text-sm`}>{mounted ? t('created') : '...'}</span>

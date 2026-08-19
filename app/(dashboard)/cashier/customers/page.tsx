@@ -84,7 +84,7 @@ export default function Customers() {
                     <div className="flex items-center gap-[15px] flex-1 justify-end">
                         <div className="relative w-[300px]">
                             <span className="absolute top-[10px] mr-[10px]">
-                                <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
+                                <img src="/media/shared/ui/search.svg" className="w-4 h-4" />
                             </span>
                             <input
                                 type="search"
@@ -170,7 +170,7 @@ export default function Customers() {
                                 }}>
                                     <div className="py-[13px] w-full flex justify-between items-center px-[25px]">
                                         <span className="text-base font-semibold">اضافة فرع جديد</span>
-                                        <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedAddRoles.includes(item.key) && 'rotate-179'}`} />
+                                        <Image src="/media/shared/icons/arraw-down.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedAddRoles.includes(item.key) && 'rotate-179'}`} />
                                     </div>
                                 </label>
                                 <hr className="text-[var(--color-black-05)]" />
@@ -188,10 +188,10 @@ export default function Customers() {
                                                             setEditTarget(item.key);
                                                             setRemovRoles(true);
                                                         }} >
-                                                            <img className="cursor-pointer" title="حذف" src="/assets/icons/remove.svg" width="24px" height="24px" alt="حذف" />
+                                                            <img className="cursor-pointer" title="حذف" src="/media/shared/icons/remove.svg" width="24px" height="24px" alt="حذف" />
                                                         </div>
                                                         <div onClick={() => { setEditTarget(item.key); setShowUpdateCustomer(true); }}>
-                                                            <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" />
+                                                            <img className="cursor-pointer" title="تعديل" src="/media/dashboard/actions/edit.svg" width="24px" height="24px" />
                                                         </div>
                                                     </div>
                                                 </div>

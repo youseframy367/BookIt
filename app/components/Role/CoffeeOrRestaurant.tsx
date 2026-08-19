@@ -36,7 +36,7 @@ export default function CoffeOrRestaurant() {
                                     ? "border-4 border-[var(--strong-red)]"
                                     : "border border-[rgba(72,72,72,0.5)]"}`}
                         >
-                            <Image src="/assets/icons/coffee.svg" width={124} height={30} alt="icon coffee" />
+                            <Image src="/media/shared/icons/coffee.svg" width={124} height={30} alt="icon coffee" />
                             <p className={`text-xl mt-4 mb-0 font-medium ${role === "Coffee" ? "text-[var(--color-red-dark)]" : "text-black"}`}>
                                 هل هذا الحساب خاص بكافيه
                             </p>
@@ -51,7 +51,7 @@ export default function CoffeOrRestaurant() {
                                     ? "border-4 border-[var(--strong-red)]"
                                     : "border border-[rgba(72,72,72,0.5)]"}`}
                         >
-                            <img src="/assets/icons/fill-our-blog.svg" className="w-[124px]" />
+                            <img src="/media/shared/icons/fill-our-blog.svg" className="w-[124px]" />
                             <p className={`text-xl mt-4 mb-0 font-medium ${role === "Restaurant" ? "text-[var(--color-red-dark)]" : "text-black"}`}>
                                 هل هذا الحساب خاص بمطعم
                             </p>
@@ -67,11 +67,11 @@ export default function CoffeOrRestaurant() {
                     <div className="flex justify-center items-center mt-[40px]">
                         <div className="flex flex-row-reverse -space-x-3 [&>*]:relative [&>*]:z-10 [&>*]:-ml-3">
                             {[
-                                "/assets/icons/user-1.svg",
-                                "/assets/icons/avatar-1.svg",
-                                "/assets/icons/avatar-2.svg",
-                                "/assets/icons/avatar-3.svg",
-                                "/assets/icons/avatar-4.svg",
+                                "/media/shared/icons/user-1.svg",
+                                "/media/shared/icons/avatar-1.svg",
+                                "/media/shared/icons/avatar-2.svg",
+                                "/media/shared/icons/avatar-3.svg",
+                                "/media/shared/icons/avatar-4.svg",
                             ].map((src, index) => (
                                 <Image
                                     key={index}

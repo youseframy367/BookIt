@@ -5,7 +5,7 @@ import AddAndUploadData from "@/app/components/Dashborad/AddAndUploadData";
 import Image from "next/image";
 
 export default function UpdateStartInventory({ id }: { id: string }) {
-    const [imageSrc, setImageSrc] = useState('/img/trrruyeryer.svg');
+    const [imageSrc, setImageSrc] = useState('/media/shared/ui/image-placeholder.svg');
     const [imageFile, setImageFile] = useState(null);
 
     const [amount, setamount] = useState(false);
@@ -45,7 +45,7 @@ export default function UpdateStartInventory({ id }: { id: string }) {
                     id="imageUpload"
                 />
                 <div className="p-5 flex flex-col gap-[20px]">
-                    <Image src="/assets/icons/upload-product.svg" alt="upload product" width={200} height={200} />
+                    <Image src="/media/shared/icons/upload-product.svg" alt="upload product" width={200} height={200} />
                 </div>
             </div>
             <div>
@@ -83,7 +83,7 @@ export default function UpdateStartInventory({ id }: { id: string }) {
                         <div className="relative flex flex-col gap-[10px]">
                             <span className="opacity-0">s</span>
                             <div onClick={() => setamount(prev => !prev)} className="rounded-l-lg relative before:content-[''] before:absolute before:top-[10%] before:right-0 before:bg-[var(--alpha)] before:h-[80%] before:w-[1px] bg-[var(--color-gray-nine)] py-[11px] px-4 flex gap-2 justify-between">
-                                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${amount && 'rotate-180'}`} />
+                                <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${amount && 'rotate-180'}`} />
                                 <span className={`${amount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>كيلو</span>
                             </div>
                             {
@@ -118,7 +118,7 @@ export default function UpdateStartInventory({ id }: { id: string }) {
                         <div className="relative flex flex-col gap-[9.5px]">
                             <span className="opacity-0">s</span>
                             <div onClick={() => setlastAmount(prev => !prev)} className="rounded-l-lg relative before:content-[''] before:absolute before:top-[10%] before:right-0 before:h-[80%] before:w-[1px] border border-gray-300 py-[11px] px-4 flex justify-between">
-                                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${lastAmount && 'rotate-180'}`} />
+                                <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${lastAmount && 'rotate-180'}`} />
                                 <span className={`${lastAmount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>كيلو</span>
                             </div>
                             {

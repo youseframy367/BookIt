@@ -11,7 +11,7 @@ export default function TermsAndConditions() {
                 <div className="container relative">
                     <div className="-z-1 absolute w-full h-full">
                         <div className="w-full h-full relative">
-                            <Image src="/assets/icons/squares-1.svg" alt="squares" fill />
+                            <Image src="/media/shared/icons/squares-1.svg" alt="squares" fill />
                         </div>
                     </div>
                     <Squares />

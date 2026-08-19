@@ -49,7 +49,7 @@ export default function Rating({ businessId }: { businessId?: string }) {
                 <div className="flex flex-col gap-[4px]">
                     <div className="flex gap-2">
                         <span className="font-normal text-2xl">{avg.toFixed(1)}</span>
-                        <Image src="/assets/icons/rating-star.svg" alt="rating star" width={16} height={16} />
+                        <Image src="/media/shared/icons/rating-star.svg" alt="rating star" width={16} height={16} />
                     </div>
                     <span className="text-nowrap text-md opacity-[0.5] font-normal">{mounted ? t("reviews") : ""}</span>
                 </div>

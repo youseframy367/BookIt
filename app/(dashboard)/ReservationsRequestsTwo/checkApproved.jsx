@@ -62,7 +62,7 @@ export default function ChackApproved({ typeChack, onclose }) {
                             ادخل ملاحظتك
                         </p>
                         <img
-                            src="/img/X.svg"
+                            src="/media/shared/ui/close-muted.svg"
                             alt="close"
                             className="cursor-pointer"
                             onClick={onclose}

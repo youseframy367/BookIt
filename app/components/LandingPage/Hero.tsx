@@ -10,7 +10,7 @@ export default function Hero() {
 
     return (
         <main id="paner" className="relative">
-            <div className="py-10 md:py-0 md:h-[800px] bg-[url('/assets/webp/bg.webp')]
+            <div className="py-10 md:py-0 md:h-[800px] bg-[url('/media/platform/landing/hero-background.webp')]
     bg-cover
     bg-center
     bg-no-repeat">
@@ -30,13 +30,13 @@ export default function Hero() {
           bg-[var(--strong-red)] text-white font-semibold text-[12px] md:text-[16px] transition-transform duration-200 hover:-translate-y-1`}
                         >
                             {mounted ? t('join-owner') : "..."}
-                            <img src="/assets/icons/uil_arrow-up(4).png" alt="arrow" className={`${mounted ? i18n.language === 'ar' && "-rotate-80" : ""}`} />
+                            <img src="/media/shared/icons/uil_arrow-up(4).png" alt="arrow" className={`${mounted ? i18n.language === 'ar' && "-rotate-80" : ""}`} />
                         </Link>
                     </div>
 
                     <div className="hidden md:block relative w-[150px] h-[150px]">
                         <a href="#down">
-                            <Image src="/assets/icons/down.png" alt="center" width={16} height={24} className="absolute top-15 left-17" />
+                            <Image src="/media/shared/icons/down.png" alt="center" width={16} height={24} className="absolute top-15 left-17" />
                         </a>
                         <svg
                             viewBox="0 0 200 200"

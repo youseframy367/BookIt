@@ -118,7 +118,7 @@ export default function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitl
                             className="transition-all duration-300 hover:scale-[1.03] relative z-10 bg-[rgba(255,119,87,0.1)] rounded-[15px]"
                           >
                             <div onClick={() => item.id && handleLike(String(item.id), liked.includes(String(item.id)))} className={`absolute z-1 top-0 cursor-pointer ${mounted ? i18n.language === 'ar' ? "rounded-tr-[14px] rounded-bl-[14px]" : "rounded-tl-[14px] rounded-br-[14px]" : ""} bg-[var(--strong-red)] p-2 md:p-8`}>
-                              <Image src={`/assets/icons/${(liked.includes(String(item.id)) || item.like) ? "full-heart" : "heart"}.svg`} alt="hert" width={24} height={24} />
+                              <Image src={`/media/shared/icons/${(liked.includes(String(item.id)) || item.like) ? "full-heart" : "heart"}.svg`} alt="hert" width={24} height={24} />
                             </div>
                             <Card item={item} index={index} toggleExpand={() => toggleExpand(index)} />
                           </div>
@@ -134,7 +134,7 @@ export default function TopRatedOrMostBooked({ dataRealtiedAndBooked, isShowTitl
                     <Link href={item.href} className={`flex items-center gap-2 px-4 py-3 rounded-[10px] bg-[var(--strong-red)] text-white text-xl md:text-2xl font-normal ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-Poppins" : ""}`}>
                       {mounted ? t("see-all") : "..."}
                       <Image
-                        src="/assets/icons/arraw.png" alt="arrow"
+                        src="/media/shared/icons/arraw.png" alt="arrow"
                         width={10}
                         height={10}
                         className={`${mounted ? i18n.language === 'ar' && "rotate-180" : ""} object-cover rounded-t-[15px] rounded-b-[3px]`}

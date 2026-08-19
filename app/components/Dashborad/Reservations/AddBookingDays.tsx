@@ -107,7 +107,7 @@ export default function AddBookingDays({ onClose }: passClose) {
               : "اضافة ايام حجز جديده"}
           </h2>
           <img
-            src="/img/X.svg"
+            src="/media/shared/ui/close-muted.svg"
             width="18px"
             height="18px"
             className="cursor-pointer"
@@ -164,7 +164,7 @@ export default function AddBookingDays({ onClose }: passClose) {
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
-                  src="/img/Group 1171275955.svg"
+                  src="/media/dashboard/reservations/calendar-grid.svg"
                   width="16px"
                   height="17px"
                   className="relative left-[30px]"
@@ -179,7 +179,7 @@ export default function AddBookingDays({ onClose }: passClose) {
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
-                  src="/img/Group 1171275955.svg"
+                  src="/media/dashboard/reservations/calendar-grid.svg"
                   width="16px"
                   height="17px"
                   className="relative left-[30px]"
@@ -206,7 +206,7 @@ export default function AddBookingDays({ onClose }: passClose) {
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
-                  src="/img/clock 2.svg"
+                  src="/media/shared/ui/clock.svg"
                   width="16px"
                   height="17px"
                   className="relative left-[30px]"
@@ -226,7 +226,7 @@ export default function AddBookingDays({ onClose }: passClose) {
                   className="border text-[#8C94A3] h-[42px] text-[12px] font-[400] border-gray-300 rounded-md px-3 py-2 w-[195px]"
                 />
                 <img
-                  src="/img/clock 2.svg"
+                  src="/media/shared/ui/clock.svg"
                   width="16px"
                   height="17px"
                   className="relative left-[30px]"

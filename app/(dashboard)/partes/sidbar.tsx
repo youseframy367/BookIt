@@ -33,17 +33,17 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
   }, [setParentSmoleScreen]);
 
   const navigat = [
-    { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/img/category-2.svg", iconActiv: "/img/qwqwwqq.svg" },
-    { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/Rejectedbookings', title: "طلبات الحجوزات", icon: "/img/trackkkk 1.svg", iconActiv: "/img/ffdrffd.svg" },
-    { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/assets/icons/roles.svg", iconActiv: "/assets/icons/white-roles.svg" },
-    { name: 'المشرفين', navigate: "/ModeratorsFor/AllMoerators", title: 'المشرفين', icon: "/img/modetorIcon.svg", iconActiv: "/img/modetorIconActiv.svg" },
-    { name: "التقارير", navigate: "/Reports/AllReports", title: " التقارير ", icon: "/img/Vector-10888.svg", iconActiv: "/img/Vector-145455.svg" },
+    { name: "لوحه التحكم", navigate: '/showDateOne/control', title: "لوحة التحكم الخاصة بإدارة BOOK IN", icon: "/media/dashboard/overview/grid.svg", iconActiv: "/media/dashboard/overview/grid-white.svg" },
+    { name: "طلبات الحجوزات", navigate: '/ReservationsRequestsTwo/Rejectedbookings', title: "طلبات الحجوزات", icon: "/media/dashboard/reservations/search-document.svg", iconActiv: "/media/dashboard/reservations/search-document-white.svg" },
+    { name: "الأدوار والصلاحيات", navigate: '/access-and-roles', title: "الأدوار والصلاحيات", icon: "/media/shared/icons/roles.svg", iconActiv: "/media/shared/icons/white-roles.svg" },
+    { name: 'المشرفين', navigate: "/ModeratorsFor/AllMoerators", title: 'المشرفين', icon: "/media/dashboard/team/moderators.svg", iconActiv: "/media/dashboard/team/moderators-white.svg" },
+    { name: "التقارير", navigate: "/Reports/AllReports", title: " التقارير ", icon: "/media/dashboard/reports/analytics.svg", iconActiv: "/media/dashboard/reports/analytics-white.svg" },
     {
       name: "الموارد البشرية",
       navigate: "/hr",
       title: "نظام الموارد البشرية",
-      icon: "/assets/icons/roles.svg",
-      iconActiv: "/assets/icons/white-roles.svg",
+      icon: "/media/shared/icons/roles.svg",
+      iconActiv: "/media/shared/icons/white-roles.svg",
       list: [
         { title: "لوحة موارد بشرية", navigate: "/hr" },
       ]
@@ -52,8 +52,8 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
       name: "الباقات والمزايا",
       navigate: "/subscriptions",
       title: "إدارة الباقات والمزايا",
-      icon: "/assets/icons/roles.svg",
-      iconActiv: "/assets/icons/white-roles.svg",
+      icon: "/media/shared/icons/roles.svg",
+      iconActiv: "/media/shared/icons/white-roles.svg",
       list: [
         { title: "الباقات وطلبات الوصول", navigate: "/subscriptions" },
       ]
@@ -62,8 +62,8 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
       name: "بيانات الموقع",
       navigate: "/site-profile",
       title: "إعدادات موقع النشاط",
-      icon: "/assets/icons/roles.svg",
-      iconActiv: "/assets/icons/white-roles.svg",
+      icon: "/media/shared/icons/roles.svg",
+      iconActiv: "/media/shared/icons/white-roles.svg",
       list: [
         { title: "الهوية والتواصل والقالب", navigate: "/site-profile" },
       ]
@@ -72,8 +72,8 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
       name: "المخزون",
       navigate: '/inventory',
       title: "المخزون",
-      icon: "/assets/icons/inventory.svg",
-      iconActiv: "/assets/icons/inventory-white.svg",
+      icon: "/media/shared/icons/inventory.svg",
+      iconActiv: "/media/shared/icons/inventory-white.svg",
       list: [
         { title: "اضافة منتج جديد للمخزون", navigate: "/inventory/add-inventory" },
         { title: "الجرد اليوميي", navigate: "/inventory/daily-inventory" },
@@ -85,8 +85,8 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
       name: "الكاشير",
       navigate: '/cashier',
       title: "الكاشير",
-      icon: "/assets/icons/cashier.svg",
-      iconActiv: "/assets/icons/cashier-active.svg",
+      icon: "/media/shared/icons/cashier.svg",
+      iconActiv: "/media/shared/icons/cashier-active.svg",
       list: [
         { title: "عمليات الكاشير المسجله", navigate: "/cashier/products" },
         { title: "نقاط البيع", navigate: "/cashier/customers" },
@@ -200,11 +200,11 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
       </div>
       <div className="flex flex-col gap-[24px] mx-5">
         <Link href="/showDateOne/Portfolio" className="flex gap-[13px] items-center" title="الملف الشخصي">
-          <Image src="/assets/icons/profile.svg" alt="profile" width={20} height={20} />
+          <Image src="/media/shared/icons/profile.svg" alt="profile" width={20} height={20} />
           <span className="font-normal text-xs text-[var(--color-dark-blue-gray)]">الملف الشخصي</span>
         </Link>
         <Link href="/" className="flex gap-[13px] items-center" title="تسجيل الخروج">
-          <Image src="/assets/icons/sign-out.svg" alt="sign out" width={20} height={20} />
+          <Image src="/media/shared/icons/sign-out.svg" alt="sign out" width={20} height={20} />
           <span className="font-normal text-xs text-[var(--color-red-bright-three)]">تسجيل الخروج</span>
         </Link>
       </div>

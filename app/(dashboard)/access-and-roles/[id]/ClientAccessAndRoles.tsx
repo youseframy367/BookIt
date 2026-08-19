@@ -64,7 +64,7 @@ export default function UpdateAccessAndRoles({ id }: { id: string }) {
                         <div className="flex justify-between items-center">
                             <span className="font-semibold text-base">عرض تفاصيل الدور ( AR )</span>
                             <Link href={`/access-and-roles/update/${id}`} className="border border-1 border-[var(--gray)] flex gap-[8px] rounded-[8px] py-[11px] px-[16px]">
-                                <Image src="/assets/icons/update.svg" alt="update" width={14} height={14} />
+                                <Image src="/media/shared/icons/update.svg" alt="update" width={14} height={14} />
                                 <span className="font-semibold text-[var(--color-black-50)]">تعديل</span>
                             </Link>
                         </div>

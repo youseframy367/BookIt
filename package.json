@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
+    "assets:verify": "node scripts/verify-static-assets.mjs",
     "netlify-build": "next build && next export"
   },
   "dependencies": {

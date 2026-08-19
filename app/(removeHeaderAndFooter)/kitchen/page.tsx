@@ -36,13 +36,13 @@ export default function Kitchen() {
                     <button title="right"
                         className="w-[60px] h-[60px] flex items-center justify-center rounded-xl bg-[var(--color-black-nine)] swiper-button-prev"
                     >
-                        <img src="/assets/icons/arraw.png" alt="right" />
+                        <img src="/media/shared/icons/arraw.png" alt="right" />
                     </button>
 
                     <button title="left"
                         className="w-[60px] h-[60px] flex items-center justify-center rounded-xl bg-[var(--color-black-nine)] swiper-button-next"
                     >
-                        <img src="/assets/icons/arraw.png" alt="left" className='rotate-180' />
+                        <img src="/media/shared/icons/arraw.png" alt="left" className='rotate-180' />
                     </button>
                 </div>
                 <Swiper
@@ -70,7 +70,7 @@ export default function Kitchen() {
                                     className={`${statusByIndex[index] == 'يتم تنفيذ الطلب' && 'bg-gradient-to-b from-[var(--color-teal-light)] to-[var(--color-cyan-light)]'} border border-[var(--color-cyan-light)] relative flex flex-col gap-[20px] py-[15px] md:py-[55px] px-[31px] rounded-[32px] text-white`}
                                 >
                                     <div className={`transition-all duration-300 absolute -top-1 left-[30%] h-[15px] ${statusByIndex[index] == 'يتم تنفيذ الطلب' ? 'w-[136px]' : 'w-0'}`}>
-                                        <Image src="/assets/icons/line.svg" alt="line" fill />
+                                        <Image src="/media/shared/icons/line.svg" alt="line" fill />
                                     </div>
                                     <div className="w-full flex flex-col gap-[10px] md:gap-[20px]">
                                         <div className={`${statusByIndex[index] == 'يتم تنفيذ الطلب' ? 'bg-gradient-to-b from-[var(--color-cyan-bright)] to-[var(--color-teal-dark-tow)]' : 'border border-[var(--color-white-light)] bg-[var(--color-white-overlay)]'} text-sm font-medium rounded-[12px] p-[14px] flex justify-between items-center`}>
@@ -109,7 +109,7 @@ export default function Kitchen() {
                                         <div title={item.textBtn}
                                             className={`${statusByIndex[index] == 'يتم تنفيذ الطلب' ? 'bg-gradient-to-b from-[var(--color-cyan-bright)] to-[var(--color-teal-dark-tow)]' : 'bg-gradient-to-br from-[var(--color-white-overlay)] to-[var(--color-transparent)] border border-2 border-[var(--color-white-light)]'} font-bold text-xs md:text-base flex items-center gap-2 flex-row-reverse justify-center px-4 py-[7px] md:px-8 md:py-[11px] w-full rounded-[12px] relative cursor-pointer transition-all duration-300`}
                                         >
-                                            <Image src={`/assets/icons/${item.icon}`} alt="image" width={22} height={22} />
+                                            <Image src={`/media/shared/icons/${item.icon}`} alt="image" width={22} height={22} />
                                             <span className="text-xs">{statusByIndex[index] || item.textBtn}</span>
                                         </div>
                                         {
@@ -120,21 +120,21 @@ export default function Kitchen() {
                                                     setOpenIndex(null);
                                                 }}>
                                                     <span className="flex-1 text-center">لم يتم التحديد بعد اضفط لتحديد الطلب</span>
-                                                    <Image src="/assets/icons/carcal.svg" alt="image" width={20} height={20} />
+                                                    <Image src="/media/shared/icons/order-status-pending.svg" alt="حالة الطلب معلقة" width={20} height={20} />
                                                 </li>
                                                 <li className="text-xs rounded-[6px] cursor-pointer flex justify-center" onClick={() => {
                                                     setStatusByIndex(prev => ({ ...prev, [index]: "يتم تنفيذ الطلب" }));
                                                     setOpenIndex(null);
                                                 }}>
                                                     <span className="flex-1 text-center">يتم تنفيذ الطلب</span>
-                                                    <Image src="/assets/icons/kitchen.svg" alt="image" width={20} height={20} />
+                                                    <Image src="/media/shared/icons/kitchen.svg" alt="image" width={20} height={20} />
                                                 </li>
                                                 <li className="text-xs rounded-[6px] cursor-pointer flex justify-center" onClick={() => {
                                                     setStatusByIndex(prev => ({ ...prev, [index]: "تم الانتهاء من تنفيذ الطلب" }));
                                                     setOpenIndex(null);
                                                 }}>
                                                     <span className="flex-1 text-center">تم الانتهاء من تنفيذ الطلب</span>
-                                                    <Image src="/assets/icons/finshed.svg" alt="image" width={20} height={20} />
+                                                    <Image src="/media/shared/icons/finshed.svg" alt="image" width={20} height={20} />
                                                 </li>
                                             </ul>
                                         }

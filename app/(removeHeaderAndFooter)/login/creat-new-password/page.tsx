@@ -55,7 +55,7 @@ export default function NewBassword() {
     <section>
       <div
         className="h-screen flex flex-col justify-center bg-cover bg-center -z-1"
-        style={{ backgroundImage: "url('/assets/webp/bg-new-password.webp')" }}
+        style={{ backgroundImage: "url('/media/platform/auth/new-password-background.webp')" }}
       >
         <div className="w-full h-full absolute bg-black opacity-[0.5]">
         </div>
@@ -68,13 +68,13 @@ export default function NewBassword() {
                 className="border-none outline-none"
               >
                 <div className="w-[20px] h-[20px] relative">
-                  <Image src="/assets/icons/close.png" alt="back" fill />
+                  <Image src="/media/shared/icons/close.png" alt="back" fill />
                 </div>
               </button>
             </div>
 
             <Image
-              src="/assets/icons/logo-navbar.png"
+              src="/media/shared/icons/logo-navbar.png"
               width={80}
               height={70}
               className="-mt-2"

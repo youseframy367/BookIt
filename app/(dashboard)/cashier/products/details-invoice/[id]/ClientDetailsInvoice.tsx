@@ -22,7 +22,7 @@ export default function ClientDetailsInvoice({ id }: { id: string }) {
                                         <p className="text-[#131313] font-semibold text-[20px]">
                                             فلتر المبيعات
                                         </p>
-                                        <Image src="/assets/icons/close.png" alt="close" width={18} height={18} onClick={() => setShowFilter(false)} className="cursor-pointer" title="اغلاق" />
+                                        <Image src="/media/shared/icons/close.png" alt="close" width={18} height={18} onClick={() => setShowFilter(false)} className="cursor-pointer" title="اغلاق" />
                                     </div>
                                     <hr className="text-[var(--color-gray-six)]" />
 
@@ -67,7 +67,7 @@ export default function ClientDetailsInvoice({ id }: { id: string }) {
 
                     <div className="relative w-full max-w-[200px]">
                         <span className="absolute top-[10px] mr-[10px]">
-                            <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
+                            <img src="/media/shared/ui/search.svg" className="w-4 h-4" />
                         </span>
                         <input
                             type="search"

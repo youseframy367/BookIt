@@ -9,7 +9,7 @@ export default function MainLayout({ children }) {
 
   const dataHeader={
     name:"قصر الكبابجى",
-    img :"/img/Ellipse 3255.svg",
+    img :"/media/dashboard/branding/avatar-badge.svg",
     email:"youseframy367@gmail.com",
   }
 
@@ -35,7 +35,7 @@ const [smoleScreen, setSmoleScreen] = useState(false);
                   <div onClick={()=>{
                     setShowSeting(true)
                   }}>
-                    <img src="/img/ChevronDown.svg" width='12px' height="12px" className={` transition-transform duration-300  cursor-pointer${showSeting ? "rotate-180" : ""}`}/>
+                    <img src="/media/shared/ui/chevron-down.svg" width='12px' height="12px" className={` transition-transform duration-300  cursor-pointer${showSeting ? "rotate-180" : ""}`}/>
                   </div>
                 </div>
               </header>

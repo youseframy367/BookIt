@@ -36,7 +36,7 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                             {showWarning && (
                                 <div className="flex gap-2 absolute -top-10 left-1/2 -translate-x-1/2 text-red-500 text-xs text-[var(--strong-red)] px-3 py-1 rounded">
                                     <span>{mounted ? t('waring-text') : '...'}</span>
-                                    <Image src="/assets/icons/warning.svg" alt="warning" width={12} height={11} className="red-icon" />
+                                    <Image src="/media/shared/icons/warning.svg" alt="warning" width={12} height={11} className="red-icon" />
                                 </div>
                             )}
                             <div className="h-full">
@@ -46,13 +46,13 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                                     onMouseLeave={() => setShowWarning(false)}>
                                     <div className="shadow-xl rounded-[20px] bg-gradient-to-br to-[var(--strong-red)] from-[var(--color-red-bright-four)] w-full relative">
                                         <div className="relative w-full h-[199px] md:h-[350px]">
-                                            <Image src="/assets/webp/wallet-numbers.webp" alt="user visa" fill className="object-cover rounded-[20px]" />
+                                            <Image src="/media/platform/payments/wallet-numbers-illustration.webp" alt="user visa" fill className="object-cover rounded-[20px]" />
                                         </div>
                                         <div className="py-[24px] px-[19px] flex flex-col justify-center gap-[17px] font-medium">
                                             <p className="text-white text-[8px] md:text-base leading-[18px] md:leading-[unset]">{mounted ? t('text-payment-1') : '...'}</p>
                                             <div className="text-[var(--color-gray-tow)] flex justify-center items-center gap-2">
                                                 <span className="text-sm">{mounted ? t('click-to-pay') : '...'}</span>
-                                                <Image src="/assets/icons/cursor-finger.svg" alt="cursor finger" width={14} height={14} />
+                                                <Image src="/media/shared/icons/cursor-finger.svg" alt="cursor finger" width={14} height={14} />
                                             </div>
                                         </div>
                                     </div>
@@ -65,7 +65,7 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                                                     className="text-white bg-gradient-to-b from-[var(--strong-red)] to-[var(--color-dark-blue)] font-semibold text-[10px] md:text-lg flex items-center gap-2 justify-center px-8 py-[11px] w-full rounded-[12px] relative cursor-pointer"
                                                 >
                                                     <div className="relative w-[18px] h-[12px] md:w-[24px] md:h-[16px]">
-                                                        <Image src="/assets/icons/icon-bank.svg" alt="icon bank" fill />
+                                                        <Image src="/media/shared/icons/icon-bank.svg" alt="icon bank" fill />
                                                     </div>
                                                     <span className="relative z-1">{mounted ? t('procedd-to-pay') : '...'}</span>
                                                 </Link>
@@ -81,13 +81,13 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                                     onMouseLeave={() => setShowWarning(false)}>
                                     <div className="h-full shadow-xl rounded-[20px] bg-gradient-to-br to-[var(--strong-red)] from-[var(--color-red-bright-four)] w-full relative">
                                         <div className="relative w-full h-[199px] md:h-[350px]">
-                                            <Image src="/assets/webp/face-wallet.webp" alt="user visa" fill className="object-cover rounded-[20px]" />
+                                            <Image src="/media/platform/payments/wallet-face-illustration.webp" alt="user visa" fill className="object-cover rounded-[20px]" />
                                         </div>
                                         <div className="py-[24px] px-[19px] flex flex-col justify-center gap-[17px] font-medium">
                                             <p className="text-white text-[8px] md:text-base leading-[18px] md:leading-[unset]">{mounted ? t('text-payment-2') : '...'}</p>
                                             <div className="text-[var(--color-gray-tow)] flex justify-center items-center gap-2">
                                                 <span className="text-sm">{mounted ? t('wallet') : '...'}</span>
-                                                <Image src="/assets/icons/cursor-finger.svg" alt="cursor finger" width={14} height={14} />
+                                                <Image src="/media/shared/icons/cursor-finger.svg" alt="cursor finger" width={14} height={14} />
                                             </div>
                                         </div>
                                     </div>
@@ -99,7 +99,7 @@ export default function IsSelectPaymentMethod({ allChecked }: typeAllChecked) {
                                                     <input type="submit" value={mounted ? t('pay-now') : '...'} title={mounted ? t('pay-now') : '...'} className="text-xs md:text-base mt-[1px] text-white py-[7px] ps-9 pe-2 md:py-[11px] w-full" />
                                                     <div className={`absolute top-[9px] md:top-[17px] ${mounted ? i18n.language === 'ar' ? "right-1" : "left-1" : ""}`}>
                                                         <div className="relative w-[18px] h-[12px] md:w-[24px] md:h-[16px]">
-                                                            <Image src="/assets/icons/icon-bank.svg" alt="icon bank" fill />
+                                                            <Image src="/media/shared/icons/icon-bank.svg" alt="icon bank" fill />
                                                         </div>
                                                     </div>
                                                 </div>

@@ -37,7 +37,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                             <div className={`absolute ${mounted ? i18n.language === 'ar' ? "right-3" : "left-3" : ""} md:top-4`}>
                                 <div className="relative w-[15px] h-[15px] md:w-[30px] md:h-[30px]">
                                     <Image
-                                        src="/assets/icons/calendar.svg"
+                                        src="/media/shared/icons/calendar.svg"
                                         alt="calendar"
                                         fill
                                     />
@@ -63,10 +63,10 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                                 </span>
                                                 <div className="flex gap-4">
                                                     <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-                                                        <Image src="/assets/icons/date-arraw.svg" alt="arraw" width={24} height={24} className="rotate-180" />
+                                                        <Image src="/media/shared/icons/date-arraw.svg" alt="arraw" width={24} height={24} className="rotate-180" />
                                                     </button>
                                                     <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-                                                        <Image src="/assets/icons/date-arraw.svg" alt="arraw" width={24} height={24} />
+                                                        <Image src="/media/shared/icons/date-arraw.svg" alt="arraw" width={24} height={24} />
                                                     </button>
                                                 </div>
                                             </div>
@@ -115,7 +115,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                         <div className={`absolute ${mounted ? i18n.language === 'ar' ? "right-3" : "left-3" : ""} top-4`}>
                                             <div className="relative w-[15px] h-[15px] md:w-[30px] md:h-[30px]">
                                                 <Image
-                                                    src="/assets/icons/user.svg"
+                                                    src="/media/shared/icons/user.svg"
                                                     alt="user"
                                                     fill
                                                 />
@@ -129,7 +129,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                                         <div className="absolute left-3 top-6">
                                             <div className="relative w-[15px] h-[15px] md:w-[30px] md:h-[30px]">
                                                 <Image
-                                                    src="/assets/icons/user.svg"
+                                                    src="/media/shared/icons/user.svg"
                                                     alt="user"
                                                     fill
                                                 />
@@ -142,7 +142,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                             }
                             {
                                 showError && <div className="flex items-center gap-2 absolute -bottom-8 text-[var(--strong-red)]">
-                                    <Image src="/assets/icons/warning.svg" alt="warning" width={12} height={11} className="red-icon" />
+                                    <Image src="/media/shared/icons/warning.svg" alt="warning" width={12} height={11} className="red-icon" />
                                     <span className="mt-[2.4px] text-[10px]">The maximum number are 20 of people</span>
                                 </div>
                             }
@@ -151,7 +151,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                     <div className={`${mounted ? i18n.language === 'ar' && "rotate-180" : ""} w-full px-8 md:px-0 md:w-[unset] hidden md:flex md:justify-center`}>
                         <Link title="Details Customer" href={nextPage || showError ? "" : "/details-customer"} className={`${nextPage || showError ? 'bg-[var(--color-gray-medium-transparent)] cursor-default' : 'bg-[var(--strong-red)]'} w-full md:w-[unset] border- arraw rounded-r-xl xl:px-[40px] flex justify-center items-center`}>
                             <div className="w-[28px] h-[60px] relative">
-                                <Image src="/assets/icons/arraw.png" alt="arraw" className="object-cover" fill />
+                                <Image src="/media/shared/icons/arraw.png" alt="arraw" className="object-cover" fill />
                             </div>
                         </Link>
                     </div>
@@ -159,7 +159,7 @@ export default function ButtonHero({ nextPage }: nextAndBackPage) {
                 <Link href="/details-customer" className="relative z-2 text-white w-full flex md:hidden justify-center bg-[var(--strong-red)] py-2 rounded-b-2xl">
                     <div className="keyframes-book items-center flex gap-3">
                         <span className="text-sm font-normal">{mounted ? t('book-table') : ""}</span>
-                        <Image src="/assets/icons/bookit.svg" alt="bookit" width={15} height={15} />
+                        <Image src="/media/shared/icons/bookit.svg" alt="bookit" width={15} height={15} />
                     </div>
                 </Link>
             </div>

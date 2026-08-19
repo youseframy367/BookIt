@@ -20,14 +20,14 @@ export default function Hero() {
                     <div className="container">
                         <div className="absolute top-5 md:top-13">
                             <Link title="back" href={`/details-restaurant-public/${id}`} className="hidden md:flex border border-2 border-white rounded-full py-[10px] px-[17px] bg-[var(--color-arraw-back)]">
-                                <Image src="/assets/icons/arraw.png" alt="arraw" width={14} height={30} className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} rotate-180`} />
+                                <Image src="/media/shared/icons/arraw.png" alt="arraw" width={14} height={30} className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} rotate-180`} />
                             </Link>
                             <Link title="back" href={`/details-restaurant-public/${id}`} className="md:hidden">
-                                <Image src="/assets/icons/arraw-mobile.svg" alt="arraw" width={44} height={44} />
+                                <Image src="/media/shared/icons/arraw-mobile.svg" alt="arraw" width={44} height={44} />
                             </Link>
                         </div>
                     </div>
-                    <Image src="/assets/webp/hero-menu.webp" alt="hero menu" fill className="object-cover z-[-1] rounded-[30px] md:rounded-none" />
+                    <Image src="/media/platform/menu/menu-hero.webp" alt="hero menu" fill className="object-cover z-[-1] rounded-[30px] md:rounded-none" />
                 </div>
             </div>
         </section>

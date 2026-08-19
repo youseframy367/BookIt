@@ -12,7 +12,7 @@ export default function OurBlog() {
           <Title title={mounted ? t("our-blog") : "..."} subTitle={mounted ? t("text-our-blog") : "..."} />
           <div className="grid md:grid-cols-[5fr_8.3fr] gap-10 md:gap-34 mt-12">
             <div className="h-[500px] md:h-[400px] md:h-auto w-full relative">
-              <Image src="/assets/icons/our-blog.png" alt="our blog" fill className="object-cover" />
+              <Image src="/media/shared/icons/our-blog.png" alt="our blog" fill className="object-cover" />
             </div>
             <div className="flex flex-col gap-[10px] md:gap-[37px] text-[var(--color-dark-blue)]">
               <p className={`text-xl md:text-[40px] md:leading-[70px] ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-PlayfairDisplay" : ""} font-normal`}>

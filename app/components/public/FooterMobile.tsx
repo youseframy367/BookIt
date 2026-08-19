@@ -101,32 +101,32 @@ export default function FooterMobile() {
                     <li>
                         <Link href="/" className={`overflow-hidden relative flex gap-3 rounded-full p-3 transition-all duration-300 ${isActive("/") && !show ? "w-full bg-[var(--color-red-overlay)] text-[var(--strong-red)]" : "w-[49px]"
                             }`}>
-                            <Image src="/assets/icons/home.svg" alt="home" width={24} height={24} className={`${isActive("/") && !show && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
+                            <Image src="/media/shared/icons/home.svg" alt="home" width={24} height={24} className={`${isActive("/") && !show && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
                             <span>Home</span>
                         </Link>
                     </li>
                     <li onClick={toggleSearch} className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${show ? "w-[33%] bg-[var(--color-red-overlay)] text-[var(--strong-red)]" : "w-[49px]"
                         }`}>
-                        <Image src={`/assets/icons/${show ? 'active-search' : 'search'}.svg`} alt="search" width={24} height={24} className={`${show && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
+                        <Image src={`/media/shared/icons/${show ? 'active-search' : 'search'}.svg`} alt="search" width={24} height={24} className={`${show && 'filter-[unset]'} opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0`} />
                         <span className="ms-2">Search</span>
                     </li>
                     <li>
                         <Link href="/liked-restaurants" className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${isActive("/liked-restaurants") ? "w-full bg-[var(--color-red-overlay)] text-[var(--strong-red)]" : "w-[49px]"
                             }`}>
-                            <Image src={`/assets/icons/${isActive("/liked-restaurants") ? "heart.png" : "heart-footer-bottom.svg"}`} alt="heart" width={24} height={24} />
+                            <Image src={`/media/shared/icons/${isActive("/liked-restaurants") ? "heart.png" : "heart-footer-bottom.svg"}`} alt="heart" width={24} height={24} />
                             <span className="ms-2">Like</span>
                         </Link>
                     </li>
                     <li>
                         <Link href="/about" className={`overflow-hidden relative flex gap-2 rounded-full p-3 transition-all duration-300 ${isActive("/about") ? "w-full bg-[var(--color-red-overlay)] text-[var(--strong-red)]" : "w-[49px]"
                             }`}>
-                            <Image src={`/assets/icons/${isActive("/about") ? "active-about" : "info"}.svg`} alt="info" width={24} height={24} />
+                            <Image src={`/media/shared/icons/${isActive("/about") ? "active-about" : "info"}.svg`} alt="info" width={24} height={24} />
                             <span className="ms-2">About</span>
                         </Link>
                     </li>
                     <li>
                         <button type="button" ref={buttonRef} onClick={toggleMenu}>
-                            <Image src="/assets/icons/menu.svg" alt="menu" width={24} height={24} className="opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0" />
+                            <Image src="/media/shared/icons/menu.svg" alt="menu" width={24} height={24} className="opacity-[0.6] filter invert sepia saturate-100 hue-rotate-180 brightness-0" />
                         </button>
                     </li>
                 </ul>
@@ -134,7 +134,7 @@ export default function FooterMobile() {
                 <div ref={menuRef} className={`p-[20px] flex flex-col gap-5 rounded-r-[20px] fixed top-0 overflow-scroll h-[91.1vh] transition-all duration-300 ${openMenu ? 'opacity-[1] left-0' : 'opacity-[0] left-[-70%]'} w-[70%] bg-gradient-to-br from-[var(--dark-charcoal)]/40 to-[var(--dark-charcoal)]/70 backdrop-blur-2xl text-white`}>
                     <div className="flex flex-col gap-[17px]">
                         <div className="flex justify-center">
-                            <Image src="/assets/icons/logo-mobile.svg" alt="logo" width={151} height={58} />
+                            <Image src="/media/shared/icons/logo-mobile.svg" alt="logo" width={151} height={58} />
                         </div>
                         <ul className="flex flex-col gap-[17px]">
                             {
@@ -142,7 +142,7 @@ export default function FooterMobile() {
                                     return <li className={`${pathname == item.link && 'bg-gradient-to-r from-[var(--color-red-light-overlay)] to-[var(--color-red-light-overlay)]/10'} py-3 px-4`} key={index}>
                                         <Link href={item.link} onClick={() => setOpenMenu(false)} className="flex gap-5">
                                             <div className="flex justify-start w-[25px]">
-                                                <img src={`/assets/icons/${item.icon}.svg`} alt={item.icon} />
+                                                <img src={`/media/shared/icons/${item.icon}.svg`} alt={item.icon} />
                                             </div>
                                             <span className="font-normal text-base">{mounted ? item.title : '...'}</span>
                                         </Link>
@@ -158,10 +158,10 @@ export default function FooterMobile() {
                             </div>
                         }
                         <div dir="ltr" onClick={toggleLanguage} className="bg-[var(--is-gray-seven)] cursor-pointer border border-[var(--strong-red)] rounded-[50px] p-[13px] flex justify-between items-center">
-                            <Image src="/assets/icons/change-language.svg" alt='language' width={20} height={20} className={`transition-all duration-300 ${i18n.language == 'ar' ? 'rotate-180' : 'rotate-0'}`} />
+                            <Image src="/media/shared/icons/change-language.svg" alt='language' width={20} height={20} className={`transition-all duration-300 ${i18n.language == 'ar' ? 'rotate-180' : 'rotate-0'}`} />
                             <div className="flex gap-[8px]">
                                 <span className="text-md">{i18n.language == 'ar' ? 'English' : 'العربيه'}</span>
-                                <Image src={`/assets/icons/${i18n.language == 'ar' ? 'en' : 'ar'}.svg`} alt='lang' width={30} height={30} onClick={toggleLanguage} className="object-cover rounded-full" />
+                                <Image src={`/media/shared/icons/${i18n.language == 'ar' ? 'en' : 'ar'}.svg`} alt='lang' width={30} height={30} onClick={toggleLanguage} className="object-cover rounded-full" />
                             </div>
                         </div>
                     </div>

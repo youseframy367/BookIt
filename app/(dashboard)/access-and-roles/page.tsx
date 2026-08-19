@@ -99,7 +99,7 @@ export default function AccessAndRoles() {
 
                     <div className="relative w-full max-w-[200px]">
                         <span className="absolute top-[10px] mr-[10px]">
-                            <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
+                            <img src="/media/shared/ui/search.svg" className="w-4 h-4" />
                         </span>
                         <input
                             type="search"
@@ -176,14 +176,14 @@ export default function AccessAndRoles() {
                                                 () => {
                                                     router.push(`/access-and-roles/${customer.id}`);
                                                 }}>
-                                                <img src="/img/كمغخخحه.svg" width="10" height="8px" />
+                                                <img src="/media/dashboard/actions/chevron-up.svg" width="10" height="8px" />
                                             </span>
 
-                                            <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
+                                            <img className="cursor-pointer" title="تعديل" src="/media/dashboard/actions/edit.svg" width="24px" height="24px" onClick={() => {
                                                 router.push(`/access-and-roles/update/${customer.id}`);
                                             }} />
 
-                                            <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                                            <img className="cursor-pointer" title="حذف" src="/media/dashboard/actions/delete.svg" width="24px" height="24px" alt="حذف" onClick={() => {
                                                 setRemovRoles(true)
                                                 setId(customer.id);
                                             }} />

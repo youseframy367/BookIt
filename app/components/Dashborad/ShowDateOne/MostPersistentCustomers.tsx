@@ -47,7 +47,7 @@ export default function MostPersistentCustomers() {
         <p className="text-[14px] font-semibold text-[#131313]">أكثر العملاء استمراراً</p>
         <div className="flex items-center gap-[10px] text-[#6E7485] text-[12px] font-normal cursor-pointer ml-[5px]">
           <span>هذا الشهر</span>
-          <img src="/img/ChevronDown.svg" alt="icon" />
+          <img src="/media/shared/ui/chevron-down.svg" alt="icon" />
         </div>
       </div>
       {/*------------------------------------tabel content most customer -----------------------------------------*/}

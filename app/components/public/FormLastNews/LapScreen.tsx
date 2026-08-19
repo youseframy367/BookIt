@@ -18,7 +18,7 @@ export default function LapScreen() {
                         <label htmlFor="" className="flex flex-col gap-2">
                             <div className="flex flex-wrap gap-4">
                                 <div className="flex gap-[13px] bg-white w-full rounded-full relative items-center">
-                                    <Image src="/assets/icons/mail.svg" alt="الأيميل" width={16} height={13} className="top-[32.5%] left-2 absolute filter brightness-0 opacity-[0.4]" />
+                                    <Image src="/media/shared/icons/mail.svg" alt="الأيميل" width={16} height={13} className="top-[32.5%] left-2 absolute filter brightness-0 opacity-[0.4]" />
                                     <input type="email" placeholder={mounted ? t('enter-email') : '...'} className={`w-full px-8 py-4 rounded-full font-normal text-xs ${mounted ? i18n.language === 'en' && "font-rubik" : ""} placeholder:text-[var(--color-gray-four)]`} />
                                 </div>
                                 <input value={mounted ? t('subscribe-news-letter') : '...'} type="submit" className={`disabled:opacity-[0.5] disabled:cursor-not-allowed w-full font-normal text-sm ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} bg-white px-2 py-3 rounded-full`} />

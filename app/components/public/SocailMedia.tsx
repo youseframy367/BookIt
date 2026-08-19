@@ -40,7 +40,7 @@ export default function SocailMedia({ isBorder, filter }: myFilter) {
                     <a href={item.link} target="_blank" rel="noopener noreferrer">
                         <div className={`${isBorder} relative ${item.width} ${item.height}`}>
                             <Image
-                                src={`/assets/icons/${item.icon}.svg`}
+                                src={`/media/shared/icons/${item.icon}.svg`}
                                 alt={item.title}
                                 fill
                                 className={`${filter}`} />

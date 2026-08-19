@@ -17,7 +17,7 @@ export default function LabScreen() {
             <div className="pb-10 pt-50 grid grid-cols-2 xl:grid-cols-[3fr_2fr_2fr_2fr_2fr] gap-5">
                 <div className="items-center flex flex-col gap-5">
                     <div className="relative w-full md:w-[261px] h-[95px]">
-                        <Image src="/assets/icons/logo-footer.svg" alt="logo" fill className="object-cover" />
+                        <Image src="/media/shared/icons/logo-footer.svg" alt="logo" fill className="object-cover" />
                     </div>
                     <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-xs font-normal`}>{mounted ? t('copyright') : '...'}</span>
                 </div>

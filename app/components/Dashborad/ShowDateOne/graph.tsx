@@ -108,7 +108,7 @@ export default function Graph() {
           </p>
           <h3 className="flex items-center gap-[10px] text-[#6E7485] text-[12px] font-normal cursor-pointer">
             هذا الشهر
-            <img src="/img/ChevronDown.svg" alt="arrow" />
+            <img src="/media/shared/ui/chevron-down.svg" alt="arrow" />
           </h3>
         </div>
 
@@ -163,7 +163,7 @@ export default function Graph() {
             الأرباح
           </p>
           <h3 className="flex items-center gap-[10px] text-[#6E7485] text-[12px] cursor-pointer">
-            هذا الشهر <img src="/img/ChevronDown.svg" />
+            هذا الشهر <img src="/media/shared/ui/chevron-down.svg" />
           </h3>
         </div>
 

@@ -28,7 +28,7 @@ export default function AddOrUpdatePopUp({ title, text, input, defaultText, onSa
                             {title}
                         </p>
                         <div className="cursor-pointer" title="close" onClick={() => setShowCustomer(false)}>
-                            <Image src="/assets/icons/close.png" alt="close" width={18} height={18} />
+                            <Image src="/media/shared/icons/close.png" alt="close" width={18} height={18} />
                         </div>
                     </div>
 

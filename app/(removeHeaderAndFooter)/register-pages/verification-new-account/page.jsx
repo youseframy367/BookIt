@@ -81,7 +81,7 @@ export default function VerificationCodeNewAcount() {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-[url('/assets/webp/bg-otp.webp')] bg-cover bg-center">
+    <div className="fixed inset-0 flex items-center justify-center bg-[url('/media/platform/auth/otp-background.webp')] bg-cover bg-center">
 
       {/* Popup */}
       {pop && (
@@ -111,14 +111,14 @@ export default function VerificationCodeNewAcount() {
           >
             {/* onClick={() => navigate("/login")} */}
             <div className="w-[20px] h-[20px] relative">
-              <Image src="/assets/icons/close.png" alt="back" fill />
+              <Image src="/media/shared/icons/close.png" alt="back" fill />
             </div>
           </button>
         </div>
 
         {/* Logo */}
         <Image
-          src="/assets/icons/logo-navbar.png"
+          src="/media/shared/icons/logo-navbar.png"
           width={80}
           height={70}
           className="-mt-2"

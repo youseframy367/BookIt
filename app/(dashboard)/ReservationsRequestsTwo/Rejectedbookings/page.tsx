@@ -197,7 +197,7 @@ export default function Rejectedbookings() {
 
           <div className="relative w-full max-w-[200px]">
             <span className="absolute top-[10px] mr-[10px]">
-              <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
+              <img src="/media/shared/ui/search.svg" className="w-4 h-4" />
             </span>
             <input
               type="search"
@@ -209,7 +209,7 @@ export default function Rejectedbookings() {
           </div>
 
           <img
-            src="/img/Frame 1686553878.svg"
+            src="/media/dashboard/overview/filter.svg"
             className="w-[32px] h-[32px] cursor-pointer"
             alt="filter"
             onClick={() => setFilter(true)}
@@ -238,7 +238,7 @@ export default function Rejectedbookings() {
           >
             تعيين ايام الحجز والأعداد التي يمكنك استيعابها
 
-            <img src={AddDay ? "/img/77777.svg" : "/img/fgtfddg.svg"} alt="icon" />
+            <img src={AddDay ? "/media/dashboard/navigation/reservations-white.svg" : "/media/dashboard/reservations/calendar-active.svg"} alt="icon" />
 
           </button>
 
@@ -325,12 +325,12 @@ export default function Rejectedbookings() {
                     <td className="px-[8px] py-[15px]  text-[10px] font-[400] text-[rgba(29,29,29,0.7)] overflow-hidden whitespace-nowrap border-b border-[#F6F6F6] text-center">
                       <div className="flex items-center justify-center gap-[10px]">
                         <span className="flex justify-center items-center bg-[#F4F4FE] rounded-full h-[24px] w-[24px]" onClick={() => { saveDataInSecon(day) }}>
-                          <img src="/img/كمغخخحه.svg" width="10" height="8px" />
+                          <img src="/media/dashboard/actions/chevron-up.svg" width="10" height="8px" />
                         </span>
-                        <img src="/img/تعديل.svg" width="24px" height="24px" onClick={() => saveDataInSecon(day)}
+                        <img src="/media/dashboard/actions/edit.svg" width="24px" height="24px" onClick={() => saveDataInSecon(day)}
                         ></img>
 
-                        <img src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                        <img src="/media/dashboard/actions/delete.svg" width="24px" height="24px" alt="حذف" onClick={() => {
                           setRemoveBooking(true)
                           setId(day.id);
                           setApproved(day.approved)

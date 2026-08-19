@@ -16,7 +16,7 @@ export default function NotFound() {
                             loop
                             playsInline
                         >
-                            <source src="/assets/videos/error.mp4" type="video/mp4" />
+                            <source src="/media/platform/system/not-found-video.mp4" type="video/mp4" />
                             Your browser does not support the video tag.
                         </video>
                     </div>

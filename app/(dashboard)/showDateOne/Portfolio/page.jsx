@@ -60,7 +60,7 @@ export default function Portfolio() {
     numPon: "",
     lastNumPon: "",
     TypeOfTrade: "",
-    image: "/img/lkhgkjggujk.svg",
+    image: "/media/dashboard/profile/owner-portrait.svg",
   });
 
   const [disabledInputs, setDisabledInputs] = useState({
@@ -88,7 +88,7 @@ export default function Portfolio() {
             numPon: data.phone || "",
             lastNumPon: data.altPhone || "",
             TypeOfTrade: data.type === "CAFE" ? "حساب خاص بكافيه" : "حساب خاص بمطعم",
-            image: data.logo || "/img/lkhgkjggujk.svg",
+            image: data.logo || "/media/dashboard/profile/owner-portrait.svg",
           });
         }
       } catch (e) {
@@ -183,7 +183,7 @@ export default function Portfolio() {
       <div className="flex gap-[15px]">
         <div className="w-[90%] md:w-[264px] h-[316px] bg-[#F4F4FE] rounded-[20px] m-[10px] mt-[20px] relative">
           <label className="flex relative translate-x-[-1rem] translate-y-[1rem] z-10 justify-center items-center gap-[8px] bg-[#fff] w-[89px] h-[36px] rounded-[8px] shadow-[0_1px_1px_rgba(0,0,0,0.25)] cursor-pointer">
-            <img src="/img/نمالمخهناه.svg" width="14px" height="14px" />
+            <img src="/media/dashboard/actions/edit-outline.svg" width="14px" height="14px" />
             <p>تعديل</p>
             <input
               type="file"
@@ -215,7 +215,7 @@ export default function Portfolio() {
               className=" text-[16px] font-[400] text-[#8C94A3] w-[100%] h-[48px] rounded-[8px] px-[5px] border-[#E9EAF0] border-[1px] outline-none"
             />
             <img
-              src="/img/نمالمخهناه.svg"
+              src="/media/dashboard/actions/edit-outline.svg"
               className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("placeName")}
@@ -232,7 +232,7 @@ export default function Portfolio() {
               className=" text-[16px] font-[400] text-[#8C94A3] w-[100%] h-[48px] rounded-[8px] px-[5px] border-[#E9EAF0] border-[1px] outline-none"
             />
             <img
-              src="/img/نمالمخهناه.svg"
+              src="/media/dashboard/actions/edit-outline.svg"
               className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("site")}
@@ -250,7 +250,7 @@ export default function Portfolio() {
               className=" text-[16px] font-[400] text-[#8C94A3] w-[100%]  h-[48px] rounded-[8px] px-[5px] border-[#E9EAF0] border-[1px] outline-none"
             />
             <img
-              src="/img/نمالمخهناه.svg"
+              src="/media/dashboard/actions/edit-outline.svg"
               className="w-[16px] h-[16px] absolute top-[50px] right-[5%] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("email")}
@@ -267,7 +267,7 @@ export default function Portfolio() {
               className=" text-[16px] font-[400] text-[#8C94A3] w-[100%] h-[48px] rounded-[8px] px-[5px] border-[#E9EAF0] border-[1px] outline-none"
             />
             <img
-              src="/img/نمالمخهناه.svg"
+              src="/media/dashboard/actions/edit-outline.svg"
               className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("numPon")}
@@ -284,7 +284,7 @@ export default function Portfolio() {
               className=" text-[16px] font-[400] text-[#23BD33] w-[100%] h-[48px] rounded-[8px] px-[5px] border-[#E9EAF0] border-[1px] outline-none"
             />
             <img
-              src="/img/نمالمخهناه.svg"
+              src="/media/dashboard/actions/edit-outline.svg"
               className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("TypeOfTrade")}
@@ -301,7 +301,7 @@ export default function Portfolio() {
               className=" text-[16px] font-[400] text-[#8C94A3] w-[100%] h-[48px] rounded-[8px] px-[5px] border-[#E9EAF0] border-[1px] outline-none"
             />
             <img
-              src="/img/نمالمخهناه.svg"
+              src="/media/dashboard/actions/edit-outline.svg"
               className="w-[16px] h-[16px] absolute top-[50px] right-[10px] -translate-y-1/2 cursor-pointer z-30"
               alt="Edit"
               onClick={() => handleEditClick("lastNumPon")}
@@ -331,7 +331,7 @@ export default function Portfolio() {
               });
             }}
           >
-            <img src="/img/gtfg.svg" alt="icon" />
+            <img src="/media/dashboard/actions/copy.svg" alt="icon" />
           </div>
 
           <a

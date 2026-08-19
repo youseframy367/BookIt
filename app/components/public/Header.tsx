@@ -98,12 +98,12 @@ export default function Header() {
                                 {activeUser &&
                                     <div className='relative flex items-center gap-[8px]'>
                                         <div className='whitespace-nowrap flex items-center gap-[8px] w-full' onClick={() => setSelectedLogOut(prev => !prev)}>
-                                            <Image src="/assets/icons/user.svg" alt='user' width={14} height={14} />
+                                            <Image src="/media/shared/icons/user.svg" alt='user' width={14} height={14} />
                                             <span className='text-[var(--color-red-1)] font-normal text-xs'>Hello, Hesham abdelhamid</span>
-                                            <Image src="/assets/icons/arraw-select.svg" alt='arraw-select' width={10} height={10} className={`transition-all duration-400 ${selectedLogOut ? '-rotate-0' : '-rotate-180'}`} />
+                                            <Image src="/media/shared/icons/arraw-select.svg" alt='arraw-select' width={10} height={10} className={`transition-all duration-400 ${selectedLogOut ? '-rotate-0' : '-rotate-180'}`} />
                                         </div>
                                         <Link href="" className={`${selectedLogOut ? 'opacity-100' : 'opacity-0'} gap-[12px] flex justify-center rounded-[10px] py-[13px] px-[30px] shadow-[0_0px_2px_var(--color-black-tow)] absolute -bottom-17 w-full bg-white ${selectedLogOut ? 'z-2' : 'z-0'}`}>
-                                            <Image src="/assets/icons/sign-out.svg" alt={mounted ? t("sign-out") : "..."} width={24} height={24} />
+                                            <Image src="/media/shared/icons/sign-out.svg" alt={mounted ? t("sign-out") : "..."} width={24} height={24} />
                                             <span className='text-nowrap text-[var(--color-red-2)]'>{mounted ? t("sign-out") : "..."}</span>
                                         </Link>
                                     </div>
@@ -128,7 +128,7 @@ export default function Header() {
                                                 }
                                                 {
                                                     mounted && <div className="cursor-pointer">
-                                                        <Image src={`/assets/icons/${i18n.language == 'ar' ? 'en' : 'ar'}.svg`} alt='lang' width={30} height={30} onClick={toggleLanguage} />
+                                                        <Image src={`/media/shared/icons/${i18n.language == 'ar' ? 'en' : 'ar'}.svg`} alt='lang' width={30} height={30} onClick={toggleLanguage} />
                                                     </div>
                                                 }
                                             </>
@@ -143,17 +143,17 @@ export default function Header() {
                     <div className="flex py-2 items-center justify-between">
                         <div className={`w-full ${mounted ? i18n.language === 'ar' ? "md:w-[43%] ml-3 " : "lg:w-[730px]" : ""} flex items-center gap-2`}>
                             <Link href="/" title='BOOK IT'>
-                                <Image src="/assets/icons/logo.svg" alt='logo' width={139} height={54} />
+                                <Image src="/media/shared/icons/logo.svg" alt='logo' width={139} height={54} />
                             </Link>
                             <div className="w-[75%] bg-[var(--very-light-gray)] rounded-full relative flex items-center">
-                                <Image src="/assets/icons/search.svg" alt='search' width={20} height={20} className='absolute start-5' />
+                                <Image src="/media/shared/icons/search.svg" alt='search' width={20} height={20} className='absolute start-5' />
                                 <input value={search}
                                     onChange={(e) => {
                                         const value = e.target.value;
                                         setSearch(value);
                                         setShow(value.trim().length > 0);
                                     }} type="text" className={`py-2 my-1 ${mounted ? i18n.language === 'ar' && "font-cairo" : ""} font-normal w-[100%] h-full rounded-full ps-14`} placeholder={mounted ? t('search') : '...'} />
-                                <Image src="/assets/icons/map.svg" alt='map' width={24} height={24} className='hidden lg:flex absolute end-5 filter invert sepia saturate-500 hue-rotate-[200deg]' />
+                                <Image src="/media/shared/icons/map.svg" alt='map' width={24} height={24} className='hidden lg:flex absolute end-5 filter invert sepia saturate-500 hue-rotate-[200deg]' />
                             </div>
                         </div>
                         <div className='gap-3 items-center hidden lg:flex'>
@@ -191,7 +191,7 @@ export default function Header() {
                             <ul className={`z-1 rounded-b-xl border-t-2 border-[var(--color-gray-light-transparent)] border-top absolute bg-white w-full lg:w-[550px] ${mounted ? i18n.language === 'ar' ? "lg:right-34" : "lg:left-34" : ""}`}>
                                 <li className='flex justify-between items-center p-3'>
                                     <div className='flex items-center gap-5'>
-                                        <Image src="/assets/icons/icon-resturans.svg" alt='resturans' width={40} height={40} className='object-cover' />
+                                        <Image src="/media/shared/icons/icon-resturans.svg" alt='resturans' width={40} height={40} className='object-cover' />
                                         <div className='flex flex-col gap-2'>
                                             <h2 className='text-base font-normal'>Qasr elkbabgi</h2>
                                             <span className='opacity-[0.5] text-[10px] font-normal'>Next to Jumia Building & BLOM Bank, 90th Street, New Cairo, Cairo Governorate, Egypt.</span>
@@ -201,7 +201,7 @@ export default function Header() {
                                 </li>
                                 <li className='flex justify-between items-center p-3'>
                                     <div className='flex items-center gap-5'>
-                                        <Image src="/assets/icons/icon-resturans.svg" alt='resturans' width={40} height={40} className='object-cover' />
+                                        <Image src="/media/shared/icons/icon-resturans.svg" alt='resturans' width={40} height={40} className='object-cover' />
                                         <div className='flex flex-col gap-2'>
                                             <h2 className='text-base font-normal'>Qasr elkbabgi</h2>
                                             <span className='opacity-[0.5] text-[10px] font-normal'>Next to Jumia Building & BLOM Bank, 90th Street, New Cairo, Cairo Governorate, Egypt.</span>

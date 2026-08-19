@@ -28,13 +28,13 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                             <h2 className="text-lg font-semibold">حدد طريقة الدفع</h2>
                             <div className="h-full relative border border-1 border-[var(--color-gray-light-translucent)] py-[15px] md:py-[41px] px-[20px] md:px-[56px] rounded-[32px] bg-[linear-gradient(to_bottom,var(--color-one-payment-card),var(--color-cyan-transparent),var(--color-cyan-light-transparent))]">
                                 <div className="absolute left-0 md:-left-22 top-0">
-                                    <Image src="/assets/icons/rectangle-1.svg" alt="rectangle" width={500} height={878} className="object-cover" />
+                                    <Image src="/media/shared/icons/rectangle-1.svg" alt="rectangle" width={500} height={878} className="object-cover" />
                                 </div>
                                 <ul className="flex flex-col gap-5 relative z-1">
                                     <li className="w-full flex flex-col gap-[23px]">
                                         <label onClick={() => setSelected("card")} className="py-[13px] px-[19px] border border-1 border-[var(--color-white-clean)] rounded-[10px] flex justify-between items-center">
                                             <div className="flex gap-[16px] items-center">
-                                                <Image src="/assets/icons/payment-card.svg" alt="payment card" width={30} height={30} />
+                                                <Image src="/media/shared/icons/payment-card.svg" alt="payment card" width={30} height={30} />
                                                 <span>الدفع بالبطاقه البنكيه</span>
                                             </div>
                                             <input
@@ -76,7 +76,7 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                                                             className="bg-gradient-to-br from-[var(--color-cyan-bright)] to-[var(--color-teal-dark-tow)] border border-2 border-[var(--color-white-light)] font-bold text-xs md:text-base flex items-center gap-2 justify-center px-4 py-[7px] md:px-8 md:py-[11px] w-full rounded-[12px] relative cursor-pointer transition-all duration-300"
                                                         >
                                                             <span className="relative z-1">اذهب للدفع من خلال الكارت البنكي</span>
-                                                            <Image src="/assets/icons/icon-bank.svg" alt="icon bank" width={24} height={16} />
+                                                            <Image src="/media/shared/icons/icon-bank.svg" alt="icon bank" width={24} height={16} />
                                                         </Link>
                                                     </div>
                                                 </div>
@@ -86,7 +86,7 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                                     <li className="w-full flex flex-col gap-[23px]">
                                         <label onClick={() => setSelected("wallet")} className="py-[13px] px-[19px] border border-1 border-[var(--color-white-clean)] rounded-[10px] flex justify-between items-center">
                                             <div className="flex gap-[16px] items-center">
-                                                <Image src="/assets/icons/payment-wallet.svg" alt="payment wallet" width={30} height={30} />
+                                                <Image src="/media/shared/icons/payment-wallet.svg" alt="payment wallet" width={30} height={30} />
                                                 <span>الدفع بالبطاقه البنكيه</span>
                                             </div>
                                             <input
@@ -124,7 +124,7 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                                                     <input type="text" className="md:w-[365px] py-[11px] px-[21px] rounded-[12px] border border-2 border-[var(--color-white-light)] bg-gradient-to-br from-[var(--color-white-overlay)] to-[var(--color-transparent)]" placeholder="رقم المحفظه" />
                                                     <div className="relative bg-gradient-to-br from-[var(--color-cyan-bright)] to-[var(--color-teal-dark-tow)] border border-2 border-[var(--color-white-light)] font-bold text-xs md:text-base flex items-center gap-2 justify-center rounded-[12px] relative cursor-pointer transition-all duration-300">
                                                         <input type="submit" value="أدفع الان" title="أدفع الان" className="cursor-pointer py-[7px] pe-9 ps-2 md:py-[11px] w-full" />
-                                                        <Image src="/assets/icons/icon-bank.svg" alt="icon bank" width={24} height={16} className="absolute top-[17px] left-1" />
+                                                        <Image src="/media/shared/icons/icon-bank.svg" alt="icon bank" width={24} height={16} className="absolute top-[17px] left-1" />
                                                     </div>
                                                 </form>
                                             </div>
@@ -166,7 +166,7 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                                     className="flex gap-[10px] items-center"
                                 >
                                     <Image
-                                        src="/assets/icons/like.svg"
+                                        src="/media/shared/icons/like.svg"
                                         alt="صح"
                                         width={16}
                                         height={16}
@@ -180,7 +180,7 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                                     className="flex gap-[10px] items-center"
                                 >
                                     <Image
-                                        src="/assets/icons/like.svg"
+                                        src="/media/shared/icons/like.svg"
                                         alt="صح"
                                         width={16}
                                         height={16}
@@ -194,7 +194,7 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                                     className="flex gap-[10px] items-center"
                                 >
                                     <Image
-                                        src="/assets/icons/like.svg"
+                                        src="/media/shared/icons/like.svg"
                                         alt="صح"
                                         width={16}
                                         height={16}
@@ -206,7 +206,7 @@ export default function PaymentMethodClient({ id }: { id: string }) {
                                 </li>
                             </ul>
                             <div className="relative w-full h-[200px]">
-                                <Image src="/assets/icons/credit-card.png" alt="caredit card" fill className="rounded-2xl object-cover" />
+                                <Image src="/media/shared/icons/credit-card.png" alt="caredit card" fill className="rounded-2xl object-cover" />
                             </div>
                         </div>
                     </div>

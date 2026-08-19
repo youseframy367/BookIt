@@ -11,7 +11,7 @@ export default function Pagnation({ numRow, setNumRow, scroll, numbersRef, numPa
                 <select
                     value={numRow}
                     onChange={(e) => setNumRow(parseInt(e.target.value))}
-                    className="appearance-none bg-white text-[16px] bg-[url('/assets/icons/arrow-up.svg')] bg-no-repeat bg-[position:right_10px_center] bg-[length:12px] border border-gray-300 rounded-md px-4 py-1 text-[12px] text-[#1D1D1D] focus:outline-none focus:ring-1 focus:ring-[#183866]"
+                    className="appearance-none bg-white text-[16px] bg-[url('/media/shared/icons/arrow-up.svg')] bg-no-repeat bg-[position:right_10px_center] bg-[length:12px] border border-gray-300 rounded-md px-4 py-1 text-[12px] text-[#1D1D1D] focus:outline-none focus:ring-1 focus:ring-[#183866]"
                 >
                     {[10, 20, 30, 40, 50].map((n) => (
                         <option key={n} value={n}>{n}</option>
@@ -26,7 +26,7 @@ export default function Pagnation({ numRow, setNumRow, scroll, numbersRef, numPa
                     className="w-[40px] h-[40px] flex items-center justify-center rounded-r-[8px] bg-white shadow-[0_0_2px_#00000040] hover:bg-[#f7f8fa] transition-all duration-200"
                 >
                     <img
-                        src="/img/;lhjn;jh.svg"
+                        src="/media/shared/ui/arrow-forward.svg"
                         className="w-3 h-3"
                         alt="next"
                     />
@@ -59,7 +59,7 @@ export default function Pagnation({ numRow, setNumRow, scroll, numbersRef, numPa
                     className="w-[40px] h-[40px] flex items-center justify-center rounded-l-[8px] bg-white shadow-[0_0_2px_#00000040] hover:bg-[#f7f8fa] transition-all duration-200"
                 >
                     <img
-                        src="/img/;lhjn;jh.svg"
+                        src="/media/shared/ui/arrow-forward.svg"
                         className="w-3 h-3 rotate-180"
                         alt="prev"
                     />

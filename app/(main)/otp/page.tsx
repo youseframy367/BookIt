@@ -26,12 +26,12 @@ export default function Otp() {
     }
 
     const particles = [
-        "/assets/icons/star-otp.svg",
-        "/assets/icons/square.svg",
-        "/assets/icons/dot.svg",
-        "/assets/icons/line-1.svg",
-        "/assets/icons/line-2.svg",
-        "/assets/icons/star-1.svg",
+        "/media/shared/icons/star-otp.svg",
+        "/media/shared/icons/square.svg",
+        "/media/shared/icons/dot.svg",
+        "/media/shared/icons/line-1.svg",
+        "/media/shared/icons/line-2.svg",
+        "/media/shared/icons/star-1.svg",
     ];
 
     return (
@@ -71,7 +71,7 @@ export default function Otp() {
                                         title="close"
                                         className="cursor-pointer p-4 rounded-full shadow-[0_4px_4px_rgba(0,0,0,0.25)] w-[20px] h-[20px] relative"
                                     >
-                                        <Image src="/assets/icons/close.png" alt="back" fill />
+                                        <Image src="/media/shared/icons/close.png" alt="back" fill />
                                     </div>
                                 </div>
 
@@ -98,7 +98,7 @@ export default function Otp() {
 
                                     <div className="breathe p-7 relative before:content[''] before:absolute before:rounded-full">
                                         <Image
-                                            src="/assets/icons/icon-success.svg"
+                                            src="/media/shared/icons/icon-success.svg"
                                             alt="success"
                                             width={210}
                                             height={210}

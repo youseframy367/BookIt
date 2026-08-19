@@ -28,13 +28,13 @@ export default function RestaurantManagers() {
               <button
                 className="w-[60px] h-[60px] flex items-center justify-center rounded-xl bg-[#E22023] swiper-button-prev"
               >
-                <img src="/assets/icons/arraw.png" alt="right" className='rotate-180' />
+                <img src="/media/shared/icons/arraw.png" alt="right" className='rotate-180' />
               </button>
 
               <button
                 className="w-[60px] h-[60px] flex items-center justify-center rounded-xl bg-[#E22023] swiper-button-next"
               >
-                <img src="/assets/icons/arraw.png" alt="left" />
+                <img src="/media/shared/icons/arraw.png" alt="left" />
               </button>
             </div>
           </div>

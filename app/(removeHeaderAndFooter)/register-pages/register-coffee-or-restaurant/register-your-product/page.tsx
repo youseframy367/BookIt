@@ -26,7 +26,7 @@ export default function RegisterYourProduct() {
         }
     }
 
-    const [imageSrc, setImageSrc] = useState('/assets/icons/upload-image.svg');
+    const [imageSrc, setImageSrc] = useState('/media/shared/icons/upload-image.svg');
     const [imageFile, setImageFile] = useState<File | null>(null);
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,7 +63,7 @@ export default function RegisterYourProduct() {
                                     htmlFor="image-upload"
                                     className="flex justify-center items-center bg-[rgba(19,19,19,0.5)] text-[#fff] text-xs font-medium gap-[10px] w-[163px] h-[34px] rounded-[10px] mt-[-34px] relative z-[99] cursor-pointer"
                                 >
-                                    <img src="/assets/icons/uplod.svg" alt="أيقونة تحميل" />
+                                    <img src="/media/shared/icons/uplod.svg" alt="أيقونة تحميل" />
                                     تحميل الصورة
                                 </label>
                             </div>
@@ -183,7 +183,7 @@ export default function RegisterYourProduct() {
                                         {checkedOne && (
                                             <div className="absolute z-10 w-full h-full">
                                                 <img
-                                                    src="/assets/icons/Checkbox.svg"
+                                                    src="/media/shared/icons/Checkbox.svg"
                                                     alt="صج"
                                                     width={20}
                                                     height={20}
@@ -213,7 +213,7 @@ export default function RegisterYourProduct() {
                                         {checkedTwo && (
                                             <div className="absolute z-10 w-full h-full">
                                                 <img
-                                                    src="/assets/icons/Checkbox.svg"
+                                                    src="/media/shared/icons/Checkbox.svg"
                                                     alt="صج"
                                                     width={20}
                                                     height={20}

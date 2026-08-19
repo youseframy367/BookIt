@@ -2,7 +2,7 @@ export const useSuppliersData = () => {
     return [
         {
             id: "1",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             number: "0121022904",
             name: "هشام عبد الحميد",
             address: "الرياض",
@@ -14,7 +14,7 @@ export const useSuppliersData = () => {
         },
         {
             id: "2",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             number: "0121022904",
             name: "أحمد محمد",
             address: "الرياض",
@@ -26,7 +26,7 @@ export const useSuppliersData = () => {
         },
         {
             id: "3",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             number: "0121022904",
             name: "محمد علي",
             address: "الرياض",
@@ -38,7 +38,7 @@ export const useSuppliersData = () => {
         },
         {
             id: "4",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             number: "0121022904",
             name: "محمود خالد",
             address: "الرياض",
@@ -50,7 +50,7 @@ export const useSuppliersData = () => {
         },
         {
             id: "5",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             number: "0121022904",
             name: "خالد يوسف",
             address: "الرياض",

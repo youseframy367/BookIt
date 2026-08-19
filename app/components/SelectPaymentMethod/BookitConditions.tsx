@@ -34,7 +34,7 @@ export default function BookitConditions({ notes, handleChange }: BookitConditio
                                             <div className="w-[15px] h-[15px] md:w-[20px] md:h-[20px] border-1 border-[var(--color-gray-three)] rounded-[4px] transition-all duration-200 relative">
                                                 {
                                                     item.checked && <div className="absolute z-10 w-full h-full">
-                                                        <img src="/assets/icons/checkbox-red.svg" alt="صج" width={20} height={20} />
+                                                        <img src="/media/shared/icons/checkbox-red.svg" alt="صج" width={20} height={20} />
                                                     </div>
                                                 }
                                             </div>

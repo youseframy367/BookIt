@@ -26,7 +26,7 @@ export default function AddInventory() {
         stateAcunt: false
     });
 
-    const [imageSrc, setImageSrc] = useState('/img/trrruyeryer.svg');
+    const [imageSrc, setImageSrc] = useState('/media/shared/ui/image-placeholder.svg');
     const [imageFile, setImageFile] = useState(null);
     const [typeAcunt, setTypeAcount] = useState("");
 
@@ -88,7 +88,7 @@ export default function AddInventory() {
                 stateAcunt: parsed.acount || false,
                 id: parsed.id
             });
-            setImageSrc(parsed.img || '/img/trrruyeryer.svg');
+            setImageSrc(parsed.img || '/media/shared/ui/image-placeholder.svg');
             setTypeAcount(parsed.acount ? "نشط" : "حساب معطل");
         }
     }, []);
@@ -129,7 +129,7 @@ export default function AddInventory() {
                                 htmlFor="image-upload"
                                 className="flex justify-center items-center bg-[rgba(19,19,19,0.5)] text-white text-xs font-medium gap-2.5 w-[163px] h-8 rounded-lg -mt-7.5 relative z-[99] cursor-pointer"
                             >
-                                <img src="/img/UploadSimple.svg" alt="أيقونة تحميل" />
+                                <img src="/media/shared/ui/upload-white.svg" alt="أيقونة تحميل" />
                                 تحميل الصورة
                             </label>
                         </div>
@@ -167,7 +167,7 @@ export default function AddInventory() {
                                 <div className="w-[17%] relative flex flex-col gap-[10px]">
                                     <span className="opacity-0">s</span>
                                     <div onClick={() => setamount(prev => !prev)} className="rounded-l-lg relative border border-gray-300 py-[10.3px] px-2 flex justify-between">
-                                        <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${amount && 'rotate-180'}`} />
+                                        <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${amount && 'rotate-180'}`} />
                                         <span className={`${amount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>كيلو</span>
                                     </div>
                                     {
@@ -226,7 +226,7 @@ export default function AddInventory() {
                             <div className="w-[17%] relative flex flex-col gap-[9.6px]">
                                 <span className="opacity-0">s</span>
                                 <div onClick={() => setlastAmount(prev => !prev)} className="rounded-l-lg relative before:content-[''] before:absolute before:top-[10%] before:right-0 before:h-[80%] before:w-[1px] border border-gray-300 py-[10.5px] px-2 flex justify-between">
-                                    <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${lastAmount && 'rotate-180'}`} />
+                                    <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${lastAmount && 'rotate-180'}`} />
                                     <span className={`${lastAmount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>كيلو</span>
                                 </div>
                                 {

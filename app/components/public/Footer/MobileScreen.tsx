@@ -16,7 +16,7 @@ export default function MobileScreen() {
         <div className="container">
             <div className="pb-10 pt-45 flex flex-col gap-5">
                 <div className="md:items-center flex flex-col gap-5">
-                    <Image src="/assets/icons/logo-footer-1.svg" alt="logo" width={199} height={37} />
+                    <Image src="/media/shared/icons/logo-footer-1.svg" alt="logo" width={199} height={37} />
                     <span className={`${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-sm font-normal text-[var(--color-black-five)]`}>{mounted ? t('search-for-restaurants') : '...'}</span>
                 </div>
                 <SocailMedia filter="p-[6px] filter brightness-0" isBorder="rounded-full border border-2 border-[var(--color-black-six)]" />

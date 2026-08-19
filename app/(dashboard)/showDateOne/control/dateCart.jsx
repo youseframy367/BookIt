@@ -16,7 +16,7 @@ const DUMMY = [
     subValue: "1452",
     subSuffix: "EGP",
     changeValue: -92.8,
-    icon: "/img/Frame 1686551849.svg",
+    icon: "/media/dashboard/overview/checklist.svg",
     iconClass: "w-[52px] h-[52px] absolute top-[10px] left-[10px] z-10",
   },
   {
@@ -27,7 +27,7 @@ const DUMMY = [
     subValue: "142",
     subSuffix: null,
     changeValue: 92.8,
-    icon: "/img/Frame 322.svg",
+    icon: "/media/dashboard/payments/card.svg",
     iconClass: "w-[52px] h-[48px] absolute top-[10px] left-[10px] z-10",
   },
   {
@@ -38,7 +38,7 @@ const DUMMY = [
     subValue: "1452",
     subSuffix: null,
     changeValue: -92.8,
-    icon: "/img/rerreer.svg",
+    icon: "/media/dashboard/payments/card-active.svg",
     iconClass: "w-[52px] h-[48px] absolute top-[10px] left-[10px] z-10",
   },
   {
@@ -49,7 +49,7 @@ const DUMMY = [
     subValue: "1452",
     subSuffix: null,
     changeValue: 92.8,
-    icon: "/img/Frame 1686553822.svg",
+    icon: "/media/dashboard/reservations/search-document.svg",
     iconClass: "w-[52px] h-[52px] absolute top-[10px] left-[10px] z-10",
   },
 ];
@@ -89,7 +89,7 @@ export default function DateCart() {
           subValue: String(counts(stats.orders).completed ?? 0),
           subSuffix: null,
           changeValue: 0,
-          icon: "/img/Frame 1686551849.svg",
+          icon: "/media/dashboard/overview/checklist.svg",
           iconClass: "w-[52px] h-[52px] absolute top-[10px] left-[10px] z-10",
         },
         {
@@ -100,7 +100,7 @@ export default function DateCart() {
           subValue: "—",
           subSuffix: null,
           changeValue: 0,
-          icon: "/img/Frame 322.svg",
+          icon: "/media/dashboard/payments/card.svg",
           iconClass: "w-[52px] h-[48px] absolute top-[10px] left-[10px] z-10",
         },
         {
@@ -111,7 +111,7 @@ export default function DateCart() {
           subValue: "—",
           subSuffix: null,
           changeValue: 0,
-          icon: "/img/rerreer.svg",
+          icon: "/media/dashboard/payments/card-active.svg",
           iconClass: "w-[52px] h-[48px] absolute top-[10px] left-[10px] z-10",
         },
         {
@@ -122,7 +122,7 @@ export default function DateCart() {
           subValue: String((stats.orders || []).reduce((s, o) => s + o.count, 0)),
           subSuffix: null,
           changeValue: 0,
-          icon: "/img/Frame 1686553822.svg",
+          icon: "/media/dashboard/reservations/search-document.svg",
           iconClass: "w-[52px] h-[52px] absolute top-[10px] left-[10px] z-10",
         },
       ]
@@ -170,7 +170,7 @@ export default function DateCart() {
 
                   <p className="flex gap-[5px] items-center text-[8px] font-normal text-[#3D3D3D]">
                     <img
-                      src={isPositive ? "/img/ewerwft.svg" : "/img/gfgf.svg"}
+                      src={isPositive ? "/media/dashboard/reports/trend-up.svg" : "/media/dashboard/reports/trend-down.svg"}
                       alt="trend"
                     />
                     <span className={isPositive ? "text-green-600" : "text-red-600"}>
@@ -226,7 +226,7 @@ function DateCartInner({ cardsData }) {
                     {" "}{card.subLabel}
                   </p>
                   <p className="flex gap-[5px] items-center text-[8px] font-normal text-[#3D3D3D]">
-                    <img src={isPositive ? "/img/ewerwft.svg" : "/img/gfgf.svg"} alt="trend" />
+                    <img src={isPositive ? "/media/dashboard/reports/trend-up.svg" : "/media/dashboard/reports/trend-down.svg"} alt="trend" />
                     <span className={isPositive ? "text-green-600" : "text-red-600"}>{card.changeValue}</span>
                     أعلى من الشهر الماضي
                   </p>

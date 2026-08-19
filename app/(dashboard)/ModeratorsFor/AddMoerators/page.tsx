@@ -13,7 +13,7 @@ import { usersApi, rolesApi, businessApi } from "@/utils/api";
 
 export default function AddModerators() {
   const router = useRouter();
-  const [imageSrc, setImageSrc] = useState('/img/trrruyeryer.svg');
+  const [imageSrc, setImageSrc] = useState('/media/shared/ui/image-placeholder.svg');
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [roles, setRoles] = useState<any[]>([]);
   const [branches, setBranches] = useState<any[]>([]);
@@ -109,7 +109,7 @@ export default function AddModerators() {
             htmlFor="image-upload"
             className="flex justify-center items-center bg-[rgba(19,19,19,0.5)] text-white text-xs font-medium gap-2.5 w-[163px] h-8 rounded-lg -mt-7.5 relative z-[99] cursor-pointer"
           >
-            <img src="/img/UploadSimple.svg" alt="أيقونة تحميل" />
+            <img src="/media/shared/ui/upload-white.svg" alt="أيقونة تحميل" />
             تحميل الصورة
           </label>
         </div>

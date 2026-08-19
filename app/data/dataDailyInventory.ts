@@ -2,7 +2,7 @@ export const useDailyInventoryData = () => {
     return [
         {
             id: "1",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "100 كيلو",
             name: "هشام عبد الحميد",
             idNumber: "1020304050",
@@ -13,7 +13,7 @@ export const useDailyInventoryData = () => {
         },
         {
             id: "2",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "100 كيلو",
             name: "أحمد محمد",
             idNumber: "2030405060",
@@ -24,7 +24,7 @@ export const useDailyInventoryData = () => {
         },
         {
             id: "3",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "20 كيلو",
             name: "محمد علي",
             idNumber: "3040506070",
@@ -35,7 +35,7 @@ export const useDailyInventoryData = () => {
         },
         {
             id: "4",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "15 كيلو",
             name: "محمود خالد",
             idNumber: "4050607080",
@@ -46,7 +46,7 @@ export const useDailyInventoryData = () => {
         },
         {
             id: "5",
-            img: "/img/fa0e294148503329ed0f8eb7448b70d301751871.jpg",
+            img: "/media/dashboard/profile/member-portrait.jpg",
             kPrice: "0 كيلو",
             name: "خالد يوسف",
             idNumber: "5060708090",

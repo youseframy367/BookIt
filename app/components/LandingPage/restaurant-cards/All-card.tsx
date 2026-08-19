@@ -40,7 +40,7 @@ export default function AllCard({ item }: dataCards) {
                         </div>
                     </div>
                     <div className="flex gap-3 opacity-[0.7]">
-                        <Image src="/assets/icons/map.svg" alt="map" width={24} height={24} style={{ filter: "invert(47%) sepia(5%) saturate(200%) hue-rotate(180deg) brightness(95%) contrast(90%)" }} />
+                        <Image src="/media/shared/icons/map.svg" alt="map" width={24} height={24} style={{ filter: "invert(47%) sepia(5%) saturate(200%) hue-rotate(180deg) brightness(95%) contrast(90%)" }} />
                         <span className={`text-[var(--color-gray-medium-transparent)] text-base font-normal ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-Poppins" : ""}`}>{mounted ? item.area : '...'}</span>
                     </div>
                 </div>

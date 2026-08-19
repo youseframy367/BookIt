@@ -37,11 +37,11 @@ export default function CreateTemplate() {
                                         return <div className="overflow-hidden cursor-pointer group w-full rounded-[24px] bg-gradient-to-br from-[var(--color-teal)] to-[var(--color-dark-blue-overlay)] pt-1 relative" key={index}>
                                             <div onClick={() => setShow(true)} >
                                                 <div title="القالب" className={`group overflow-hidden ${!show && 'z-1'} flex justify-center items-center absolute top-7 right-5 bg-white/20 backdrop-blur-md rounded-full w-[40px] h-[40px] border border-2 border-white`}>
-                                                    <Image src="/assets/icons/arraw.svg" alt="arraw" width={13} height={13} className="transition-all duration-300 group-hover:-top-2 group-hover:left-[30px] absolute left-[13px] top-3" />
-                                                    <Image src="/assets/icons/arraw.svg" alt="arraw" width={13} height={13} className="transition-all duration-300 top-7 -left-2 absolute group-hover:left-[13px] group-hover:top-3" />
+                                                    <Image src="/media/shared/icons/arraw.svg" alt="arraw" width={13} height={13} className="transition-all duration-300 group-hover:-top-2 group-hover:left-[30px] absolute left-[13px] top-3" />
+                                                    <Image src="/media/shared/icons/arraw.svg" alt="arraw" width={13} height={13} className="transition-all duration-300 top-7 -left-2 absolute group-hover:left-[13px] group-hover:top-3" />
                                                 </div>
                                                 <div className="transition-all duration-300 relative w-full h-[170px] md:h-[230px] scale-100 group-hover:scale-110 rotate-0 group-hover:rotate-3">
-                                                    <Image src={`/assets/icons/${item.imageOut}.svg`} alt="ui" fill />
+                                                    <Image src={`/media/shared/icons/${item.imageOut}.svg`} alt="ui" fill />
                                                 </div>
                                             </div>
                                             {
@@ -50,7 +50,7 @@ export default function CreateTemplate() {
                                                         <div className="flex flex-col items-center gap-[16px]">
                                                             <h2 className="font-semibold ms-7">مرر للأعلي وشاهد القالب بالكامل </h2>
                                                             <div className="overflow-scroll w-[35%] h-[500px]">
-                                                                <img src={`/assets/icons/${item.imageInput}.svg`} alt="landing page" className="w-full object-cover" />
+                                                                <img src={`/media/shared/icons/${item.imageInput}.svg`} alt="landing page" className="w-full object-cover" />
                                                             </div>
                                                             <div className="w-[30%]" onClick={() => router.push("/showDateOne/control")}>
                                                                 <Submit title="نعم ؛ انا موافق علي هذا القالب وأريد الاستمرار به" width="w-full" />
@@ -68,7 +68,7 @@ export default function CreateTemplate() {
                             </div>
                             <div className="-z-1 top-0 absolute w-full h-full">
                                 <div className="w-full h-full relative">
-                                    <Image src="/assets/icons/squares-1.svg" alt="squares" fill />
+                                    <Image src="/media/shared/icons/squares-1.svg" alt="squares" fill />
                                 </div>
                             </div>
                         </div>

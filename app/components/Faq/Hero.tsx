@@ -21,7 +21,7 @@ export default function Hero({ search, setSearch }: isFilter) {
                             className="md:hidden"
                         >
                             <Image
-                                src="/assets/icons/arraw-mobile.svg"
+                                src="/media/shared/icons/arraw-mobile.svg"
                                 alt="arraw"
                                 width={34}
                                 height={34}
@@ -31,7 +31,7 @@ export default function Hero({ search, setSearch }: isFilter) {
                             <h2 className="text-white text-xl md:text-[50px] font-semibold">{mounted ? t("welcome-to-diner") : '...'}</h2>
                             <span className="leading-[20px] md:leading-[unset] text-white text-[10px] md:text-[20px] font-semibold font-normal opacity-[0.5]">{mounted ? t("text-welcome-to-diner") : '...'}</span>
                             <div className="mt-2 md:mt-0 text-white border border-1 border-white lg:w-[700px] bg-white/5 backdrop-blur-md rounded-lg relative flex items-center">
-                                <Image src="/assets/icons/search.svg" alt='search' width={20} height={20} className='absolute start-2 md:start-5 filter brightness-0 invert' />
+                                <Image src="/media/shared/icons/search.svg" alt='search' width={20} height={20} className='absolute start-2 md:start-5 filter brightness-0 invert' />
                                 <input
                                     type="text"
                                     placeholder={mounted ? t("search-faq") : '...'}
@@ -42,7 +42,7 @@ export default function Hero({ search, setSearch }: isFilter) {
                             </div>
                         </div>
                     </div>
-                    <Image src="/assets/webp/faq.webp" alt="faq" fill className="object-cover z-[-1]" />
+                    <Image src="/media/platform/support/faq-hero.webp" alt="faq" fill className="object-cover z-[-1]" />
                 </div>
             </div>
         </section>

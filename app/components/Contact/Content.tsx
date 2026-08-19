@@ -92,7 +92,7 @@ export default function Content() {
                             <div className="flex">
                                 <div className="relative flex gap-5 rounded-full border border-1 border-[var(--color-gray-medium-transparent)] rounded-[10px]">
                                     <input value={mounted ? (sending ? "..." : t('Send')) : '...'} type="submit" disabled={sending} className="text-[var(--slate-gray)] ps-5 pe-13 py-3 cursor-pointer disabled:opacity-50" />
-                                    <Image src="/assets/icons/arrow-up.svg" alt="arraw up" width={20} height={20} className={`absolute ${mounted ? i18n.language === 'ar' ? "left-6 rotate-[-75deg]" : "right-6" : ""} top-[13px]`} />
+                                    <Image src="/media/shared/icons/arrow-up.svg" alt="arraw up" width={20} height={20} className={`absolute ${mounted ? i18n.language === 'ar' ? "left-6 rotate-[-75deg]" : "right-6" : ""} top-[13px]`} />
                                 </div>
                             </div>
                         </form>

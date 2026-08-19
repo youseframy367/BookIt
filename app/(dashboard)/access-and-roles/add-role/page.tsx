@@ -42,7 +42,7 @@ export default function AddRole() {
                         }>
                             <div className="py-[13px] w-full flex justify-between items-center">
                                 <span className="text-base font-semibold">اضافة دور جديد</span>
-                                <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedAddRole == 'Add Role' && 'rotate-179'}`} />
+                                <Image src="/media/shared/icons/arraw-down.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedAddRole == 'Add Role' && 'rotate-179'}`} />
                             </div>
                         </label>
                         <hr className="text-[var(--color-black-05)]" />
@@ -72,7 +72,7 @@ export default function AddRole() {
                         }>
                             <div className="py-[13px] w-full flex justify-between items-center">
                                 <span className="text-base font-semibold">الصلاحيات ( AR )</span>
-                                <Image src="/assets/icons/arraw-down.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedAccess == 'access' && 'rotate-179'}`} />
+                                <Image src="/media/shared/icons/arraw-down.svg" alt="arraw" width={10} height={10} className={`transition-all duration-300 ${selectedAccess == 'access' && 'rotate-179'}`} />
                             </div>
                         </label>
                         <hr className="text-[var(--color-black-05)]" />
@@ -95,7 +95,7 @@ export default function AddRole() {
                                                     <div className="w-[20px] h-[20px] border-1 border-[#E9EAF0] rounded-[4px] transition-all duration-200 relative">
                                                         {checked[colIndex][idx] && (
                                                             <div className="absolute z-10 w-full h-full">
-                                                                <img src="/assets/icons/Checkbox.svg" alt="صج" width={20} height={20} />
+                                                                <img src="/media/shared/icons/Checkbox.svg" alt="صج" width={20} height={20} />
                                                             </div>
                                                         )}
                                                     </div>

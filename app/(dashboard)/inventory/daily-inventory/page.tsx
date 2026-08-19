@@ -51,7 +51,7 @@ export default function DailyInventory() {
                                         <p className="text-[#131313] font-semibold text-[20px]">
                                             فلتر الجرد اليومي
                                         </p>
-                                        <Image src="/assets/icons/close.png" alt="close" width={18} height={18} onClick={() => setShowFilter(false)} className="cursor-pointer" title="اغلاق" />
+                                        <Image src="/media/shared/icons/close.png" alt="close" width={18} height={18} onClick={() => setShowFilter(false)} className="cursor-pointer" title="اغلاق" />
                                     </div>
                                     <hr className="text-[var(--color-gray-six)]" />
 
@@ -106,7 +106,7 @@ export default function DailyInventory() {
                 <div className="flex items-center gap-[15px] flex-1 justify-end">
                     <div className="relative w-[300px]">
                         <span className="absolute top-[10px] mr-[10px]">
-                            <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
+                            <img src="/media/shared/ui/search.svg" className="w-4 h-4" />
                         </span>
                         <input
                             type="search"
@@ -122,7 +122,7 @@ export default function DailyInventory() {
                         onClick={() => {
                             setShowFilter(true)
                         }}
-                        src="/img/Frame 1686553878.svg"
+                        src="/media/dashboard/overview/filter.svg"
                         className="w-[32px] h-[32px] cursor-pointer"
                         alt="filter"
                     />

@@ -51,7 +51,7 @@ export default function AllMoerators() {
       Powers: u.roleId ? "مُعيّن" : "غير معيّن",
       stat: u.status === "ACTIVE",
       acount: u.status === "ACTIVE",
-      img: u.avatar || "/img/profile.jpg",
+      img: u.avatar || "/media/dashboard/profile/member-portrait.jpg",
     }));
   }, [users]);
 
@@ -121,7 +121,7 @@ export default function AllMoerators() {
         <div className="flex items-center gap-[15px] flex-1 justify-end">
           <div className="relative w-[300px]">
             <span className="absolute top-[10px] mr-[10px]">
-              <img src="/img/MagnifyingGlass.svg" className="w-4 h-4" />
+              <img src="/media/shared/ui/search.svg" className="w-4 h-4" />
             </span>
             <input
               type="search"
@@ -224,14 +224,14 @@ export default function AllMoerators() {
                           window.sessionStorage.setItem("dateAcuntModetor", JSON.stringify(m));
                           router.push("/ModeratorsFor/detalsMoerators");
                         }}>
-                        <img src="/img/كمغخخحه.svg" width="10" height="8px" />
+                        <img src="/media/dashboard/actions/chevron-up.svg" width="10" height="8px" />
                       </span>
 
-                      <img className="cursor-pointer" title="تعديل" src="/img/تعديل.svg" width="24px" height="24px" onClick={() => {
+                      <img className="cursor-pointer" title="تعديل" src="/media/dashboard/actions/edit.svg" width="24px" height="24px" onClick={() => {
                         router.push("/ModeratorsFor/updateMoerators");
                       }} />
 
-                      <img className="cursor-pointer" title="حذف" src="/img/Frame 1261153571.svg" width="24px" height="24px" alt="حذف" onClick={() => {
+                      <img className="cursor-pointer" title="حذف" src="/media/dashboard/actions/delete.svg" width="24px" height="24px" alt="حذف" onClick={() => {
                         /* حفظ الـ id الحقيقي للمستخدم ثم فتح نافذة تأكيد الحذف */
                         setSelectedId(m.id ?? null);
                         setRemovRoles(true)

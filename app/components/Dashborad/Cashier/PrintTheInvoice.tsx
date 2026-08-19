@@ -43,7 +43,7 @@ export default function PrintTheInvoice({ vat, deliveryFee, isCart, subtotal, to
                     <li>رقم الهاتف : <span className="opacity-30">{customerData.phone ? customerData.phone : 'غير متوفر'}</span></li>
                     <li>السجل الضريبي: <span className="opacity-30">لم يتم الاضافه</span></li>
                 </ul>
-                <Image src="/assets/icons/invoice-logo.svg" alt="logo" width={123} height={123} />
+                <Image src="/media/shared/icons/invoice-logo.svg" alt="logo" width={123} height={123} />
                 <ul className="flex flex-col gap-[12px]">
                     <li>تاريخ الطلب : <span className="opacity-30">22 / 5 / 2025</span></li>
                     <li>تنسيق الوقت : <span className="opacity-30"> 12 ساعه</span></li>

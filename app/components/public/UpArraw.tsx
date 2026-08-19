@@ -23,7 +23,7 @@ export default function UpArraw() {
         >
             <div className="cursor-pointer bg-white rounded-full border-[var(--strong-red)] border-2 w-[50px] h-[50px] flex justify-center items-center shadow-lg">
                 <Image
-                    src="/assets/icons/arraw-select.svg"
+                    src="/media/shared/icons/arraw-select.svg"
                     alt="Arrow"
                     width={20}
                     height={20}

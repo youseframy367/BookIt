@@ -22,7 +22,7 @@ export default function Role() {
                     {/* Logo */}
                     <div className="flex justify-center">
                         <Image
-                            src="/assets/icons/logo-navbar.png"
+                            src="/media/shared/icons/logo-navbar.png"
                             alt="logo"
                             className="mt-[-10px]"
                             width={180}
@@ -52,7 +52,7 @@ export default function Role() {
                                     ? "border-4 border-[var(--strong-red)]"
                                     : "border border-[rgba(72,72,72,0.5)]"}`}
                         >
-                            <Image src="/assets/icons/iconUser.png" width={124} height={30} alt="icon user" className="object-cover" />
+                            <Image src="/media/shared/icons/iconUser.png" width={124} height={30} alt="icon user" className="object-cover" />
                             <p className={`text-xl mt-4 mb-0 font-medium ${role === "Customer" ? "text-[var(--color-red-dark)]" : "text-black"}`}>
                                 {mounted ? t("customer") : '...'}
                             </p>
@@ -68,7 +68,7 @@ export default function Role() {
                                     ? "border-4 border-[var(--strong-red)]"
                                     : "border border-[rgba(72,72,72,0.5)]"}`}
                         >
-                            <Image src="/assets/icons/onerIcon.png" width={124} height={30} alt="icon user" className="object-cover" />
+                            <Image src="/media/shared/icons/onerIcon.png" width={124} height={30} alt="icon user" className="object-cover" />
                             <p className={`text-xl mt-4 mb-0 font-medium ${role === "Owner" ? "text-[var(--color-red-dark)]" : "text-black"}`}>
                                 {mounted ? t("owner") : '...'}
                             </p>

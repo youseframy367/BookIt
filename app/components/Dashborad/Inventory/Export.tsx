@@ -62,11 +62,11 @@ export default function Export({ tableRef, displayedCustomers }: passData) {
 
             <div ref={menuRef} className={`${openMenu ? 'opacity-[1] z-1' : 'opacity-[0] -z-1'} w-[190%] rounded-[12px] py-[20px] px-[24px] absolute left-0 bg-white top-11 flex flex-col gap-[22px]`}>
                 <div onClick={exportExcel} className="flex items-center gap-[8px] cursor-pointer" title="تصدير Excel">
-                    <Image src="/assets/icons/excel.svg" alt="excel" width={20} height={18} />
+                    <Image src="/media/shared/icons/excel.svg" alt="excel" width={20} height={18} />
                     <span>تصدير Excel</span>
                 </div>
                 <div onClick={exportPDF} className="flex items-center gap-[8px] cursor-pointer" title="تصدير PDF">
-                    <Image src="/assets/icons/pdf.svg" alt="pdf" width={20} height={18} />
+                    <Image src="/media/shared/icons/pdf.svg" alt="pdf" width={20} height={18} />
                     <span>تصدير PDF</span>
                 </div>
             </div>

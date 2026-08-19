@@ -16,7 +16,7 @@ export default function HowBOOKwork() {
               {
                 dataSystem.map((item, index) => {
                   return <div key={index} className="flex flex-col gap-5 md:gap-13 w-full items-center text-center">
-                    <img src={`/assets/icons/${item.img}.png`} alt="work" className="h-[50px] md:h-[150px] object-cover" />
+                    <img src={`/media/shared/icons/${item.img}.png`} alt="work" className="h-[50px] md:h-[150px] object-cover" />
                     <span className={`leading-[20px] text-xs md:text-lg ${mounted ? i18n.language === 'ar' ? "font-cairo" : "font-rubik" : ""} text-[var(--slate-gray)]`}>{mounted ? item.text : "..."}</span>
                   </div>
                 })

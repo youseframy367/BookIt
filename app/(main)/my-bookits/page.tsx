@@ -63,7 +63,7 @@ export default function MyBookits() {
         <section>
             <div className="shadow-[0_1px_6px_var(--color-black-tow)] fixed top-0 p-[15px] bg-white z-1 flex items-center w-full">
                 <div className="flex flex-1">
-                    <Image src="/assets/icons/close.svg" alt="close" width={24} height={24} />
+                    <Image src="/media/shared/icons/close.svg" alt="close" width={24} height={24} />
                 </div>
                 <div className="flex flex-[1.7]">
                     <h2 className="text-[var(--strong-red)] text-lg font-medium">My Bookings</h2>

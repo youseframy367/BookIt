@@ -22,7 +22,8 @@ const headers = {
 /* تحويل بزنس واحد من الباك إند إلى شكل RestaurantItem */
 function toRestaurantItem(biz: any, t: any, lang: string) {
   return {
-    img: biz.logo || "/assets/images/placeholder-restaurant.png",
+    // بديل مرئي آمن عند غياب شعار المنشأة من بيانات الـ API.
+    img: biz.logo || "/media/shared/ui/image-placeholder.svg",
     name: biz.name || "",
     rating: Number(biz.avgRating ?? 0),
     des: biz.description || "",

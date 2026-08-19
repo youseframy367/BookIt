@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "BOOK IT",
-  icons: { icon: "/assets/icons/logo.svg" },
+  icons: { icon: "/media/shared/icons/logo.svg" },
 };
 
 export default function RootLayout({

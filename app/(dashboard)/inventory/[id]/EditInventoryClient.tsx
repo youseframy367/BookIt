@@ -14,7 +14,7 @@ import { inventoryApi, uploadsApi } from "@/utils/api";
 
 export default function UpdateModerators({ id }: { id: string }) {
   const router = useRouter();
-  const [imageSrc, setImageSrc] = useState('/img/trrruyeryer.svg');
+  const [imageSrc, setImageSrc] = useState('/media/shared/ui/image-placeholder.svg');
   const [imageFile, setImageFile] = useState(null);
   const [saving, setSaving] = useState(false);
 
@@ -124,12 +124,12 @@ export default function UpdateModerators({ id }: { id: string }) {
             htmlFor="imageUpload"
             className="cursor-pointer bg-white border border-[var(--color-black-tow)] border-1 px-[16px] py-[4px] rounded-[8px] flex gap-[8px]"
           >
-            <Image src="/assets/icons/pincale.svg" alt="pincale" width={14} height={14} />
+            <Image src="/media/dashboard/actions/edit-outline.svg" alt="تعديل صورة المنتج" width={14} height={14} />
             <span>تعديل</span>
           </label>
         </div>
         <div className="p-5 flex flex-col gap-[20px]">
-          <Image src="/assets/icons/upload-product.svg" alt="upload product" width={200} height={200} />
+          <Image src="/media/shared/icons/upload-product.svg" alt="upload product" width={200} height={200} />
           <span className="text-[var(--color-gray-ate)] text-xs">يجب أن يكون حجم الصورة أقل من 1 ميجا بايت ويجب أن تكون نسبة الصورة 1:1</span>
         </div>
       </div>
@@ -175,7 +175,7 @@ export default function UpdateModerators({ id }: { id: string }) {
             <div className="relative flex flex-col gap-[10px]">
               <span className="opacity-0">s</span>
               <div onClick={() => setamount(prev => !prev)} className="rounded-l-lg relative before:content-[''] before:absolute before:top-[10%] before:right-0 before:bg-[var(--alpha)] before:h-[80%] before:w-[1px] bg-[var(--color-gray-nine)] py-[11px] px-4 flex gap-2 justify-between">
-                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${amount && 'rotate-180'}`} />
+                <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${amount && 'rotate-180'}`} />
                 <span className={`${amount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>كيلو</span>
               </div>
               {
@@ -212,7 +212,7 @@ export default function UpdateModerators({ id }: { id: string }) {
             <div className="relative flex flex-col gap-[25.3px]">
               <span className="opacity-0">s</span>
               <div onClick={() => setlastAmount(prev => !prev)} className="rounded-l-lg relative before:content-[''] before:absolute before:top-[10%] before:right-0 before:h-[80%] before:w-[1px] border border-gray-300 py-[11px] px-2 flex justify-between">
-                <Image src="/assets/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${lastAmount && 'rotate-180'}`} />
+                <Image src="/media/shared/icons/arrow-details.svg" alt="arraw" width={12} height={12} className={`transition-all duration-300 ${lastAmount && 'rotate-180'}`} />
                 <span className={`${lastAmount ? 'text-[var(--color-dark-blue-gray)]' : 'text-[#8C94A3]'} text-sm font-normal opacity-[0.5]`}>كيلو</span>
               </div>
               {
