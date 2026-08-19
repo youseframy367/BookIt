@@ -323,6 +323,12 @@ export const subscriptionsApi = {
   select: (data: { planId: string; status?: "active" | "paused" | "expired"; startsAt?: string; expiresAt?: string }) => api.post<any>("/subscriptions/select", data),
 };
 
+/* إعدادات الموقع: البيانات المنشورة لموقع المطعم أو الكافيه تُدار هنا فقط من المالك أو المدير. */
+export const siteProfileApi = {
+  me: () => api.get<any>("/site-profile/me"),
+  update: (data: Record<string, any>) => api.patch<any>("/site-profile/me", data),
+};
+
 export const publicApi = {
   businesses: () => api.get<any[]>("/public/businesses"),
   business: (id: string) => api.get<any>(`/public/businesses/${id}`),

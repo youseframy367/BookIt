@@ -59,6 +59,16 @@ export default function Sidebar({ setTitle, setSmoleScreen: setParentSmoleScreen
       ]
     },
     {
+      name: "بيانات الموقع",
+      navigate: "/site-profile",
+      title: "إعدادات موقع النشاط",
+      icon: "/assets/icons/roles.svg",
+      iconActiv: "/assets/icons/white-roles.svg",
+      list: [
+        { title: "الهوية والتواصل والقالب", navigate: "/site-profile" },
+      ]
+    },
+    {
       name: "المخزون",
       navigate: '/inventory',
       title: "المخزون",
